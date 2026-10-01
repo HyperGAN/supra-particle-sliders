@@ -123,23 +123,50 @@ This was a diagnostic arithmetic qualification issue, not a production bug.
 
 ## Conditional next step
 
-Keep the active particle-gated V3 fixed-budget experiment first. If it later
-stalls, a more targeted critic hypothesis than a first-hidden SiLU swap is
-**learned feature pooling**: replace uniform pooling with positive softmax
-weights computed solely from learned critic features, with the new attention
-logit parameters initialized to zero. The starting critic function, bounded
-structural features and source-wise RpGAN pairing can be preserved. Only
-native game and KA2 would train it; no output-derived saliency or weighting
-would be allowed.
+Keep the active particle-gated V3 fixed-budget experiment first. A held
+prototype in `scripts/experimental_e22_tokenwise_game.py` isolates the measured
+pooling difference: only D/G payoffs use
+`D.score(D.features(error, condition)).flatten(0, 1)` in the public RpGAN loss.
+This changes the pairing granularity from context to context/patch. It is an
+explicit experimental game objective, not a production optimizer bug fix.
 
-Before a GPU continuation, qualify initial scores, old/input derivatives and
-EMA features, then measure its new-parameter native D-game/KA2 gradient
-decomposition on these fixed captured panels. Retain native16-coordinate
-penalty units, real R1, caps, guards, source/time conditioning and an explicit
-versioned experimental restore for the appended optimizer state. A fixed
-matched continuation with shared critics would then determine whether the
-learned pooling helps; the observational tail-share numbers above do not
-establish that result. No such critic intervention has been promoted or run.
+The pooled `ConditionalTokenCritic.forward` is unchanged for native KA2,
+including real R1, caps and16-coordinate input units. Critic parameters,
+initialization, EMA, bounded structural features, source/time conditioning,
+128x4 particles, routes, native lifecycle, controller observations, Gaussian
+and DV12 streams, preservation payoff weight0.1, and unweighted penalty
+remain native. No output-derived weights or features are introduced.
+
+Five meaningful CPU checks pass on PR223, including native legacy and shared
+auto/settled profiles. They check paired origin, homogeneous payoff/gradient
+equivalence, heterogeneous Jensen/gradient/pairing identities, exact native
+KA2 value/parameter-gradient/EMA/record equivalence on a shared initial pair,
+matched five-update sampling/noise streams, and exact two-update full state
+replay through an actual preservation update. A loop configuration tag and
+versioned checkpoint wrapper reject legacy or different-objective resume.
+Ordinary native checkpoints must be explicitly restored before opting in;
+the experimental module's update/checkpoint/restore entry points are then
+used together. No production entry point or source was edited.
+
+This prototype has not trained a real Supra model. Its CPU checks exercise
+small native routed fixtures; there is no GPU result or win claim. No GPU
+experiment, checkpoint choice or promotion follows from those checks.
+If the predeclared longer V3 game results justify the next causal experiment,
+test this objective with a matched fixed budget and both shared critics.
+The observational tail-share numbers do not establish a training benefit.
+
+The isolated prototype qualification command was:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 CUDA_VISIBLE_DEVICES='' \
+  PYTHONPATH=/ml2/hypergan/ParticleGAN-pr223-supra \
+  /ml2/ntc-image-studio/.venv-anima/bin/python -m pytest -q -p no:cacheprovider \
+  tests/test_experimental_e22_tokenwise_game.py
+```
+
+Result: **5 passed in2.56s**. Only game aggregation is experimental; there is
+no output-MSE objective, saliency weight, structural output guard, early
+stopping, seed sweep, or metric-driven checkpoint choice.
 
 ## Reproduction
 

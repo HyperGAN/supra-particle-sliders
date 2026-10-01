@@ -1,14 +1,15 @@
 # Particle-conditioned input basis
 
-The next generator intervention makes the actual mixed particle code gate the
+The gated generator makes the actual mixed particle code gate the
 rank-16 input features at each of the 71 projection sites. It preserves the
 shared 128×4 bank, activation-dependent routing, represented masses, per-site
 native DV12, complete candidate reruns, and native E22 game and optimizers.
 It is an explicitly opt-in architecture, `gated_particle_v3`; fresh production
 training continues to default to `linear_modulated_v2`.
 
-The evidence supports testing this formulation. It does not establish that
-gating repairs the convergence gap or beats ordinary LoRA.
+The qualified 400-update comparison improves native game scores over matched
+V2 particles. It does not establish that gating repairs the full convergence
+gap or beats ordinary LoRA.
 
 ## What the completed investigations establish
 
@@ -179,6 +180,57 @@ CUDA_VISIBLE_DEVICES=1 /ml2/ntc-image-studio/.venv-anima/bin/python \
   > outputs/e22-particle-gated-v3-400.log 2>&1
 ```
 
-The expected receipts are under `outputs/e22-particle-gated-v3-400/` and its
-tail log. Run results will be added after the fixed horizon and independent
-artifact review complete. No training outcome is implied by this plan.
+## Qualified 400-update outcome
+
+The completed run and independent CPU artifact review both qualify. V3
+improves every complete pool under both shared critics. The fixed D1,856
+comparison is:
+
+| Pool | V2 game | V3 game | V3 minus V2 |
+| --- | ---: | ---: | ---: |
+| Fit (240) | 1.349213 | 1.332187 | −0.017026 |
+| Test (240) | 1.356538 | 1.334031 | −0.022508 |
+| Training preservation (30) | 0.786259 | 0.768321 | −0.017938 |
+| Held-out preservation (60) | 0.788366 | 0.770486 | −0.017879 |
+
+The shared D400 judge agrees on all four directions. Test improves on 212/240
+contexts under D1,856 and 202/240 under D400; held-out preservation improves
+on 56/60 and 55/60 respectively. All three preservation subject means improve
+under both judges. Five of six edit subjects improve; subject 5's mean game
+worsens slightly (+0.001376 / +0.002761). This is an early improvement over
+matched particles, not a claim of superiority to ordinary LoRA or SOTA.
+
+The particles contribute to editing. Removing codes worsens test game by
++0.051854 / +0.110504; mass-only routing worsens it by +0.027502 / +0.053637.
+Removing codes still helps held-out preservation by −0.007842 / −0.019708.
+Thus the new basis improves the overall preservation comparison with V2,
+while its own learned particle contribution retains an early preservation
+cost. Connectivity and code dependence alone would not establish usefulness.
+
+All 400 context/Gaussian/DV12 records match the V2 sampled program. The run
+accepts zero structural moves or optimizer reopens. All 71 split-basis formulas,
+128 bank rows, 142 router tensors and 284 generator tensors are observed in
+clean and DV12 game gradients. Frozen owners, full native replay, all 570
+paired ablation records and all 428 explicitly versioned export tensors pass
+review. Training takes 208.85 seconds; the complete diagnostic job takes
+397.79 seconds. These are not a matched wall-clock speed benchmark against V2.
+
+Artifacts: `outputs/e22-particle-gated-v3-400/`, especially `receipt.json`,
+`independent-review.json`, `evaluation-v2.json`, `evaluation-v3.json`,
+`particle-contribution.json`, `audit-step-two.json` and `audit-final.json`.
+The next fixed horizon is 1,600 updates, preserving V3's complete game state
+and comparing directly with declared ordinary-LoRA reference checkpoints.
+
+That continuation has now qualified. At 1,600 updates, V3 improves all four
+complete pools over matched V2 under both common critics. It improves editing
+over ordinary LoRA at the same budget, while preservation still favors
+ordinary LoRA. See [the verified 1,600-update comparison](e22_supra_particle_gated_1600.md)
+for full paired results, particle ablations and native controller responses.
+The ordinary 6,400-update result remains the editing target. The user has
+made editing the primary goal and requested editing-only training for the
+next segment. The completed 1,600-update evidence retains its original
+four-edit/one-preservation schedule. The new continuation will identify its
+changed schedule and report the fixed 5,440-total-update checkpoint, which
+matches the original's 5,120 editing updates, as well as its fixed 6,400
+total-update endpoint. No longer-run outcome or SOTA claim follows from the
+early improvement.
