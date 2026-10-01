@@ -19,6 +19,7 @@ from supra.particle_adapter import (
 )
 from supra.particle_training import (
     TRAINING_PROFILES, make_training_loop, training_update, raw_velocity, resolve_training_profile,
+    PARTICLE_INITIALIZATIONS, resolve_particle_init,
 )
 from supra.particle_pilot import checkpoint, restore, frozen_digest, state_digest
 from verify_e22_supra import optimizer_provenance
@@ -114,6 +115,8 @@ def main():
                         help="fresh default: linear_modulated_v2; resume: retain the saved architecture")
     parser.add_argument("--particle-profile", choices=TRAINING_PROFILES,
                         help="fresh default: PR223 auto backend and settled reopening guard; resume: saved profile")
+    parser.add_argument("--particle-init", choices=PARTICLE_INITIALIZATIONS,
+                        help="fresh default: legacy_v1; sampled modes use public initialize_; resume: saved mode")
     parser.add_argument("--resume", type=Path)
     parser.add_argument("--baseline", type=Path,
                         help="original LoRA adapter at the same declared update horizon")
@@ -131,6 +134,7 @@ def main():
                                                  args.architecture)
     profile = resolve_training_profile(None if previous is None else previous["config"],
                                        args.particle_profile)
+    particle_init = resolve_particle_init(None if previous is None else previous["config"], args.particle_init)
     args.output.mkdir(parents=True, exist_ok=True)
     existing_run = args.output / "run.json"
     if existing_run.exists():
@@ -184,7 +188,8 @@ def main():
         torch.save(data, args.output / "data.pt")
     runtime.text_encoder.to("cpu")
     loop = make_training_loop(runtime.model, data, probe_interval=args.probe_interval,
-                              branch_lr=args.branch_lr, architecture=architecture, profile=profile)
+                              branch_lr=args.branch_lr, architecture=architecture, profile=profile,
+                              particle_init=particle_init)
     provenance = dict(**optimizer_provenance(), model_revision=MODEL_REV, text_revision=T5_REV,
                       vae_revision=VAE_REV, prompts_sha256=sha(config_path),
                       teacher_cache_sha256=sha(train_path), validation_cache_sha256=sha(validation_path),

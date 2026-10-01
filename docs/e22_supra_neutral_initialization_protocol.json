@@ -1,0 +1,326 @@
+{
+  "schema": "supra_neutral_initialization_protocol_v1",
+  "status": "predeclared; no training result",
+  "objective": "Test H/b-only neutral initialization on the full native Supra host, with a fresh sampled-initialization editing-only causal control; compare both with fixed historical ordinary/particle references.",
+  "scope": "One fixed task and named-stream cohort; no seed sweep, Forge/default promotion, raw-output optimization, or claim that the toy result transfers automatically.",
+  "application_base_commit": "035f9ce1544af8844a655f0cfd0d6b3ef92ad09e",
+  "particlegan": {
+    "root": "/ml2/hypergan/ParticleGAN-supra-neutral-develop",
+    "commit": "6ec7e5788e14ea15ddc3e16ac71110458108b6a6",
+    "package_git_tree": "8ff34578b1f63bd232436d39a751e6134f4cc8ab",
+    "python_source_digest": "d0be475a055aae953c22dbd19f6d2357db041437e0679d2f2f2cfa356517f65b",
+    "native_package_edits": false
+  },
+  "host": {
+    "model_id": "SupraLabs/Supra2-IMG",
+    "model_revision": "10dec6e4b4b5d1c44fd1d7d3fe5e50137333da5b",
+    "text_encoder_revision": "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2",
+    "vae_revision": "31f26fdeee1355a5c34592e401dd41e45d25a493",
+    "backend_commit": "01beecc6866a0c1a5dd6b34493af8290a0ed725b",
+    "architecture": "gated_particle_v3",
+    "formula": "up(h+tanh(Hh+b)+h*tanh(Cz)); h=down(x)",
+    "sites": 71,
+    "branch_rank": 16,
+    "bank": [
+      128,
+      4
+    ],
+    "conditioning_dimension": 769,
+    "cfg": 3.0,
+    "frozen_dtype": "bfloat16",
+    "trainable_dtype": "float32",
+    "velocity_shape": [
+      4,
+      4,
+      32,
+      32
+    ],
+    "patch_shape": [
+      4,
+      256,
+      16
+    ],
+    "trainable_generator_parameters": 1722672,
+    "trainable_router_parameters": 164636,
+    "trainable_bank_parameters": 512,
+    "trainable_critic_parameters": 38529
+  },
+  "arms": {
+    "sampled_v1": {
+      "role": "causal control",
+      "particle_init": "sampled_v1",
+      "H_b": "public sampled values"
+    },
+    "sampled_hb_neutral_v1": {
+      "role": "sole initialization intervention",
+      "particle_init": "sampled_hb_neutral_v1",
+      "H_b": "Zero only each bridge H columns and bias, after identical sampling/zero-up and before policy/EMA construction."
+    }
+  },
+  "initialization": {
+    "legacy_mode": "legacy_v1",
+    "network_api": "particlegan.init.initialize_",
+    "method": "sample_distributions_v1",
+    "parameter_seed_namespace": "supra-particle-sampled-v1",
+    "parameter_seed_formula": "int.from_bytes(sha256(f\"supra-particle-sampled-v1:{role}:{full_parameter_name}\").digest()[:8], \"little\") % (2**63-1)",
+    "roles": {
+      "generator": 0,
+      "critic": 1,
+      "encoder": 2,
+      "router": 3
+    },
+    "private_generator_device": "cpu",
+    "bank_api": "particlegan.init.deterministic_orthogonal_(recipe.make_prior())",
+    "initial_up": "All 71 up weights zero in both arms.",
+    "sole_difference": "FAST and averaged generator H/b tensors; all other initial tensors/optimizers/controllers/native streams equal. C remains nonzero, bit-exact, and trainable.",
+    "initial_state_saved": true,
+    "strict_modes": true,
+    "trained_state_reinterpretation": false
+  },
+  "training": {
+    "native_recipe": "e22_routed",
+    "profile": "pr223_shared_routed_v1",
+    "recipe_overrides": {
+      "num_particles": 128,
+      "z_dim": 4,
+      "batch_size": 4,
+      "output_noise_std": 0.125,
+      "birth_death_backend": "auto",
+      "reopen_guard": "settled"
+    },
+    "full_recipe_to_dict_required_in_runtime_plan": true,
+    "generator_lr": 5e-05,
+    "router_lr": 5e-05,
+    "bank_lr": 0.0085,
+    "critic_and_noise_nominal_lr": 0.00425,
+    "betas": [
+      0.0,
+      0.999
+    ],
+    "amsgrad": true,
+    "loss": "Native paired RpGAN with full KA2 in 16-coordinate token units; normalized live frozen-teacher residual.",
+    "schedule": "fresh_editing_only_v1; fit batches and task weight1 from update1.",
+    "sampling_pool": "fit only; 240 contexts",
+    "batch_size": 4,
+    "preservation_training_updates": 0,
+    "external_updates_per_arm": 6400,
+    "endpoint_updates": [
+      5120,
+      6400
+    ],
+    "endpoint_edit_updates": [
+      5120,
+      6400
+    ],
+    "checkpoint_every": 400,
+    "additional_checkpoints": [
+      0,
+      800,
+      802,
+      5120,
+      6400
+    ],
+    "game_probe_every": 200,
+    "execution": "Two independently owned native loops, interleaved per external update. Same data/Gaussian draws; adaptive native controller responses may differ.",
+    "structural_probe_interval": 100,
+    "structural_guard": "Native whole-model candidate reruns; clean learned critic-feature criterion; zero per-context feature harm under FAST plus averaged owners.",
+    "max_feature_context_harm": 0.0,
+    "output_error_guard": false,
+    "output_objective": false,
+    "optimizer_interventions": false
+  },
+  "streams": {
+    "data": {
+      "device": "cpu",
+      "seed": 7
+    },
+    "paired_training_gaussian": {
+      "device": "cuda",
+      "seed": 43,
+      "shape_per_role": [
+        4,
+        256,
+        16
+      ],
+      "role_order": [
+        "critic",
+        "generator"
+      ]
+    },
+    "policy_seed": 21,
+    "native_stream_seeds": {
+      "latent_generator": 23,
+      "penalty_generator": 24,
+      "eval_generator": 25,
+      "noise_generator": 26
+    },
+    "policy_selection_seed": 27,
+    "initial_constructor_seed": 7,
+    "no_seed_search": true,
+    "required_evidence": "Per-step data indices, Gaussian draw digest, owned RNG states and DV12 signatures. Exact random states compared when native actions do not change consumption; do not demand identical later controller decisions."
+  },
+  "data": {
+    "digest": "45846a7dcdb76c16d7b2d230aebbb1b43c890de498f2651a8254e34daa498319",
+    "fit": 240,
+    "test": 240,
+    "training_preservation_diagnostic": 30,
+    "held_out_preservation_diagnostic": 60,
+    "structural_guard": 64,
+    "packed_columns": {
+      "time": 4096,
+      "source": 4097,
+      "target": 4098,
+      "strength": 4099
+    },
+    "editing_source_caption_ids": [
+      4,
+      5,
+      15,
+      16,
+      17,
+      18
+    ],
+    "teacher_pairing": "Same live BF16 batch shape and CFG; no cached velocity substituted as an exact structural target.",
+    "guard_and_test_not_training_batches": true
+  },
+  "evaluation": {
+    "primary_head": "clean FAST at each fixed endpoint; no automatically selected serving head substitutes for FAST.",
+    "secondary": "DV12 and averaged/native-serving results only if separately labeled and predeclared; no head selection.",
+    "primary_pool": "all240 held-out editing contexts; report all six subject means and per-context values",
+    "full_pool_order": [
+      "fit",
+      "test",
+      "holds",
+      "preservation"
+    ],
+    "full_pool_contexts": 570,
+    "judges": {
+      "D1856": {
+        "critic_tensor_digest": "e248f16ada2cdb6137f670e9c1dece3740db9175dee9eb324702bfab4b759d2d"
+      },
+      "V2D6400": {
+        "critic_tensor_digest": "43aa3af32850ccf5d17c4a12ca52f903d61901d734fbd0bc570280afcee16929"
+      }
+    },
+    "criterion": "Mean paired learned generator game softplus(real_score-fake_score), lower is better, independently under both fixed critics.",
+    "gaussian_panels": {
+      "device": "cpu",
+      "seed": 72,
+      "draws": 4,
+      "batch_size": 4,
+      "shape_per_batch": [
+        4,
+        "B",
+        256,
+        16
+      ],
+      "output_sigma": 0.125,
+      "reset": "One stream initialized once per full evaluation; consume continuously across fit\u2192test\u2192holds\u2192preservation; reset identically for every model/checkpoint.",
+      "unscaled_gaussian_sha256_by_pool": {
+        "fit": "23837217f0364a0134d6e9e93dadce7cc5f2cb12bff423d2d6b79ff31571ef46",
+        "test": "8f8478e96b0a70309a835d504672f4733815edaf1fc8b4bef59f53b12d629bb9",
+        "holds": "4204708642b2eedc13d0b32853f7be88480376267ca09b032f7c2d49e14915a5",
+        "preservation": "9e3c28547464a3c502cba1907f242010c30e5027b97431e808f5e7e7f91286a2"
+      }
+    },
+    "progress_probe": "Predeclared12 or24 test contexts balanced over six source IDs; fixed indices written before updates, private CPU72 Gaussian panels, frozenD1856 and cleanFAST every200; private DV12 secondary. Never used for optimization, stopping or checkpoint/head selection.",
+    "particle_contributions": "At fixed endpoints, zero-code and mass-only routing observational game ablations with the same panels/critics, all71 sites visited.",
+    "output_metrics": "Evaluation-only RMSE/relative RMS; never optimizer/structural/seed/horizon/checkpoint/head selection.",
+    "historical_references": "Rescore the declared ordinary6400 and exported V2/V3 artifacts on these exact new CPU72 panels; do not copy prior CUDA72 leaderboard values as matched scores.",
+    "preservation": "Secondary visible diagnostic; no requirement to win preservation."
+  },
+  "qualification": {
+    "initial": "Only H/b values differ; FAST+averagedC/bank/router/critic/frozen base/data/stream identities exact; zero-up initial full outputs exact.",
+    "native_resume": "CPU-map actual checkpoint800\u2192802 replay, exact full native state/rows/RNG; counts separately as software replay updates.",
+    "frozen_owners": "Immutable FAST+averaged frozen host/teacher/text contexts/masks/coordinate scales at every saved state.",
+    "particles": "71-site complete execution; nonzero trainableC, dense128-row bank and71-site router gradient/learning after up acquisition; finite clean/DV12 game gradients; final code/mass ablation effects recorded without choosing the sign.",
+    "evaluation_immutability": "Full native state/config/RNG before and after probes/reference loading/ablations/export-reload identical.",
+    "provenance": "Runtime plan binds this cardSHA, all application/native sourceSHAs, actual fullrecipe, initial tensors, all immutable input fileSHAs, panel hashes and frozenjudge tensors; source held while running.",
+    "export": "Strictly tagged sampled initialization mode and GATEDV3 architecture; selected cleanFAST tensors and reload predictions exact.",
+    "success_reporting": "Report signed H/b-neutral\u2212sampled-control game changes under both judges at BOTH fixed endpoints; never replace6400 with a better earlier result or assert universal improvement."
+  },
+  "historical_reference_limits": [
+    "Ordinary6400 uses historical paired-output MSE/AdamW, a different initialization/schedule and5120 editing+1280 preservation updates; only5120 new endpoint matches editing count.",
+    "Historical particleV2 uses earlier source/profile anddeterministic-orthogonal initialization; not the fresh H/b causal control.",
+    "Historical gatedV3 uses deterministic-orthogonal initialization,1280edit+320preserve through1600 thenfit-only; fixed5440=5120edits andfinal6400=6080edits; both remain historical cohorts.",
+    "Toy H/b result used a teacher-aligned rank2 family; the full-Supra live teacher need not lie in either adapter tangent basis.",
+    "Latest6ec/native defaults may differ from historicalbdf; both fresh arms share the same pinned native law."
+  ],
+  "execution_budget": {
+    "gpu": "physical GPU0; logicalcuda:0 viaCUDA_VISIBLE_DEVICES=0",
+    "python": "/ml2/ntc-image-studio/.venv-anima/bin/python",
+    "seconds_per_arm": 7200,
+    "total_seconds": 14400,
+    "budget_includes": "Training/checkpoint/probes/endpoint scoring and declared recovery software work; shared reference/evaluation cost counted in total and attributed consistently.",
+    "timeout": "Incomplete budget exit with artifacts retained; never a quality-triggered stop.",
+    "historical_cost_reference": "Past comparable native V3 loop:208.85s/400,680.91s/1200,2665.83s/4800 on RTX A6000; roughly one hour per fresh6400 arm before variation/diagnostics. Not a promised or matched throughput benchmark."
+  },
+  "inputs": {
+    "data": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/data.pt",
+      "sha256": "4cf1dffebd909078838488156b7ac5e35e9c3f0806ec3e8217d50c102f5b6fcc",
+      "use": "Immutable contexts/masks/coordinate scales; live frozen teacher supplies same-batch target velocities."
+    },
+    "data_provenance": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/run.json",
+      "sha256": "77348e0f78d2c8b7f5d375d061c13d3085fedf4f43d78aadb2410d3d607c02ee"
+    },
+    "frozen_teacher": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/final.pt",
+      "sha256": "54b243580206beb772db77132ff367fca9389b209149dcef9573449aeb8b7fcf",
+      "use": "Use only policy.models.encoder teacher.* frozen tensors; never migrate trained model/table/optimizer/controller."
+    },
+    "frozen_teacher_review": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/qualification-review.json",
+      "sha256": "3a97778911d880ce726918aa3adf1bd843e7928a7079171a1ed174d17cf8abd2"
+    },
+    "common_D1856": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-noise-update-256/latest/final.pt",
+      "sha256": "db06166f66fa0fa70ac36e4130bc30d7bd9c7028f075a4c6e71e9c46d3baa102",
+      "use": "Load only policy.models.critic; frozen for every arm/reference."
+    },
+    "common_V2_D6400": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/final.pt",
+      "sha256": "54b243580206beb772db77132ff367fca9389b209149dcef9573449aeb8b7fcf",
+      "use": "Load only policy.models.critic; frozen for every arm/reference."
+    },
+    "historical_V2_6400_export": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/final.safetensors",
+      "sha256": "931e130227d6de514dcb5ad577471efadbe935cba93711faaffa5c192ac0faf8"
+    },
+    "historical_V3_6400_export": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-gated-v3-editing-only-6400/final.safetensors",
+      "sha256": "4de2c4bc9c2e2f83f146d5c87128b6d832bbf3d068cebb34a8a0ff35f22dbd35"
+    },
+    "historical_V3_5440_checkpoint": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-gated-v3-editing-only-6400/checkpoint-05440.pt",
+      "sha256": "ad57aa897d27c88d5736bcaffa89c693196e019ae8892c85933f6e4187c5581c",
+      "use": "Optional fixed historical checkpoint; no native optimizer migration to the new pin."
+    },
+    "historical_V3_review": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-gated-v3-editing-only-6400/independent-review.json",
+      "sha256": "49907401abf861abecfedb55528b4a86659f9aa3c6612c070887b72c46564d13"
+    },
+    "historical_ordinary_6400": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/checkpoint-06400/final-boss-supra.safetensors",
+      "sha256": "24a98ba055d0b5298136d67dc7491a339684da03416c510d1d443fe730eb7069"
+    },
+    "backend_lock": {
+      "path": "/ml2/hypergan/supra-e22-verification/backend.lock.json",
+      "sha256": "2a6b8ad9212d13fed6e86b3d587b67edd9985fe28d3cb287cc0d5ac289b5a027"
+    },
+    "backend_model_source": {
+      "path": "/ml2/hypergan/supra-e22-verification/vendor/particle-sliders/conceptmod/textsliders/supra_model.py",
+      "sha256": "640851f4570d0f9eacccac70022f06668ddf92dcf8629e978a76443db60acdc4"
+    }
+  },
+  "forbidden_selection": [
+    "outputMSE or RMSE optimizer/guards",
+    "seed scans",
+    "hyperparameter/head scans",
+    "metric-triggered horizon changes",
+    "best-checkpoint substitution",
+    "silent old trained-state migration"
+  ],
+  "new_training_executed_by_protocol_auditor": false
+}

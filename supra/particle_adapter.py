@@ -214,6 +214,22 @@ class SupraParticleHost(nn.Module):
         for branch in self.particle_branches():
             branch.up.weight.zero_()
 
+    @torch.no_grad()
+    def neutralize_hidden_initialization(self):
+        """Zero fresh V3 H/b while keeping C and every parameter trainable.
+
+        Apply after public initialization and zero-up, before policy/EMA
+        construction. Loading a checkpoint never invokes this operation.
+        """
+        if self.architecture != GATED_PARTICLE_V3:
+            raise ValueError("neutral hidden initialization requires gated_particle_v3")
+        branches = self.particle_branches()
+        if any(bool(branch.up.weight.count_nonzero()) for branch in branches):
+            raise ValueError("neutral hidden initialization requires fresh zero-up branches")
+        for branch in branches:
+            branch.bridge.weight[:, :self.rank].zero_()
+            branch.bridge.bias.zero_()
+
     def forward_routed(self, z, t, ctx, mask, uncond_ctx, uncond_mask,
                        candidate, routing, router, strength=1, cfg=None):
         """Run complete native Supra/CFG with one ordered mix per real site.

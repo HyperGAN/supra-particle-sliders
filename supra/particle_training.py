@@ -1,10 +1,11 @@
 """Full native Supra slider trained using the public ParticleGAN game API."""
 from copy import deepcopy
+import hashlib
 import torch
 
 from particlegan import E22Policy, RoutedRows, get_recipe, init
 from .particle_adapter import (
-    LINEAR_MODULATED_V2, NONLINEAR_V1, SupraParticleHost, SupraParticleRouter,
+    GATED_PARTICLE_V3, LINEAR_MODULATED_V2, NONLINEAR_V1, SupraParticleHost, SupraParticleRouter,
     adapter_sites, adapter_input_dims, validate_particle_architecture,
 )
 from .particle_game import ConditionalTokenCritic, features_for_rows, update
@@ -14,6 +15,35 @@ from .particle_training_data import FrozenSliderContexts
 LEGACY_ROUTED_PROFILE = "pr155_routed"
 SHARED_ROUTED_PROFILE = "pr223_shared_routed_v1"
 TRAINING_PROFILES = (LEGACY_ROUTED_PROFILE, SHARED_ROUTED_PROFILE)
+LEGACY_PARTICLE_INIT = "legacy_v1"
+SAMPLED_PARTICLE_INIT = "sampled_v1"
+NEUTRAL_PARTICLE_INIT = "sampled_hb_neutral_v1"
+PARTICLE_INITIALIZATIONS = (LEGACY_PARTICLE_INIT, SAMPLED_PARTICLE_INIT, NEUTRAL_PARTICLE_INIT)
+SAMPLED_SEED_NAMESPACE = "supra-particle-sampled-v1"
+
+
+def resolve_particle_init(config=None, requested=None):
+    """Keep historical initialization/config exact; fresh alternatives are explicit."""
+    if requested is not None and requested not in PARTICLE_INITIALIZATIONS:
+        raise ValueError(f"unsupported particle initialization: {requested}")
+    saved = LEGACY_PARTICLE_INIT if config is None else config.get("particle_init", LEGACY_PARTICLE_INIT)
+    if saved not in PARTICLE_INITIALIZATIONS:
+        raise ValueError(f"unsupported saved particle initialization: {saved}")
+    if config is not None and requested is not None and requested != saved:
+        raise ValueError("resume particle initialization differs from the saved configuration")
+    return saved if requested is None else requested
+
+
+def initialize_sampled(module, role):
+    """Public API draws with private CPU streams bound to role/full parameter name."""
+    seeds = {name: int.from_bytes(hashlib.sha256(f"{SAMPLED_SEED_NAMESPACE}:{role}:{name}".encode()).digest()[:8],
+                                 "little") % (2**63 - 1)
+             for name, parameter in module.named_parameters() if parameter.requires_grad and parameter.numel()}
+    generators = {name: torch.Generator(device="cpu").manual_seed(seed) for name, seed in seeds.items()}
+    if not hasattr(init, "initialize_"):
+        raise ValueError("sampled particle initialization requires the public initialize_ API in merged develop")
+    init.initialize_(module, method="sample_distributions_v1", parameter_generators=generators)
+    return seeds
 
 
 def resolve_training_profile(config=None, requested=None):
@@ -41,11 +71,15 @@ def residual_model_forward(models, context, candidate, routing):
 
 
 def make_training_loop(base_model, data, *, device="cuda:0", probe_interval=100, branch_lr=5e-5,
-                       architecture=LINEAR_MODULATED_V2, profile=LEGACY_ROUTED_PROFILE):
+                       architecture=LINEAR_MODULATED_V2, profile=LEGACY_ROUTED_PROFILE,
+                       particle_init=LEGACY_PARTICLE_INIT):
     # Keep existing programmatic research callers and native checkpoints exact.
     # The full training CLI resolves the shared profile explicitly for new runs.
     profile = resolve_training_profile(requested=profile)
     architecture = validate_particle_architecture(architecture)
+    particle_init = resolve_particle_init(requested=particle_init)
+    if particle_init == NEUTRAL_PARTICLE_INIT and architecture != GATED_PARTICLE_V3:
+        raise ValueError("sampled_hb_neutral_v1 requires gated_particle_v3")
     device = torch.device(device)
     sites = adapter_sites(base_model)
     shared = (dict(birth_death_backend="auto", reopen_guard="settled")
@@ -58,9 +92,16 @@ def make_training_loop(base_model, data, *, device="cuda:0", probe_interval=100,
         router = SupraParticleRouter(site_input_dims=adapter_input_dims(base_model, sites)).to(device)
         encoder = FrozenSliderContexts(data["text_contexts"], data["text_masks"], base_model).to(device)
         critic = ConditionalTokenCritic(data["coordinate_scale"].to(device)).to(device)
-        for module, role in ((generator, 0), (critic, 1), (encoder, 2), (router, 3)):
-            init.deterministic_orthogonal_(module, seed=role)
+        sampled_seeds = {}
+        for name, module, role in (("generator", generator, 0), ("critic", critic, 1),
+                                  ("encoder", encoder, 2), ("router", router, 3)):
+            if particle_init == LEGACY_PARTICLE_INIT:
+                init.deterministic_orthogonal_(module, seed=role)
+            else:
+                sampled_seeds[name] = initialize_sampled(module, role)
         generator.zero_particle_outputs()
+        if particle_init == NEUTRAL_PARTICLE_INIT:
+            generator.neutralize_hidden_initialization()
         table = init.deterministic_orthogonal_(recipe.make_prior()).to(device).z
         table.requires_grad_(True)
     opt_g = recipe.make_generator_optimizer([
@@ -92,6 +133,10 @@ def make_training_loop(base_model, data, *, device="cuda:0", probe_interval=100,
         config["architecture"] = architecture
     if profile != LEGACY_ROUTED_PROFILE:
         config["particle_profile"] = profile
+    if particle_init != LEGACY_PARTICLE_INIT:
+        config.update(particle_init=particle_init, initialization="particlegan.init.initialize_",
+                      initialization_method="sample_distributions_v1",
+                      parameter_seed_namespace=SAMPLED_SEED_NAMESPACE, parameter_seeds=sampled_seeds)
     loop = PilotLoop(policy, data["fit"]["context"].to(device),
                      torch.zeros_like(data["fit"]["targets"], device=device),
                      data["guard"]["context"].to(device),
