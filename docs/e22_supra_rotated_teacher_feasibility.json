@@ -1,0 +1,47 @@
+{
+  "optimizer_updates": 0,
+  "rho": 0.027625366713810866,
+  "geometry": {
+    "first": {
+      "squared_principal_cosines": [
+        0.027625371054873938,
+        0.027625359422762664
+      ],
+      "within_rank_gram_max_absolute_error": 1.6049963469377815e-08
+    },
+    "second": {
+      "squared_principal_cosines": [
+        0.027625368633717805,
+        0.027625364328512293
+      ],
+      "within_rank_gram_max_absolute_error": 5.6414584670427814e-09
+    }
+  },
+  "source_data_unchanged": true,
+  "student_initial_owners_unchanged": true,
+  "fixed_inputs_unchanged": true,
+  "rho_one_targets_exact": true,
+  "teacher_up_unchanged": true,
+  "raw_scale_min": 0.1408773958683014,
+  "raw_scale_max": 0.27557215094566345,
+  "scale_floor_coordinates": 0,
+  "data_digest": "f6abef8c6e2cbeb7bc76c5562367bef7b04e71327da3fa411d8d1514a71eb7ce",
+  "reachability": {
+    "ordinary": {
+      "fit": true,
+      "guard": true,
+      "test": true
+    },
+    "particle": {
+      "fit": true,
+      "guard": true,
+      "test": true
+    }
+  },
+  "global_cpu_rng_unchanged": true,
+  "source_sha256": {
+    "examples/e22_routed_convergence.py": "b814bc0cac728d02290f6f0ed712dd6bb9483074f11666c5c012e72cd4d8f6b6",
+    "examples/e22_routed_convergence_neutral.py": "1b9154bd653db5e5cc629877297eab6a06bbd3f1ac9cabb1858eef36a083724c",
+    "examples/e22_routed_convergence_rotated_teacher.py": "4beca4fb8eaafaa1540d12c0a13cbe562bb0f8de9e557a38b99cb64b87861dde"
+  }
+}

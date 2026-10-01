@@ -1,0 +1,178 @@
+{
+  "schema": "supra_saved_critic_parity_compact_v1",
+  "scope": "Zero residual at two frozen historical judges. Nonzero force is possible critic lag, not evidence of the current G residual, Hessian, quality improvement or broken equilibrium.",
+  "bindings": {
+    "input_sha256": {
+      "D6400": "54b243580206beb772db77132ff367fca9389b209149dcef9573449aeb8b7fcf",
+      "D1856": "db06166f66fa0fa70ac36e4130bc30d7bd9c7028f075a4c6e71e9c46d3baa102",
+      "data": "4cf1dffebd909078838488156b7ac5e35e9c3f0806ec3e8217d50c102f5b6fcc",
+      "qualification": "3a97778911d880ce726918aa3adf1bd843e7928a7079171a1ed174d17cf8abd2",
+      "plan": "3ebac6ee742536690187b484ffe12b14e707a3cab0b2adedd53d0c7fc2299f5a",
+      "run": "77348e0f78d2c8b7f5d375d061c13d3085fedf4f43d78aadb2410d3d607c02ee",
+      "earlier_receipt": "35c5a91c07d15023e031f4c19611fac78bef198d51df60521f454f4ecb921a54"
+    },
+    "source_sha256": {
+      "/ml2/hypergan/supra-e22-neutral-init/scripts/diagnose_e22_supra_critic_parity.py": "0c4e8619b90685784d41518c1d54b57c065df7f2fd5e290bb6b34db037f2287c",
+      "/ml2/hypergan/supra-e22-neutral-init/supra/particle_game.py": "6a10cc15ea44651953fd46fefa3f097a832f594cca98084f17a67f3c4a94f35d",
+      "/ml2/hypergan/supra-e22-verification/outputs/e22-convergence-gap/particlegan-cabe2084-source/particlegan/gan_loss.py": "1c1019dfe71c583e32a05df0d2f794f9fff6d9ee1ea0332f57f6379ae70cf6b7"
+    },
+    "critic_tensor_digests": {
+      "D1856": "e248f16ada2cdb6137f670e9c1dece3740db9175dee9eb324702bfab4b759d2d",
+      "D6400": "43aa3af32850ccf5d17c4a12ca52f903d61901d734fbd0bc570280afcee16929"
+    },
+    "dataset_digest": "45846a7dcdb76c16d7b2d230aebbb1b43c890de498f2651a8254e34daa498319",
+    "condition_digest": "c6e75771b952b103ccce13b7b8b88eee673f38b9b6aaa3e9ee8f74ff5687388e",
+    "private_panel_digest": "fcb7bb8e129fb620e65da170ab12f36369d79abb6c2e3c54fa02807ee4dd9efb"
+  },
+  "results": {
+    "D1856": {
+      "native_single": {
+        "zero_residual_game": 0.6931472420692444,
+        "normalized_patch_gradient_rms": {
+          "mean": 0.0001569175109065235,
+          "minimum": 0.0001496484555547556,
+          "maximum": 0.00016337106425795051
+        },
+        "physical_velocity_gradient_rms_native_B4": {
+          "mean": 0.00012836805902829315,
+          "minimum": 0.00012278650907606751,
+          "maximum": 0.00013324263456718867
+        }
+      },
+      "native_antithetic": {
+        "zero_residual_game": 0.6931472420692444,
+        "normalized_patch_gradient_rms": {
+          "mean": 5.411048360412612e-05,
+          "minimum": 4.215038234445916e-05,
+          "maximum": 6.907481052909582e-05
+        },
+        "physical_velocity_gradient_rms_native_B4": {
+          "mean": 4.189567049935341e-05,
+          "minimum": 3.376106325155111e-05,
+          "maximum": 5.318458610879185e-05
+        }
+      },
+      "evenized_single": {
+        "zero_residual_game": 0.6931472420692444,
+        "normalized_patch_gradient_rms": {
+          "mean": 0.00014710568435099953,
+          "minimum": 0.00014312865495513943,
+          "maximum": 0.00015114650872369994
+        },
+        "physical_velocity_gradient_rms_native_B4": {
+          "mean": 0.0001211944613248215,
+          "minimum": 0.00011795661782028157,
+          "maximum": 0.00012486518986314663
+        }
+      },
+      "evenized_antithetic": {
+        "zero_residual_game": 0.6931472420692444,
+        "normalized_patch_gradient_rms": {
+          "mean": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "physical_velocity_gradient_rms_native_B4": {
+          "mean": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        }
+      },
+      "zero_gaussian_native_force_rms": {
+        "mean": 6.209372694343335e-05,
+        "minimum": 4.46651944489292e-05,
+        "maximum": 8.067740197765956e-05
+      },
+      "odd_gradient_panel_rms": {
+        "mean": 0.00011714864057291678,
+        "minimum": 9.522688593051885e-05,
+        "maximum": 0.00014576081071811123
+      },
+      "even_gradient_panel_rms": {
+        "mean": 0.0005875793899217705,
+        "minimum": 0.0005692925036952233,
+        "maximum": 0.0006059875540787599
+      }
+    },
+    "D6400": {
+      "native_single": {
+        "zero_residual_game": 0.6931472420692444,
+        "normalized_patch_gradient_rms": {
+          "mean": 0.0001845276084888007,
+          "minimum": 0.000159612264684639,
+          "maximum": 0.0002006892770820556
+        },
+        "physical_velocity_gradient_rms_native_B4": {
+          "mean": 0.00015085492720980415,
+          "minimum": 0.00013029335935249128,
+          "maximum": 0.00016463476661699995
+        }
+      },
+      "native_antithetic": {
+        "zero_residual_game": 0.6931472420692444,
+        "normalized_patch_gradient_rms": {
+          "mean": 0.00010457815038558502,
+          "minimum": 9.000021985342415e-05,
+          "maximum": 0.00011637037037309522
+        },
+        "physical_velocity_gradient_rms_native_B4": {
+          "mean": 8.411622000044463e-05,
+          "minimum": 7.183204683947261e-05,
+          "maximum": 9.458001021999597e-05
+        }
+      },
+      "evenized_single": {
+        "zero_residual_game": 0.6931472420692444,
+        "normalized_patch_gradient_rms": {
+          "mean": 0.00015210492262812675,
+          "minimum": 0.00013505469783421013,
+          "maximum": 0.00016687533601120958
+        },
+        "physical_velocity_gradient_rms_native_B4": {
+          "mean": 0.00012529631028911385,
+          "minimum": 0.00011162180512576867,
+          "maximum": 0.00013741668463952743
+        }
+      },
+      "evenized_antithetic": {
+        "zero_residual_game": 0.6931472420692444,
+        "normalized_patch_gradient_rms": {
+          "mean": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "physical_velocity_gradient_rms_native_B4": {
+          "mean": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        }
+      },
+      "zero_gaussian_native_force_rms": {
+        "mean": 0.00011758478713953548,
+        "minimum": 9.878546812313529e-05,
+        "maximum": 0.00013359171214670526
+      },
+      "odd_gradient_panel_rms": {
+        "mean": 0.00021618726656063084,
+        "minimum": 0.0001861263281801654,
+        "maximum": 0.00023942568571717424
+      },
+      "even_gradient_panel_rms": {
+        "mean": 0.0006073927295474857,
+        "minimum": 0.0005312372949356729,
+        "maximum": 0.0006619636464119873
+      }
+    }
+  },
+  "qualified": true,
+  "checks": {
+    "global_cpu_rng_unchanged": true,
+    "native_streams_unchanged": true,
+    "critic_states_flags_gradients_unchanged": true,
+    "source_and_inputs_unchanged": true
+  },
+  "training_updates": 0,
+  "wall_seconds": 21.166306158993393,
+  "original_report_sha256": "bb7c7ed635558b30a230a9179b114e9aa20e97aa5dcf9d32833327b04ef41eba",
+  "qualification_credit": "none"
+}

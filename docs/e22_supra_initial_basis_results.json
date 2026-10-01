@@ -1,0 +1,182 @@
+{
+  "schema": "supra_initial_basis_transfer_compact_v1",
+  "scope": "Zero-update CPU weight-space audit; no quality qualification or causal convergence claim.",
+  "report_path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-initial-basis-audit-v1/report.json",
+  "report_sha256": "bfd38b84d558559ebe048ae93302270e6059253a4ccf6149f22eb8117f428241",
+  "audit_source": {
+    "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-initial-basis-audit-v1/source/scripts/audit_e22_supra_initial_basis.py",
+    "sha256": "df994d31e946653ee4f8d41f1076191632fe45c453a0f9e86a645e1d5ce00bc7"
+  },
+  "toy_source": {
+    "path": "/ml2/hypergan/ParticleGAN-convergence-toy-develop/examples/e22_routed_convergence.py",
+    "sha256": "b814bc0cac728d02290f6f0ed712dd6bb9483074f11666c5c012e72cd4d8f6b6"
+  },
+  "optimizer_updates": 0,
+  "sites": 71,
+  "elapsed_seconds": 40.02641355502419,
+  "inputs": {
+    "sampled_control": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/sampled_control/checkpoint-00000.pt",
+      "sha256": "a1c8aed3c028090af82ba643118ed17eb16ec53044e210ba168cb80a6ff04f12"
+    },
+    "sampled_hb_neutral": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/sampled_hb_neutral/checkpoint-00000.pt",
+      "sha256": "34bf5ce26f5b2c57000401c9a33c5ee6eea82009e3c4a7db33332b3348e1bddf"
+    },
+    "ordinary": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/checkpoint-06400/final-boss-supra.safetensors",
+      "sha256": "24a98ba055d0b5298136d67dc7491a339684da03416c510d1d443fe730eb7069"
+    },
+    "plan": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/plan.json",
+      "sha256": "4dcfcf52d3753da093e6ae5756517f9ae47d24a7f7f6f63c0b1ab821e965be77"
+    }
+  },
+  "summary": {
+    "mean_squared_cosine": {
+      "n": 71,
+      "min": 0.018655638652973955,
+      "q25": 0.025985696357066476,
+      "median": 0.02753751637487461,
+      "mean": 0.027652886220233087,
+      "q75": 0.029257272720951855,
+      "max": 0.033600705575752676
+    },
+    "ordinary_linear_delta_energy_in_initial_span": {
+      "n": 71,
+      "min": 0.008509556100761245,
+      "q25": 0.022148838375787936,
+      "median": 0.02706144370306811,
+      "mean": 0.027625366713810866,
+      "q75": 0.03206157871857626,
+      "max": 0.048597163978561
+    },
+    "initial_down_norm": {
+      "n": 71,
+      "min": 2.276908662159742,
+      "q25": 2.3050221757282974,
+      "median": 2.3110522255628916,
+      "mean": 2.3111691928333986,
+      "q75": 2.3184196176801954,
+      "max": 2.3340907617743714
+    },
+    "ordinary_down_norm": {
+      "n": 71,
+      "min": 2.5002051804741603,
+      "q25": 2.877806978095532,
+      "median": 2.995323896171128,
+      "mean": 3.059640450818045,
+      "q75": 3.206472944066495,
+      "max": 3.7882500843800986
+    },
+    "ordinary_up_norm": {
+      "n": 71,
+      "min": 0.5323578875622256,
+      "q25": 0.8311135830139063,
+      "median": 1.072240020983434,
+      "mean": 1.1796090063978846,
+      "q75": 1.4816475692522433,
+      "max": 2.5821607759574565
+    },
+    "initial_H_operator_norm": {
+      "n": 71,
+      "min": 0.8480090757978537,
+      "q25": 0.8978385000089146,
+      "median": 0.9211678694679223,
+      "mean": 0.9351248971215906,
+      "q75": 0.9724730237844006,
+      "max": 1.0854506580243721
+    },
+    "initial_C_operator_norm": {
+      "n": 71,
+      "min": 0.5499539469243712,
+      "q25": 0.6301905626489901,
+      "median": 0.6492513332604124,
+      "mean": 0.6594734765157305,
+      "q75": 0.6908425600917224,
+      "max": 0.8173060354083619
+    },
+    "initial_bias_rms": {
+      "n": 71,
+      "min": 0.10662360421969393,
+      "q25": 0.12145901701339093,
+      "median": 0.12812416907547164,
+      "mean": 0.12820100594289088,
+      "q75": 0.13412851113384727,
+      "max": 0.15429973871754432
+    }
+  },
+  "principal_angle_degrees": {
+    "n": 1136,
+    "min": 68.90778475497811,
+    "q25": 77.739335098438,
+    "median": 82.43259134027338,
+    "mean": 81.89913262650079,
+    "q75": 86.39097758768561,
+    "max": 89.99666052111279
+  },
+  "pr227_teacher_overlap": {
+    "first": 1.0,
+    "second": 1.0
+  },
+  "immutability": {
+    "input_files_unchanged": true,
+    "selected_state_unchanged": true,
+    "global_cpu_rng_unchanged": true,
+    "cuda_not_initialized_by_audit": true,
+    "selected_initial_state_digests": {
+      "sampled_control": "ef8f728980f9aecfdbb0feef0045d8c1b16f050dd7a6fe59da4d32c77c33db14",
+      "sampled_hb_neutral": "24327ee230e72b10304e1a1670f2f7d29bc820a51ef70abff6df773561e7d94b"
+    },
+    "global_cpu_rng_digest": "0694146c56617b8335318e7d2464a66656463e36837edfc756f7e9bd4a5544df",
+    "toy_data_digest": "6b7f79723052524b4e05312c0e90b539132e2a8b4733c6f1ff15de0e790da3c2"
+  },
+  "metric_software_checks": {
+    "aligned_row_spaces": true,
+    "orthogonal_row_spaces": true,
+    "invertible_lora_gauge": true
+  },
+  "limitations": [
+    "Historical ordinary down is a learned reference, not the exact frozen-caption target span.",
+    "Projection inputs and their covariance are not measured.",
+    "Different initializers and optimized targets can explain misalignment; this is not a sign bug.",
+    "The linear-delta energy statistic ignores activation weighting and full-model coupling."
+  ],
+  "proposed_single_new_toy_law": {
+    "status": "proposal only; no quality training launched",
+    "id": "routed_convergence_rotated_teacher_v1",
+    "mechanism": "Remove PR227 exact initial teacher/student down-span alignment while retaining exact family reachability.",
+    "rotation_degrees": 80.43253642215423,
+    "target_mean_squared_cosine": 0.027625366713810866,
+    "basis_law": "D_initial.T=Q@R; D_teacher=R.T@(sqrt(rho)*Q.T+sqrt(1-rho)*O.T), with deterministic thin-QR and lexicographic reorthogonalized canonical complement. Preserves down within-rank Gram/norms.",
+    "fixed": "Two BF16 sites, rank2, width16, token16, shared128x4 R2 bank, public sample_distributions_v1 initialization, source/time conditional learned critic, native RpGAN+KA2, original fixed streams, editing-only6400 updates, zero feature harm; no output optimization.",
+    "arms": [
+      "ordinary_native_game",
+      "particle_native_game",
+      "neutral_particle_native_game"
+    ],
+    "mandatory_judges": [
+      "ordinary_native_game@800",
+      "ordinary_native_game@6400",
+      "particle_native_game@800",
+      "particle_native_game@6400"
+    ],
+    "mandatory_endpoints": [
+      5120,
+      6400
+    ],
+    "evaluation": "Fixed private panels; clean FAST generator; all fit/guard/test pools; output RMSE diagnostic only; no metric-based checkpoint/head/horizon selection.",
+    "reachability": "Both families can copy teacher down/up and set H/b/C=0; this is a witness, not the trained result. Actual trained particles must retain trainable nonzero C, live bank/router gradients, and code contribution under all four judges.",
+    "cause_limit": "New task and fit residual scale change together; this is a controlled task-span transfer test, not proof that weight-space misalignment uniquely causes full-Supra failure.",
+    "launch_condition": "Only after the full Supra fixed endpoints fail the declared improvement gate and the root freezes source/card/budgets.",
+    "rho_basis": "measured mean linear-delta energy capture; no scalar search"
+  },
+  "full_supra_model_forward_calls": 0,
+  "toy_fixture_forwards_performed": true,
+  "report_field_clarification": "The archived report calls model_forward_calls zero: this applies to the full Supra host. Constructing the small PR227 toy data invokes its frozen teacher and base models; those fixture forwards were not counted. No optimizer updates were performed.",
+  "current_audit_source": {
+    "path": "/ml2/hypergan/supra-e22-neutral-init/scripts/audit_e22_supra_initial_basis.py",
+    "sha256": "67ed8fe904e082fefc84b05cb033572310cfc23cfdad350aad7016ab0ae47d05",
+    "change": "Clarify that the zero forward count concerns Supra; toy fixture construction performs frozen forwards. No repeated audit or training."
+  }
+}

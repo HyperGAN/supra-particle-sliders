@@ -35,6 +35,13 @@ paired-residual critic diagnostic and changes no native package source.
 A CPU probe of Supra's actual saved critics confirms conditional odd forces
 at zero residual. That observation does not establish a training improvement,
 and no critic parity or Gaussian-estimator changes are mixed into this run.
+The [compact saved-critic probe](e22_supra_saved_critic_parity_results.json)
+binds both critic tensors and all 60 source/time pairs. Native single-Gaussian
+zero-residual force has mean normalized per-context RMS `1.569e-4` and
+`1.845e-4`; the odd components isolated by antithetic pairing are `5.411e-5`
+and `1.046e-4`. Evenizing alone leaves finite-sample forces because Supra
+uses a single G draw. Evenizing with antithetic G cancels the force in this
+observational probe. This does not establish a better trained generator.
 
 The live graph is [http://pop-os:8784](http://pop-os:8784), bound to `0.0.0.0`.
 It shows the fresh control and neutral-start curves, a separately rescored
@@ -65,3 +72,28 @@ review of the actual two initial native checkpoints passed 3,408 checks,
 including identical non-H/b owners and matched early editing batches and
 Gaussian streams. A full-Supra improvement remains unestablished until the
 fixed endpoint evaluations and independent review complete.
+
+The [zero-update basis audit](e22_supra_initial_basis_results.json) compares
+all 71 fresh down factors with the historical trained ordinary LoRA. Their
+mean squared principal cosine is 0.027653; the fresh spans capture 2.7625%
+of its linear weight update. PR #227's teacher starts in the exact student
+span, with 100% overlap. This identifies a limitation of that toy: it did
+not test acquiring a different input basis. These weight-space observations
+omit activation covariance and do not measure the caption target's span or
+establish a cause of the full-model convergence gap. A separately declared
+rotated-teacher toy is prepared for use if the fixed Supra comparison fails;
+its quality training has not started.
+
+The CPU-only artifact reviewer can audit an active prefix without qualifying
+completion. After the run finishes, omit `--partial` to require every fixed
+checkpoint, both endpoints, all common-critic reductions, retained particle
+contributions, and the recorded GPU replay/export witnesses:
+
+```sh
+python scripts/review_e22_supra_neutral_initialization.py \
+  --run outputs/e22-supra-neutral-initialization-6400 \
+  --particlegan-root /ml2/hypergan/ParticleGAN-supra-neutral-develop
+```
+
+The reviewer checks CPU artifacts; it does not claim to repeat the GPU
+training, native replay, or full-backbone export forward passes on CPU.
