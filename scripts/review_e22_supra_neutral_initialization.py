@@ -173,7 +173,7 @@ def paired_summary(review, first, second, label):
     return result
 
 
-def review_export(review, path, state, arm, step, backend_hash):
+def review_export(review, path, state, arm, step, backend_hash, expected_pins=None):
     policy = state["policy"]
     selected = policy["models"]  # The primary head remains FAST regardless of native serving.
     expected = {"generator." + name: tensor for name, tensor in selected["generator"].items()
@@ -192,8 +192,13 @@ def review_export(review, path, state, arm, step, backend_hash):
                        and config["cfg"] == 3 and config["sampling"] == "clean"
                        and config["routed_geometry"] == "mass_atoms_v1"
                        and config["sites"] == state["config"]["sites"], arm + "/export geometry")
+        expected_dimensions = {site: selected["router"][f"site_queries.query_{index:03d}.weight"].shape[1]
+                               for index, site in enumerate(config["sites"])}
+        review.require(config["site_input_dims"] == expected_dimensions, arm + "/export exact site dimensions")
         pins = json.loads(metadata["native_pins"])
         review.require(pins["backend_sha256"] == backend_hash, arm + "/export backend source")
+        if expected_pins is not None:
+            review.require(pins == expected_pins, arm + "/all exported model/text/VAE source pins")
         review.require(set(handle.keys()) == set(expected) and len(expected) == 428, arm + "/all428 export names")
         for name, tensor in expected.items():
             actual = handle.get_tensor(name)
@@ -372,8 +377,12 @@ def build_review(directory, pg_root, partial=False):
             checkpoints[arm][str(step)] = dict(file_sha256=sha(path), native_digest=state_digest(state),
                 paired_rng_digest=state_digest(state["paired_noise_rng"]), native_moves=policy["routing"]["counters"]["moves"])
             if step in ENDPOINTS and (not partial or (directory / arm / f"adapter-{step:05d}.safetensors").exists()):
+                backend_hash = read(ROOT / "backend.lock.json")["sha256"]
+                expected_pins = dict(model_id=protocol["host"]["model_id"], model_revision=protocol["host"]["model_revision"],
+                    text_encoder_id="google/flan-t5-base", text_encoder_revision=protocol["host"]["text_encoder_revision"],
+                    vae_id="stabilityai/sd-vae-ft-mse", vae_revision=protocol["host"]["vae_revision"], backend_sha256=backend_hash)
                 exports[arm + "@" + str(step)] = review_export(review, directory / arm / f"adapter-{step:05d}.safetensors",
-                    state, arm, step, read(ROOT / "backend.lock.json")["sha256"])
+                    state, arm, step, backend_hash, expected_pins)
             if step == HORIZON:
                 review.require(state_digest(policy["table"]) != state_digest(initial_meta[arm]["bank"])
                                and state_digest(policy["models"]["router"]) != state_digest(initial_meta[arm]["router"]),

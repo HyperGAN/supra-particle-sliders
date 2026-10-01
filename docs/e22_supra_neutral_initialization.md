@@ -43,6 +43,19 @@ and `1.046e-4`. Evenizing alone leaves finite-sample forces because Supra
 uses a single G draw. Evenizing with antithetic G cancels the force in this
 observational probe. This does not establish a better trained generator.
 
+The [token-force decomposition](e22_supra_frozen_critic_token_force_results.json)
+checks the same saved critics and private Gaussian law. Their token-mean
+component accounts for 3.51% and 10.60% of single-draw force energy; it does
+not dominate the finite-noise forces. The critic pools shared token features
+without position inputs, but nonlinear features still detect zero-mean token
+variance. This observation does not identify a convergence cause.
+
+The [2,000/2,400 controller observations](e22_supra_neutral_control_observations_2000_2400.json)
+show no increase in G, router or bank rates and no output-noise change during
+the temporary held-out regression. The last generator-gradient alignment
+changes sharply at the two saved boundaries. These are observations under
+different stochastic batches, not a causal replay or a sign-error proof.
+
 The live graph is [http://pop-os:8784](http://pop-os:8784), bound to `0.0.0.0`.
 It shows the fresh control and neutral-start curves, a separately rescored
 ordinary-LoRA level to beat on the exact same small held-out probe, rolling

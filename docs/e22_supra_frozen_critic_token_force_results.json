@@ -1,0 +1,359 @@
+{
+  "schema": "supra_frozen_critic_token_force_v1",
+  "scope": "Qualified observational saved-critic token-force geometry; no training or convergence-cause claim.",
+  "report_path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-frozen-critic-token-force-v1/report.json",
+  "report_sha256": "cc6fa4c23f4eb9d67cb9f4f2a8b21ceeaf92d86353bc1ad698084a15dfc618a7",
+  "plan_sha256": "004ef718b7fab83d16853b58f838e4274bc05640379907511fbcbcfe8b08d24d",
+  "bindings": {
+    "input_sha256": {
+      "D6400": "54b243580206beb772db77132ff367fca9389b209149dcef9573449aeb8b7fcf",
+      "D1856": "db06166f66fa0fa70ac36e4130bc30d7bd9c7028f075a4c6e71e9c46d3baa102",
+      "data": "4cf1dffebd909078838488156b7ac5e35e9c3f0806ec3e8217d50c102f5b6fcc",
+      "qualification": "3a97778911d880ce726918aa3adf1bd843e7928a7079171a1ed174d17cf8abd2",
+      "plan": "3ebac6ee742536690187b484ffe12b14e707a3cab0b2adedd53d0c7fc2299f5a",
+      "run": "77348e0f78d2c8b7f5d375d061c13d3085fedf4f43d78aadb2410d3d607c02ee",
+      "earlier_receipt": "35c5a91c07d15023e031f4c19611fac78bef198d51df60521f454f4ecb921a54",
+      "parity_report": "bb7c7ed635558b30a230a9179b114e9aa20e97aa5dcf9d32833327b04ef41eba",
+      "parity_gradients": "df50aaa4c281c056cdcdf2ec62b8e03803906fee8d1ffa9c20e771f96d447bf5"
+    },
+    "source_sha256": {
+      "/ml2/hypergan/supra-e22-neutral-init/scripts/diagnose_e22_supra_critic_token_force.py": "7fd0bed698808653299e7f3ed367bf590761b19b902e778060d6dc96e63de870",
+      "/ml2/hypergan/supra-e22-neutral-init/supra/particle_game.py": "6a10cc15ea44651953fd46fefa3f097a832f594cca98084f17a67f3c4a94f35d",
+      "/ml2/hypergan/supra-e22-neutral-init/scripts/diagnose_e22_supra_critic_parity.py": "0c4e8619b90685784d41518c1d54b57c065df7f2fd5e290bb6b34db037f2287c",
+      "/ml2/hypergan/supra-e22-verification/outputs/e22-convergence-gap/particlegan-cabe2084-source/particlegan/gan_loss.py": "1c1019dfe71c583e32a05df0d2f794f9fff6d9ee1ea0332f57f6379ae70cf6b7"
+    },
+    "critic_tensor_digests": {
+      "D1856": "e248f16ada2cdb6137f670e9c1dece3740db9175dee9eb324702bfab4b759d2d",
+      "D6400": "43aa3af32850ccf5d17c4a12ca52f903d61901d734fbd0bc570280afcee16929"
+    },
+    "dataset_digest": "45846a7dcdb76c16d7b2d230aebbb1b43c890de498f2651a8254e34daa498319",
+    "condition_digest": "c6e75771b952b103ccce13b7b8b88eee673f38b9b6aaa3e9ee8f74ff5687388e",
+    "private_panel_digest": "fcb7bb8e129fb620e65da170ab12f36369d79abb6c2e3c54fa02807ee4dd9efb"
+  },
+  "results": {
+    "D1856": {
+      "normalized_single_draw_native_force": {
+        "global_squared_force_fraction": {
+          "count": 240,
+          "mean": 0.03502893442053244,
+          "minimum": 0.010226178911555188,
+          "maximum": 0.0670981840233497
+        },
+        "energy_weighted_global_fraction": 0.035114097152245484,
+        "force_rms": {
+          "count": 240,
+          "mean": 0.00029967308836372777,
+          "minimum": 0.00028734749615896116,
+          "maximum": 0.00031063228756510734
+        },
+        "global_force_rms": {
+          "count": 240,
+          "mean": 5.528736126000709e-05,
+          "minimum": 2.9735169284050447e-05,
+          "maximum": 7.841611799544237e-05
+        },
+        "centered_force_rms": {
+          "count": 240,
+          "mean": 0.00029436550608533314,
+          "minimum": 0.00028489777098478756,
+          "maximum": 0.0003044218902141851
+        },
+        "maximum_absolute_orthogonal_dot": 5.568993474013259e-22,
+        "maximum_absolute_centered_token_mean": 3.3881317890172014e-21
+      },
+      "normalized_four_draw_mean_native_force": {
+        "global_squared_force_fraction": {
+          "count": 60,
+          "mean": 0.11694783721994019,
+          "minimum": 0.05445562345535467,
+          "maximum": 0.18664335214681313
+        },
+        "energy_weighted_global_fraction": 0.11812199167066856,
+        "force_rms": {
+          "count": 60,
+          "mean": 0.00015691751092894552,
+          "minimum": 0.00014964845536156844,
+          "maximum": 0.00016337106436570636
+        },
+        "global_force_rms": {
+          "count": 60,
+          "mean": 5.3245293486313244e-05,
+          "minimum": 3.558662572563829e-05,
+          "maximum": 7.006227256963862e-05
+        },
+        "centered_force_rms": {
+          "count": 60,
+          "mean": 0.0001473816287679502,
+          "minimum": 0.00014348286095755276,
+          "maximum": 0.00015145874437698807
+        },
+        "maximum_absolute_orthogonal_dot": 2.1279221257926637e-22,
+        "maximum_absolute_centered_token_mean": 0.0
+      },
+      "normalized_zero_gaussian_native_force": {
+        "global_squared_force_fraction": {
+          "count": 60,
+          "mean": 1.0,
+          "minimum": 1.0,
+          "maximum": 1.0
+        },
+        "energy_weighted_global_fraction": 1.0,
+        "force_rms": {
+          "count": 60,
+          "mean": 6.209372395147725e-05,
+          "minimum": 4.4665171663616997e-05,
+          "maximum": 8.067740151706013e-05
+        },
+        "global_force_rms": {
+          "count": 60,
+          "mean": 6.209372395147725e-05,
+          "minimum": 4.4665171663616997e-05,
+          "maximum": 8.067740151706013e-05
+        },
+        "centered_force_rms": {
+          "count": 60,
+          "mean": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "maximum_absolute_orthogonal_dot": 0.0,
+        "maximum_absolute_centered_token_mean": 0.0
+      },
+      "physical_single_draw_native_B4": {
+        "global_squared_force_fraction": {
+          "count": 240,
+          "mean": 0.03133557838282098,
+          "minimum": 0.01057360674789778,
+          "maximum": 0.061446191371595967
+        },
+        "energy_weighted_global_fraction": 0.03139127010600414,
+        "force_rms": {
+          "count": 240,
+          "mean": 0.00024654961558831767,
+          "minimum": 0.00023685497364695038,
+          "maximum": 0.0002548431623608889
+        },
+        "global_force_rms": {
+          "count": 240,
+          "mean": 4.305296382635914e-05,
+          "minimum": 2.494691460775729e-05,
+          "maximum": 6.163982169158982e-05
+        },
+        "centered_force_rms": {
+          "count": 240,
+          "mean": 0.00024264892931604796,
+          "minimum": 0.00023465585437495624,
+          "maximum": 0.00025001938733156025
+        },
+        "maximum_absolute_orthogonal_dot": 3.3480135293083795e-22,
+        "maximum_absolute_centered_token_mean": 0.0
+      },
+      "physical_four_draw_mean_native_B4": {
+        "global_squared_force_fraction": {
+          "count": 60,
+          "mean": 0.10478796942142957,
+          "minimum": 0.0520067658337155,
+          "maximum": 0.17016146012974356
+        },
+        "energy_weighted_global_fraction": 0.10563614647836675,
+        "force_rms": {
+          "count": 60,
+          "mean": 0.0001283680590352836,
+          "minimum": 0.00012278650940495816,
+          "maximum": 0.00013324263465441905
+        },
+        "global_force_rms": {
+          "count": 60,
+          "mean": 4.122473873706682e-05,
+          "minimum": 2.867517379905553e-05,
+          "maximum": 5.4402479986896493e-05
+        },
+        "centered_force_rms": {
+          "count": 60,
+          "mean": 0.00012141076687266517,
+          "minimum": 0.00011818686516673174,
+          "maximum": 0.0001247567117242887
+        },
+        "maximum_absolute_orthogonal_dot": 1.7051552845956397e-22,
+        "maximum_absolute_centered_token_mean": 8.364450354136216e-21
+      },
+      "zero_noise_all_tokens_bitwise_equal": true,
+      "reverse_token_feature_equivariance_bitwise": true,
+      "reverse_token_score_max_absolute_difference": 9.5367431640625e-07,
+      "reverse_token_force_max_absolute_difference": 0.0,
+      "observational_critic_forward_calls": 8,
+      "observational_critic_feature_calls": 2
+    },
+    "D6400": {
+      "normalized_single_draw_native_force": {
+        "global_squared_force_fraction": {
+          "count": 240,
+          "mean": 0.10590046205584738,
+          "minimum": 0.059342273267937715,
+          "maximum": 0.14628367881924734
+        },
+        "energy_weighted_global_fraction": 0.10603983811392843,
+        "force_rms": {
+          "count": 240,
+          "mean": 0.00032233711693406786,
+          "minimum": 0.00027937738017912546,
+          "maximum": 0.0003489850858913207
+        },
+        "global_force_rms": {
+          "count": 240,
+          "mean": 0.00010461894529426846,
+          "minimum": 7.28038129163037e-05,
+          "maximum": 0.00012521894043001651
+        },
+        "centered_force_rms": {
+          "count": 240,
+          "mean": 0.0003047666444349198,
+          "minimum": 0.0002689322914196963,
+          "maximum": 0.0003324037398781385
+        },
+        "maximum_absolute_orthogonal_dot": 1.3185775951978107e-21,
+        "maximum_absolute_centered_token_mean": 2.0752307207730358e-20
+      },
+      "normalized_four_draw_mean_native_force": {
+        "global_squared_force_fraction": {
+          "count": 60,
+          "mean": 0.31496340000045703,
+          "minimum": 0.24926438887074592,
+          "maximum": 0.3752809974784547
+        },
+        "energy_weighted_global_fraction": 0.3157905099636085,
+        "force_rms": {
+          "count": 60,
+          "mean": 0.00018452760845678862,
+          "minimum": 0.00015961226491592974,
+          "maximum": 0.0002006892773333173
+        },
+        "global_force_rms": {
+          "count": 60,
+          "mean": 0.0001035520235997547,
+          "minimum": 8.183584273509024e-05,
+          "maximum": 0.00011583646900821836
+        },
+        "centered_force_rms": {
+          "count": 60,
+          "mean": 0.00015265603473864058,
+          "minimum": 0.00013621819219997337,
+          "maximum": 0.00016737473895669464
+        },
+        "maximum_absolute_orthogonal_dot": 4.235164736271502e-22,
+        "maximum_absolute_centered_token_mean": 0.0
+      },
+      "normalized_zero_gaussian_native_force": {
+        "global_squared_force_fraction": {
+          "count": 60,
+          "mean": 1.0,
+          "minimum": 1.0,
+          "maximum": 1.0
+        },
+        "energy_weighted_global_fraction": 1.0,
+        "force_rms": {
+          "count": 60,
+          "mean": 0.00011758479208928906,
+          "minimum": 9.878546762247259e-05,
+          "maximum": 0.00013359169014481035
+        },
+        "global_force_rms": {
+          "count": 60,
+          "mean": 0.00011758479208928906,
+          "minimum": 9.878546762247259e-05,
+          "maximum": 0.00013359169014481035
+        },
+        "centered_force_rms": {
+          "count": 60,
+          "mean": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "maximum_absolute_orthogonal_dot": 0.0,
+        "maximum_absolute_centered_token_mean": 0.0
+      },
+      "physical_single_draw_native_B4": {
+        "global_squared_force_fraction": {
+          "count": 240,
+          "mean": 0.10149647494159279,
+          "minimum": 0.05900394220900072,
+          "maximum": 0.14036234338291792
+        },
+        "energy_weighted_global_fraction": 0.10168736497461124,
+        "force_rms": {
+          "count": 240,
+          "mean": 0.00026497726982345,
+          "minimum": 0.00022918731943058328,
+          "maximum": 0.0002884951645075454
+        },
+        "global_force_rms": {
+          "count": 240,
+          "mean": 8.420328734279495e-05,
+          "minimum": 5.920491185239379e-05,
+          "maximum": 0.00010152107940257277
+        },
+        "centered_force_rms": {
+          "count": 240,
+          "mean": 0.00025114692887650566,
+          "minimum": 0.00022125060060173578,
+          "maximum": 0.0002740600008247839
+        },
+        "maximum_absolute_orthogonal_dot": 8.197359870400504e-22,
+        "maximum_absolute_centered_token_mean": 2.0328790734103208e-20
+      },
+      "physical_four_draw_mean_native_B4": {
+        "global_squared_force_fraction": {
+          "count": 60,
+          "mean": 0.30480557541095293,
+          "minimum": 0.244451886680604,
+          "maximum": 0.36831679644895216
+        },
+        "energy_weighted_global_fraction": 0.3057529284162043,
+        "force_rms": {
+          "count": 60,
+          "mean": 0.00015085492717657484,
+          "minimum": 0.00013029335966662677,
+          "maximum": 0.0001646347668418936
+        },
+        "global_force_rms": {
+          "count": 60,
+          "mean": 8.328395400406065e-05,
+          "minimum": 6.549425551721692e-05,
+          "maximum": 9.44047470062826e-05
+        },
+        "centered_force_rms": {
+          "count": 60,
+          "mean": 0.00012571612569419946,
+          "minimum": 0.00011248340688138552,
+          "maximum": 0.00013792593864501545
+        },
+        "maximum_absolute_orthogonal_dot": 2.743137706378978e-22,
+        "maximum_absolute_centered_token_mean": 0.0
+      },
+      "zero_noise_all_tokens_bitwise_equal": true,
+      "reverse_token_feature_equivariance_bitwise": true,
+      "reverse_token_score_max_absolute_difference": 9.5367431640625e-07,
+      "reverse_token_force_max_absolute_difference": 0.0,
+      "observational_critic_forward_calls": 8,
+      "observational_critic_feature_calls": 2
+    }
+  },
+  "immutability": {
+    "global_cpu_rng_unchanged": true,
+    "CUDA_not_initialized": true,
+    "original_critic_states_and_streams_unchanged": true,
+    "copied_critic_state_modes_flags_grads_unchanged": true,
+    "dataset_and_parent_gradient_tensors_unchanged": true,
+    "original_inputs_and_sources_unchanged": true
+  },
+  "wall_seconds": 99.3597128931433,
+  "training_updates": 0,
+  "full_supra_forward_calls": 0,
+  "limits": [
+    "The critic has shared per-token features and global source/time conditioning, with no spatial positions. Pooled scores are mathematically invariant to joint token permutations.",
+    "Permuting residual alone while holding a finite Gaussian panel fixed need not preserve its score/gradient; exchangeability holds in expectation under the IID noise law.",
+    "Zero-noise identical-token force and finite-panel global fractions do not establish a wrong sign, convergence cause, current generator residual, or a quality improvement.",
+    "Nonlinear token features can respond to nonzero token variance; permutation invariance does not make all zero-mean residuals invisible.",
+    "The structural row guard flattens per-token features and is a separate mechanism from this pooled scalar generator game."
+  ]
+}

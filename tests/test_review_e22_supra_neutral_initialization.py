@@ -22,7 +22,8 @@ def checkpoint():
         preservation_game_weight=0., output_error_guard=False, max_feature_context_harm=0.,
         dataset_digest="held-input", recipe=dict(birth_death_backend="auto", reopen_guard="settled"), sites=sites)
     g = {f"weight{index}": torch.tensor([index + 1.], dtype=torch.float32) for index in range(284)}
-    router = {f"weight{index}": torch.tensor([index + 1.], dtype=torch.float32) for index in range(142)}
+    router = {f"site_queries.query_{index:03d}.{suffix}": torch.full(shape, float(index + 1))
+              for index in range(71) for suffix, shape in (("weight", (4, 2)), ("bias", (4,)))}
     router["log_mass"] = torch.zeros(128)
     policy = dict(completed_steps=5120, recipe=config["recipe"], requires_grad=dict(
         generator={name: True for name in g}, router={name: name != "log_mass" for name in router}),
@@ -66,7 +67,7 @@ def test_summary_reduction_rejects_changed_mean():
         check_evaluation(Reviewer(), result, data, "fixture")
 
 
-def export_fixture(path, checkpoint, mutate_tensor=False, mode=None):
+def export_fixture(path, checkpoint, mutate_tensor=False, mode=None, site_dimension=2):
     policy = checkpoint["policy"]
     tensors = {"generator." + name: tensor.clone() for name, tensor in policy["models"]["generator"].items()}
     tensors.update({"router." + name: tensor.clone() for name, tensor in policy["models"]["router"].items() if name != "log_mass"})
@@ -76,6 +77,7 @@ def export_fixture(path, checkpoint, mutate_tensor=False, mode=None):
     config = dict(architecture="gated_particle_v3", rank=16, z_dim=4, num_particles=128,
         cfg=3, sampling="clean", routed_geometry="mass_atoms_v1", served_source="fast", completed_steps=5120,
         sites=checkpoint["config"]["sites"],
+        site_input_dims={site: site_dimension for site in checkpoint["config"]["sites"]},
         extra=dict(particle_init=MODES[ARMS[0]] if mode is None else mode, training_schedule="fresh_editing_only_v1"))
     save_file(tensors, path, metadata=dict(format="supra_particlegan_clean_v3", config=json.dumps(config),
                                          native_pins=json.dumps(dict(backend_sha256="held-backend"))))
@@ -95,3 +97,18 @@ def test_export_rejects_wrong_initialization_tag(tmp_path, checkpoint):
     export_fixture(path, checkpoint, mode=MODES[ARMS[1]])
     with pytest.raises(ValueError, match="explicit fresh initialization"):
         review_export(Reviewer(), path, checkpoint, ARMS[0], 5120, "held-backend")
+
+
+def test_export_rejects_wrong_site_dimensions(tmp_path, checkpoint):
+    path = tmp_path / "adapter.safetensors"
+    export_fixture(path, checkpoint, site_dimension=3)
+    with pytest.raises(ValueError, match="exact site dimensions"):
+        review_export(Reviewer(), path, checkpoint, ARMS[0], 5120, "held-backend")
+
+
+def test_export_rejects_missing_declared_model_source_pins(tmp_path, checkpoint):
+    path = tmp_path / "adapter.safetensors"
+    export_fixture(path, checkpoint)
+    with pytest.raises(ValueError, match="model/text/VAE source pins"):
+        review_export(Reviewer(), path, checkpoint, ARMS[0], 5120, "held-backend",
+                      expected_pins=dict(backend_sha256="held-backend", model_revision="held-model"))

@@ -1,0 +1,169 @@
+{
+  "schema": "supra_neutral_control_boundary_summary_v1",
+  "bindings": {
+    "raw_report_path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/control-observation-02000-02400.json",
+    "raw_report_sha256": "db673d9698153b834f22bc4a6c4bbb667fc12eb50d6f15d8bb27d3479d678365",
+    "observer_source": "scripts/observe_e22_supra_neutral_controls.py",
+    "observer_source_sha256": "d3ac0db48937d8a6d601e580412e2da1f668c7e93967a6656661fa4d061b3aeb",
+    "plan_sha256": "4dcfcf52d3753da093e6ae5756517f9ae47d24a7f7f6f63c0b1ab821e965be77",
+    "protocol_sha256": "31c1f596f9d3ba2ff600115311029ec3fa3b895a0925d9bcd35413049f5195cf",
+    "native_commit": "6ec7e5788e14ea15ddc3e16ac71110458108b6a6",
+    "native_source_sha256": {
+      "particlegan/policy.py": "5b6877ab14170340433e54f5d0e0409b2f72721d31145b8d4867890686317ebc",
+      "particlegan/continuous.py": "4ceab49c7d51d1769ae91b7f8bc892eaf380ca6fbd77a948a086ade6627e9a41",
+      "particlegan/ka2.py": "95fdaa58a2bdc229d5d146ef89548bc3fe07582d06181a149ed1bb4f5d632703"
+    },
+    "run_path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400"
+  },
+  "immutable_inputs": {
+    "data": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/data.pt",
+      "bytes": 38022437,
+      "mtime_ns": 1790798677213846983,
+      "declared_sha256": "4cf1dffebd909078838488156b7ac5e35e9c3f0806ec3e8217d50c102f5b6fcc",
+      "sha256_measured_by_this_observation": false
+    },
+    "teacher": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/final.pt",
+      "bytes": 1768074333,
+      "mtime_ns": 1790823864780038114,
+      "declared_sha256": "54b243580206beb772db77132ff367fca9389b209149dcef9573449aeb8b7fcf",
+      "sha256_measured_by_this_observation": false
+    }
+  },
+  "checkpoint_sha256_measured": false,
+  "final_checkpoint_qualification": "Pending completed6400 run and independent bulk review.",
+  "boundaries": [
+    {
+      "arm": "sampled_control",
+      "step": 2000,
+      "checkpoint_path": "sampled_control/checkpoint-02000.pt",
+      "bytes": 1768133213,
+      "mtime_ns": 1790891992040501266,
+      "G_drift_count": 8,
+      "D_s": 7.62939453125e-06,
+      "D_lr": 0.0023767399458694146,
+      "D_damping": 0.7429004359269653,
+      "KA2_alpha": 0.009190987623326815,
+      "EMA_updates": 499,
+      "EMA_skips": 702,
+      "G_cos": 0.12653294205665588,
+      "G_alignment": -0.08243242445903795,
+      "DV12_width": [
+        0.798088014125824,
+        0.7386995553970337,
+        1.0806286334991455,
+        0.986240565776825
+      ],
+      "DV12_D_rms": 0.38094642758369446,
+      "DV12_G_rms": 0.24097733199596405
+    },
+    {
+      "arm": "sampled_control",
+      "step": 2400,
+      "checkpoint_path": "sampled_control/checkpoint-02400.pt",
+      "bytes": 1775991293,
+      "mtime_ns": 1790892565356125743,
+      "G_drift_count": 9,
+      "D_s": 5.960464477539063e-08,
+      "D_lr": 0.0025242878312976957,
+      "D_damping": 0.7889465137114873,
+      "KA2_alpha": 5.977192236847185e-25,
+      "EMA_updates": 702,
+      "EMA_skips": 899,
+      "G_cos": -0.9102150201797485,
+      "G_alignment": -0.09269731230948654,
+      "DV12_width": [
+        0.817383348941803,
+        0.7585015892982483,
+        1.1064666509628296,
+        1.0117318630218506
+      ],
+      "DV12_D_rms": 0.4328193962574005,
+      "DV12_G_rms": 0.2558594048023224
+    },
+    {
+      "arm": "sampled_hb_neutral",
+      "step": 2000,
+      "checkpoint_path": "sampled_hb_neutral/checkpoint-02000.pt",
+      "bytes": 1774372997,
+      "mtime_ns": 1790892019798730590,
+      "G_drift_count": 15,
+      "D_s": 0.25,
+      "D_lr": 0.0023436745955228754,
+      "D_damping": 0.7326296030570918,
+      "KA2_alpha": 0.0002753443801837398,
+      "EMA_updates": 784,
+      "EMA_skips": 417,
+      "G_cos": 0.16171877086162567,
+      "G_alignment": -0.07077377986424704,
+      "DV12_width": [
+        0.9722253084182739,
+        0.6570282578468323,
+        1.01494300365448,
+        0.7275373935699463
+      ],
+      "DV12_D_rms": 0.6149535775184631,
+      "DV12_G_rms": 0.34848377108573914
+    },
+    {
+      "arm": "sampled_hb_neutral",
+      "step": 2400,
+      "checkpoint_path": "sampled_hb_neutral/checkpoint-02400.pt",
+      "bytes": 1767469501,
+      "mtime_ns": 1790892594206808411,
+      "G_drift_count": 15,
+      "D_s": 0.125,
+      "D_lr": 0.0025251216138622748,
+      "D_damping": 0.7881558129924505,
+      "KA2_alpha": 0.0004767915701650642,
+      "EMA_updates": 1143,
+      "EMA_skips": 458,
+      "G_cos": -0.933921217918396,
+      "G_alignment": -0.09326983514713492,
+      "DV12_width": [
+        1.0084991455078125,
+        0.6772939562797546,
+        1.0552473068237305,
+        0.7414001226425171
+      ],
+      "DV12_D_rms": 0.6845293641090393,
+      "DV12_G_rms": 0.37601199746131897
+    }
+  ],
+  "interval_summary": [
+    "G/router/bank scales and LRs stay unchanged. Control G DRIFT at2088 stays at scale1; neutral has no G DRIFT in this interval.",
+    "Noise, floor and event counts remain unchanged. Raw D scales are masked by table floor0.75; applied D LR rises6.2%/7.7% with damping.",
+    "Control KA2 alpha nearly vanishes, while neutral EMA updates continue; both progress probes regress.",
+    "DV12 geometry changes and consecutive G-gradient cosines become strongly negative under different stochastic batches."
+  ],
+  "limits": [
+    "Observational only: no model, replay or update; no cause or sign bug established.",
+    "No full checkpoint/bulk tensor SHA. Small source/report hashes and file stats bind this record; input SHAs are declared, not measured here.",
+    "Applied LRs precede end-of-step control fields; two boundaries cannot establish per-update smoothness.",
+    "Output metrics affect no optimizer/guard/selection. CPU observation cost is external to the GPU runner budget."
+  ],
+  "observation_seconds": 3.308250945992768,
+  "native_or_generator_updates": 0,
+  "model_forward_calls": 0,
+  "bulk_file_or_tensor_hashes": 0,
+  "same_controls_at_all_four_boundaries": {
+    "G_scale": 1.0,
+    "G_lr": 5e-05,
+    "router_scale": 1.0,
+    "router_lr": 5e-05,
+    "bank_scale": 1.0,
+    "bank_lr": 0.0085,
+    "noise_mode": "learnable",
+    "noise_log_parameter": -2.081186056137085,
+    "output_sigma": 0.125,
+    "noise_floor": 0.125,
+    "moves": 0,
+    "controller_reopens": 0,
+    "surprise_fires": 0,
+    "anchor_releases": 0,
+    "epoch_rebases": 1,
+    "D_table_floor": 0.75,
+    "KA2_weight": 1.0
+  }
+}
