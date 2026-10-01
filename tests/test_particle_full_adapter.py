@@ -6,7 +6,7 @@ import pytest
 import torch
 
 from supra.particle_adapter import (
-    LINEAR_MODULATED_V2, NONLINEAR_V1, SITES, SupraParticleHost, SupraParticleRouter,
+    GATED_PARTICLE_V3, LINEAR_MODULATED_V2, NONLINEAR_V1, SITES, SupraParticleHost, SupraParticleRouter,
     adapter_input_dims, adapter_sites, validate_particle_architecture,
 )
 from supra.runtime import TARGETS, model_module
@@ -86,7 +86,7 @@ def test_sites_follow_actual_native_execution_and_heterogeneous_token_lengths():
     assert all(branch.frame is None for branch in host.particle_branches())
 
 
-@pytest.mark.parametrize("architecture", (NONLINEAR_V1, LINEAR_MODULATED_V2))
+@pytest.mark.parametrize("architecture", (NONLINEAR_V1, LINEAR_MODULATED_V2, GATED_PARTICLE_V3))
 def test_all_branches_are_fresh_and_zero_start_and_strength_zero_match_base(architecture):
     model = tiny_native()
     for branch in model.modules():
@@ -115,7 +115,7 @@ def test_all_branches_are_fresh_and_zero_start_and_strength_zero_match_base(arch
     assert all(".base." not in name for name in trainable)
 
 
-@pytest.mark.parametrize("architecture", (NONLINEAR_V1, LINEAR_MODULATED_V2))
+@pytest.mark.parametrize("architecture", (NONLINEAR_V1, LINEAR_MODULATED_V2, GATED_PARTICLE_V3))
 def test_shared_bank_gradient_and_sequential_perturbations_reach_native_output(architecture):
     _, host, router, candidate, inputs = fixture(architecture)
     with torch.no_grad():
@@ -133,7 +133,7 @@ def test_shared_bank_gradient_and_sequential_perturbations_reach_native_output(a
     assert not torch.equal(calls[3][1], changed_calls[3][1])
 
 
-@pytest.mark.parametrize("architecture", (NONLINEAR_V1, LINEAR_MODULATED_V2))
+@pytest.mark.parametrize("architecture", (NONLINEAR_V1, LINEAR_MODULATED_V2, GATED_PARTICLE_V3))
 def test_full_site_host_state_copy_owns_query_modules_and_remains_independent(architecture):
     _, host, router, candidate, inputs = fixture(architecture)
     cloned_host, cloned_router = deepcopy(host), deepcopy(router)
@@ -224,6 +224,41 @@ def test_saturated_particle_modulation_keeps_input_influence_and_gradient():
     changed_input = x.detach() + .25
     assert torch.equal(projected_with_fixed_codes(old_branch, router, candidate, changed_input, codes), old_output)
     assert not torch.equal(projected_with_fixed_codes(new_branch, router, candidate, changed_input, codes), new_output)
+
+
+def test_gated_particles_change_input_basis_with_identical_public_tensor_initialization():
+    model, modern, router, candidate, _ = fixture(LINEAR_MODULATED_V2)
+    gated = SupraParticleHost(model, rank=2, sites=modern.sites, architecture=GATED_PARTICLE_V3)
+    init.deterministic_orthogonal_(gated, seed=0)
+    gated.zero_particle_outputs()
+    assert all(torch.equal(value, gated.state_dict()[name])
+               for name, value in modern.state_dict().items())
+    branch = gated.particle_branches()[0]
+    with torch.no_grad():
+        branch.base.weight.zero_()
+        branch.base.bias.zero_()
+        branch.down.weight.zero_()
+        branch.down.weight[:, :2].copy_(torch.eye(2))
+        branch.bridge.weight.zero_()
+        branch.bridge.bias.zero_()
+        branch.bridge.weight[:, 2:4].copy_(torch.eye(2))
+        branch.up.weight.zero_()
+        branch.up.weight[:2].copy_(torch.eye(2))
+    x = torch.linspace(-.7, .9, 36).reshape(1, 3, 12).requires_grad_()
+    codes = torch.zeros(1, 3, 4)
+    changed_codes = codes + .5
+    output = projected_with_fixed_codes(branch, router, candidate, x, codes)
+    changed = projected_with_fixed_codes(branch, router, candidate, x, changed_codes)
+    gain = 1 + torch.tanh(torch.tensor(.5))
+    assert torch.equal(output[..., :2], x[..., :2])
+    assert torch.allclose(changed[..., :2], gain * x[..., :2])
+    native_jacobian = torch.autograd.grad(output.sum(), x)[0]
+    changed_jacobian = torch.autograd.grad(changed.sum(), x)[0]
+    assert torch.allclose(changed_jacobian, gain * native_jacobian)
+    # Codes act on the input features instead of adding a constant output.
+    assert torch.equal(projected_with_fixed_codes(branch, router, candidate,
+                                                  torch.zeros_like(x), changed_codes),
+                       torch.zeros_like(changed))
 
 
 @pytest.mark.parametrize("architecture", (None, "linear", "", 2))

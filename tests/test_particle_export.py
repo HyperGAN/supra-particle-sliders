@@ -11,11 +11,11 @@ from safetensors.torch import load_file, save_file
 
 from particlegan import E22Policy, RoutedCandidate, RoutedRows, get_recipe, init
 from supra.particle_adapter import (
-    LINEAR_MODULATED_V2, NONLINEAR_V1, SupraParticleHost, SupraParticleRouter,
+    GATED_PARTICLE_V3, LINEAR_MODULATED_V2, NONLINEAR_V1, SupraParticleHost, SupraParticleRouter,
     adapter_input_dims, adapter_sites,
 )
 from supra.particle_export import (
-    FORMAT, FORMAT_V2, _EncodedCondition, _native_forward, _unused_features, export_particle_adapter,
+    FORMAT, FORMAT_V2, FORMAT_V3, _EncodedCondition, _native_forward, _unused_features, export_particle_adapter,
     export_served_adapter, load_particle_adapter,
 )
 from supra.runtime import TARGETS, model_module
@@ -62,7 +62,7 @@ def public_clean(served, inputs):
     return served.routing.forward({**served.models, "conditioning": condition}, context, candidate)
 
 
-@pytest.mark.parametrize("architecture", [NONLINEAR_V1, LINEAR_MODULATED_V2])
+@pytest.mark.parametrize("architecture", [NONLINEAR_V1, LINEAR_MODULATED_V2, GATED_PARTICLE_V3])
 def test_public_served_export_reload_preserves_clean_velocity_mass_and_zero_strength(tmp_path, architecture):
     model, policy, inputs = fixture(architecture)
     served = policy.served_model()
@@ -83,7 +83,7 @@ def test_public_served_export_reload_preserves_clean_velocity_mass_and_zero_stre
         assert metadata["format"] == FORMAT
         assert "architecture" not in receipt["config"]
     else:
-        assert metadata["format"] == FORMAT_V2
+        assert metadata["format"] == (FORMAT_V2 if architecture == LINEAR_MODULATED_V2 else FORMAT_V3)
         assert receipt["config"]["architecture"] == architecture
     assert receipt["tensors"] == 6 * len(served.generator.sites) + 2
     assert torch.equal(adapter.table, served.table)
@@ -132,7 +132,10 @@ def test_loop_export_and_strict_rejection_of_wrong_shapes_and_native_pins(tmp_pa
     (FORMAT_V2, None, "architecture and format version differ"),
     (FORMAT, "unknown", "unsupported particle architecture"),
     (FORMAT_V2, "unknown", "unsupported particle architecture"),
-    ("supra_particlegan_clean_v3", LINEAR_MODULATED_V2, "unsupported Supra particle export format"),
+    (FORMAT_V3, LINEAR_MODULATED_V2, "architecture and format version differ"),
+    (FORMAT_V2, GATED_PARTICLE_V3, "architecture and format version differ"),
+    (FORMAT_V3, None, "architecture and format version differ"),
+    ("supra_particlegan_clean_v4", GATED_PARTICLE_V3, "unsupported Supra particle export format"),
 ])
 def test_rejects_ambiguous_or_mismatched_architecture_metadata(tmp_path, export_format, architecture, message):
     model, policy, _ = fixture(LINEAR_MODULATED_V2)

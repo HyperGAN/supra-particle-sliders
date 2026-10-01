@@ -16,7 +16,7 @@ from safetensors.torch import load_file, save_file
 
 from particlegan import RoutedCandidate, RoutedRows
 from .particle_adapter import (
-    LINEAR_MODULATED_V2, NONLINEAR_V1, SupraParticleHost, SupraParticleRouter,
+    GATED_PARTICLE_V3, LINEAR_MODULATED_V2, NONLINEAR_V1, SupraParticleHost, SupraParticleRouter,
     adapter_input_dims, adapter_sites, validate_particle_architecture,
 )
 from .runtime import MODEL_ID, MODEL_REV, T5_REV, VAE_REV
@@ -24,15 +24,18 @@ from .runtime import MODEL_ID, MODEL_REV, T5_REV, VAE_REV
 
 FORMAT = "supra_particlegan_clean_v1"
 FORMAT_V2 = "supra_particlegan_clean_v2"
+FORMAT_V3 = "supra_particlegan_clean_v3"
+_FORMAT_ARCHITECTURES = {FORMAT: NONLINEAR_V1, FORMAT_V2: LINEAR_MODULATED_V2,
+                       FORMAT_V3: GATED_PARTICLE_V3}
 
 
 def _export_architecture(metadata, config):
     """Tensor shapes cannot distinguish the formulas; their versions must agree."""
     export_format = metadata.get("format")
-    if export_format not in (FORMAT, FORMAT_V2):
+    if export_format not in _FORMAT_ARCHITECTURES:
         raise ValueError("unsupported Supra particle export format")
     architecture = validate_particle_architecture(config.get("architecture", NONLINEAR_V1))
-    expected = NONLINEAR_V1 if export_format == FORMAT else LINEAR_MODULATED_V2
+    expected = _FORMAT_ARCHITECTURES[export_format]
     if architecture != expected:
         raise ValueError("particle export architecture and format version differ")
     return architecture
@@ -88,8 +91,8 @@ def export_served_adapter(served, path, *, extra_metadata=None):
     # Keep legacy metadata unchanged. New exports declare their formula because
     # the same tensor names and shapes are valid for both architectures.
     export_format = FORMAT
-    if architecture == LINEAR_MODULATED_V2:
-        export_format = FORMAT_V2
+    if architecture != NONLINEAR_V1:
+        export_format = {LINEAR_MODULATED_V2: FORMAT_V2, GATED_PARTICLE_V3: FORMAT_V3}[architecture]
         config["architecture"] = architecture
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -157,7 +160,7 @@ def load_particle_adapter(base_model, path, *, device=None):
     """Strictly validate pins, sites, tensor names/shapes/dtypes before loading."""
     with safe_open(str(path), framework="pt", device="cpu") as handle:
         metadata = handle.metadata() or {}
-    if metadata.get("format") not in (FORMAT, FORMAT_V2):
+    if metadata.get("format") not in _FORMAT_ARCHITECTURES:
         raise ValueError("unsupported Supra particle export format")
     if json.loads(metadata.get("native_pins", "null")) != native_pins():
         raise ValueError("particle export native model/backend pins differ from this runtime")

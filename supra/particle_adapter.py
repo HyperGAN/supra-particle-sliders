@@ -11,12 +11,14 @@ import math
 
 import torch
 from torch import nn
+from torch.nn import functional as F
 
 
 SITES = ("blocks.12.cross_attn.proj", "blocks.13.cross_attn.proj")
 NONLINEAR_V1 = "nonlinear_v1"
 LINEAR_MODULATED_V2 = "linear_modulated_v2"
-PARTICLE_ARCHITECTURES = (NONLINEAR_V1, LINEAR_MODULATED_V2)
+GATED_PARTICLE_V3 = "gated_particle_v3"
+PARTICLE_ARCHITECTURES = (NONLINEAR_V1, LINEAR_MODULATED_V2, GATED_PARTICLE_V3)
 
 
 def validate_particle_architecture(architecture):
@@ -148,7 +150,17 @@ class _ParticleProjection(nn.Module):
             if frame.strength == 0:
                 return base_output
             hidden = self.down(projected_input)
-            modulated = self.bridge(torch.cat((hidden, codes.float()), dim=-1)).tanh()
+            if self.architecture == GATED_PARTICLE_V3:
+                # The native mixed/perturbed code gates the usable input basis.
+                # Splitting the existing bridge preserves its tensor schema and
+                # optimizer owners; the hidden gain stays between zero and two.
+                rank = hidden.shape[-1]
+                hidden_modulation = F.linear(hidden, self.bridge.weight[:, :rank],
+                                             self.bridge.bias).tanh()
+                particle_gate = F.linear(codes.float(), self.bridge.weight[:, rank:]).tanh()
+                modulated = hidden + hidden_modulation + hidden * particle_gate
+            else:
+                modulated = self.bridge(torch.cat((hidden, codes.float()), dim=-1)).tanh()
             if self.architecture == LINEAR_MODULATED_V2:
                 # The same particle-conditioned branch retains a linear input
                 # path when the bounded modulation saturates. Bank codes still
@@ -168,6 +180,8 @@ class SupraParticleHost(nn.Module):
     ``nonlinear_v1`` preserves the original formula for legacy checkpoints.
     ``linear_modulated_v2`` adds the unsquashed hidden features to the existing
     bounded particle modulation without changing parameter keys or shapes.
+    ``gated_particle_v3`` splits that same bridge into a hidden modulation and
+    a particle gate, making codes directly scale the unsquashed input features.
     """
 
     def __init__(self, pretrained_model, rank=16, z_dim=4, cfg=3, *, sites=None,
