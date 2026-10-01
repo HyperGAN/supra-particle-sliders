@@ -140,6 +140,10 @@ Fresh full training uses its shared settled reopening guard and automatic
 backend selection; structural changes still use the routed controller.
 Historical checkpoints retain their saved profile. See
 [the PR223 profile qualification](docs/e22_supra_pr223_profile.md).
+The [matched PR223 comparison](docs/e22_supra_pr223_comparison.md) reproduces
+the old ParticleGAN V2 weights and game scores exactly after 1,600 updates.
+The shared guard changes its evidence handling; it accepts no restart or
+structural move on that run. Its live comparison is at `http://pop-os:8766`.
 The [particle architecture study](docs/e22_supra_particle_architecture.md)
 documents the matched 6,400-update results and the live loss dashboard, including
 the original LoRA reference curve. The original LoRA still leads this fixture

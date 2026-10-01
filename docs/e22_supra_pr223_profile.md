@@ -91,3 +91,9 @@ CUDA_VISIBLE_DEVICES=1 /ml2/ntc-image-studio/.venv-anima/bin/python \
 Choose a fresh output directory for a new invocation. The smoke is a
 compatibility and recovery check; its short horizon does not establish that
 the new guard improves convergence or beats the original LoRA.
+
+The subsequent [matched 1,600-update comparison](e22_supra_pr223_comparison.md)
+completed on the real Supra task. It produced exactly the same learned model,
+optimizer and particle-bank state as the old qualified V2 run, and identical
+held-out scores under both common critics. Guard rebasing and contraction
+observation were exercised, with zero accepted optimizer restarts or row moves.
