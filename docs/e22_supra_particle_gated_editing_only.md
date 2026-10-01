@@ -47,6 +47,59 @@ CUDA_VISIBLE_DEVICES=1 /ml2/ntc-image-studio/.venv-anima/bin/python -u \
   > outputs/e22-particle-gated-v3-editing-only-6400.log 2>&1
 ```
 
-Live graph: http://pop-os:8783. Qualified 1,600-update graph:
-http://pop-os:8782. Use a fresh output path for reproduction. The long run
-has no completed outcome yet; it does not establish a new best or SOTA.
+Completed graph: http://pop-os:8783. Qualified 1,600-update graph:
+http://pop-os:8782. Use a fresh output path for reproduction.
+
+The completed run improves on the old particle model at the matched editing
+budget, but ordinary LoRA still leads on held-out editing. The longer endpoint
+regresses. Both endpoints were fixed before training and remain reported;
+the earlier result does not replace the final checkpoint.
+
+Held-out editing game over all 240 test contexts, lower is better. Every model
+uses the same paired panels and each of the two frozen common critics.
+
+| Model | Total updates | Editing updates | Common D1,856 | Common V2 D6,400 |
+| --- | ---: | ---: | ---: | ---: |
+| Original ordinary LoRA | 6,400 | 5,120 | 0.912823 | 0.924374 |
+| Historical particle V2 | 6,400 | 5,120 | 0.946709 | 0.956669 |
+| Gated particle V3, matched editing budget | 5,440 | 5,120 | 0.925892 | 0.936672 |
+| Gated particle V3, final endpoint | 6,400 | 6,080 | 0.964124 | 0.977456 |
+
+At 5,120 editing updates, all six subject means improve versus particle V2
+under both critics, while all six remain worse than ordinary LoRA. The fit
+pool does beat ordinary LoRA at this endpoint (0.769989 / 0.773821 versus
+0.773533 / 0.779163), so the training-panel lead does not establish a
+held-out editing win. At the final endpoint, five of six held-out subject
+means worsen versus particle V2, and all six worsen versus ordinary LoRA.
+Preservation scores remain secondary diagnostics.
+
+The runtime receipt passes all 33,720 checks. The independent CPU review
+verifies 43 source snapshots, 39 immutable inputs, all 6,400 recorded
+sampling/noise/DV12 streams, both fixed endpoints, 71 routing sites and
+428 exported tensors. GPU forwards and gradient/recovery witnesses are
+checked through their pinned source and runtime artifacts, rather than
+re-executed by the CPU reviewer. The qualified artifacts are
+`outputs/e22-particle-gated-v3-editing-only-6400/receipt.json` and
+`outputs/e22-particle-gated-v3-editing-only-6400/independent-review.json`.
+
+Particles remain material to the final learned game: removing codes worsens
+the paired held-out ablation panel by 0.156707 / 0.149045, and mass-only
+routing worsens it by 0.137440 / 0.133090. These are observational game
+ablations using their own paired panels, not selection criteria.
+
+A generator settling decision at step 6,222 doubles its learning rate
+starting at update 6,223. Training game losses rise before the later
+surprise event, so that event cannot explain the entire regression.
+A native surprise event records completed step 6,387 with ratio 2.246;
+its actions run at the start of update 6,388, leaving 13 updates through
+the final endpoint. Final counters show
+two surprise fires, one anchor release, one epoch rebase, zero structural
+moves, zero controller reopens and zero optimizer restarts. All five
+settling owners have reopened twice. The learning-rate change and surprise
+actions are concrete leads; timing alone does not establish causation.
+An exact replay with isolated interventions at both transitions is the
+next diagnostic.
+
+The historical V2 source/profile and sampling schedule differ from the
+new run. This compares complete formulations on one fixed fixture and
+stream; it does not establish a new best or general superiority.
