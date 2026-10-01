@@ -284,3 +284,35 @@ match the runtime witnesses. Complete native state, served model, gradients,
 critics and RNGs stayed unchanged. Artifacts are
 `particle-contribution-final6400.json` and
 `particle-contribution-final6400-review.json` within the final run directory.
+
+## Causal diagnostics after the final comparison
+
+The final original-LoRA gap prompted separate, matched investigations rather
+than changes to the production game or feature guards:
+
+- [Structural proposal directions](e22_supra_structural_phase_causal.md):
+  changing preservation-derived split directions to edit-game directions at
+  the same final boundary still selects the same duplicate. All 16 candidates
+  fail the unchanged zero feature-harm guard. Proposal timing alone does not
+  repair that event.
+- [Final critic response capacity](e22_supra_final_critic_capacity.md): the
+  critic's gradient remains restorative on the selected contexts, although
+  large edit patches receive relatively weak response. An initially equivalent
+  bounded extension does not fix that asymmetry in a 128-update isolated
+  critic trial. The extension is not promoted.
+- [Native update attribution](e22_supra_native_step_roles.md): all five
+  predetermined complete updates improve their own native generator game,
+  while the bank portion alone worsens it in four of five. Native full-state
+  replay and all eight generator/router/bank subsets are qualified.
+- [Exact DV12 offset control](e22_supra_table_dv12_exact_offset.md): reusing the
+  actual per-site noise offsets with the native addition order turns two of
+  those four worsening bank steps into improving steps. Two remain worsening,
+  and both fixed-noise and clean profiles are nonmonotonic under BF16. Changing
+  support-dependent offsets can affect local step outcomes; this is not a
+  demonstrated cause of the complete held-out gap or a selected optimizer fix.
+
+All diagnostics retain particles and use game or learned-feature criteria.
+No output error enters optimization, structural decisions, stopping or
+selection. Production sources and the qualified final training artifacts are
+unchanged. The CPU particle suite passes 106 tests, including the three new
+bounded-critic extension checks.
