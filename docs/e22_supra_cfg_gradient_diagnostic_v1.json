@@ -1,0 +1,136 @@
+{
+  "schema": "supra_cfg_gradient_diagnostic_card_v1",
+  "status": "source-only preparation; no GPU diagnostic or quality training executed",
+  "hypothesis": "Conditional and unconditional learned-game VJPs may oppose one another inside the 71-site routed Supra host. The original two-site convergence toy lacks CFG and attention/LayerNorm coupling.",
+  "parent_run": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400",
+  "particlegan": {
+    "root": "/ml2/hypergan/ParticleGAN-supra-neutral-develop",
+    "commit": "6ec7e5788e14ea15ddc3e16ac71110458108b6a6"
+  },
+  "reviewer_sources_sha256": {
+    "scripts/review_e22_supra_neutral_initialization.py": "dda4feddb4dc0df0e61bb7cf391fecf57314065f79aa210f470606afbbeb9802",
+    "scripts/review_e22_supra_pr223.py": "8ef90eccbc4774abb674bb959234ea949c971c64627f6266d655653dbe4ed1e2"
+  },
+  "arms": [
+    "sampled_control",
+    "sampled_hb_neutral"
+  ],
+  "checkpoints": [
+    800,
+    6400
+  ],
+  "judges": [
+    "D1856",
+    "D6400"
+  ],
+  "head": "clean FAST saved tensors; no head selection, native serving swap or DV12 perturbation",
+  "contexts": {
+    "pool": "fit",
+    "count": 12,
+    "selection": "Private CPU7 generator; source IDs [4,5,15,16,17,18] in order; select first two entries of one randperm per source and sort those two actual indices. No scores consulted.",
+    "fit_indices": [
+      55,
+      66,
+      120,
+      131,
+      213,
+      235,
+      173,
+      179,
+      98,
+      106,
+      20,
+      39
+    ],
+    "source_ids": [
+      4,
+      4,
+      5,
+      5,
+      15,
+      15,
+      16,
+      16,
+      17,
+      17,
+      18,
+      18
+    ],
+    "times": [
+      0.5,
+      0.6000000238418579,
+      0.0,
+      0.10000000149011612,
+      0.30000001192092896,
+      0.5,
+      0.30000001192092896,
+      0.8999999761581421,
+      0.800000011920929,
+      0.6000000238418579,
+      0.0,
+      0.8999999761581421
+    ],
+    "raw_sha256": "28ed6ebe4712f6f48ba1520192e6e95917207d687dc5bf300191ca10957f43d5",
+    "selection_stream_sha256": "1b21dc980aca0901275bceb70e906f9b6f608810af60965bfd4e68f23c4c0ea9",
+    "batch_size": 4,
+    "order": "Three original B4 batches in declared index order; live teacher and student use exactly this same B4 CFG shape.",
+    "time_scope": "Covers seven fit time values and all six sources, but only 12 contexts. This is a fixed local witness, not complete time/latent coverage."
+  },
+  "panels": {
+    "generator": "private CPU72; one torch.randn([4,12,256,16]); then slice contexts into B4 batches",
+    "draws": 4,
+    "output_sigma": 0.125,
+    "unscaled_raw_sha256": "a854a5f234968016ed38049858b9562e3379ebe6ee19ee57fafd9043c7edb4bf",
+    "training_rng_used": false,
+    "same_for_all": "Both arms, both fixed states and both common critics use identical raw panels."
+  },
+  "objective": {
+    "definition": "Each draw uses softplus(D(real,source/time)-D(real+patchify(student_CFG-teacher_CFG)/fixed_scale,source/time)), after the unchanged critic pools token features into one context score. Average four draws per context.",
+    "upstream": "v = d context-game / d actual guided velocity; no output metric or surrogate gradient",
+    "conditional_vjp": "g_cond = 3 * J_cond^T v",
+    "unconditional_vjp": "g_uncond = -2 * J_uncond^T v",
+    "guided_vjp": "g_total = J_guided^T v from the original actual graph",
+    "per_context": "Each of 12 contexts has its own four-draw mean and zero upstream force on the other B4 contexts. Report all owner/site/query decompositions separately.",
+    "batch_mean": "Also report the B4 mean game gradient, explicitly labeled as including cross-context summation. It is not substituted for within-context CFG cancellation.",
+    "owners": "All saved trainable generator parameters, each of 71 branches, all 71 router queries, shared router aggregate, and shared 128x4 bank.",
+    "ratio_floor": 1e-12,
+    "undefined": "Cosine is null when either half norm is at or below the absolute floor. Cancellation and half-norm-relative discrepancy are null when sum of half norms is at or below the floor. Guided/conditional norm ratio and guided-relative discrepancy are null when their denominators are at or below the floor.",
+    "decomposition_check": "Record actual guided-gradient norm, half-sum norm, ||g_cond+g_uncond-g_total||, maximum absolute discrepancy, guided-relative error and half-norm-relative error. Mark decomposition_verified only when discrepancy <=1e-12+2e-4*(||g_cond||+||g_uncond||). A tiny guided norm does not set the acceptance tolerance. Report both half-sum/(sum of half norms) and direct guided/(sum of half norms). When the fixed bound is exceeded retain all observations with decomposition_verified=false and mark half-sum cancellation unverified, not faithful to the actual guided update. Do not abort observation solely for a legitimate finite-precision discrepancy or reinterpret it as an implementation failure. Separate BF16 reductions can round differently; no bitwise equality claim and no data-dependent threshold change.",
+    "gate_capture": "Observer delegates each public routing.mix exactly once and reads its actual clean code; a down forward hook observes actual hidden values. Diagnostic-only F.linear reproduces Hh+b and Cz to report each B4 CFG half's aggregate gate gains and preactivation magnitudes. Gate statistics aggregate tokens and the four contexts; the gradient decompositions retain individual contexts. No host function is replaced."
+  },
+  "execution": {
+    "authorized": false,
+    "prerequisite": "Parent status complete at6400 and nonpartial independent-review.json qualified; explicit --qualified-review-sha256 must match the root-frozen final review file SHA256 and this card's expected reviewer/dependency source identities before any checkpoint/model/CUDA loading; no overlap with the active GPU process.",
+    "device": "Physical GPU0 via CUDA_VISIBLE_DEVICES=0; logicalcuda:0",
+    "budget_seconds": 900,
+    "budget_scope": "Separate posthoc budget including source/input hashing, owner construction, all actual forwards/VJPs, immutability checks, source archive and report. No quality-triggered stop.",
+    "completion_contract": "Require completion.json complete=true bound to actual report SHA. Check the fixed 900-second deadline after report serialization/write, report SHA calculation and completion-receipt write. Receipt wall clock covers report write/SHA; the returned and logged final clock includes receipt write. A detected overrun preserves observations with incomplete report/completion/incomplete receipts and no quality qualification credit.",
+    "fixed_forward_calls": 48,
+    "student_forward_calls": 24,
+    "teacher_forward_calls": 24,
+    "per_context_decompositions": 96,
+    "batch_mean_decompositions": 24,
+    "optimizer_updates": 0,
+    "native_policy_or_diagnostic_calls": 0,
+    "timeout": "Retain partial results with complete=false; no scientific qualification."
+  },
+  "provenance": {
+    "actual_checkpoint_shas": "Bind and verify the qualified parent's actual800/6400 full checkpoint SHAs at launch; no fallback or other checkpoint.",
+    "actual_judges": "Strictly load only saved FAST D1856 andV2D6400 tensors and verify their qualified tensor digests.",
+    "source": "Verify all parent's held application/native/backend source SHAs plus the fixed independent reviewer and dependency; freeze the diagnostic/card SHA and archive exact source bytes at launch.",
+    "final_review": "The explicit root-frozen --qualified-review-sha256 binds exact final JSON bytes; require full-review schema, qualified=true, partial=false, exact reviewer/dependency declared and actual file SHAs, and preserve the bound review file unchanged through execution.",
+    "isolation": "Build isolated original host/router/encoder classes, strictly load actual saved FAST tensors/flags and bank, and use public RoutedRows for routing. No initializer reapplied to trained tensors; no optimizer/controller/policy/EMA constructed.",
+    "immutability": "Compare all copied tensor values, module modes, trainable flags, .grad contents, hook identities, ordinary LoRA multiplier attributes and transient host frames before/after; preserve global CPU/CUDA RNG with fork_rng. Verify all original full input checkpoint files (including native optimizer/config/RNG/diagnostics) and held sources unchanged after execution."
+  },
+  "limits": [
+    "This is observational local conditioning, not proof of a unique convergence cause or a validated architecture repair.",
+    "Both original ordinary LoRA and particle Supra share CFG; a CFG witness alone cannot assign their difference to particles.",
+    "Source-balanced12 fit contexts are not a whole-pool result. Training, structural guards and checkpoint selection remain unchanged.",
+    "Gate statistics are actual-point algebraic observations; they do not independently certify full-model Jacobian conditioning or target reachability.",
+    "CPU strong-cancellation cases certify the numerical formula and FP32-owner/BF16-output-cast graph only. An extra BF16 matrix-reduction case exceeds the fixed 2e-4 half-norm bound and records decomposition_verified=false, retaining the direct guided norm. Actual frozen-BF16 Supra parity remains untested; an unverified half-sum is a numerical limitation rather than proof of an implementation defect or a convergence cause. This observation has no quality qualification or promotion credit.",
+    "Clean gradient decomposition does not measure DV12 gradient variance. The existing small clean-to-DV12 score differences describe the edge-time progress probe only.",
+    "Prior short late DV12/anchor/AMSGrad interventions used another source/checkpoint cohort and do not falsify an effect earlier in this fresh trajectory.",
+    "No output MSE/RMSE objective, optimizer intervention, quality or seed scan, metric-triggered horizon, best-state/head selection, or default promotion."
+  ],
+  "diagnostic_source_sha256": "c962bf7361895eaafda89ed0ad2a925c8be0833541f24ce6e7b109b863774d58"
+}

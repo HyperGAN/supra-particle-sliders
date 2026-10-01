@@ -1,0 +1,27 @@
+{
+  "schema": "supra_endpoint_game_rays_preparation_v1",
+  "status": "source/software prepared; full-model diagnostic not executed",
+  "created_utc": "2026-10-01T23:37:56.609793+00:00",
+  "source_sha256": {
+    "scripts/diagnose_e22_supra_endpoint_game_rays.py": "5449f3d5cdd662f06643e99abeb750102299cbb8a76c0a80b0e2c09588ae239b",
+    "docs/e22_supra_endpoint_game_rays_v1.json": "d0a393c7e5ccf4d2f5dbdcb3b025916cc9a35485165e06e84f22949af3d15a41",
+    "docs/e22_supra_endpoint_game_rays.md": "66725d3fdac5ba10197e9719ba4bcd576fa9300b6e8896a2a48756b49ba52f73",
+    "tests/test_e22_supra_endpoint_game_rays.py": "983871e014eeae15d56f349aca8b632d4342bb8077bfbe99fc0226728491ea93"
+  },
+  "software_tests": {
+    "command": "/ml2/ntc-image-studio/.venv-anima/bin/python -m pytest tests/test_e22_supra_endpoint_game_rays.py -q",
+    "passed": 27,
+    "failed": 0,
+    "wall_seconds": 16.19,
+    "scope": "Synthetic math, panel allocation, state mutation, qualified evidence contracts, physical GPU mapping and post-report-write budget overrun receipts only; no Supra model or real checkpoint."
+  },
+  "independent_source_review": "Loader parity, continuous B4 panels, radial derivatives, runtime schema and evaluation/review bindings reviewed; no serious execution blocker identified. End-to-end real inference unverified.",
+  "full_checkpoint_loads": 0,
+  "full_supra_forward_calls": 0,
+  "gpu_operations": 0,
+  "training_updates": 0,
+  "committed_or_pushed": false,
+  "gate": "Completed independently qualified full6400 run plus explicit root-frozen full review SHA, all four fresh FAST exports and historical ordinary6400 required.",
+  "qualification_credit": "source/software preparation only",
+  "final_hardening": "Physical GPU0 requires CUDA_VISIBLE_DEVICES=0. Completion SHA receipt and post-serialization budget checks are mandatory; detected overruns preserve incomplete results."
+}

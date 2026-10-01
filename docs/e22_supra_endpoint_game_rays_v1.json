@@ -1,0 +1,177 @@
+{
+  "schema": "supra_endpoint_game_rays_card_v1",
+  "status": "prepared_only; execution requires completed independently qualified full run and root-frozen final review SHA",
+  "objective": "Measure signed frozen native-game rays and radial stationarity on the actual fixed endpoint residuals; no convergence or quality intervention.",
+  "parent_run": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400",
+  "parent_protocol_sha256": "31c1f596f9d3ba2ff600115311029ec3fa3b895a0925d9bcd35413049f5195cf",
+  "parent_plan_sha256": "4dcfcf52d3753da093e6ae5756517f9ae47d24a7f7f6f63c0b1ab821e965be77",
+  "particlegan_root": "/ml2/hypergan/ParticleGAN-supra-neutral-develop",
+  "particlegan_commit": "6ec7e5788e14ea15ddc3e16ac71110458108b6a6",
+  "native_source_digest": "d0be475a055aae953c22dbd19f6d2357db041437e0679d2f2f2cfa356517f65b",
+  "diagnostic_sources_sha256": {
+    "scripts/diagnose_e22_supra_endpoint_game_rays.py": "5449f3d5cdd662f06643e99abeb750102299cbb8a76c0a80b0e2c09588ae239b",
+    "scripts/experiment_e22_supra_particle_gated.py": "9bf7c08f087e8ea00e4929dbd149cf8085a3ded66e1e82edad2cfd2ec70e7e5f"
+  },
+  "reviewer_sources_sha256": {
+    "scripts/review_e22_supra_neutral_initialization.py": "dda4feddb4dc0df0e61bb7cf391fecf57314065f79aa210f470606afbbeb9802",
+    "scripts/review_e22_supra_pr223.py": "8ef90eccbc4774abb674bb959234ea949c971c64627f6266d655653dbe4ed1e2"
+  },
+  "artifacts": {
+    "sampled_control@5120": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/sampled_control/adapter-05120.safetensors",
+      "head": "FAST clean",
+      "sha256_binding": "exact export_artifacts[label].sha256 in completed independent-review.json",
+      "completed_steps": 5120
+    },
+    "sampled_control@6400": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/sampled_control/adapter-06400.safetensors",
+      "head": "FAST clean",
+      "sha256_binding": "exact export_artifacts[label].sha256 in completed independent-review.json",
+      "completed_steps": 6400
+    },
+    "sampled_hb_neutral@5120": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/sampled_hb_neutral/adapter-05120.safetensors",
+      "head": "FAST clean",
+      "sha256_binding": "exact export_artifacts[label].sha256 in completed independent-review.json",
+      "completed_steps": 5120
+    },
+    "sampled_hb_neutral@6400": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/sampled_hb_neutral/adapter-06400.safetensors",
+      "head": "FAST clean",
+      "sha256_binding": "exact export_artifacts[label].sha256 in completed independent-review.json",
+      "completed_steps": 6400
+    },
+    "ordinary_lora_6400": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/checkpoint-06400/final-boss-supra.safetensors",
+      "head": "fixed historical ordinary6400",
+      "sha256": "24a98ba055d0b5298136d67dc7491a339684da03416c510d1d443fe730eb7069",
+      "sha256_binding": "exact original parent input SHA; original schedule differs from fresh editing-only arms"
+    }
+  },
+  "judges": [
+    "D1856",
+    "D6400"
+  ],
+  "critic_tensor_digests": {
+    "D1856": "e248f16ada2cdb6137f670e9c1dece3740db9175dee9eb324702bfab4b759d2d",
+    "D6400": "43aa3af32850ccf5d17c4a12ca52f903d61901d734fbd0bc570280afcee16929"
+  },
+  "alphas": [
+    -1,
+    -0.25,
+    -0.05,
+    -0.01,
+    0,
+    0.01,
+    0.05,
+    0.25,
+    0.5,
+    1
+  ],
+  "radial_derivative_alphas": [
+    0,
+    1
+  ],
+  "pools": [
+    "fit",
+    "test",
+    "holds",
+    "preservation"
+  ],
+  "counts": {
+    "fit": 240,
+    "test": 240,
+    "holds": 30,
+    "preservation": 60
+  },
+  "editing_subjects": [
+    4,
+    5,
+    15,
+    16,
+    17,
+    18
+  ],
+  "panel_law": {
+    "seed": 72,
+    "draws": 4,
+    "batch_size": 4,
+    "tokens": 256,
+    "coordinates": 16,
+    "sigma": 0.125,
+    "pool_order": [
+      "fit",
+      "test",
+      "holds",
+      "preservation"
+    ],
+    "device": "cpu"
+  },
+  "unscaled_panel_sha256_by_pool": {
+    "fit": "23837217f0364a0134d6e9e93dadce7cc5f2cb12bff423d2d6b79ff31571ef46",
+    "test": "8f8478e96b0a70309a835d504672f4733815edaf1fc8b4bef59f53b12d629bb9",
+    "holds": "4204708642b2eedc13d0b32853f7be88480376267ca09b032f7c2d49e14915a5",
+    "preservation": "9e3c28547464a3c502cba1907f242010c30e5027b97431e808f5e7e7f91286a2"
+  },
+  "capture": "Existing FrozenSliderContexts and load_particle_adapter; physical student source-caption velocity minus live pure-base target-caption teacher, same B4/B8 BF16 CFG3 shape; never cached velocities.",
+  "scoring": "FP32 native paired softplus(real_score-fake_score), four-panel mean per context; normalize physical residual separately by each frozen judge.scale.",
+  "alpha1_match_tolerance": {
+    "atol": 2e-06,
+    "rtol": 1e-05
+  },
+  "comparison_tolerance": 1e-06,
+  "reporting": [
+    "all per-context games and signed asymmetries retained locally with digests",
+    "per-pool and per-subject games under both mandatory judges",
+    "origin and alpha1 radial derivative means/sign counts",
+    "positive-ray adjacent monotonic reversals",
+    "alpha1 replay differences versus original fixed endpoint records; explicit tolerance, no exact arithmetic claim"
+  ],
+  "immutable_checks": [
+    "all consumed source/input/export/evaluation/review files SHA before/after",
+    "actual critic tensors, flags, gradients and saved native/data/paired RNG unchanged",
+    "base/teacher/student tensors, modes, gradient ownership and routing frame/multiplier state unchanged",
+    "global CPU/CUDA0 RNG unchanged; isolated private CPU72 panel stream",
+    "dataset/panel/physical residual tensors unchanged",
+    "all fresh artifact metadata exactly matches independent FAST export review"
+  ],
+  "qualification_gate": "Complete 6400 status and receipt, qualified nonpartial independent review; explicit --qualified-review-sha256 required before any checkpoint/model/CUDA loading; both5120/6400 artifacts mandatory regardless of measured score.",
+  "raw_artifacts": "Ignored outputs/e22-supra-endpoint-game-rays-v1/residuals.pt stores actual physical residuals, actual GPU source/time conditions, unscaled panel batches and packed context metadata; report binds SHA; rays.json retains per-context results.",
+  "device": "cuda:0",
+  "execution_budget_seconds": 1200,
+  "budget_scope": "Separate posthoc wall budget from command startup through preflight, hash proofs, model loading, live captures, all rays and completion. No continuation or automatic extra budget.",
+  "training_updates": 0,
+  "selection": false,
+  "forbidden": [
+    "optimizer or native policy/controller construction/updates",
+    "output metrics as optimizer, guard, stopping or selection criteria",
+    "head/artifact/context/noise/amplitude/seed/horizon selection",
+    "editing any held trainer/card/source",
+    "running while the full run is incomplete or not independently qualified"
+  ],
+  "limits": [
+    "Posthoc observational frozen-judge shape, not a new training experiment or promotion gate.",
+    "Zero residual gives log2 but need not be stationary under a finite learned critic and fixed quadrature.",
+    "Negative origin radial derivative denotes outward drift along that actual student residual; it does not establish population drift, parameter-step behavior or convergence causality.",
+    "Restoring alpha1 derivatives and monotone sampled rays cannot establish rankings across different residual directions or semantic editing quality.",
+    "Both judges share an architectural family; agreement does not make them independent accuracy authorities.",
+    "All residuals are clean FAST; no DV12 replay or automatically selected serving/averaged-head claim.",
+    "Both alpha1 comparisons and zero anchors retain explicit FP32/BF16 kernel/reduction numerical tolerances.",
+    "No output RMSE objective, metric selection or new training is introduced."
+  ],
+  "critic_artifacts": {
+    "common_D1856": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-noise-update-256/latest/final.pt",
+      "sha256": "db06166f66fa0fa70ac36e4130bc30d7bd9c7028f075a4c6e71e9c46d3baa102",
+      "use": "Load only policy.models.critic; frozen for every arm/reference."
+    },
+    "common_V2_D6400": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/final.pt",
+      "sha256": "54b243580206beb772db77132ff367fca9389b209149dcef9573449aeb8b7fcf",
+      "use": "Load only policy.models.critic; frozen for every arm/reference."
+    }
+  },
+  "existing_output_diagnostics": "Existing endpoint RMSE records are checked only for immutable provenance by the shared CPU review helper; no new RMSE objective, ray score or decision.",
+  "physical_gpu_binding": "CUDA_VISIBLE_DEVICES=0",
+  "completion_contract": "A report is qualified only with completion.json complete=true matching report SHA. Deadline checked after preflight-only completion, main report serialization/write/SHA, and completion-receipt write. Detected overruns preserve results with incomplete receipts."
+}
