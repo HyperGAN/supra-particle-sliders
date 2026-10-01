@@ -1,4 +1,4 @@
-# Optional real-model ParticleGAN verification, pinned to the tested #155 head.
+# Optional real-model ParticleGAN verification, pinned to the tested #223 head.
 -r requirements.txt
-particlegan @ git+https://github.com/255BITS/ParticleGAN.git@cabe2084284db923d525918cbf3e18de6f20faac
+particlegan @ git+https://github.com/255BITS/ParticleGAN.git@bdf05d1be0f68cfdb0c71e81e7e0d3cce477572f
 matplotlib>=3.8

@@ -135,7 +135,11 @@ backend is MIT and the VAE is separately MIT licensed. No base weights are redis
 
 The optional ParticleGAN integration provides a shared particle bank across all
 71 Supra adapter sites, native E22 game training, exact recovery and versioned
-clean exports. Install `requirements-e22.txt` for the tested PR155 source.
+clean exports. Install `requirements-e22.txt` for the tested PR223 source.
+Fresh full training uses its shared settled reopening guard and automatic
+backend selection; structural changes still use the routed controller.
+Historical checkpoints retain their saved profile. See
+[the PR223 profile qualification](docs/e22_supra_pr223_profile.md).
 The [particle architecture study](docs/e22_supra_particle_architecture.md)
 documents the matched 6,400-update results and the live loss dashboard, including
 the original LoRA reference curve. The original LoRA still leads this fixture

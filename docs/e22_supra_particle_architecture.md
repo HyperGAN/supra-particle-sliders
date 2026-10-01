@@ -313,6 +313,14 @@ than changes to the production game or feature guards:
 
 All diagnostics retain particles and use game or learned-feature criteria.
 No output error enters optimization, structural decisions, stopping or
-selection. Production sources and the qualified final training artifacts are
-unchanged. The CPU particle suite passes 106 tests, including the three new
+selection. Those diagnostics did not change the production formulation or the
+qualified final training artifacts. Their CPU particle suite passed 106 tests, including the three new
 bounded-critic extension checks.
+
+## PR223 shared profile
+
+The subsequent [PR223 profile qualification](e22_supra_pr223_profile.md) pins
+the newer implementation and enables automatic backend selection plus the
+settled reopening guard for fresh full training. Routed structural control
+remains active; Atlas feature-cell population control remains inactive. The
+qualified 6,400-update results above retain their original source and profile.
