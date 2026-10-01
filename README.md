@@ -132,3 +132,12 @@ backend is MIT and the VAE is separately MIT licensed. No base weights are redis
 [Catalog and sample metadata](https://huggingface.co/ntc-ai/supra-concept-sliders/resolve/main/catalog.json) ·
 [Release checksums](https://huggingface.co/ntc-ai/supra-concept-sliders/resolve/main/release-manifest.json) ·
 [Source provenance](https://huggingface.co/ntc-ai/supra-concept-sliders/resolve/main/source-provenance.json)
+
+The optional ParticleGAN integration provides a shared particle bank across all
+71 Supra adapter sites, native E22 game training, exact recovery and versioned
+clean exports. Install `requirements-e22.txt` for the tested PR155 source.
+The [particle architecture study](docs/e22_supra_particle_architecture.md)
+documents the matched 6,400-update results and the live loss dashboard, including
+the original LoRA reference curve. The original LoRA still leads this fixture
+under both shared game critics; particles improve over the earlier particle
+architecture. Output errors remain evaluation only for particle training.
