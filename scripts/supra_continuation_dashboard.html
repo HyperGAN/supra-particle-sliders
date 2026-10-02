@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Supra · convergence</title>
+<style>
+:root{color-scheme:dark;font:16px system-ui,sans-serif;color:#edf3fb;background:#101723;--green:#9aebc2;--blue:#75bbff;--gold:#ffd47e;--gray:#c4ccd9;--purple:#c0b0ff;--muted:#aab8cc}
+*{box-sizing:border-box}body{max-width:1250px;margin:auto;padding:28px}header,.panel-head,.toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}h1{font-size:29px;margin:0 0 6px}h2{font-size:21px;margin:0 0 8px}p{line-height:1.55;margin:10px 0}.muted{color:var(--muted);font-size:14px;line-height:1.6}.pill,.tag{border:1px solid #41516a;border-radius:24px;padding:7px 13px;font-size:13px}.panel{background:#162131;border:1px solid #2e4058;border-radius:16px;padding:24px;margin:22px 0}.hero{border-color:#526652}.hero h2{font-size:26px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}.card{border:1px solid #35465e;border-top:4px solid var(--accent);border-radius:10px;padding:16px;background:#111c2b}.card .value{font-size:30px;font-variant-numeric:tabular-nums;margin:9px 0}.card .name{font-size:14px;font-weight:650}.card .delta{font-size:13px;line-height:1.5}.good{color:var(--green)}.behind{color:#ffbaab}.gold{color:var(--gold)}.legend{display:flex;gap:12px 24px;flex-wrap:wrap;margin:18px 0;font-size:14px}.legend span:before{content:'';display:inline-block;width:28px;border-top:3px solid var(--line);vertical-align:middle;margin-right:8px}.legend .dashed:before{border-top-style:dashed}.chart{width:100%;margin:12px 0}.chart svg{display:block;width:100%;min-height:260px}.chart text{font-family:system-ui,sans-serif}.note{border-left:3px solid #526985;padding-left:12px}.chart-note{margin-top:4px}.toolbar{justify-content:flex-start;margin:14px 0}label{font-size:14px}select,button{font:inherit;font-size:14px;background:#223249;color:#edf3fb;border:1px solid #536681;border-radius:7px;padding:8px 11px}button{cursor:pointer}button[aria-pressed=true]{background:#39566c;border-color:#91c8ed}button:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}input{accent-color:#9aebc2}.range-controls{display:flex;gap:6px}details summary{cursor:pointer;font-size:17px;font-weight:650}.details-body{margin-top:18px}.overflow{overflow-x:auto}table{width:100%;border-collapse:collapse;text-align:right;font-variant-numeric:tabular-nums}th,td{padding:12px 9px;border-bottom:1px solid #304158}th{color:var(--muted);font-size:12px}td{font-size:14px}th:first-child,td:first-child{text-align:left}.latest-row{background:#1d3440}footer{color:var(--muted);font-size:13px;line-height:1.6;margin-top:14px}pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:160px;overflow:auto;font-size:12px}.hidden{display:none}
+@media(max-width:850px){body{padding:16px}.panel{padding:18px}.cards{grid-template-columns:repeat(2,1fr)}.card .value{font-size:25px}.chart svg{min-height:210px}h1{font-size:25px}.hero h2{font-size:23px}}
+@media(max-width:700px){.chart{overflow-x:auto}.chart svg{min-width:920px;min-height:316px}}
+@media(max-width:480px){.legend{font-size:12px;gap:10px 15px}.card{padding:12px}.card .value{font-size:23px}.panel{padding:14px}.chart-note{font-size:12px}}
+</style>
+</head>
+<body>
+<header><div><h1>Supra convergence</h1><div class="muted">Particles vs original LoRA · lower game score is better</div></div><div id="status" class="pill">Waiting for progress</div></header>
+
+<section class="panel hero">
+<div class="panel-head"><h2 id="outcome">Waiting for a full-set checkpoint</h2><span id="qualification" class="tag">Full set · 240 contexts</span></div>
+<p id="outcomeDetail" class="muted"></p>
+<div class="toolbar"><label for="judge">Compare with frozen critic</label><select id="judge"><option value="D1856">D1856</option><option value="D6400">D6400</option></select></div>
+<div class="cards">
+<div class="card" style="--accent:var(--green)"><div id="particleName" class="name">New particles</div><div id="particleValue" class="value good">—</div><div id="particleDetail" class="delta muted">Waiting for a full-set checkpoint</div></div>
+<div class="card" style="--accent:var(--gray)"><div class="name">Ordinary LoRA · 6,400</div><div id="ordinary6400Value" class="value">—</div><div id="ordinary6400Detail" class="delta">—</div></div>
+<div class="card" style="--accent:var(--purple)"><div class="name">Ordinary LoRA · 12,800</div><div id="ordinary12800Value" class="value">—</div><div id="ordinary12800Detail" class="delta">—</div></div>
+<div class="card" style="--accent:var(--gold)"><div class="name gold">Best original · 28,000</div><div id="bestValue" class="value gold">—</div><div id="bestDetail" class="delta">—</div></div>
+</div>
+<h2>Full-set progress: distance from the best original</h2>
+<p class="muted">The gold line is the target. Above zero = behind it. Below zero = ahead. Each dot is an actual full-set checkpoint; connecting lines show the sequence, with no measurements between dots.</p>
+<div class="legend"><span style="--line:var(--green)">Current particles · neutral H/b init</span><span style="--line:var(--blue)">Current particles · sampled H/b init</span><span class="dashed" style="--line:var(--gold)">Best original · 28,000</span><span class="dashed" style="--line:var(--gray)">LoRA · 6,400</span><span class="dashed" style="--line:var(--purple)">LoRA · 12,800</span></div>
+<div id="fullChart" class="chart"></div>
+<p id="fullChartDetail" class="muted chart-note"></p>
+<p class="muted note">Particle updates are editing only. LoRA labels count historical total updates, including preservation. Passing a shorter reference after more updates does not establish faster convergence. Ordinary LoRA is a standard low-rank adapter; the original models used MSE/AdamW, while these particles train on the native learned game.</p>
+</section>
+
+<section class="panel">
+<div class="panel-head"><h2>Live progress · recent updates</h2><div class="range-controls"><button id="recentRange" type="button" aria-pressed="true">Last 3,200</button><button id="allRange" type="button" aria-pressed="false">Whole run</button></div></div>
+<p class="muted">A separate 12-context probe, refreshed every 200 updates. This shows fluctuations during training; the full-set chart above determines the checkpoint comparison. Live probes always use D1856.</p>
+<div class="toolbar"><label><input id="olderParticles" type="checkbox"> Show older particle V2 / V3 references</label></div>
+<div id="liveChart" class="chart"></div>
+<div id="liveDetail" class="muted"></div>
+<div id="plateau" class="muted"></div>
+</section>
+
+<details class="panel"><summary>All full-set checkpoint scores · both frozen critics</summary><div class="details-body"><div class="overflow"><table><thead><tr><th>Particle editing updates</th><th>Critic</th><th>Sampled H/b particles</th><th>Neutral H/b particles</th><th>LoRA 6,400</th><th>LoRA 12,800</th><th>Best original 28,000</th><th>Neutral − best</th></tr></thead><tbody id="endpoints"></tbody></table></div><p id="endpointStatus" class="muted"></p></div></details>
+
+<details class="panel"><summary>Training losses · changing critic</summary><div class="details-body"><p class="muted">Rolling means over 100 updates. These losses use each run’s changing critic and are separate from the frozen-critic comparisons above.</p><div class="legend"><span style="--line:var(--blue)">Sampled H/b particles · G solid / D dashed</span><span style="--line:var(--green)">Neutral H/b particles · G solid / D dashed</span></div><div id="trainingChart" class="chart"></div><div class="overflow"><table><thead><tr><th>Run</th><th>Update</th><th>G game</th><th>D game</th><th>Penalty</th><th>Bank gradient</th></tr></thead><tbody id="rolling"></tbody></table></div></div></details>
+
+<details class="panel"><summary>Run checks and measurement details</summary><div class="details-body"><p id="verification" class="muted"></p><p id="activity" class="muted"></p><p class="muted">Both particle runs retain learned H/b, C, routing, and the shared 128 × 4 bank at 71 sites. Full scores use all 240 held-out editing contexts and both fixed critics. The live probe uses six subjects at times 0 and 0.9, with four fixed Gaussian panels. Neither chart selects or stops training. Output error is not an optimizer or structural criterion.</p><pre id="failure" hidden></pre></div></details>
+<footer id="updated">Waiting for refresh</footer>
+<footer>Reads observation files every 5 seconds. No access to training state or GPU resources.</footer>
+
+<script>
+const NS='http://www.w3.org/2000/svg',ARMS=['sampled_control','sampled_hb_neutral'],STEPS=[5120,6400,9600,12800];
+const COLORS={sampled_control:'#75bbff',sampled_hb_neutral:'#9aebc2',best:'#ffd47e',ordinary6400:'#c4ccd9',ordinary12800:'#c0b0ff'};
+const NAMES={sampled_control:'Particles · sampled H/b',sampled_hb_neutral:'Particles · neutral H/b'};
+const REFERENCES=[['ordinary_lora_6400','LoRA 6,400',COLORS.ordinary6400],['ordinary_lora_12800','LoRA 12,800',COLORS.ordinary12800],['ordinary_lora_selected_28000','Best original 28,000',COLORS.best]];
+const $=id=>document.getElementById(id),finite=v=>Number.isFinite(v),fmt=(v,n=5)=>finite(v)?v.toFixed(n):'—',signed=v=>finite(v)?(v>0?'+':'')+fmt(v):'—',count=v=>v.toLocaleString();
+let latestState=null,range='recent';
+function node(tag,attributes={},text=''){const n=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(attributes))n.setAttribute(k,v);n.textContent=text;return n}
+function row(values){const tr=document.createElement('tr');for(const value of values){const td=document.createElement('td');td.textContent=value;tr.append(td)}return tr}
+function probe(p){return p?.probes?.edit?.clean?.frozen_start_D}
+function difference(value,reference){return finite(value)&&finite(reference)?value-reference:null}
+function evaluation(s,arm,step){const result=s.arms?.[arm]?.evaluations?.[step]?.test;return result?.count===240?result:null}
+function latestFull(s){return [...STEPS].reverse().find(step=>{const v=evaluation(s,'sampled_hb_neutral',step);return finite(v?.D1856)&&finite(v?.D6400)})}
+function compareText(value,reference){if(!finite(value)||!finite(reference))return 'Reference pending';const d=value-reference;return Math.abs(d)<1e-8?'Same game score':'Particles '+fmt(Math.abs(d))+(d<0?' ahead':' behind')}
+
+// A separate label gutter keeps close reference levels from overwriting each other.
+function chart(id,series,refs,{minX=0,maxX=12800,ylabel='Game score',gap=false,labelPoints=false}={}){
+ const svg=node('svg',{viewBox:'0 0 1120 385',role:'img','aria-label':ylabel+' versus completed editing updates'});$(id).replaceChildren(svg);
+ const visible=series.map(s=>({...s,points:s.points.filter(p=>finite(p.x)&&finite(p.y)&&p.x>=minX&&p.x<=maxX).sort((a,b)=>a.x-b.x)}));
+ const levels=refs.filter(r=>finite(r.y)),values=[...visible.flatMap(s=>s.points.map(p=>p.y)),...levels.map(r=>r.y)];
+ if(!values.length){svg.append(node('text',{x:85,y:170,fill:'#aab8cc','font-size':17},'Waiting for comparable recorded scores'));return}
+ let lo=Math.min(...values),hi=Math.max(...values),pad=Math.max(.0015,(hi-lo)*.14);lo-=pad;hi+=pad;
+ const left=86,right=812,top=46,bottom=315,X=x=>left+(x-minX)/Math.max(1,maxX-minX)*(right-left),Y=y=>bottom-(y-lo)/(hi-lo)*(bottom-top);
+ svg.append(node('text',{x:left,y:22,fill:'#c6d3e5','font-size':15},ylabel));
+ for(let i=0;i<=5;i++){const y=lo+(hi-lo)*i/5,x=minX+(maxX-minX)*i/5;svg.append(node('line',{x1:left,x2:right,y1:Y(y),y2:Y(y),stroke:'#304158'}),node('text',{x:left-11,y:Y(y)+5,fill:'#bdc9dc','text-anchor':'end','font-size':14},gap?signed(y):fmt(y,3)),node('text',{x:X(x),y:344,fill:'#bdc9dc','text-anchor':'middle','font-size':14},count(Math.round(x))))}
+ svg.append(node('text',{x:(left+right)/2,y:375,fill:'#bdc9dc','text-anchor':'middle','font-size':14},'Particle editing updates'));
+ const labels=levels.map(r=>({...r,wanted:Y(r.y)})).sort((a,b)=>a.wanted-b.wanted);
+ for(let i=0;i<labels.length;i++)labels[i].labelY=Math.max(top+8,labels[i].wanted,i?labels[i-1].labelY+40:top+8);
+ for(let i=labels.length-1;i>=0;i--)labels[i].labelY=Math.min(bottom-12,labels[i].labelY,i<labels.length-1?labels[i+1].labelY-40:bottom-12);
+ for(const r of labels){svg.append(node('line',{x1:left,x2:right,y1:Y(r.y),y2:Y(r.y),stroke:r.color,'stroke-width':r.target?3:1.8,'stroke-dasharray':r.target?'9 5':'4 7'}),node('polyline',{points:`${right},${Y(r.y)} ${right+14},${Y(r.y)} ${right+28},${r.labelY}`,fill:'none',stroke:r.color,'stroke-width':1.3}),node('text',{x:right+36,y:r.labelY-3,fill:r.color,'font-size':14,'font-weight':r.target?700:500},r.name),node('text',{x:right+36,y:r.labelY+15,fill:r.color,'font-size':13},(gap?signed(r.y):fmt(r.y))+(r.target?' · target':'')))}
+ for(const s of visible){if(!s.points.length)continue;svg.append(node('polyline',{points:s.points.map(p=>`${X(p.x)},${Y(p.y)}`).join(' '),fill:'none',stroke:s.color,'stroke-width':s.primary?4:2.8,'stroke-dasharray':s.dash?'7 5':''}));for(const p of s.points){const dot=node('circle',{cx:X(p.x),cy:Y(p.y),r:labelPoints?5:3,fill:s.color,stroke:'#162131','stroke-width':1.5});dot.append(node('title',{},`${s.name} · ${count(p.x)} updates · ${fmt(p.y,6)}`));svg.append(dot);if(labelPoints&&s.primary)svg.append(node('text',{x:X(p.x),y:Y(p.y)-12,fill:s.color,'text-anchor':'middle','font-size':14,'font-weight':700},gap?signed(p.y):fmt(p.y)))} }
+}
+
+function render(s){
+ latestState=s;const judge=$('judge').value,step=latestFull(s),result=evaluation(s,'sampled_hb_neutral',step),value=result?.[judge],refs=s.historical_references||{},best=refs.ordinary_lora_selected_28000?.test?.[judge],status=s.status||{};
+ $('status').textContent=`${status.phase||'preparing'} · ${count(status.editing_updates??status.step??0)} / 12,800 edits`;
+ $('qualification').textContent=step?`240 contexts · ${step<=6400||s.continuation_qualified?'qualified':'preliminary'}`:'Full-set checkpoint pending';
+ $('particleName').textContent=step?`New particles · ${count(step)} edits`:'New particles';$('particleValue').textContent=fmt(value);
+ $('particleDetail').textContent=finite(best)?`${signed(value-best)} from best original`:'Best original reference pending';
+ for(const [key,prefix]of [['ordinary_lora_6400','ordinary6400'],['ordinary_lora_12800','ordinary12800'],['ordinary_lora_selected_28000','best']]){const reference=refs[key]?.test?.[judge];$(prefix+'Value').textContent=fmt(reference);$(prefix+'Detail').textContent=compareText(value,reference);$(prefix+'Detail').className='delta '+(finite(value)&&finite(reference)?value<reference?'good':'behind':'muted')}
+ if(step&&finite(best)){const allBest=['D1856','D6400'].every(j=>result[j]<refs.ordinary_lora_selected_28000?.test?.[j]);const all12800=['D1856','D6400'].every(j=>result[j]<refs.ordinary_lora_12800?.test?.[j]);const all6400=['D1856','D6400'].every(j=>result[j]<refs.ordinary_lora_6400?.test?.[j]);$('outcome').textContent=allBest?'Particles have passed the best original':all12800?'Passed LoRA 12,800; best original still leads':all6400?'Passed LoRA 6,400; best original still leads':'The original LoRA references still lead';$('outcomeDetail').textContent=`Latest full-set checkpoint: ${count(step)} particle edits. ${judge} score ${fmt(value)} vs best original ${fmt(best)}. ${compareText(value,best)}. Comparison status above uses both frozen critics.`}
+ else{$('outcome').textContent='Waiting for a full-set comparison';$('outcomeDetail').textContent='The original 28,000-update model remains the target; only source-verified references appear.'}
+ if(step>6400&&!s.continuation_qualified&&finite(best))$('outcome').textContent='Preliminary · '+$('outcome').textContent;
+ const fullSeries=ARMS.map(arm=>({name:NAMES[arm],color:COLORS[arm],primary:arm==='sampled_hb_neutral',points:STEPS.map(x=>({x,y:difference(evaluation(s,arm,x)?.[judge],best)}))}));
+ const fullRefs=REFERENCES.map(([key,name,color])=>({name,color,target:key==='ordinary_lora_selected_28000',y:difference(refs[key]?.test?.[judge],best)}));
+ chart('fullChart',fullSeries,fullRefs,{minX:4800,maxX:12800,ylabel:`Full-set game − best original · ${judge} · lower is better`,gap:true,labelPoints:true});
+ $('fullChartDetail').textContent=step?`Latest full measurement: ${count(step)} edits. Scheduled full checks: 5,120 / 6,400 / 9,600 / 12,800. Every point uses all 240 contexts; line segments are not extra measurements.`:'Waiting for full-set measurements.';
+
+ const histories=ARMS.map(arm=>s.arms?.[arm]?.history||[]),lastX=Math.max(0,...histories.flatMap(h=>h.map(p=>p.step))),minX=range==='recent'?Math.max(0,lastX-3200):0;
+ const probeBest=s.historical_probes?.scores?.ordinary_lora_selected_28000;
+ const liveRefs=REFERENCES.map(([key,name,color])=>({name,color,target:key==='ordinary_lora_selected_28000',y:difference(s.historical_probes?.scores?.[key],probeBest)}));
+ if($('olderParticles').checked)for(const[key,name,color]of [['historical_particle_v2','Older particle V2','#e6a0cf'],['historical_particle_v3','Older particle V3','#eda67c']])liveRefs.push({name,color,y:difference(s.historical_probes?.scores?.[key],probeBest)});
+ chart('liveChart',ARMS.map((arm,i)=>({name:NAMES[arm],color:COLORS[arm],primary:arm==='sampled_hb_neutral',points:histories[i].map(p=>({x:p.step,y:difference(probe(p),probeBest)}))})),liveRefs,{minX,maxX:Math.max(minX+200,lastX),ylabel:'12-context probe − best original · D1856 · lower is better',gap:true});
+ $('recentRange').setAttribute('aria-pressed',String(range==='recent'));$('allRange').setAttribute('aria-pressed',String(range==='all'));
+ $('liveDetail').textContent=ARMS.map((arm,i)=>{const p=histories[i].at(-1);return p?`${NAMES[arm]} at ${count(p.step)}: ${fmt(probe(p))} (${signed(difference(probe(p),probeBest))} from best on this probe).`:''}).filter(Boolean).join(' ');
+ $('plateau').textContent=histories.map((h,i)=>{const f=h.at(-1)?.plateau_diagnostic?.edit;return f?`${NAMES[ARMS[i]]}: ${f.regressed?'probe regressed':f.possible_plateau?'possible probe plateau':'probe is changing'} over ${count(f.steps)} edits.`:''}).filter(Boolean).join(' ');
+
+ $('endpoints').replaceChildren();let available=0;for(const x of STEPS)for(const j of ['D1856','D6400']){const cv=evaluation(s,ARMS[0],x)?.[j],nv=evaluation(s,ARMS[1],x)?.[j],reference=REFERENCES.map(([key])=>refs[key]?.test?.[j]);if(finite(cv)&&finite(nv))available++;const tr=row([count(x),j,fmt(cv),fmt(nv),...reference.map(v=>fmt(v)),signed(difference(nv,reference[2]))]);if(x===step)tr.className='latest-row';$('endpoints').append(tr)}
+ $('endpointStatus').textContent=`${available} of 8 scheduled endpoint / critic comparisons recorded. Parent checkpoints 5,120 / 6,400 are qualified. Continuation checkpoints 9,600 / 12,800 ${s.continuation_qualified?'have passed independent review.':'await the final independent review.'}`;
+ $('rolling').replaceChildren();const training=[];ARMS.forEach((arm,i)=>{const p=histories[i].at(-1),rolling=status.arms?.[arm]?.rolling?.edit||p?.rolling?.edit;if(rolling)$('rolling').append(row([NAMES[arm],count(rolling.last_step??p?.step??status.step??0),fmt(rolling.g_game),fmt(rolling.d_game),fmt(rolling.penalty),fmt(rolling.bank_grad_norm)]));for(const metric of ['g_game','d_game'])training.push({name:NAMES[arm]+' '+metric,color:COLORS[arm],dash:metric==='d_game',points:histories[i].map(p=>({x:p.step,y:p.rolling?.edit?.[metric]}))})});
+ chart('trainingChart',training,[],{minX,maxX:Math.max(minX+200,lastX),ylabel:'Rolling G / D game · changing critic'});
+ $('verification').textContent=s.continuation_qualified?'Continuation independent review passed.':s.receipt?`Runtime receipt: ${s.receipt.status}. Independent review pending.`:`Run active; full continuation review follows 12,800. Elapsed ${fmt(status.seconds,1)} seconds.`;
+ $('activity').textContent=ARMS.map(arm=>{const c=s.receipt?.coverage?.[arm]||status.arms?.[arm]?.coverage;return c?`${NAMES[arm]}: ${count(c.live_bank_updates)} live-bank updates, ${count(c.dense_128_row_updates)} dense updates, ${count(c.moves)} accepted moves.`:''}).filter(Boolean).join(' ');
+ $('failure').hidden=!s.failure;if(s.failure)$('failure').textContent=s.failure.error||JSON.stringify(s.failure,null,2);$('updated').textContent=`Last read: ${s.updated} · refresh every 5 seconds.`;
+}
+for(const id of ['judge','olderParticles'])$(id).addEventListener('change',()=>{if(latestState)render(latestState)});
+for(const[id,value]of [['recentRange','recent'],['allRange','all']])$(id).addEventListener('click',()=>{range=value;if(latestState)render(latestState)});
+async function refresh(){try{const response=await fetch('/api',{cache:'no-store'});if(!response.ok)throw Error('HTTP '+response.status);render(await response.json())}catch(error){$('updated').textContent=`Refresh failed: ${error.message} · retrying in 5 seconds.`}}
+refresh();setInterval(refresh,5000);
+</script>
+</body>
+</html>
