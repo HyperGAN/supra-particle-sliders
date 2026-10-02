@@ -56,3 +56,15 @@ directions or establish semantic editing quality. The two judges share an
 architecture; agreement does not make them independent accuracy authorities.
 This posthoc observation introduces no output-MSE optimizer or new selection,
 stopping, serving-head, training or promotion gate.
+
+Execution completed on the qualified 6,400-update cohort. The
+[compact results](e22_supra_endpoint_game_rays_results.json) bind the full
+report, raw residuals and completion receipt. All 870 checks passed in
+98.20 seconds, with zero training updates and exact replay of the original
+endpoint scores. Every fit and test context, for all five adapters under
+both common critics, has a restoring radial derivative at its actual
+residual. All sampled positive rays from amplitude 0.05 through 1 have no
+editing-context reversals. Small-amplitude finite-panel drift remains.
+These observations support useful residual-space correction under the two
+common critics; they do not establish the behavior of each run's actual
+training critic or explain its parameter-space convergence.
