@@ -15,6 +15,21 @@ DIAG = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(DIAG)
 
 
+def test_saved_checkpoint_config_matches_its_json_plan_without_mutation():
+    config = {"sites": ("first", "second"), "recipe": {"betas": (0., .999)},
+              "particle_init": "sampled_hb_neutral_v1"}
+    state = {"config": config, "policy": {"completed_steps": 800}}
+    declared = json.loads(json.dumps(config))
+    DIAG.check_checkpoint_contract(state, declared, 800)
+    assert isinstance(config["sites"], tuple)
+    assert isinstance(config["recipe"]["betas"], tuple)
+    changed = {**declared, "particle_init": "sampled_v1"}
+    with pytest.raises(ValueError, match="clock/config"):
+        DIAG.check_checkpoint_contract(state, changed, 800)
+    with pytest.raises(ValueError, match="clock/config"):
+        DIAG.check_checkpoint_contract(state, declared, 802)
+
+
 def test_same_actual_graph_half_vjps_reconstruct_guided():
     parameter = torch.tensor([[.3, -.4], [.7, .2]], dtype=torch.float64, requires_grad=True)
     conditional = torch.tensor([[1., 2.], [3., -1.]], dtype=torch.float64) @ parameter.T

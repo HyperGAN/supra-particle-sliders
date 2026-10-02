@@ -1,6 +1,6 @@
 {
   "schema": "supra_cfg_gradient_diagnostic_card_v1",
-  "status": "source-only preparation; no GPU diagnostic or quality training executed",
+  "status": "metadata compatibility fix after a preserved zero-forward failure; scientific gradient law unchanged",
   "hypothesis": "Conditional and unconditional learned-game VJPs may oppose one another inside the 71-site routed Supra host. The original two-site convergence toy lacks CFG and attention/LayerNorm coupling.",
   "parent_run": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400",
   "particlegan": {
@@ -99,7 +99,7 @@
     "gate_capture": "Observer delegates each public routing.mix exactly once and reads its actual clean code; a down forward hook observes actual hidden values. Diagnostic-only F.linear reproduces Hh+b and Cz to report each B4 CFG half's aggregate gate gains and preactivation magnitudes. Gate statistics aggregate tokens and the four contexts; the gradient decompositions retain individual contexts. No host function is replaced."
   },
   "execution": {
-    "authorized": false,
+    "authorized": true,
     "prerequisite": "Parent status complete at6400 and nonpartial independent-review.json qualified; explicit --qualified-review-sha256 must match the root-frozen final review file SHA256 and this card's expected reviewer/dependency source identities before any checkpoint/model/CUDA loading; no overlap with the active GPU process.",
     "device": "Physical GPU0 via CUDA_VISIBLE_DEVICES=0; logicalcuda:0",
     "budget_seconds": 900,
@@ -112,7 +112,22 @@
     "batch_mean_decompositions": 24,
     "optimizer_updates": 0,
     "native_policy_or_diagnostic_calls": 0,
-    "timeout": "Retain partial results with complete=false; no scientific qualification."
+    "timeout": "Retain partial results with complete=false; no scientific qualification.",
+    "authorization": {
+      "qualified_parent_review_sha256": "a142f2fa8e074062fd9618b16180d974c23bbebdc2d56e0e6accff79895b62b4",
+      "source_only_card_sha256": "1fb8d1d92c59cd96189dcbb6707d2dbd23198c8d1fcc05b88adc7d2d8da1fc05",
+      "scientific_law_and_budget_unchanged": true,
+      "purpose": "Connect the guided-pair toy mechanism to the completed actual Supra model without training updates."
+    },
+    "recovery_budget": {
+      "prior_attempt_output": "outputs/e22-supra-cfg-gradient-v1",
+      "prior_attempt_incomplete_sha256": "dae3dc5c4f4ff54db25aa8411c7e9dfddcc13541ca524607baa1e830c81c0afd",
+      "prior_attempt_reported_seconds": 30.009648244827986,
+      "prior_attempt_reserved_seconds": 35,
+      "fresh_attempt_outer_timeout_seconds": 865,
+      "combined_original_budget_seconds": 900,
+      "failure_cause": "Saved config tuple values were compared directly with the JSON plan list values. Canonicalize only the saved config representation before equality. No model forwards occurred in the failed attempt."
+    }
   },
   "provenance": {
     "actual_checkpoint_shas": "Bind and verify the qualified parent's actual800/6400 full checkpoint SHAs at launch; no fallback or other checkpoint.",
@@ -132,5 +147,5 @@
     "Prior short late DV12/anchor/AMSGrad interventions used another source/checkpoint cohort and do not falsify an effect earlier in this fresh trajectory.",
     "No output MSE/RMSE objective, optimizer intervention, quality or seed scan, metric-triggered horizon, best-state/head selection, or default promotion."
   ],
-  "diagnostic_source_sha256": "c962bf7361895eaafda89ed0ad2a925c8be0833541f24ce6e7b109b863774d58"
+  "diagnostic_source_sha256": "3487b4d06d757a7af8da3046705b6c5d2d26507cbc1535a0b35a3a0330b32f09"
 }

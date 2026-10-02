@@ -1,0 +1,40 @@
+{
+  "schema": "supra_cfg_gradient_metadata_fix_software_v1",
+  "problem": "The saved recipe uses tuples for alpha_bar, betas and direct_particle_betas; its JSON plan uses lists. A direct Python comparison incorrectly refused valid saved checkpoints before model forward.",
+  "fix": "Canonicalize the saved config to its JSON representation before equality; preserve saved config and reject changed values or clock.",
+  "diagnostic_source_sha256": "3487b4d06d757a7af8da3046705b6c5d2d26507cbc1535a0b35a3a0330b32f09",
+  "test_source_sha256": "9ae7638b8b5bf04ce6b4328765c93cbf73d573590691d58313fb9156cd74eda8",
+  "authorized_fixed_card_sha256": "02763b8900de3201c44decfe177394dbaf1db43950247266c50e71e12fa404cd",
+  "software_checks": {
+    "tests": 35,
+    "pytest_reported_seconds": 2.64,
+    "scope": "CPU diagnostic software/algebra/metadata contracts; no Supra training or GPU model forwards."
+  },
+  "independent_actual_metadata_review": {
+    "receipt_sha256": "fd7d810fc05e4727e67ab84a5db13df544c70e61bc477e12eb04525e74c25fee",
+    "scope": "Both arms at800/6400; CPU mmap/config-only; no full tensor reads, model construction or forwards."
+  },
+  "preserved_failed_attempt": {
+    "receipt_sha256": "dae3dc5c4f4ff54db25aa8411c7e9dfddcc13541ca524607baa1e830c81c0afd",
+    "completed_batches": 0,
+    "seconds": 30.009648244827986,
+    "error": "ValueError: actual saved checkpoint clock/config mismatch"
+  },
+  "completed_attempt": {
+    "receipt_sha256": "74dd5a312333d4c3d68c61486d2ca1d12d0329fab7992c87debff865a17dc904",
+    "complete": true,
+    "report_sha256": "051bd14209b6077c8eeb4e4daffa19b7ca21aa1a98b18590704325054709b2cb",
+    "wall_seconds": 152.4041050360538,
+    "quality_qualification_credit": "none",
+    "clock_scope": "After report serialization/write/SHA; deadline checked again after this receipt write.",
+    "seconds_after_completion_write_reported": 152.41139811789617
+  },
+  "budget": {
+    "original_posthoc_budget_seconds": 900,
+    "prior_attempt_reserved_seconds": 35,
+    "fresh_attempt_outer_timeout_seconds": 865,
+    "reserved_plus_successful_completed_wall_seconds": 187.41139811789617
+  },
+  "unchanged": "Native package, held trainer/protocol, model states, panels, contexts, horizon and gradient decomposition law.",
+  "quality_qualification_credit": "none"
+}

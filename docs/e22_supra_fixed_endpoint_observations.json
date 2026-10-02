@@ -1,0 +1,4322 @@
+{
+  "cohorts": {
+    "fresh_control": "sample_distributions_v1 public initialize_; editing-only native e22_routed; sampled H/b;6400 edits",
+    "fresh_neutral": "same fresh initial owners/streams and native law; only fresh H/b zero before policy/EMA;6400 edits",
+    "historical_limits": [
+      "Ordinary6400 uses historical paired-output MSE/AdamW, a different initialization/schedule and5120 editing+1280 preservation updates; only5120 new endpoint matches editing count.",
+      "Historical particleV2 uses earlier source/profile anddeterministic-orthogonal initialization; not the fresh H/b causal control.",
+      "Historical gatedV3 uses deterministic-orthogonal initialization,1280edit+320preserve through1600 thenfit-only; fixed5440=5120edits andfinal6400=6080edits; both remain historical cohorts.",
+      "Toy H/b result used a teacher-aligned rank2 family; the full-Supra live teacher need not lie in either adapter tangent basis.",
+      "Latest6ec/native defaults may differ from historicalbdf; both fresh arms share the same pinned native law."
+    ],
+    "historical_ordinary": "Historical MSE/AdamW ordinary LoRA; different initialization/schedule;5120 edits+1280 preservation through6400 total. Rescored under these same native-game judges/private panels, not a matched native-game-trained ordinary arm."
+  },
+  "created_utc": "2026-10-02T00:22:52.314859+00:00",
+  "descriptive_fraction_of_control_gap_to_historical_ordinary_closed_at6400": {
+    "D1856": {
+      "control_minus_historical_ordinary": 0.016031896819670988,
+      "fraction_of_control_gap_closed": 0.5792317942808571,
+      "neutral_minus_control": -0.009286184360583594,
+      "neutral_minus_historical_ordinary": 0.006745712459087394
+    },
+    "D6400": {
+      "control_minus_historical_ordinary": 0.016005303959051753,
+      "fraction_of_control_gap_closed": 0.5943456016247795,
+      "neutral_minus_control": -0.009512682010730078,
+      "neutral_minus_historical_ordinary": 0.006492621948321675
+    }
+  },
+  "evaluation_summaries": {
+    "historical_particle_v2": {
+      "fit": {
+        "contexts": 240,
+        "game": {
+          "D1856": 0.7992122391859691,
+          "D6400": 0.8035831513504187
+        },
+        "rmse_diagnostic_only": 0.04815632278950496,
+        "subjects": {
+          "15": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.785242460668087,
+              "D6400": 0.7870333671569825
+            }
+          },
+          "16": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7951099544763565,
+              "D6400": 0.7983826965093612
+            }
+          },
+          "17": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.811558510363102,
+              "D6400": 0.8178857922554016
+            }
+          },
+          "18": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7946888998150825,
+              "D6400": 0.798656950891018
+            }
+          },
+          "4": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8158828109502793,
+              "D6400": 0.8232417508959771
+            }
+          },
+          "5": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7927907988429069,
+              "D6400": 0.7962983503937722
+            }
+          }
+        }
+      },
+      "holds": {
+        "contexts": 30,
+        "game": {
+          "D1856": 0.7164798061052958,
+          "D6400": 0.7144167641798655
+        },
+        "rmse_diagnostic_only": 0.04032132642270695,
+        "subjects": {
+          "7": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.708770614862442,
+              "D6400": 0.7067055344581604
+            }
+          },
+          "8": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.7231477081775666,
+              "D6400": 0.7224711954593659
+            }
+          },
+          "9": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.7175210952758789,
+              "D6400": 0.7140735626220703
+            }
+          }
+        }
+      },
+      "preservation": {
+        "contexts": 60,
+        "game": {
+          "D1856": 0.7292586326599121,
+          "D6400": 0.7268828382094701
+        },
+        "rmse_diagnostic_only": 0.047450201323587994,
+        "subjects": {
+          "7": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.7157950937747956,
+              "D6400": 0.7139192670583725
+            }
+          },
+          "8": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.7363473117351532,
+              "D6400": 0.7354531615972519
+            }
+          },
+          "9": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.7356334924697876,
+              "D6400": 0.7312760859727859
+            }
+          }
+        }
+      },
+      "test": {
+        "contexts": 240,
+        "game": {
+          "D1856": 0.9466044135391712,
+          "D6400": 0.956588652729988
+        },
+        "rmse_diagnostic_only": 0.08094245501495353,
+        "subjects": {
+          "15": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8845441341400146,
+              "D6400": 0.8926627397537231
+            }
+          },
+          "16": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9282516881823539,
+              "D6400": 0.9330680534243584
+            }
+          },
+          "17": {
+            "contexts": 40,
+            "game": {
+              "D1856": 1.0054373160004615,
+              "D6400": 1.0177320376038552
+            }
+          },
+          "18": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.919089563190937,
+              "D6400": 0.9290618255734444
+            }
+          },
+          "4": {
+            "contexts": 40,
+            "game": {
+              "D1856": 1.0152436167001724,
+              "D6400": 1.0308389142155647
+            }
+          },
+          "5": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9270601630210876,
+              "D6400": 0.9361683458089829
+            }
+          }
+        }
+      }
+    },
+    "historical_particle_v3": {
+      "fit": {
+        "contexts": 240,
+        "game": {
+          "D1856": 0.810388395190239,
+          "D6400": 0.8177422779301803
+        },
+        "rmse_diagnostic_only": 0.04867275872367926,
+        "subjects": {
+          "15": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8092706218361855,
+              "D6400": 0.8142703369259834
+            }
+          },
+          "16": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7875987619161606,
+              "D6400": 0.7918268024921418
+            }
+          },
+          "17": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8362923607230186,
+              "D6400": 0.8532872542738914
+            }
+          },
+          "18": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7916303172707557,
+              "D6400": 0.7987651705741883
+            }
+          },
+          "4": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8128392934799195,
+              "D6400": 0.8238627091050148
+            }
+          },
+          "5": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8246990159153939,
+              "D6400": 0.8244413942098617
+            }
+          }
+        }
+      },
+      "holds": {
+        "contexts": 30,
+        "game": {
+          "D1856": 0.7682243963082631,
+          "D6400": 0.7659307877222697
+        },
+        "rmse_diagnostic_only": 0.0614208370368352,
+        "subjects": {
+          "7": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.7341870844364167,
+              "D6400": 0.7341403722763061
+            }
+          },
+          "8": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.7903531730175019,
+              "D6400": 0.7921738862991333
+            }
+          },
+          "9": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.7801329314708709,
+              "D6400": 0.7714781045913697
+            }
+          }
+        }
+      },
+      "preservation": {
+        "contexts": 60,
+        "game": {
+          "D1856": 0.7673609832922618,
+          "D6400": 0.7657242874304454
+        },
+        "rmse_diagnostic_only": 0.06223776956541342,
+        "subjects": {
+          "7": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.7373867481946945,
+              "D6400": 0.7371163219213486
+            }
+          },
+          "8": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.7924692928791046,
+              "D6400": 0.7937908679246902
+            }
+          },
+          "9": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.7722269088029862,
+              "D6400": 0.7662656724452972
+            }
+          }
+        }
+      },
+      "test": {
+        "contexts": 240,
+        "game": {
+          "D1856": 0.9643095632394155,
+          "D6400": 0.9776970190306504
+        },
+        "rmse_diagnostic_only": 0.08211770826859294,
+        "subjects": {
+          "15": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9000858828425408,
+              "D6400": 0.9111127197742462
+            }
+          },
+          "16": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9223258107900619,
+              "D6400": 0.9301289364695549
+            }
+          },
+          "17": {
+            "contexts": 40,
+            "game": {
+              "D1856": 1.0388874500989913,
+              "D6400": 1.0597535014152526
+            }
+          },
+          "18": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9339210331439972,
+              "D6400": 0.9488813325762748
+            }
+          },
+          "4": {
+            "contexts": 40,
+            "game": {
+              "D1856": 1.0167386174201964,
+              "D6400": 1.0360791295766831
+            }
+          },
+          "5": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9738985851407052,
+              "D6400": 0.980226494371891
+            }
+          }
+        }
+      }
+    },
+    "ordinary_lora_6400": {
+      "fit": {
+        "contexts": 240,
+        "game": {
+          "D1856": 0.7737561208506425,
+          "D6400": 0.7793767494459947
+        },
+        "rmse_diagnostic_only": 0.03951472918408889,
+        "subjects": {
+          "15": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7579375028610229,
+              "D6400": 0.7612607195973397
+            }
+          },
+          "16": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.773770096898079,
+              "D6400": 0.7780489102005959
+            }
+          },
+          "17": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7815841674804688,
+              "D6400": 0.7895398646593094
+            }
+          },
+          "18": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7730670392513275,
+              "D6400": 0.7792954698204995
+            }
+          },
+          "4": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7859146103262902,
+              "D6400": 0.7937109857797623
+            }
+          },
+          "5": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7702633082866669,
+              "D6400": 0.7744045466184616
+            }
+          }
+        }
+      },
+      "holds": {
+        "contexts": 30,
+        "game": {
+          "D1856": 0.7026687423388164,
+          "D6400": 0.7011867006619771
+        },
+        "rmse_diagnostic_only": 0.026899365903836996,
+        "subjects": {
+          "7": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.6997584044933319,
+              "D6400": 0.6982977330684662
+            }
+          },
+          "8": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.7041887640953064,
+              "D6400": 0.7034266650676727
+            }
+          },
+          "9": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.7040590584278107,
+              "D6400": 0.7018357038497924
+            }
+          }
+        }
+      },
+      "preservation": {
+        "contexts": 60,
+        "game": {
+          "D1856": 0.7103989024957021,
+          "D6400": 0.7081170757611592
+        },
+        "rmse_diagnostic_only": 0.03435457814916743,
+        "subjects": {
+          "7": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.7031487435102463,
+              "D6400": 0.7011003911495208
+            }
+          },
+          "8": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.7125413298606873,
+              "D6400": 0.711206465959549
+            }
+          },
+          "9": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.7155066341161728,
+              "D6400": 0.7120443701744079
+            }
+          }
+        }
+      },
+      "test": {
+        "contexts": 240,
+        "game": {
+          "D1856": 0.9128064962724844,
+          "D6400": 0.924385150273641
+        },
+        "rmse_diagnostic_only": 0.0733332951717812,
+        "subjects": {
+          "15": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8486048117280006,
+              "D6400": 0.8575488224625587
+            }
+          },
+          "16": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8999868765473366,
+              "D6400": 0.906822495162487
+            }
+          },
+          "17": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9529292210936546,
+              "D6400": 0.9681688264012337
+            }
+          },
+          "18": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.887443234026432,
+              "D6400": 0.8991027399897575
+            }
+          },
+          "4": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9790228858590126,
+              "D6400": 0.9953037023544311
+            }
+          },
+          "5": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9088519483804702,
+              "D6400": 0.9193643152713775
+            }
+          }
+        }
+      }
+    },
+    "sampled_control@5120": {
+      "fit": {
+        "contexts": 240,
+        "game": {
+          "D1856": 0.7925255618989467,
+          "D6400": 0.798456875483195
+        },
+        "rmse_diagnostic_only": 0.0460209167691652,
+        "subjects": {
+          "15": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7699289545416832,
+              "D6400": 0.7740272462368012
+            }
+          },
+          "16": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7917888417840004,
+              "D6400": 0.7959386631846428
+            }
+          },
+          "17": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8008012235164642,
+              "D6400": 0.809470283985138
+            }
+          },
+          "18": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7857861414551734,
+              "D6400": 0.7916264832019806
+            }
+          },
+          "4": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8182878911495208,
+              "D6400": 0.8243873253464699
+            }
+          },
+          "5": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7885603189468384,
+              "D6400": 0.7952912509441376
+            }
+          }
+        }
+      },
+      "holds": {
+        "contexts": 30,
+        "game": {
+          "D1856": 0.882170307636261,
+          "D6400": 0.8665404736995697
+        },
+        "rmse_diagnostic_only": 0.09548778113812707,
+        "subjects": {
+          "7": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.7780330359935761,
+              "D6400": 0.7767411887645721
+            }
+          },
+          "8": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.884366637468338,
+              "D6400": 0.8835580170154571
+            }
+          },
+          "9": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.9841112494468689,
+              "D6400": 0.9393222153186798
+            }
+          }
+        }
+      },
+      "preservation": {
+        "contexts": 60,
+        "game": {
+          "D1856": 0.8695163557926814,
+          "D6400": 0.8570273041725158
+        },
+        "rmse_diagnostic_only": 0.0918594916683854,
+        "subjects": {
+          "7": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.7881874084472656,
+              "D6400": 0.7847797811031342
+            }
+          },
+          "8": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.8646784722805023,
+              "D6400": 0.8668684422969818
+            }
+          },
+          "9": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.9556831866502762,
+              "D6400": 0.9194336891174316
+            }
+          }
+        }
+      },
+      "test": {
+        "contexts": 240,
+        "game": {
+          "D1856": 0.940152699748675,
+          "D6400": 0.951870624969403
+        },
+        "rmse_diagnostic_only": 0.07963816946948239,
+        "subjects": {
+          "15": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8621939525008202,
+              "D6400": 0.8718716472387313
+            }
+          },
+          "16": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.922147236764431,
+              "D6400": 0.9282815098762512
+            }
+          },
+          "17": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9888006418943405,
+              "D6400": 1.0042724460363388
+            }
+          },
+          "18": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9147390231490136,
+              "D6400": 0.9265638589859009
+            }
+          },
+          "4": {
+            "contexts": 40,
+            "game": {
+              "D1856": 1.0181411489844323,
+              "D6400": 1.0331753075122834
+            }
+          },
+          "5": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9348941951990127,
+              "D6400": 0.947058980166912
+            }
+          }
+        }
+      }
+    },
+    "sampled_control@6400": {
+      "fit": {
+        "contexts": 240,
+        "game": {
+          "D1856": 0.7744580318530401,
+          "D6400": 0.7792684021095435
+        },
+        "rmse_diagnostic_only": 0.04133067524289473,
+        "subjects": {
+          "15": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.759016540646553,
+              "D6400": 0.7619073659181594
+            }
+          },
+          "16": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.776054023206234,
+              "D6400": 0.7797226011753082
+            }
+          },
+          "17": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7815903067588806,
+              "D6400": 0.7886721283197403
+            }
+          },
+          "18": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7702659770846367,
+              "D6400": 0.7749312967061996
+            }
+          },
+          "4": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7874304771423339,
+              "D6400": 0.7938524872064591
+            }
+          },
+          "5": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7723908662796021,
+              "D6400": 0.7765245333313942
+            }
+          }
+        }
+      },
+      "holds": {
+        "contexts": 30,
+        "game": {
+          "D1856": 0.8864012579123179,
+          "D6400": 0.8706873377164205
+        },
+        "rmse_diagnostic_only": 0.09672647587899247,
+        "subjects": {
+          "7": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.7817474007606506,
+              "D6400": 0.780602091550827
+            }
+          },
+          "8": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.893727707862854,
+              "D6400": 0.8929005146026612
+            }
+          },
+          "9": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.9837286651134491,
+              "D6400": 0.9385594069957733
+            }
+          }
+        }
+      },
+      "preservation": {
+        "contexts": 60,
+        "game": {
+          "D1856": 0.8724531630674998,
+          "D6400": 0.8601779758930206
+        },
+        "rmse_diagnostic_only": 0.09290624448710148,
+        "subjects": {
+          "7": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.7910213321447372,
+              "D6400": 0.787761178612709
+            }
+          },
+          "8": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.874948051571846,
+              "D6400": 0.8770210772752762
+            }
+          },
+          "9": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.9513901054859162,
+              "D6400": 0.9157516717910766
+            }
+          }
+        }
+      },
+      "test": {
+        "contexts": 240,
+        "game": {
+          "D1856": 0.9288383930921554,
+          "D6400": 0.9403904542326927
+        },
+        "rmse_diagnostic_only": 0.07730223943962017,
+        "subjects": {
+          "15": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8566623210906983,
+              "D6400": 0.8658176138997078
+            }
+          },
+          "16": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9135100781917572,
+              "D6400": 0.9200694978237152
+            }
+          },
+          "17": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9745569497346878,
+              "D6400": 0.9893140122294426
+            }
+          },
+          "18": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9040336087346077,
+              "D6400": 0.9155727028846741
+            }
+          },
+          "4": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9967780739068985,
+              "D6400": 1.0129027023911477
+            }
+          },
+          "5": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9274893268942833,
+              "D6400": 0.938666196167469
+            }
+          }
+        }
+      }
+    },
+    "sampled_hb_neutral@5120": {
+      "fit": {
+        "contexts": 240,
+        "game": {
+          "D1856": 0.786140448351701,
+          "D6400": 0.7926380010942619
+        },
+        "rmse_diagnostic_only": 0.04393188051632544,
+        "subjects": {
+          "15": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7791946768760681,
+              "D6400": 0.7861343488097191
+            }
+          },
+          "16": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7864017680287361,
+              "D6400": 0.7905539616942405
+            }
+          },
+          "17": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7910334974527359,
+              "D6400": 0.7983976006507874
+            }
+          },
+          "18": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7786436468362808,
+              "D6400": 0.7836938083171845
+            }
+          },
+          "4": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8025483787059784,
+              "D6400": 0.8111436054110527
+            }
+          },
+          "5": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7790207222104073,
+              "D6400": 0.7859046816825866
+            }
+          }
+        }
+      },
+      "holds": {
+        "contexts": 30,
+        "game": {
+          "D1856": 0.8443091094493866,
+          "D6400": 0.8345300674438476
+        },
+        "rmse_diagnostic_only": 0.08497438399741608,
+        "subjects": {
+          "7": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.7414170861244201,
+              "D6400": 0.7419260144233704
+            }
+          },
+          "8": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.8752460420131684,
+              "D6400": 0.8740542471408844
+            }
+          },
+          "9": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.9162642002105713,
+              "D6400": 0.8876099407672882
+            }
+          }
+        }
+      },
+      "preservation": {
+        "contexts": 60,
+        "game": {
+          "D1856": 0.8309814840555191,
+          "D6400": 0.8235853145519892
+        },
+        "rmse_diagnostic_only": 0.0814395990776671,
+        "subjects": {
+          "7": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.7479810059070587,
+              "D6400": 0.7476279258728027
+            }
+          },
+          "8": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.8479184716939926,
+              "D6400": 0.8487316817045212
+            }
+          },
+          "9": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.897044974565506,
+              "D6400": 0.8743963360786438
+            }
+          }
+        }
+      },
+      "test": {
+        "contexts": 240,
+        "game": {
+          "D1856": 0.9283174802859624,
+          "D6400": 0.9400816353658835
+        },
+        "rmse_diagnostic_only": 0.07755954529796884,
+        "subjects": {
+          "15": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8573395267128945,
+              "D6400": 0.8681988373398781
+            }
+          },
+          "16": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9102296248078346,
+              "D6400": 0.9165967047214508
+            }
+          },
+          "17": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9759814947843551,
+              "D6400": 0.9890193551778793
+            }
+          },
+          "18": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9040035754442215,
+              "D6400": 0.91534975618124
+            }
+          },
+          "4": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9960309699177742,
+              "D6400": 1.0125740885734558
+            }
+          },
+          "5": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9263196900486946,
+              "D6400": 0.9387510702013969
+            }
+          }
+        }
+      }
+    },
+    "sampled_hb_neutral@6400": {
+      "fit": {
+        "contexts": 240,
+        "game": {
+          "D1856": 0.7708960093557835,
+          "D6400": 0.7756866462528705
+        },
+        "rmse_diagnostic_only": 0.039993702982617695,
+        "subjects": {
+          "15": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7665742203593254,
+              "D6400": 0.771127063035965
+            }
+          },
+          "16": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7725913181900979,
+              "D6400": 0.7757690086960792
+            }
+          },
+          "17": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7746590629220009,
+              "D6400": 0.7814277678728103
+            }
+          },
+          "18": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7648237600922585,
+              "D6400": 0.7685510113835334
+            }
+          },
+          "4": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7825409740209579,
+              "D6400": 0.7890411302447319
+            }
+          },
+          "5": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.7641867205500603,
+              "D6400": 0.7682038962841033
+            }
+          }
+        }
+      },
+      "holds": {
+        "contexts": 30,
+        "game": {
+          "D1856": 0.8532233496507009,
+          "D6400": 0.8423187057177226
+        },
+        "rmse_diagnostic_only": 0.08758015217862689,
+        "subjects": {
+          "7": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.7449003994464874,
+              "D6400": 0.745540565252304
+            }
+          },
+          "8": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.8867708146572113,
+              "D6400": 0.8851896345615387
+            }
+          },
+          "9": {
+            "contexts": 10,
+            "game": {
+              "D1856": 0.927998834848404,
+              "D6400": 0.896225917339325
+            }
+          }
+        }
+      },
+      "preservation": {
+        "contexts": 60,
+        "game": {
+          "D1856": 0.8378071109453837,
+          "D6400": 0.8297247141599655
+        },
+        "rmse_diagnostic_only": 0.08354886769174945,
+        "subjects": {
+          "7": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.7516946822404862,
+              "D6400": 0.7513532847166061
+            }
+          },
+          "8": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.8573353976011276,
+              "D6400": 0.8579093605279923
+            }
+          },
+          "9": {
+            "contexts": 20,
+            "game": {
+              "D1856": 0.9043912529945374,
+              "D6400": 0.8799114972352982
+            }
+          }
+        }
+      },
+      "test": {
+        "contexts": 240,
+        "game": {
+          "D1856": 0.9195522087315718,
+          "D6400": 0.9308777722219627
+        },
+        "rmse_diagnostic_only": 0.07557705630393867,
+        "subjects": {
+          "15": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8540148645639419,
+              "D6400": 0.8639448270201683
+            }
+          },
+          "16": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9038300320506096,
+              "D6400": 0.9103064566850663
+            }
+          },
+          "17": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.962901696562767,
+              "D6400": 0.9764730304479599
+            }
+          },
+          "18": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.8965364798903466,
+              "D6400": 0.9075001463294029
+            }
+          },
+          "4": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9851590663194656,
+              "D6400": 1.001419135928154
+            }
+          },
+          "5": {
+            "contexts": 40,
+            "game": {
+              "D1856": 0.9148711130023003,
+              "D6400": 0.9256230369210243
+            }
+          }
+        }
+      }
+    }
+  },
+  "identity": {
+    "application_revision": "035f9ce1544af8844a655f0cfd0d6b3ef92ad09e",
+    "application_source_sha256": {
+      "docs/e22_supra_neutral_initialization_protocol.json": "31c1f596f9d3ba2ff600115311029ec3fa3b895a0925d9bcd35413049f5195cf",
+      "scripts/evaluate_e22_supra_particle_contribution.py": "9d698a4efb96b735ebf5bf4c61317eef973da7d0b5ab6858e5cedc0f87390602",
+      "scripts/experiment_e22_supra_neutral_initialization.py": "94b70532cd832cc934b130dc74f47216cd4b2ada14222099815997c4a8829c93",
+      "scripts/experiment_e22_supra_particle_gated.py": "9bf7c08f087e8ea00e4929dbd149cf8085a3ded66e1e82edad2cfd2ec70e7e5f",
+      "scripts/monitor_e22_supra_particle_convergence.py": "d754823b082f101939453ef84290782fff22f870d1c5cab8f34a6af0176185b1",
+      "supra/particle_adapter.py": "1a9814217dfaca2b37552b01b0441a6820330212031ccd931a02f712fdaac7dd",
+      "supra/particle_export.py": "3a201bf42073de74391b1cc4abc3555dde76c27b61a7fb592c39ac0bd0bbb10d",
+      "supra/particle_game.py": "6a10cc15ea44651953fd46fefa3f097a832f594cca98084f17a67f3c4a94f35d",
+      "supra/particle_pilot.py": "da97cef920160a6707de60c1303a90138346386d2a2bf5b4470c55cf8b08e329",
+      "supra/particle_training.py": "3b20daf9fee45001c6846062b8c242f6879a7a1ff17c2a4c12c24c21e8194b6c",
+      "supra/particle_training_data.py": "4a0787d187de02e2619e8956c1b2b6a74fe268db00ee16a89601e5d6b229a78c",
+      "supra/runtime.py": "9b56409101a8c674b29e02066ef0d6ed257f231d9aa68fef34a7197c445a151c"
+    },
+    "common_critic_tensor_digests": {
+      "D1856": "e248f16ada2cdb6137f670e9c1dece3740db9175dee9eb324702bfab4b759d2d",
+      "D6400": "43aa3af32850ccf5d17c4a12ca52f903d61901d734fbd0bc570280afcee16929"
+    },
+    "native_revision": "6ec7e5788e14ea15ddc3e16ac71110458108b6a6",
+    "native_source_sha256": {
+      "particlegan/__init__.py": "b56efa562acc551d639548c299002e2cd76338b3fd7062699780add51f4f5e8c",
+      "particlegan/_qr.py": "b59cd62cc27ed557b41b2d17ed86ed578c762a3a8a392d63731a5a3b2b018916",
+      "particlegan/anchor_birth.py": "aa50983d8b61304acf4e1138f16fd4784798983df91e931863bcacd3b511f76f",
+      "particlegan/autoencoder.py": "f3fbb9184e9f44112e15eccf0c0246dfba5ed490d3c7b81b0f837a5335916402",
+      "particlegan/birth_death.py": "b14c50c611a8cf188347e391739fca50a5171200eb6be90e4e3d1509d64e47ed",
+      "particlegan/birth_phase.py": "5ff929e5e9858aa24c4cc2f8999b5d0603e25e42ca3844d1da4cc28b1981d3d7",
+      "particlegan/capabilities.py": "39df9c67dbedf612740057e5fa743bc724678a1bc323d1f7cf550b37c0c01177",
+      "particlegan/conditioning.py": "8734fe338868ace4b5851a8fdb1f071e46d47396f66a3765e6b1ef37f0481486",
+      "particlegan/continuous.py": "4ceab49c7d51d1769ae91b7f8bc892eaf380ca6fbd77a948a086ade6627e9a41",
+      "particlegan/diffusion.py": "19c3aa8772703891551b9122fde8e74c07996f779892b7cb6be09553691efa61",
+      "particlegan/discriminators.py": "0e2efb125ffb314577612ab7a2eba66b0a1a2d28ad25f403f42c18b6f6ee333f",
+      "particlegan/feature_cells.py": "e0ea05f61abd7845c7437eed9a79c3a2511d5551ff04f4e619b6b9c8992e221a",
+      "particlegan/feature_policy.py": "de1a50f70a37d4c9174c8850ce3eac2a2597ed01f19fc4fe1a2ce0ec3176a8b2",
+      "particlegan/feature_reference.py": "58e076e9e04600be25e28afafc537a340de727371f4acbbfb2b7dd8bebac18b1",
+      "particlegan/gan_loss.py": "1c1019dfe71c583e32a05df0d2f794f9fff6d9ee1ea0332f57f6379ae70cf6b7",
+      "particlegan/grad_regularizers.py": "a540d05a4a992540b6a5f3b5ff7ccc11ebaf18592135b87c95638adbe68aa747",
+      "particlegan/init.py": "e15d4de01eb49f7097bc249abacab907ff067385412346f54ab0d510cb8649d0",
+      "particlegan/k3p.py": "72fa32ae0d423d2904f310958721c0138823fa4d06ceca6ec451aaf86280607d",
+      "particlegan/ka2.py": "95fdaa58a2bdc229d5d146ef89548bc3fe07582d06181a149ed1bb4f5d632703",
+      "particlegan/mean_transport.py": "57a68e0a65c5424a4460f65002f3862a69e90af330a4d47c700dc773683a2c06",
+      "particlegan/output_moments.py": "dcf3e27228d2c3c9738e473c5b22ee9e6d5047ddcd60c538b66526adb53ef188",
+      "particlegan/particle_prior.py": "0220878bebea227da63abbf9f5b1ebdabdc6aea54fd2332fd2cab02ed734238f",
+      "particlegan/policy.py": "5b6877ab14170340433e54f5d0e0409b2f72721d31145b8d4867890686317ebc",
+      "particlegan/population_continuity.py": "378cd75cca45bc8da4da33e686a12cf99df853042687978314e37c532bc17fe6",
+      "particlegan/recipes.py": "77d2221985a71ed303c4eecb8fae9620d068fb9478b119f5c3fd9a11a1eca86b",
+      "particlegan/routing.py": "63249d808fccb3d4e113eb1d638a245ee665c3cade20a1542bb706f316b4abcc",
+      "particlegan/row_evidence.py": "78be40141ef3946860458e9842159be9321f05c217a4800dd4134113b6eba93e",
+      "particlegan/training.py": "319bc2d32f2ba106d428607575447dcda419f190cfe02fabdb22fc49ddcc5f77",
+      "particlegan/vicreg_loss.py": "ab1c4dc266dec2c35337f449917240eb38afede7590d2154b63f6f471dc45a36"
+    },
+    "protocol_input_file_sha256": {
+      "D1856": "db06166f66fa0fa70ac36e4130bc30d7bd9c7028f075a4c6e71e9c46d3baa102",
+      "D6400": "54b243580206beb772db77132ff367fca9389b209149dcef9573449aeb8b7fcf",
+      "data": "4cf1dffebd909078838488156b7ac5e35e9c3f0806ec3e8217d50c102f5b6fcc",
+      "historical_particle_v2": "931e130227d6de514dcb5ad577471efadbe935cba93711faaffa5c192ac0faf8",
+      "historical_particle_v3": "4de2c4bc9c2e2f83f146d5c87128b6d832bbf3d068cebb34a8a0ff35f22dbd35",
+      "original6400": "24a98ba055d0b5298136d67dc7491a339684da03416c510d1d443fe730eb7069",
+      "teacher": "54b243580206beb772db77132ff367fca9389b209149dcef9573449aeb8b7fcf"
+    }
+  },
+  "limits": [
+    "These JSON reductions are observations, not independent state/artifact qualification; root final review must pass its complete evidence receipts.",
+    "Matched neutral-minus-control isolates the fresh H/b intervention; historical-ordinary and historical-particle contrasts do not isolate optimizer or initialization effects.",
+    "Fresh5120 matches historical ordinary editing count; fresh6400 has1280 extra editing updates. All fixed endpoints are retained without best-step selection.",
+    "The reported gap fraction is descriptive distance to a historical artifact, not a matched native-optimizer improvement rate or a convergence theorem.",
+    "Frozen learned-game comparisons and active particle ablations do not establish target-output accuracy or full image-editing quality; diagnostic RMSE is recorded separately and never optimized or used to choose this report.",
+    "Subjects contain correlated time/latent contexts; context win counts are descriptive and no significance/independence claim is made."
+  ],
+  "paired_native_game_comparisons": {
+    "neutral-minus-control@5120": {
+      "fit": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 30,
+            "lower": 210
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 31,
+            "lower": 209
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.0063851135472456615,
+          "D6400": -0.005818874388933182
+        },
+        "subjects": {
+          "15": {
+            "D1856": 0.009265722334384918,
+            "D6400": 0.012107102572917939
+          },
+          "16": {
+            "D1856": -0.005387073755264283,
+            "D6400": -0.005384701490402222
+          },
+          "17": {
+            "D1856": -0.009767726063728333,
+            "D6400": -0.011072683334350585
+          },
+          "18": {
+            "D1856": -0.00714249461889267,
+            "D6400": -0.007932674884796143
+          },
+          "4": {
+            "D1856": -0.01573951244354248,
+            "D6400": -0.013243719935417175
+          },
+          "5": {
+            "D1856": -0.009539596736431122,
+            "D6400": -0.009386569261550903
+          }
+        }
+      },
+      "holds": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 1,
+            "lower": 29
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 1,
+            "lower": 29
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.03786119818687439,
+          "D6400": -0.032010406255722046
+        },
+        "subjects": {
+          "7": {
+            "D1856": -0.03661594986915588,
+            "D6400": -0.03481517434120178
+          },
+          "8": {
+            "D1856": -0.009120595455169678,
+            "D6400": -0.009503769874572753
+          },
+          "9": {
+            "D1856": -0.06784704923629761,
+            "D6400": -0.0517122745513916
+          }
+        }
+      },
+      "preservation": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 5,
+            "lower": 55
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 6,
+            "lower": 54
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.038534871737162274,
+          "D6400": -0.03344198962052663
+        },
+        "subjects": {
+          "7": {
+            "D1856": -0.04020640254020691,
+            "D6400": -0.03715185523033142
+          },
+          "8": {
+            "D1856": -0.016760000586509706,
+            "D6400": -0.01813676059246063
+          },
+          "9": {
+            "D1856": -0.0586382120847702,
+            "D6400": -0.04503735303878784
+          }
+        }
+      },
+      "test": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 56,
+            "lower": 184
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 54,
+            "lower": 186
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.011835219462712605,
+          "D6400": -0.011788989603519439
+        },
+        "subjects": {
+          "15": {
+            "D1856": -0.00485442578792572,
+            "D6400": -0.003672809898853302
+          },
+          "16": {
+            "D1856": -0.011917611956596375,
+            "D6400": -0.011684805154800415
+          },
+          "17": {
+            "D1856": -0.012819147109985352,
+            "D6400": -0.015253090858459472
+          },
+          "18": {
+            "D1856": -0.010735447704792022,
+            "D6400": -0.011214102804660796
+          },
+          "4": {
+            "D1856": -0.02211017906665802,
+            "D6400": -0.020601218938827513
+          },
+          "5": {
+            "D1856": -0.008574505150318146,
+            "D6400": -0.008307909965515137
+          }
+        }
+      }
+    },
+    "neutral-minus-control@6400": {
+      "fit": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 30,
+            "lower": 210
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 30,
+            "lower": 210
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.0035620224972565968,
+          "D6400": -0.003581755856672923
+        },
+        "subjects": {
+          "15": {
+            "D1856": 0.007557679712772369,
+            "D6400": 0.009219697117805481
+          },
+          "16": {
+            "D1856": -0.0034627050161361696,
+            "D6400": -0.003953592479228973
+          },
+          "17": {
+            "D1856": -0.006931243836879731,
+            "D6400": -0.0072443604469299315
+          },
+          "18": {
+            "D1856": -0.005442216992378235,
+            "D6400": -0.006380285322666168
+          },
+          "4": {
+            "D1856": -0.004889503121376038,
+            "D6400": -0.0048113569617271425
+          },
+          "5": {
+            "D1856": -0.008204145729541779,
+            "D6400": -0.008320637047290802
+          }
+        }
+      },
+      "holds": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 3,
+            "lower": 27
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 3,
+            "lower": 27
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.033177908261617026,
+          "D6400": -0.028368631998697918
+        },
+        "subjects": {
+          "7": {
+            "D1856": -0.03684700131416321,
+            "D6400": -0.03506152629852295
+          },
+          "8": {
+            "D1856": -0.0069568932056427,
+            "D6400": -0.007710880041122437
+          },
+          "9": {
+            "D1856": -0.05572983026504517,
+            "D6400": -0.04233348965644836
+          }
+        }
+      },
+      "preservation": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 5,
+            "lower": 55
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 6,
+            "lower": 54
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.03464605212211609,
+          "D6400": -0.030453261733055115
+        },
+        "subjects": {
+          "7": {
+            "D1856": -0.039326649904251096,
+            "D6400": -0.036407893896102904
+          },
+          "8": {
+            "D1856": -0.017612653970718383,
+            "D6400": -0.019111716747283937
+          },
+          "9": {
+            "D1856": -0.046998852491378786,
+            "D6400": -0.0358401745557785
+          }
+        }
+      },
+      "test": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 50,
+            "lower": 190
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 54,
+            "lower": 186
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.009286184360583623,
+          "D6400": -0.009512682010730108
+        },
+        "subjects": {
+          "15": {
+            "D1856": -0.0026474565267562864,
+            "D6400": -0.0018727868795394898
+          },
+          "16": {
+            "D1856": -0.009680046141147614,
+            "D6400": -0.009763041138648986
+          },
+          "17": {
+            "D1856": -0.011655253171920777,
+            "D6400": -0.012840981781482696
+          },
+          "18": {
+            "D1856": -0.007497128844261169,
+            "D6400": -0.008072556555271148
+          },
+          "4": {
+            "D1856": -0.011619007587432862,
+            "D6400": -0.011483566462993621
+          },
+          "5": {
+            "D1856": -0.012618213891983032,
+            "D6400": -0.013043159246444702
+          }
+        }
+      }
+    },
+    "neutral@6400-historical_particle_v2": {
+      "fit": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 5,
+            "lower": 235
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 7,
+            "lower": 233
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.02831622983018557,
+          "D6400": -0.027896505097548166
+        },
+        "subjects": {
+          "15": {
+            "D1856": -0.018668240308761595,
+            "D6400": -0.015906304121017456
+          },
+          "16": {
+            "D1856": -0.0225186362862587,
+            "D6400": -0.02261368781328201
+          },
+          "17": {
+            "D1856": -0.036899447441101074,
+            "D6400": -0.03645802438259125
+          },
+          "18": {
+            "D1856": -0.029865139722824098,
+            "D6400": -0.030105939507484435
+          },
+          "4": {
+            "D1856": -0.033341836929321286,
+            "D6400": -0.034200620651245114
+          },
+          "5": {
+            "D1856": -0.02860407829284668,
+            "D6400": -0.02809445410966873
+          }
+        }
+      },
+      "holds": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 30,
+            "lower": 0
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 30,
+            "lower": 0
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.13674354354540508,
+          "D6400": 0.12790194153785706
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.03612978458404541,
+            "D6400": 0.038835030794143674
+          },
+          "8": {
+            "D1856": 0.1636231064796448,
+            "D6400": 0.16271843910217285
+          },
+          "9": {
+            "D1856": 0.21047773957252502,
+            "D6400": 0.18215235471725463
+          }
+        }
+      },
+      "preservation": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 60,
+            "lower": 0
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 60,
+            "lower": 0
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.1085484782854716,
+          "D6400": 0.1028418759504954
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.035899588465690614,
+            "D6400": 0.03743401765823364
+          },
+          "8": {
+            "D1856": 0.12098808586597443,
+            "D6400": 0.12245619893074036
+          },
+          "9": {
+            "D1856": 0.16875776052474975,
+            "D6400": 0.1486354112625122
+          }
+        }
+      },
+      "test": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 27,
+            "lower": 213
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 39,
+            "lower": 201
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.027052204807599387,
+          "D6400": -0.025710880508025488
+        },
+        "subjects": {
+          "15": {
+            "D1856": -0.030529269576072694,
+            "D6400": -0.02871791273355484
+          },
+          "16": {
+            "D1856": -0.024421656131744386,
+            "D6400": -0.022761596739292143
+          },
+          "17": {
+            "D1856": -0.04253561943769455,
+            "D6400": -0.041259007155895235
+          },
+          "18": {
+            "D1856": -0.022553083300590516,
+            "D6400": -0.021561679244041444
+          },
+          "4": {
+            "D1856": -0.030084550380706787,
+            "D6400": -0.029419778287410735
+          },
+          "5": {
+            "D1856": -0.012189050018787385,
+            "D6400": -0.010545308887958526
+          }
+        }
+      }
+    },
+    "neutral@6400-historical_particle_v3": {
+      "fit": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 73,
+            "lower": 167
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 89,
+            "lower": 151
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.03949238583445549,
+          "D6400": -0.04205563167730967
+        },
+        "subjects": {
+          "15": {
+            "D1856": -0.042696401476860046,
+            "D6400": -0.043143273890018465
+          },
+          "16": {
+            "D1856": -0.015007443726062775,
+            "D6400": -0.01605779379606247
+          },
+          "17": {
+            "D1856": -0.06163329780101776,
+            "D6400": -0.07185948640108109
+          },
+          "18": {
+            "D1856": -0.026806557178497316,
+            "D6400": -0.030214159190654753
+          },
+          "4": {
+            "D1856": -0.030298319458961488,
+            "D6400": -0.0348215788602829
+          },
+          "5": {
+            "D1856": -0.060512295365333556,
+            "D6400": -0.05623749792575836
+          }
+        }
+      },
+      "holds": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 24,
+            "lower": 6
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 24,
+            "lower": 6
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.08499895334243775,
+          "D6400": 0.07638791799545289
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.010713315010070801,
+            "D6400": 0.011400192975997925
+          },
+          "8": {
+            "D1856": 0.09641764163970948,
+            "D6400": 0.0930157482624054
+          },
+          "9": {
+            "D1856": 0.14786590337753297,
+            "D6400": 0.12474781274795532
+          }
+        }
+      },
+      "preservation": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 49,
+            "lower": 11
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 48,
+            "lower": 12
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.07044612765312194,
+          "D6400": 0.06400042672952017
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.014307934045791625,
+            "D6400": 0.014236962795257569
+          },
+          "8": {
+            "D1856": 0.064866104722023,
+            "D6400": 0.064118492603302
+          },
+          "9": {
+            "D1856": 0.1321643441915512,
+            "D6400": 0.11364582479000092
+          }
+        }
+      },
+      "test": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 31,
+            "lower": 209
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 37,
+            "lower": 203
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.044757354507843655,
+          "D6400": -0.04681924680868785
+        },
+        "subjects": {
+          "15": {
+            "D1856": -0.04607101827859879,
+            "D6400": -0.047167892754077914
+          },
+          "16": {
+            "D1856": -0.01849577873945236,
+            "D6400": -0.01982247978448868
+          },
+          "17": {
+            "D1856": -0.07598575353622436,
+            "D6400": -0.08328047096729278
+          },
+          "18": {
+            "D1856": -0.037384553253650664,
+            "D6400": -0.04138118624687195
+          },
+          "4": {
+            "D1856": -0.03157955110073089,
+            "D6400": -0.03465999364852905
+          },
+          "5": {
+            "D1856": -0.05902747213840485,
+            "D6400": -0.0546034574508667
+          }
+        }
+      }
+    },
+    "sampled_control@5120-historical_ordinary@6400": {
+      "fit": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 232,
+            "lower": 8
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 223,
+            "lower": 17
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.01876944104830424,
+          "D6400": 0.01908012603720029
+        },
+        "subjects": {
+          "15": {
+            "D1856": 0.011991451680660247,
+            "D6400": 0.012766526639461517
+          },
+          "16": {
+            "D1856": 0.01801874488592148,
+            "D6400": 0.017889752984046936
+          },
+          "17": {
+            "D1856": 0.019217056035995484,
+            "D6400": 0.019930419325828553
+          },
+          "18": {
+            "D1856": 0.012719102203845978,
+            "D6400": 0.012331013381481171
+          },
+          "4": {
+            "D1856": 0.032373280823230745,
+            "D6400": 0.030676339566707612
+          },
+          "5": {
+            "D1856": 0.01829701066017151,
+            "D6400": 0.020886704325675964
+          }
+        }
+      },
+      "holds": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 30,
+            "lower": 0
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 30,
+            "lower": 0
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.17950156529744465,
+          "D6400": 0.16535377303759258
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.07827463150024414,
+            "D6400": 0.07844345569610596
+          },
+          "8": {
+            "D1856": 0.18017787337303162,
+            "D6400": 0.18013135194778443
+          },
+          "9": {
+            "D1856": 0.2800521910190582,
+            "D6400": 0.23748651146888733
+          }
+        }
+      },
+      "preservation": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 60,
+            "lower": 0
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 60,
+            "lower": 0
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.15911745329697927,
+          "D6400": 0.14891022841135662
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.08503866493701935,
+            "D6400": 0.08367938995361328
+          },
+          "8": {
+            "D1856": 0.15213714241981507,
+            "D6400": 0.15566197633743287
+          },
+          "9": {
+            "D1856": 0.2401765525341034,
+            "D6400": 0.20738931894302368
+          }
+        }
+      },
+      "test": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 234,
+            "lower": 6
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 233,
+            "lower": 7
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.027346203476190566,
+          "D6400": 0.027485474695762
+        },
+        "subjects": {
+          "15": {
+            "D1856": 0.01358914077281952,
+            "D6400": 0.014322824776172638
+          },
+          "16": {
+            "D1856": 0.022160360217094423,
+            "D6400": 0.021459014713764192
+          },
+          "17": {
+            "D1856": 0.03587142080068588,
+            "D6400": 0.03610361963510513
+          },
+          "18": {
+            "D1856": 0.02729578912258148,
+            "D6400": 0.02746111899614334
+          },
+          "4": {
+            "D1856": 0.03911826312541962,
+            "D6400": 0.03787160515785217
+          },
+          "5": {
+            "D1856": 0.026042246818542482,
+            "D6400": 0.027694664895534515
+          }
+        }
+      }
+    },
+    "sampled_control@6400-historical_ordinary@6400": {
+      "fit": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 140,
+            "lower": 100
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 121,
+            "lower": 119
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.0007019110023975372,
+          "D6400": -0.00010834733645121256
+        },
+        "subjects": {
+          "15": {
+            "D1856": 0.0010790377855300903,
+            "D6400": 0.0006466463208198547
+          },
+          "16": {
+            "D1856": 0.00228392630815506,
+            "D6400": 0.0016736909747123718
+          },
+          "17": {
+            "D1856": 6.139278411865234e-06,
+            "D6400": -0.0008677363395690918
+          },
+          "18": {
+            "D1856": -0.0028010621666908265,
+            "D6400": -0.004364173114299774
+          },
+          "4": {
+            "D1856": 0.0015158668160438538,
+            "D6400": 0.00014150142669677734
+          },
+          "5": {
+            "D1856": 0.0021275579929351807,
+            "D6400": 0.0021199867129325866
+          }
+        }
+      },
+      "holds": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 30,
+            "lower": 0
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 30,
+            "lower": 0
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.1837325155735016,
+          "D6400": 0.16950063705444335
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.08198899626731873,
+            "D6400": 0.08230435848236084
+          },
+          "8": {
+            "D1856": 0.1895389437675476,
+            "D6400": 0.18947384953498841
+          },
+          "9": {
+            "D1856": 0.27966960668563845,
+            "D6400": 0.23672370314598085
+          }
+        }
+      },
+      "preservation": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 60,
+            "lower": 0
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 60,
+            "lower": 0
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.1620542605717977,
+          "D6400": 0.15206090013186138
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.08787258863449096,
+            "D6400": 0.08666078746318817
+          },
+          "8": {
+            "D1856": 0.16240672171115875,
+            "D6400": 0.16581461131572722
+          },
+          "9": {
+            "D1856": 0.23588347136974336,
+            "D6400": 0.2037073016166687
+          }
+        }
+      },
+      "test": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 218,
+            "lower": 22
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 213,
+            "lower": 27
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.016031896819670995,
+          "D6400": 0.016005303959051767
+        },
+        "subjects": {
+          "15": {
+            "D1856": 0.008057509362697602,
+            "D6400": 0.008268791437149047
+          },
+          "16": {
+            "D1856": 0.013523201644420623,
+            "D6400": 0.01324700266122818
+          },
+          "17": {
+            "D1856": 0.021627728641033173,
+            "D6400": 0.021145185828208922
+          },
+          "18": {
+            "D1856": 0.01659037470817566,
+            "D6400": 0.016469962894916534
+          },
+          "4": {
+            "D1856": 0.017755188047885895,
+            "D6400": 0.01759900003671646
+          },
+          "5": {
+            "D1856": 0.01863737851381302,
+            "D6400": 0.019301880896091462
+          }
+        }
+      }
+    },
+    "sampled_control@6400-minus-5120": {
+      "fit": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 0,
+            "lower": 240
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 0,
+            "lower": 240
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.018067530045906704,
+          "D6400": -0.019188473373651503
+        },
+        "subjects": {
+          "15": {
+            "D1856": -0.010912413895130157,
+            "D6400": -0.012119880318641663
+          },
+          "16": {
+            "D1856": -0.01573481857776642,
+            "D6400": -0.016216062009334564
+          },
+          "17": {
+            "D1856": -0.01921091675758362,
+            "D6400": -0.020798155665397645
+          },
+          "18": {
+            "D1856": -0.015520164370536804,
+            "D6400": -0.016695186495780945
+          },
+          "4": {
+            "D1856": -0.03085741400718689,
+            "D6400": -0.030534838140010834
+          },
+          "5": {
+            "D1856": -0.01616945266723633,
+            "D6400": -0.01876671761274338
+          }
+        }
+      },
+      "holds": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 26,
+            "lower": 4
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 26,
+            "lower": 4
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.004230950276056925,
+          "D6400": 0.004146864016850789
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.003714364767074585,
+            "D6400": 0.0038609027862548826
+          },
+          "8": {
+            "D1856": 0.009361070394515992,
+            "D6400": 0.00934249758720398
+          },
+          "9": {
+            "D1856": -0.0003825843334197998,
+            "D6400": -0.0007628083229064941
+          }
+        }
+      },
+      "preservation": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 38,
+            "lower": 22
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 38,
+            "lower": 22
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.0029368072748184202,
+          "D6400": 0.0031506717205047607
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.0028339236974716186,
+            "D6400": 0.0029813975095748903
+          },
+          "8": {
+            "D1856": 0.01026957929134369,
+            "D6400": 0.010152634978294373
+          },
+          "9": {
+            "D1856": -0.004293081164360046,
+            "D6400": -0.0036820173263549805
+          }
+        }
+      },
+      "test": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 25,
+            "lower": 215
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 28,
+            "lower": 212
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.011314306656519573,
+          "D6400": -0.01148017073671023
+        },
+        "subjects": {
+          "15": {
+            "D1856": -0.005531631410121918,
+            "D6400": -0.00605403333902359
+          },
+          "16": {
+            "D1856": -0.008637158572673798,
+            "D6400": -0.008212012052536011
+          },
+          "17": {
+            "D1856": -0.01424369215965271,
+            "D6400": -0.01495843380689621
+          },
+          "18": {
+            "D1856": -0.010705414414405822,
+            "D6400": -0.010991156101226807
+          },
+          "4": {
+            "D1856": -0.02136307507753372,
+            "D6400": -0.02027260512113571
+          },
+          "5": {
+            "D1856": -0.0074048683047294615,
+            "D6400": -0.008392783999443054
+          }
+        }
+      }
+    },
+    "sampled_hb_neutral@5120-historical_ordinary@6400": {
+      "fit": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 216,
+            "lower": 24
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 208,
+            "lower": 32
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.012384327501058579,
+          "D6400": 0.01326125164826711
+        },
+        "subjects": {
+          "15": {
+            "D1856": 0.021257174015045167,
+            "D6400": 0.024873629212379456
+          },
+          "16": {
+            "D1856": 0.012631671130657196,
+            "D6400": 0.012505051493644715
+          },
+          "17": {
+            "D1856": 0.009449329972267152,
+            "D6400": 0.008857735991477966
+          },
+          "18": {
+            "D1856": 0.005576607584953308,
+            "D6400": 0.004398338496685028
+          },
+          "4": {
+            "D1856": 0.016633768379688264,
+            "D6400": 0.017432619631290436
+          },
+          "5": {
+            "D1856": 0.008757413923740387,
+            "D6400": 0.011500135064125061
+          }
+        }
+      },
+      "holds": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 30,
+            "lower": 0
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 30,
+            "lower": 0
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.14164036711057026,
+          "D6400": 0.13334336678187053
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.041658681631088254,
+            "D6400": 0.04362828135490417
+          },
+          "8": {
+            "D1856": 0.17105727791786193,
+            "D6400": 0.17062758207321166
+          },
+          "9": {
+            "D1856": 0.21220514178276062,
+            "D6400": 0.18577423691749573
+          }
+        }
+      },
+      "preservation": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 60,
+            "lower": 0
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 60,
+            "lower": 0
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.12058258155981699,
+          "D6400": 0.11546823879082997
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.04483226239681244,
+            "D6400": 0.04652753472328186
+          },
+          "8": {
+            "D1856": 0.13537714183330535,
+            "D6400": 0.13752521574497223
+          },
+          "9": {
+            "D1856": 0.1815383404493332,
+            "D6400": 0.16235196590423584
+          }
+        }
+      },
+      "test": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 202,
+            "lower": 38
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 198,
+            "lower": 42
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.015510984013477962,
+          "D6400": 0.01569648509224256
+        },
+        "subjects": {
+          "15": {
+            "D1856": 0.0087347149848938,
+            "D6400": 0.010650014877319336
+          },
+          "16": {
+            "D1856": 0.010242748260498046,
+            "D6400": 0.009774209558963775
+          },
+          "17": {
+            "D1856": 0.02305227369070053,
+            "D6400": 0.02085052877664566
+          },
+          "18": {
+            "D1856": 0.01656034141778946,
+            "D6400": 0.016247016191482545
+          },
+          "4": {
+            "D1856": 0.017008084058761596,
+            "D6400": 0.017270386219024658
+          },
+          "5": {
+            "D1856": 0.017467741668224335,
+            "D6400": 0.01938675493001938
+          }
+        }
+      }
+    },
+    "sampled_hb_neutral@6400-historical_ordinary@6400": {
+      "fit": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 44,
+            "lower": 196
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 42,
+            "lower": 198
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.00286011149485906,
+          "D6400": -0.0036901031931241353
+        },
+        "subjects": {
+          "15": {
+            "D1856": 0.00863671749830246,
+            "D6400": 0.009866343438625335
+          },
+          "16": {
+            "D1856": -0.0011787787079811096,
+            "D6400": -0.0022799015045166016
+          },
+          "17": {
+            "D1856": -0.006925104558467865,
+            "D6400": -0.008112096786499023
+          },
+          "18": {
+            "D1856": -0.008243279159069061,
+            "D6400": -0.010744458436965943
+          },
+          "4": {
+            "D1856": -0.0033736363053321838,
+            "D6400": -0.004669855535030365
+          },
+          "5": {
+            "D1856": -0.006076587736606598,
+            "D6400": -0.006200650334358215
+          }
+        }
+      },
+      "holds": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 30,
+            "lower": 0
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 30,
+            "lower": 0
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.15055460731188455,
+          "D6400": 0.14113200505574544
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.04514199495315552,
+            "D6400": 0.04724283218383789
+          },
+          "8": {
+            "D1856": 0.1825820505619049,
+            "D6400": 0.18176296949386597
+          },
+          "9": {
+            "D1856": 0.22393977642059326,
+            "D6400": 0.19439021348953248
+          }
+        }
+      },
+      "preservation": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 60,
+            "lower": 0
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 60,
+            "lower": 0
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.1274082084496816,
+          "D6400": 0.12160763839880626
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.048545938730239865,
+            "D6400": 0.05025289356708527
+          },
+          "8": {
+            "D1856": 0.14479406774044037,
+            "D6400": 0.1467028945684433
+          },
+          "9": {
+            "D1856": 0.18888461887836455,
+            "D6400": 0.1678671270608902
+          }
+        }
+      },
+      "test": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 169,
+            "lower": 71
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 169,
+            "lower": 71
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.0067457124590873715,
+          "D6400": 0.00649262194832166
+        },
+        "subjects": {
+          "15": {
+            "D1856": 0.005410052835941315,
+            "D6400": 0.006396004557609558
+          },
+          "16": {
+            "D1856": 0.00384315550327301,
+            "D6400": 0.0034839615225791933
+          },
+          "17": {
+            "D1856": 0.009972475469112396,
+            "D6400": 0.008304204046726226
+          },
+          "18": {
+            "D1856": 0.00909324586391449,
+            "D6400": 0.008397406339645386
+          },
+          "4": {
+            "D1856": 0.006136180460453033,
+            "D6400": 0.006115433573722839
+          },
+          "5": {
+            "D1856": 0.006019164621829986,
+            "D6400": 0.006258721649646759
+          }
+        }
+      }
+    },
+    "sampled_hb_neutral@6400-minus-5120": {
+      "fit": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 5,
+            "lower": 235
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 5,
+            "lower": 235
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.015244438995917637,
+          "D6400": -0.016951354841391247
+        },
+        "subjects": {
+          "15": {
+            "D1856": -0.012620456516742706,
+            "D6400": -0.01500728577375412
+          },
+          "16": {
+            "D1856": -0.013810449838638305,
+            "D6400": -0.014784952998161316
+          },
+          "17": {
+            "D1856": -0.016374434530735015,
+            "D6400": -0.01696983277797699
+          },
+          "18": {
+            "D1856": -0.01381988674402237,
+            "D6400": -0.01514279693365097
+          },
+          "4": {
+            "D1856": -0.020007404685020446,
+            "D6400": -0.0221024751663208
+          },
+          "5": {
+            "D1856": -0.014834001660346985,
+            "D6400": -0.017700785398483278
+          }
+        }
+      },
+      "holds": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 27,
+            "lower": 3
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 28,
+            "lower": 2
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.00891424020131429,
+          "D6400": 0.007788638273874919
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.003483313322067261,
+            "D6400": 0.0036145508289337157
+          },
+          "8": {
+            "D1856": 0.011524772644042969,
+            "D6400": 0.011135387420654296
+          },
+          "9": {
+            "D1856": 0.011734634637832642,
+            "D6400": 0.008615976572036744
+          }
+        }
+      },
+      "preservation": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 51,
+            "lower": 9
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 51,
+            "lower": 9
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": 0.0068256268898646034,
+          "D6400": 0.006139399607976278
+        },
+        "subjects": {
+          "7": {
+            "D1856": 0.0037136763334274293,
+            "D6400": 0.003725358843803406
+          },
+          "8": {
+            "D1856": 0.009416925907135009,
+            "D6400": 0.009177678823471069
+          },
+          "9": {
+            "D1856": 0.007346278429031372,
+            "D6400": 0.005515161156654358
+          }
+        }
+      },
+      "test": {
+        "context_counts": {
+          "D1856": {
+            "equal": 0,
+            "higher": 35,
+            "lower": 205
+          },
+          "D6400": {
+            "equal": 0,
+            "higher": 37,
+            "lower": 203
+          }
+        },
+        "game_second_minus_first": {
+          "D1856": -0.008765271554390589,
+          "D6400": -0.009203863143920899
+        },
+        "subjects": {
+          "15": {
+            "D1856": -0.003324662148952484,
+            "D6400": -0.004254010319709778
+          },
+          "16": {
+            "D1856": -0.006399592757225037,
+            "D6400": -0.006290248036384583
+          },
+          "17": {
+            "D1856": -0.013079798221588135,
+            "D6400": -0.012546324729919433
+          },
+          "18": {
+            "D1856": -0.007467095553874969,
+            "D6400": -0.007849609851837159
+          },
+          "4": {
+            "D1856": -0.010871903598308563,
+            "D6400": -0.011154952645301818
+          },
+          "5": {
+            "D1856": -0.011448577046394348,
+            "D6400": -0.01312803328037262
+          }
+        }
+      }
+    }
+  },
+  "particle_ablations": {
+    "sampled_control@5120": {
+      "mass_only": {
+        "ablation_minus_live": {
+          "fit": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 240,
+                "lower": 0
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 240,
+                "lower": 0
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.2234808345635732,
+              "D6400": 0.2244368925690651
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.12191912084817887,
+                "D6400": 0.13000765591859817
+              },
+              "16": {
+                "D1856": 0.22296513617038727,
+                "D6400": 0.21725994795560838
+              },
+              "17": {
+                "D1856": 0.33514164686203,
+                "D6400": 0.33837753981351854
+              },
+              "18": {
+                "D1856": 0.15568632185459136,
+                "D6400": 0.16005484461784364
+              },
+              "4": {
+                "D1856": 0.3079024076461792,
+                "D6400": 0.3068051666021347
+              },
+              "5": {
+                "D1856": 0.19727037400007247,
+                "D6400": 0.19411620050668715
+              }
+            }
+          },
+          "holds": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 30
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 1,
+                "lower": 29
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.035478164752324425,
+              "D6400": -0.029505250851313274
+            },
+            "subjects": {
+              "7": {
+                "D1856": -0.01370842456817627,
+                "D6400": -0.01319158673286438
+              },
+              "8": {
+                "D1856": -0.04487278461456299,
+                "D6400": -0.04201744794845581
+              },
+              "9": {
+                "D1856": -0.04785328507423401,
+                "D6400": -0.03330671787261963
+              }
+            }
+          },
+          "preservation": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 60
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 2,
+                "lower": 58
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.031229127446810404,
+              "D6400": -0.026516478260358176
+            },
+            "subjects": {
+              "7": {
+                "D1856": -0.012472346425056458,
+                "D6400": -0.01155209243297577
+              },
+              "8": {
+                "D1856": -0.04347532391548157,
+                "D6400": -0.041711005568504336
+              },
+              "9": {
+                "D1856": -0.03773971199989319,
+                "D6400": -0.02628633677959442
+              }
+            }
+          },
+          "test": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 233,
+                "lower": 7
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 233,
+                "lower": 7
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.144129029661417,
+              "D6400": 0.14049547885855038
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.08371317386627197,
+                "D6400": 0.08838786333799362
+              },
+              "16": {
+                "D1856": 0.15632933825254441,
+                "D6400": 0.14680767357349395
+              },
+              "17": {
+                "D1856": 0.1816200852394104,
+                "D6400": 0.17922476083040237
+              },
+              "18": {
+                "D1856": 0.10164060592651367,
+                "D6400": 0.09887917637825012
+              },
+              "4": {
+                "D1856": 0.17902977913618087,
+                "D6400": 0.17698879837989806
+              },
+              "5": {
+                "D1856": 0.1624411955475807,
+                "D6400": 0.15268460065126419
+              }
+            }
+          }
+        },
+        "games_by_pool": {
+          "fit": {
+            "D1856": 1.01600639646252,
+            "D6400": 1.02289376805226
+          },
+          "holds": {
+            "D1856": 0.8466921428839366,
+            "D6400": 0.8370352228482564
+          },
+          "preservation": {
+            "D1856": 0.838287228345871,
+            "D6400": 0.8305108259121577
+          },
+          "test": {
+            "D1856": 1.084281729410092,
+            "D6400": 1.0923661038279533
+          }
+        }
+      },
+      "zero_code": {
+        "ablation_minus_live": {
+          "fit": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 239,
+                "lower": 1
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 239,
+                "lower": 1
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.27425691013534864,
+              "D6400": 0.27091132625937464
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.15616330802440642,
+                "D6400": 0.1664448380470276
+              },
+              "16": {
+                "D1856": 0.2765789955854416,
+                "D6400": 0.26426937580108645
+              },
+              "17": {
+                "D1856": 0.4178778424859047,
+                "D6400": 0.41342946141958237
+              },
+              "18": {
+                "D1856": 0.18780649453401566,
+                "D6400": 0.1899474486708641
+              },
+              "4": {
+                "D1856": 0.37698426842689514,
+                "D6400": 0.3668858364224434
+              },
+              "5": {
+                "D1856": 0.23013055175542832,
+                "D6400": 0.22449099719524385
+              }
+            }
+          },
+          "holds": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 30
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 30
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.047170627117156985,
+              "D6400": -0.04035118619600932
+            },
+            "subjects": {
+              "7": {
+                "D1856": -0.022693461179733275,
+                "D6400": -0.022110497951507567
+              },
+              "8": {
+                "D1856": -0.06187431216239929,
+                "D6400": -0.0583574652671814
+              },
+              "9": {
+                "D1856": -0.05694410800933838,
+                "D6400": -0.04058559536933899
+              }
+            }
+          },
+          "preservation": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 60
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 60
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.043365323543548585,
+              "D6400": -0.03787241280078888
+            },
+            "subjects": {
+              "7": {
+                "D1856": -0.022628200054168702,
+                "D6400": -0.021163830161094667
+              },
+              "8": {
+                "D1856": -0.057688817381858826,
+                "D6400": -0.05596523880958557
+              },
+              "9": {
+                "D1856": -0.049778953194618225,
+                "D6400": -0.0364881694316864
+              }
+            }
+          },
+          "test": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 232,
+                "lower": 8
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 232,
+                "lower": 8
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.18688194553057352,
+              "D6400": 0.1794060339530309
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.1098154678940773,
+                "D6400": 0.1164550855755806
+              },
+              "16": {
+                "D1856": 0.20801000744104386,
+                "D6400": 0.19195040315389633
+              },
+              "17": {
+                "D1856": 0.25097030103206636,
+                "D6400": 0.24221188873052596
+              },
+              "18": {
+                "D1856": 0.1288030967116356,
+                "D6400": 0.12350474745035171
+              },
+              "4": {
+                "D1856": 0.2370813563466072,
+                "D6400": 0.2284448564052582
+              },
+              "5": {
+                "D1856": 0.18661144375801086,
+                "D6400": 0.17386922240257263
+              }
+            }
+          }
+        },
+        "games_by_pool": {
+          "fit": {
+            "D1856": 1.0667824720342953,
+            "D6400": 1.0693682017425696
+          },
+          "holds": {
+            "D1856": 0.834999680519104,
+            "D6400": 0.8261892875035604
+          },
+          "preservation": {
+            "D1856": 0.8261510322491328,
+            "D6400": 0.819154891371727
+          },
+          "test": {
+            "D1856": 1.1270346452792486,
+            "D6400": 1.131276658922434
+          }
+        }
+      }
+    },
+    "sampled_control@6400": {
+      "mass_only": {
+        "ablation_minus_live": {
+          "fit": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 240,
+                "lower": 0
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 240,
+                "lower": 0
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.23758497163653375,
+              "D6400": 0.24037529701987903
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.13016690015792848,
+                "D6400": 0.13937304615974427
+              },
+              "16": {
+                "D1856": 0.23597339987754823,
+                "D6400": 0.2312609627842903
+              },
+              "17": {
+                "D1856": 0.357305271923542,
+                "D6400": 0.3616570845246315
+              },
+              "18": {
+                "D1856": 0.1698862209916115,
+                "D6400": 0.17504853010177612
+              },
+              "4": {
+                "D1856": 0.31839750707149506,
+                "D6400": 0.32183672189712526
+              },
+              "5": {
+                "D1856": 0.21378052979707718,
+                "D6400": 0.2130754366517067
+              }
+            }
+          },
+          "holds": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 30
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 1,
+                "lower": 29
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.036898221572240195,
+              "D6400": -0.031093164285024007
+            },
+            "subjects": {
+              "7": {
+                "D1856": -0.01589135527610779,
+                "D6400": -0.015472340583801269
+              },
+              "8": {
+                "D1856": -0.049595749378204344,
+                "D6400": -0.04622836112976074
+              },
+              "9": {
+                "D1856": -0.04520756006240845,
+                "D6400": -0.03157879114151001
+              }
+            }
+          },
+          "preservation": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 60
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 2,
+                "lower": 58
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.031835962335268655,
+              "D6400": -0.027409054835637412
+            },
+            "subjects": {
+              "7": {
+                "D1856": -0.014401951432228088,
+                "D6400": -0.013545364141464233
+              },
+              "8": {
+                "D1856": -0.04790220260620117,
+                "D6400": -0.04563921988010407
+              },
+              "9": {
+                "D1856": -0.033203732967376706,
+                "D6400": -0.02304258048534393
+              }
+            }
+          },
+          "test": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 236,
+                "lower": 4
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 236,
+                "lower": 4
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.15003826320171357,
+              "D6400": 0.1475401518245538
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.08726942241191864,
+                "D6400": 0.09235595017671586
+              },
+              "16": {
+                "D1856": 0.15925834327936172,
+                "D6400": 0.14988092631101607
+              },
+              "17": {
+                "D1856": 0.19196717441082,
+                "D6400": 0.19025330394506454
+              },
+              "18": {
+                "D1856": 0.10916384309530258,
+                "D6400": 0.10684793889522552
+              },
+              "4": {
+                "D1856": 0.18134331554174424,
+                "D6400": 0.18350548893213273
+              },
+              "5": {
+                "D1856": 0.17122748047113417,
+                "D6400": 0.16239730268716812
+              }
+            }
+          }
+        },
+        "games_by_pool": {
+          "fit": {
+            "D1856": 1.0120430034895738,
+            "D6400": 1.0196436991294224
+          },
+          "holds": {
+            "D1856": 0.8495030363400777,
+            "D6400": 0.8395941734313965
+          },
+          "preservation": {
+            "D1856": 0.8406172007322311,
+            "D6400": 0.8327689210573832
+          },
+          "test": {
+            "D1856": 1.078876656293869,
+            "D6400": 1.0879306060572465
+          }
+        }
+      },
+      "zero_code": {
+        "ablation_minus_live": {
+          "fit": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 240,
+                "lower": 0
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 240,
+                "lower": 0
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.2875279518465201,
+              "D6400": 0.28553652465343476
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.1614663928747177,
+                "D6400": 0.1725088283419609
+              },
+              "16": {
+                "D1856": 0.2904844179749489,
+                "D6400": 0.27853128761053086
+              },
+              "17": {
+                "D1856": 0.43805222362279894,
+                "D6400": 0.43442209213972094
+              },
+              "18": {
+                "D1856": 0.2001568704843521,
+                "D6400": 0.2029665544629097
+              },
+              "4": {
+                "D1856": 0.38594535142183306,
+                "D6400": 0.3799989491701126
+              },
+              "5": {
+                "D1856": 0.24906245470046998,
+                "D6400": 0.24479143619537352
+              }
+            }
+          },
+          "holds": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 30
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 30
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.050098882118860884,
+              "D6400": -0.04318090279897054
+            },
+            "subjects": {
+              "7": {
+                "D1856": -0.025795561075210572,
+                "D6400": -0.02512131929397583
+              },
+              "8": {
+                "D1856": -0.06742697954177856,
+                "D6400": -0.06369816660881042
+              },
+              "9": {
+                "D1856": -0.057074105739593504,
+                "D6400": -0.04072322249412537
+              }
+            }
+          },
+          "preservation": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 60
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 60
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.04528695543607076,
+              "D6400": -0.039624852935473125
+            },
+            "subjects": {
+              "7": {
+                "D1856": -0.024832436442375184,
+                "D6400": -0.023286738991737367
+              },
+              "8": {
+                "D1856": -0.06232323944568634,
+                "D6400": -0.060225680470466614
+              },
+              "9": {
+                "D1856": -0.04870519042015076,
+                "D6400": -0.03536213934421539
+              }
+            }
+          },
+          "test": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 230,
+                "lower": 10
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 233,
+                "lower": 7
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.19269559358557065,
+              "D6400": 0.185871738443772
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.11252840161323548,
+                "D6400": 0.11927954405546189
+              },
+              "16": {
+                "D1856": 0.2118847906589508,
+                "D6400": 0.19571853876113893
+              },
+              "17": {
+                "D1856": 0.2611502468585968,
+                "D6400": 0.25266428142786024
+              },
+              "18": {
+                "D1856": 0.132862089574337,
+                "D6400": 0.12789573073387145
+              },
+              "4": {
+                "D1856": 0.23741267919540404,
+                "D6400": 0.23217358142137529
+              },
+              "5": {
+                "D1856": 0.20033535361289978,
+                "D6400": 0.1874987542629242
+              }
+            }
+          }
+        },
+        "games_by_pool": {
+          "fit": {
+            "D1856": 1.0619859836995602,
+            "D6400": 1.0648049267629782
+          },
+          "holds": {
+            "D1856": 0.836302375793457,
+            "D6400": 0.8275064349174499
+          },
+          "preservation": {
+            "D1856": 0.827166207631429,
+            "D6400": 0.8205531229575475
+          },
+          "test": {
+            "D1856": 1.121533986677726,
+            "D6400": 1.1262621926764647
+          }
+        }
+      }
+    },
+    "sampled_hb_neutral@5120": {
+      "mass_only": {
+        "ablation_minus_live": {
+          "fit": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 240,
+                "lower": 0
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 240,
+                "lower": 0
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.2975642184416453,
+              "D6400": 0.2960581707457701
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.14634329378604888,
+                "D6400": 0.1522889956831932
+              },
+              "16": {
+                "D1856": 0.32592456638813017,
+                "D6400": 0.3125025019049644
+              },
+              "17": {
+                "D1856": 0.47618686109781266,
+                "D6400": 0.47625023275613787
+              },
+              "18": {
+                "D1856": 0.20420809090137482,
+                "D6400": 0.2081077754497528
+              },
+              "4": {
+                "D1856": 0.4034817412495613,
+                "D6400": 0.3992708146572113
+              },
+              "5": {
+                "D1856": 0.22924075722694398,
+                "D6400": 0.2279287040233612
+              }
+            }
+          },
+          "holds": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 6,
+                "lower": 24
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 6,
+                "lower": 24
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.022169409195582072,
+              "D6400": -0.017968583106994628
+            },
+            "subjects": {
+              "7": {
+                "D1856": 0.0005656540393829346,
+                "D6400": 0.000831770896911621
+              },
+              "8": {
+                "D1856": -0.04746687412261963,
+                "D6400": -0.04361644387245178
+              },
+              "9": {
+                "D1856": -0.01960700750350952,
+                "D6400": -0.011121076345443726
+              }
+            }
+          },
+          "preservation": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 15,
+                "lower": 45
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 15,
+                "lower": 45
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.017183809479077657,
+              "D6400": -0.014208516478538514
+            },
+            "subjects": {
+              "7": {
+                "D1856": 0.0029820531606674196,
+                "D6400": 0.003463330864906311
+              },
+              "8": {
+                "D1856": -0.03718036413192749,
+                "D6400": -0.03507732748985291
+              },
+              "9": {
+                "D1856": -0.0173531174659729,
+                "D6400": -0.011011552810668946
+              }
+            }
+          },
+          "test": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 236,
+                "lower": 4
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 237,
+                "lower": 3
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.20033908486366273,
+              "D6400": 0.19521292423208556
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.10736929327249527,
+                "D6400": 0.11165584921836853
+              },
+              "16": {
+                "D1856": 0.2423481062054634,
+                "D6400": 0.22597251385450362
+              },
+              "17": {
+                "D1856": 0.2932469263672829,
+                "D6400": 0.28964864313602445
+              },
+              "18": {
+                "D1856": 0.13458665311336518,
+                "D6400": 0.13147660940885544
+              },
+              "4": {
+                "D1856": 0.24273995012044908,
+                "D6400": 0.24021434187889099
+              },
+              "5": {
+                "D1856": 0.18174358010292052,
+                "D6400": 0.1723095878958702
+              }
+            }
+          }
+        },
+        "games_by_pool": {
+          "fit": {
+            "D1856": 1.0837046667933463,
+            "D6400": 1.0886961718400319
+          },
+          "holds": {
+            "D1856": 0.8221397002538046,
+            "D6400": 0.816561484336853
+          },
+          "preservation": {
+            "D1856": 0.8137976745764415,
+            "D6400": 0.8093767980734508
+          },
+          "test": {
+            "D1856": 1.1286565651496252,
+            "D6400": 1.135294559597969
+          }
+        }
+      },
+      "zero_code": {
+        "ablation_minus_live": {
+          "fit": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 240,
+                "lower": 0
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 240,
+                "lower": 0
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.3474989138543606,
+              "D6400": 0.3405738321443399
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.18481073528528214,
+                "D6400": 0.19271232932806015
+              },
+              "16": {
+                "D1856": 0.3830091267824173,
+                "D6400": 0.3612815424799919
+              },
+              "17": {
+                "D1856": 0.5485701590776444,
+                "D6400": 0.5389310151338578
+              },
+              "18": {
+                "D1856": 0.23547588735818864,
+                "D6400": 0.23729030042886734
+              },
+              "4": {
+                "D1856": 0.4524162203073502,
+                "D6400": 0.44061092734336854
+              },
+              "5": {
+                "D1856": 0.28071135431528094,
+                "D6400": 0.2726168781518936
+              }
+            }
+          },
+          "holds": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 30
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 30
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.044958585500717164,
+              "D6400": -0.03869145115216573
+            },
+            "subjects": {
+              "7": {
+                "D1856": -0.011050856113433838,
+                "D6400": -0.011218595504760741
+              },
+              "8": {
+                "D1856": -0.07001802325248718,
+                "D6400": -0.06576879024505615
+              },
+              "9": {
+                "D1856": -0.05380687713623047,
+                "D6400": -0.0390869677066803
+              }
+            }
+          },
+          "preservation": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 60
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 60
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.03788272937138875,
+              "D6400": -0.033251209060351054
+            },
+            "subjects": {
+              "7": {
+                "D1856": -0.01093461513519287,
+                "D6400": -0.01060335636138916
+              },
+              "8": {
+                "D1856": -0.055921563506126405,
+                "D6400": -0.053700235486030576
+              },
+              "9": {
+                "D1856": -0.046792009472846986,
+                "D6400": -0.035450035333633424
+              }
+            }
+          },
+          "test": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 236,
+                "lower": 4
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 236,
+                "lower": 4
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.24406719456116358,
+              "D6400": 0.2340252513686816
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.1426260232925415,
+                "D6400": 0.14861669540405273
+              },
+              "16": {
+                "D1856": 0.2909366860985756,
+                "D6400": 0.26724476665258406
+              },
+              "17": {
+                "D1856": 0.3531493470072746,
+                "D6400": 0.34206955283880236
+              },
+              "18": {
+                "D1856": 0.16385008841753007,
+                "D6400": 0.15711499005556107
+              },
+              "4": {
+                "D1856": 0.287910658121109,
+                "D6400": 0.28004488348960876
+              },
+              "5": {
+                "D1856": 0.2259303644299507,
+                "D6400": 0.20906061977148055
+              }
+            }
+          }
+        },
+        "games_by_pool": {
+          "fit": {
+            "D1856": 1.1336393622060617,
+            "D6400": 1.1332118332386016
+          },
+          "holds": {
+            "D1856": 0.7993505239486695,
+            "D6400": 0.795838616291682
+          },
+          "preservation": {
+            "D1856": 0.7930987546841304,
+            "D6400": 0.7903341054916382
+          },
+          "test": {
+            "D1856": 1.172384674847126,
+            "D6400": 1.1741068867345652
+          }
+        }
+      }
+    },
+    "sampled_hb_neutral@6400": {
+      "mass_only": {
+        "ablation_minus_live": {
+          "fit": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 240,
+                "lower": 0
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 240,
+                "lower": 0
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.3097591668367386,
+              "D6400": 0.31046150575081505
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.15983820855617523,
+                "D6400": 0.16781640350818633
+              },
+              "16": {
+                "D1856": 0.3336678683757782,
+                "D6400": 0.3225602865219116
+              },
+              "17": {
+                "D1856": 0.4920674622058868,
+                "D6400": 0.49449102729558947
+              },
+              "18": {
+                "D1856": 0.21739825904369353,
+                "D6400": 0.22255878746509553
+              },
+              "4": {
+                "D1856": 0.4130204111337662,
+                "D6400": 0.41175561845302583
+              },
+              "5": {
+                "D1856": 0.24256279170513154,
+                "D6400": 0.2435869112610817
+              }
+            }
+          },
+          "holds": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 6,
+                "lower": 24
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 6,
+                "lower": 24
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.023099738359451293,
+              "D6400": -0.018600829442342124
+            },
+            "subjects": {
+              "7": {
+                "D1856": 0.0016967475414276123,
+                "D6400": 0.0019072115421295166
+              },
+              "8": {
+                "D1856": -0.05045170783996582,
+                "D6400": -0.04619383215904236
+              },
+              "9": {
+                "D1856": -0.020544254779815675,
+                "D6400": -0.011515867710113526
+              }
+            }
+          },
+          "preservation": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 18,
+                "lower": 42
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 20,
+                "lower": 40
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.015807621677716575,
+              "D6400": -0.012733972072601319
+            },
+            "subjects": {
+              "7": {
+                "D1856": 0.005779194831848145,
+                "D6400": 0.006158477067947388
+              },
+              "8": {
+                "D1856": -0.03853758871555328,
+                "D6400": -0.036079075932502744
+              },
+              "9": {
+                "D1856": -0.01466447114944458,
+                "D6400": -0.008281317353248597
+              }
+            }
+          },
+          "test": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 239,
+                "lower": 1
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 240,
+                "lower": 0
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.20446098744869232,
+              "D6400": 0.2002794529000918
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.10825386643409729,
+                "D6400": 0.11305191665887833
+              },
+              "16": {
+                "D1856": 0.24436226785182952,
+                "D6400": 0.22888565361499785
+              },
+              "17": {
+                "D1856": 0.2994349405169487,
+                "D6400": 0.29692489355802537
+              },
+              "18": {
+                "D1856": 0.13881388008594514,
+                "D6400": 0.1364076942205429
+              },
+              "4": {
+                "D1856": 0.2456259161233902,
+                "D6400": 0.24365954250097274
+              },
+              "5": {
+                "D1856": 0.19027505367994307,
+                "D6400": 0.18274701684713363
+              }
+            }
+          }
+        },
+        "games_by_pool": {
+          "fit": {
+            "D1856": 1.080655176192522,
+            "D6400": 1.0861481520036855
+          },
+          "holds": {
+            "D1856": 0.8301236112912496,
+            "D6400": 0.8237178762753804
+          },
+          "preservation": {
+            "D1856": 0.8219994892676671,
+            "D6400": 0.8169907420873642
+          },
+          "test": {
+            "D1856": 1.1240131961802642,
+            "D6400": 1.1311572251220545
+          }
+        }
+      },
+      "zero_code": {
+        "ablation_minus_live": {
+          "fit": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 240,
+                "lower": 0
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 240,
+                "lower": 0
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.35894349217414856,
+              "D6400": 0.35414090181390445
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.20059362947940826,
+                "D6400": 0.21049200594425202
+              },
+              "16": {
+                "D1856": 0.39049006104469297,
+                "D6400": 0.3710246503353119
+              },
+              "17": {
+                "D1856": 0.5612111806869506,
+                "D6400": 0.5543071016669273
+              },
+              "18": {
+                "D1856": 0.2461023211479187,
+                "D6400": 0.2491595223546028
+              },
+              "4": {
+                "D1856": 0.45912552028894427,
+                "D6400": 0.45021667182445524
+              },
+              "5": {
+                "D1856": 0.29613824039697645,
+                "D6400": 0.28964545875787734
+              }
+            }
+          },
+          "holds": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 30
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 30
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.04838443597157796,
+              "D6400": -0.041693679491678876
+            },
+            "subjects": {
+              "7": {
+                "D1856": -0.012088298797607422,
+                "D6400": -0.012375205755233765
+              },
+              "8": {
+                "D1856": -0.0760992169380188,
+                "D6400": -0.07149003148078918
+              },
+              "9": {
+                "D1856": -0.05696579217910767,
+                "D6400": -0.04121580123901367
+              }
+            }
+          },
+          "preservation": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 60
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 0,
+                "lower": 60
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": -0.03991136352221171,
+              "D6400": -0.035118195414543155
+            },
+            "subjects": {
+              "7": {
+                "D1856": -0.01153709888458252,
+                "D6400": -0.011208546161651612
+              },
+              "8": {
+                "D1856": -0.060572534799575806,
+                "D6400": -0.058148905634880066
+              },
+              "9": {
+                "D1856": -0.04762445688247681,
+                "D6400": -0.035997134447097776
+              }
+            }
+          },
+          "test": {
+            "context_counts": {
+              "D1856": {
+                "equal": 0,
+                "higher": 237,
+                "lower": 3
+              },
+              "D6400": {
+                "equal": 0,
+                "higher": 237,
+                "lower": 3
+              }
+            },
+            "game_second_minus_first": {
+              "D1856": 0.24865156039595604,
+              "D6400": 0.23953355823953945
+            },
+            "subjects": {
+              "15": {
+                "D1856": 0.1485435113310814,
+                "D6400": 0.1549898788332939
+              },
+              "16": {
+                "D1856": 0.2921540305018425,
+                "D6400": 0.2693518802523613
+              },
+              "17": {
+                "D1856": 0.35672437101602555,
+                "D6400": 0.34700954109430315
+              },
+              "18": {
+                "D1856": 0.16653660386800767,
+                "D6400": 0.16051068902015686
+              },
+              "4": {
+                "D1856": 0.2894142150878906,
+                "D6400": 0.2824865818023682
+              },
+              "5": {
+                "D1856": 0.23853663057088853,
+                "D6400": 0.22285277843475343
+              }
+            }
+          }
+        },
+        "games_by_pool": {
+          "fit": {
+            "D1856": 1.129839501529932,
+            "D6400": 1.129827548066775
+          },
+          "holds": {
+            "D1856": 0.804838913679123,
+            "D6400": 0.8006250262260437
+          },
+          "preservation": {
+            "D1856": 0.797895747423172,
+            "D6400": 0.7946065187454223
+          },
+          "test": {
+            "D1856": 1.1682037691275278,
+            "D6400": 1.170411330461502
+          }
+        }
+      }
+    }
+  },
+  "qualification_credit": "none",
+  "qualified": false,
+  "raw_file_sha256": {
+    "docs/e22_supra_neutral_initialization_protocol.json": "31c1f596f9d3ba2ff600115311029ec3fa3b895a0925d9bcd35413049f5195cf",
+    "outputs/e22-supra-neutral-initialization-6400/historical-references.json": "0d06363eb5577372f7ffef4c1628543c2cb6dc710b9d0ebdd516d08f9981efea",
+    "outputs/e22-supra-neutral-initialization-6400/judges.json": "d3ef7ffea9eacea3bbd6766a3b87b52646e9aacbbf2583db62b8672b5ce695dd",
+    "outputs/e22-supra-neutral-initialization-6400/plan.json": "4dcfcf52d3753da093e6ae5756517f9ae47d24a7f7f6f63c0b1ab821e965be77",
+    "outputs/e22-supra-neutral-initialization-6400/receipt.json": "be1631db4f5fd402df620f027c84faf74af978bbea46d2791ddbf764dff8f480",
+    "outputs/e22-supra-neutral-initialization-6400/sampled_control/evaluation-05120.json": "59f4698ef263faea57ef9ce3a6d4460017ce12e8d175c6e7158d0e41c7932730",
+    "outputs/e22-supra-neutral-initialization-6400/sampled_control/evaluation-06400.json": "1c7eb30cdf2412548d731e34282f8ffc2fdfb419b68d0eb73016d7a8f666319f",
+    "outputs/e22-supra-neutral-initialization-6400/sampled_control/particle-ablations-05120.json": "20869cdf363fc0188170c414cc2d4571b0fd4cad0c1cfe95d8a77dad2cfb9469",
+    "outputs/e22-supra-neutral-initialization-6400/sampled_control/particle-ablations-06400.json": "22dafb79020fa9c8f4a62e1d53f3120edb00750b54591b8ace740908d271f0d2",
+    "outputs/e22-supra-neutral-initialization-6400/sampled_hb_neutral/evaluation-05120.json": "5bcf51ae7a55df149563bd7840bfaa9ef4d12a6b842c62ae91557d9f86cb75dd",
+    "outputs/e22-supra-neutral-initialization-6400/sampled_hb_neutral/evaluation-06400.json": "9b83176d513a16d8f92f1ace5b931b0bfb45df38898d93c00e8aaee31d228b16",
+    "outputs/e22-supra-neutral-initialization-6400/sampled_hb_neutral/particle-ablations-05120.json": "2b7ac91da870a623bf1da41e86b10de9ae5841fd1916c9ba6af06e41de58b688",
+    "outputs/e22-supra-neutral-initialization-6400/sampled_hb_neutral/particle-ablations-06400.json": "0440bda8f9c18dce4f96c0b6b39f245e39398488684013873858cc014143a4c1"
+  },
+  "raw_reduction_checks": {
+    "all_consumed_files_immutable": true,
+    "all_context_counts": {
+      "fit": 240,
+      "holds": 30,
+      "preservation": 60,
+      "test": 240
+    },
+    "all_subject_ids_by_pool": {
+      "fit": [
+        "15",
+        "16",
+        "17",
+        "18",
+        "4",
+        "5"
+      ],
+      "holds": [
+        "7",
+        "8",
+        "9"
+      ],
+      "preservation": [
+        "7",
+        "8",
+        "9"
+      ],
+      "test": [
+        "15",
+        "16",
+        "17",
+        "18",
+        "4",
+        "5"
+      ]
+    },
+    "both_judges_mandatory": [
+      "D1856",
+      "D6400"
+    ],
+    "metadata_pairing_equal": true,
+    "stored_game_and_RMSE_reductions_recomputed": true
+  },
+  "read_scope": {
+    "model_forwards": 0,
+    "model_or_checkpoint_loads": 0,
+    "optimizer_updates": 0,
+    "raw_JSON_reads_only": true,
+    "torch_imports": 0
+  },
+  "reported_particle_activity_pending_state_review": {
+    "sampled_control": {
+      "C_max_norm": 1.2142703533172607,
+      "C_min_norm": 0.9642084240913391,
+      "C_site_count": 71,
+      "H_b_trainable": true,
+      "bank_changed": true,
+      "dense_128_row_updates": 6399,
+      "live_bank_updates": 6399,
+      "moves": 0,
+      "router_changed": true
+    },
+    "sampled_hb_neutral": {
+      "C_max_norm": 1.23868727684021,
+      "C_min_norm": 0.9601458311080933,
+      "C_site_count": 71,
+      "H_b_trainable": true,
+      "bank_changed": true,
+      "dense_128_row_updates": 6399,
+      "live_bank_updates": 6399,
+      "moves": 0,
+      "router_changed": true
+    }
+  },
+  "run": "outputs/e22-supra-neutral-initialization-6400",
+  "schema": "supra_fixed_endpoint_raw_observations_v1",
+  "status": "descriptive completed-run observations; independent final artifact review pending",
+  "summary_observations": [
+    "At6400 neutral beats the fresh control on mean held-out native game for both critics and all six editing subjects, but remains behind historical ordinary for both critics and all six editing subjects.",
+    "Both fresh arms improve every held-out editing subject mean under both critics from5120 to6400; endpoint summaries alone do not establish a plateau or predict continued convergence.",
+    "Neutral fit mean beats historical ordinary under both critics; its test mean remains worse. Preservation/holds are secondary observations and supplied no training updates.",
+    "Zero-code and mass-only routing increase mean held-out native game in both arms at both endpoints; the learned particle contribution remains substantial.",
+    "Fresh neutral beats historicalV2 andV3 held-out mean games under both fixed critics, with historical cohort/source limits retained."
+  ]
+}

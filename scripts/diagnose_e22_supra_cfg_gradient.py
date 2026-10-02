@@ -104,6 +104,13 @@ def qualified_review_identity(card, review_path, expected_sha256, *, root=ROOT):
     return review
 
 
+def check_checkpoint_contract(state, declared_config, step):
+    """Compare the unchanged saved config in the plan's JSON representation."""
+    actual_config = json.loads(json.dumps(state["config"], allow_nan=False))
+    if state["policy"]["completed_steps"] != step or actual_config != declared_config:
+        raise ValueError("actual saved checkpoint clock/config mismatch")
+
+
 def select_fit_indices(context):
     """Private CPU7, two contexts per fixed source; no data/metric search."""
     import torch
@@ -543,8 +550,7 @@ def main():
                 for step in card["checkpoints"]:
                     budget()
                     state = torch.load(inputs[arm + "/" + str(step)], map_location="cpu", weights_only=False, mmap=True)
-                    if state["policy"]["completed_steps"] != step or state["config"] != plan["configs"][arm]:
-                        raise ValueError("actual saved checkpoint clock/config mismatch")
+                    check_checkpoint_contract(state, plan["configs"][arm], step)
                     models, table = build_fast(state, data, device)
                     before = runtime_identity({**models, **judges}, table)
                     # Constructors/load only isolated owners. The native saved
