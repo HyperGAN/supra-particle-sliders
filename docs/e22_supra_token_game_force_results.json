@@ -1,0 +1,1858 @@
+{
+  "schema": "supra_token_game_force_compact_results_v1",
+  "qualified": true,
+  "scope": "Saved current critic local force audit on12 fixed fit contexts per arm. No parameter, joint-training or quality improvement claim.",
+  "report_path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-token-game-force-v1/report.json",
+  "report_sha256": "13948c3e294268999a2a6c72ed38ed06e176944e3607334a073da36c042df434",
+  "completion": {
+    "complete": true,
+    "qualified": true,
+    "report_sha256": "13948c3e294268999a2a6c72ed38ed06e176944e3607334a073da36c042df434",
+    "wall_seconds": 28.725037659984082,
+    "clock_scope": "After report write/hash; deadline also checked after completion write."
+  },
+  "completion_sha256": "f242cca2b03ded79fd0a6bfee39e9266db517fdc5fddc77785444fed64da61bf",
+  "card_sha256": "4eb075c5e90e20a53cf4f694f2eaab2a5e566679cc214144af5f4a2957573d0b",
+  "card_path": "docs/e22_supra_token_game_force_v1.json",
+  "critic_identities": {
+    "D1856": {
+      "checkpoint_sha256": "db06166f66fa0fa70ac36e4130bc30d7bd9c7028f075a4c6e71e9c46d3baa102",
+      "critic_tensor_digest": "e248f16ada2cdb6137f670e9c1dece3740db9175dee9eb324702bfab4b759d2d",
+      "module_witness": "0fc905cc754ec54ec3836a409f7c804415f0810c30445743caec32c7d4955852"
+    },
+    "D6400": {
+      "checkpoint_sha256": "54b243580206beb772db77132ff367fca9389b209149dcef9573449aeb8b7fcf",
+      "critic_tensor_digest": "43aa3af32850ccf5d17c4a12ca52f903d61901d734fbd0bc570280afcee16929",
+      "module_witness": "50dc861d3146869b4337b4bf4299704ae8a389744d7e228d22a561f0b6c3423c"
+    },
+    "sampled_control": {
+      "checkpoint_sha256": "947ae2315ceb828e75e3a1c6b56f0f589f7c04cdce0da3645bf31ad205c31096",
+      "critic_tensor_digest": "88ad464338ca462fb5dd456104d8ff482f1f37fb4a9f25ad175b8352b4859330",
+      "module_witness": "f8ee2ab2ade65973bddf9f552962012e5c4e741e3df0c344919bdc617d3ba3cc"
+    },
+    "sampled_hb_neutral": {
+      "checkpoint_sha256": "50b4adba4fe5b577342f6952b6aeb9bd60c74eaaa11499a1567f26aa9c2f432f",
+      "critic_tensor_digest": "dd665afb2d00b56ef69025d038edb5f7ca485abcbfc8636c2a463589ecde39bd",
+      "module_witness": "b600f67038f62cf9fdf2d7795b7bbd009e66d289cd43424626c199d8aff24c21"
+    }
+  },
+  "checks": {
+    "count": 59,
+    "all_passed": true
+  },
+  "observations": [
+    {
+      "arm": "sampled_control",
+      "fit_index": 55,
+      "source_caption_id": 4,
+      "time": 0.5,
+      "critic_batch_fit_indices": [
+        55,
+        66,
+        120,
+        131
+      ],
+      "own_native_game": 0.8473235368728638,
+      "own_token_game": 0.8546714186668396,
+      "own_native_radial_derivative": 0.2908149682065555,
+      "own_token_radial_derivative": 0.3093115668889518,
+      "own_native_origin_radial_derivative": -0.0002685646192596772,
+      "local_gap_standard_deviation": 0.24872402238820968,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.0947438108113318,
+        "token_direction_slope": -0.09430826469568658,
+        "token_minus_native_slope": 0.0004355461156452245,
+        "native_token_force_cosine": 0.9954029069348644,
+        "native_force_norm": 0.09474381081133187,
+        "token_force_norm": 0.0988656948149037
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.08634784334867045,
+          "token_direction_slope": -0.08592912610656829,
+          "token_minus_native_slope": 0.00041871724210215677,
+          "native_token_force_cosine": 0.9954029069348644,
+          "native_force_norm": 0.09474381081133187,
+          "token_force_norm": 0.0988656948149037,
+          "native_common_game": 0.8395293951034546,
+          "alpha1_game_replay_difference": -2.384185791015625e-07,
+          "alpha1_radial_replay_difference": -3.5790838737170816e-08
+        },
+        "D6400": {
+          "native_direction_slope": -0.09517890071500246,
+          "token_direction_slope": -0.0945703191204399,
+          "token_minus_native_slope": 0.0006085815945625628,
+          "native_token_force_cosine": 0.9954029069348644,
+          "native_force_norm": 0.09474381081133187,
+          "token_force_norm": 0.0988656948149037,
+          "native_common_game": 0.8517529964447021,
+          "alpha1_game_replay_difference": 5.960464477539063e-08,
+          "alpha1_radial_replay_difference": -1.6970746752331678e-08
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2011465259352919,
+            "game_force_power_fraction": 0.32341274127160274
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.3157364973430295,
+            "game_force_power_fraction": 0.1612053712420075
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2011465259352919,
+            "game_force_power_fraction": 0.26733750787893196
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.3157364973430295,
+            "game_force_power_fraction": 0.21649504148883147
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_control",
+      "fit_index": 66,
+      "source_caption_id": 4,
+      "time": 0.6000000238418579,
+      "critic_batch_fit_indices": [
+        55,
+        66,
+        120,
+        131
+      ],
+      "own_native_game": 0.7868369221687317,
+      "own_token_game": 0.7902682423591614,
+      "own_native_radial_derivative": 0.1866122194455062,
+      "own_token_radial_derivative": 0.1965022652712407,
+      "own_native_origin_radial_derivative": -0.0026181611156857257,
+      "local_gap_standard_deviation": 0.167383460965462,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.07972303127317645,
+        "token_direction_slope": -0.07948906497964234,
+        "token_minus_native_slope": 0.0002339662935341158,
+        "native_token_force_cosine": 0.9970652609440749,
+        "native_force_norm": 0.07972303127317648,
+        "token_force_norm": 0.08302348489177243
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.0728016652597362,
+          "token_direction_slope": -0.07250956198184794,
+          "token_minus_native_slope": 0.00029210327788826984,
+          "native_token_force_cosine": 0.9970652609440749,
+          "native_force_norm": 0.07972303127317648,
+          "token_force_norm": 0.08302348489177243,
+          "native_common_game": 0.7812522053718567,
+          "alpha1_game_replay_difference": -1.7881393432617188e-07,
+          "alpha1_radial_replay_difference": -2.628246520419708e-08
+        },
+        "D6400": {
+          "native_direction_slope": -0.08031166757221851,
+          "token_direction_slope": -0.07999498875680064,
+          "token_minus_native_slope": 0.0003166788154178729,
+          "native_token_force_cosine": 0.9970652609440749,
+          "native_force_norm": 0.07972303127317648,
+          "token_force_norm": 0.08302348489177243,
+          "native_common_game": 0.7893024682998657,
+          "alpha1_game_replay_difference": 0.0,
+          "alpha1_radial_replay_difference": -1.4672674714111267e-08
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.21345850972239494,
+            "game_force_power_fraction": 0.30663716637713034
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2968542681759567,
+            "game_force_power_fraction": 0.20393199058804845
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.21345850972239494,
+            "game_force_power_fraction": 0.2640103640641416
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2968542681759567,
+            "game_force_power_fraction": 0.25300783555804796
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_control",
+      "fit_index": 120,
+      "source_caption_id": 5,
+      "time": 0.0,
+      "critic_batch_fit_indices": [
+        55,
+        66,
+        120,
+        131
+      ],
+      "own_native_game": 0.7528102993965149,
+      "own_token_game": 0.7547715306282043,
+      "own_native_radial_derivative": 0.11747136324497329,
+      "own_token_radial_derivative": 0.12241774420423324,
+      "own_native_origin_radial_derivative": -0.0030662648502286782,
+      "local_gap_standard_deviation": 0.12587980196474793,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.06904122288457283,
+        "token_direction_slope": -0.06893669198909691,
+        "token_minus_native_slope": 0.00010453089547592109,
+        "native_token_force_cosine": 0.9984859640210781,
+        "native_force_norm": 0.06904122288457291,
+        "token_force_norm": 0.07139270586991751
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.06645138831923582,
+          "token_direction_slope": -0.06627873363146793,
+          "token_minus_native_slope": 0.0001726546877678925,
+          "native_token_force_cosine": 0.9984859640210781,
+          "native_force_norm": 0.06904122288457291,
+          "token_force_norm": 0.07139270586991751,
+          "native_common_game": 0.7541137337684631,
+          "alpha1_game_replay_difference": 1.1920928955078125e-07,
+          "alpha1_radial_replay_difference": 1.1736580859955659e-08
+        },
+        "D6400": {
+          "native_direction_slope": -0.07111390286212528,
+          "token_direction_slope": -0.07098252062084272,
+          "token_minus_native_slope": 0.0001313822412825627,
+          "native_token_force_cosine": 0.9984859640210781,
+          "native_force_norm": 0.06904122288457291,
+          "token_force_norm": 0.07139270586991751,
+          "native_common_game": 0.7571690678596497,
+          "alpha1_game_replay_difference": -5.960464477539063e-08,
+          "alpha1_radial_replay_difference": -1.1063171989622589e-08
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2485666223711997,
+            "game_force_power_fraction": 0.3086282756416784
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.28344627824374413,
+            "game_force_power_fraction": 0.20559879714296786
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2485666223711997,
+            "game_force_power_fraction": 0.281053769056474
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.28344627824374413,
+            "game_force_power_fraction": 0.23983026370676366
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_control",
+      "fit_index": 131,
+      "source_caption_id": 5,
+      "time": 0.10000000149011612,
+      "critic_batch_fit_indices": [
+        55,
+        66,
+        120,
+        131
+      ],
+      "own_native_game": 0.7494444847106934,
+      "own_token_game": 0.7512955665588379,
+      "own_native_radial_derivative": 0.10833694672073117,
+      "own_token_radial_derivative": 0.11308319830070752,
+      "own_native_origin_radial_derivative": 0.001109005474843043,
+      "local_gap_standard_deviation": 0.12235499163530784,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.06854254472883817,
+        "token_direction_slope": -0.068422257429866,
+        "token_minus_native_slope": 0.00012028729897216317,
+        "native_token_force_cosine": 0.9982450710073866,
+        "native_force_norm": 0.06854254472883814,
+        "token_force_norm": 0.07099530432141576
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.065551642184321,
+          "token_direction_slope": -0.0653368614666798,
+          "token_minus_native_slope": 0.00021478071764119422,
+          "native_token_force_cosine": 0.9982450710073866,
+          "native_force_norm": 0.06854254472883814,
+          "token_force_norm": 0.07099530432141576,
+          "native_common_game": 0.7506008148193359,
+          "alpha1_game_replay_difference": -1.1920928955078125e-07,
+          "alpha1_radial_replay_difference": -1.930033267927289e-08
+        },
+        "D6400": {
+          "native_direction_slope": -0.06757646912191405,
+          "token_direction_slope": -0.06740543366101867,
+          "token_minus_native_slope": 0.00017103546089537736,
+          "native_token_force_cosine": 0.9982450710073866,
+          "native_force_norm": 0.06854254472883814,
+          "token_force_norm": 0.07099530432141576,
+          "native_common_game": 0.7489982843399048,
+          "alpha1_game_replay_difference": 1.1920928955078125e-07,
+          "alpha1_radial_replay_difference": 1.0998610522339192e-08
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.24695613065532204,
+            "game_force_power_fraction": 0.3025234035206966
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2949268954478426,
+            "game_force_power_fraction": 0.21180793632230147
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.24695613065532204,
+            "game_force_power_fraction": 0.2744585061719037
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2949268954478426,
+            "game_force_power_fraction": 0.24749890271003047
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_control",
+      "fit_index": 213,
+      "source_caption_id": 15,
+      "time": 0.30000001192092896,
+      "critic_batch_fit_indices": [
+        213,
+        235,
+        173,
+        179
+      ],
+      "own_native_game": 0.7536859512329102,
+      "own_token_game": 0.7576916813850403,
+      "own_native_radial_derivative": 0.11510243343059748,
+      "own_token_radial_derivative": 0.12623099126235682,
+      "own_native_origin_radial_derivative": 0.00034617611178959506,
+      "local_gap_standard_deviation": 0.18277731868037023,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.06373913649586653,
+        "token_direction_slope": -0.06338590818485633,
+        "token_minus_native_slope": 0.0003532283110102008,
+        "native_token_force_cosine": 0.994458219385618,
+        "native_force_norm": 0.06373913649586657,
+        "token_force_norm": 0.06771673857381791
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.062186290037315566,
+          "token_direction_slope": -0.06163639937138493,
+          "token_minus_native_slope": 0.0005498906659306343,
+          "native_token_force_cosine": 0.994458219385618,
+          "native_force_norm": 0.06373913649586657,
+          "token_force_norm": 0.06771673857381791,
+          "native_common_game": 0.7579829692840576,
+          "alpha1_game_replay_difference": 5.960464477539063e-08,
+          "alpha1_radial_replay_difference": -3.794632164044742e-09
+        },
+        "D6400": {
+          "native_direction_slope": -0.0654582515187468,
+          "token_direction_slope": -0.06482570076531183,
+          "token_minus_native_slope": 0.0006325507534349767,
+          "native_token_force_cosine": 0.994458219385618,
+          "native_force_norm": 0.06373913649586657,
+          "token_force_norm": 0.06771673857381791,
+          "native_common_game": 0.7592324614524841,
+          "alpha1_game_replay_difference": 0.0,
+          "alpha1_radial_replay_difference": -1.2552788974939944e-08
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.13325933400889517,
+            "game_force_power_fraction": 0.2587823960861205
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.4702027495215343,
+            "game_force_power_fraction": 0.2624580043257413
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.13325933400889517,
+            "game_force_power_fraction": 0.21590815396071592
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.4702027495215343,
+            "game_force_power_fraction": 0.33649003217170514
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_control",
+      "fit_index": 235,
+      "source_caption_id": 15,
+      "time": 0.5,
+      "critic_batch_fit_indices": [
+        213,
+        235,
+        173,
+        179
+      ],
+      "own_native_game": 0.7877752184867859,
+      "own_token_game": 0.7933483123779297,
+      "own_native_radial_derivative": 0.18457939600321582,
+      "own_token_radial_derivative": 0.19985032337576497,
+      "own_native_origin_radial_derivative": 0.0003811938059945126,
+      "local_gap_standard_deviation": 0.2164397763202594,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.07615167328435427,
+        "token_direction_slope": -0.07574819817803571,
+        "token_minus_native_slope": 0.00040347510631855155,
+        "native_token_force_cosine": 0.9947016908635479,
+        "native_force_norm": 0.07615167328435432,
+        "token_force_norm": 0.08081691951835067
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.07180859615581664,
+          "token_direction_slope": -0.07105248275623445,
+          "token_minus_native_slope": 0.0007561133995821895,
+          "native_token_force_cosine": 0.9947016908635479,
+          "native_force_norm": 0.07615167328435432,
+          "token_force_norm": 0.08081691951835067,
+          "native_common_game": 0.7907128930091858,
+          "alpha1_game_replay_difference": 5.960464477539063e-08,
+          "alpha1_radial_replay_difference": 3.022965638921349e-08
+        },
+        "D6400": {
+          "native_direction_slope": -0.07634900049397493,
+          "token_direction_slope": -0.07556293151128525,
+          "token_minus_native_slope": 0.0007860689826896805,
+          "native_token_force_cosine": 0.9947016908635479,
+          "native_force_norm": 0.07615167328435432,
+          "token_force_norm": 0.08081691951835067,
+          "native_common_game": 0.7933937311172485,
+          "alpha1_game_replay_difference": 0.0,
+          "alpha1_radial_replay_difference": -1.2965636508877054e-08
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.13483118396019828,
+            "game_force_power_fraction": 0.2448437270027424
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.35671269143328144,
+            "game_force_power_fraction": 0.22483555180136452
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.13483118396019828,
+            "game_force_power_fraction": 0.19856344226134687
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.35671269143328144,
+            "game_force_power_fraction": 0.2915447480856442
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_control",
+      "fit_index": 173,
+      "source_caption_id": 16,
+      "time": 0.30000001192092896,
+      "critic_batch_fit_indices": [
+        213,
+        235,
+        173,
+        179
+      ],
+      "own_native_game": 0.777680516242981,
+      "own_token_game": 0.783241868019104,
+      "own_native_radial_derivative": 0.16269853909151558,
+      "own_token_radial_derivative": 0.17716879393514176,
+      "own_native_origin_radial_derivative": -0.00190473076054265,
+      "local_gap_standard_deviation": 0.21705349682714883,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.07494311202940468,
+        "token_direction_slope": -0.07452793206815367,
+        "token_minus_native_slope": 0.000415179961251011,
+        "native_token_force_cosine": 0.9944600651079427,
+        "native_force_norm": 0.07494311202940472,
+        "token_force_norm": 0.07896626636539827
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.07172035539192854,
+          "token_direction_slope": -0.07120123106717405,
+          "token_minus_native_slope": 0.0005191243247544969,
+          "native_token_force_cosine": 0.9944600651079427,
+          "native_force_norm": 0.07494311202940472,
+          "token_force_norm": 0.07896626636539827,
+          "native_common_game": 0.7799659967422485,
+          "alpha1_game_replay_difference": 0.0,
+          "alpha1_radial_replay_difference": -5.7167601208441e-09
+        },
+        "D6400": {
+          "native_direction_slope": -0.07459237385441475,
+          "token_direction_slope": -0.07409850457904357,
+          "token_minus_native_slope": 0.0004938692753711782,
+          "native_token_force_cosine": 0.9944600651079427,
+          "native_force_norm": 0.07494311202940472,
+          "token_force_norm": 0.07896626636539827,
+          "native_common_game": 0.7823933959007263,
+          "alpha1_game_replay_difference": 5.960464477539063e-08,
+          "alpha1_radial_replay_difference": 5.571432815099087e-09
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.13986133141813228,
+            "game_force_power_fraction": 0.27307622423941874
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.4501191928561175,
+            "game_force_power_fraction": 0.20998146872382312
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.13986133141813228,
+            "game_force_power_fraction": 0.22813844120120705
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.4501191928561175,
+            "game_force_power_fraction": 0.2794286904205345
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_control",
+      "fit_index": 179,
+      "source_caption_id": 16,
+      "time": 0.8999999761581421,
+      "critic_batch_fit_indices": [
+        213,
+        235,
+        173,
+        179
+      ],
+      "own_native_game": 0.7619746327400208,
+      "own_token_game": 0.7640188932418823,
+      "own_native_radial_derivative": 0.13564319197397706,
+      "own_token_radial_derivative": 0.1411178205981021,
+      "own_native_origin_radial_derivative": -0.0005714003725038573,
+      "local_gap_standard_deviation": 0.12918460204158957,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.07203547149169655,
+        "token_direction_slope": -0.07188436722071244,
+        "token_minus_native_slope": 0.00015110427098410928,
+        "native_token_force_cosine": 0.997902362990689,
+        "native_force_norm": 0.07203547149169659,
+        "token_force_norm": 0.07401123739780859
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.06532514821340221,
+          "token_direction_slope": -0.0651854882532641,
+          "token_minus_native_slope": 0.00013965996013810822,
+          "native_token_force_cosine": 0.997902362990689,
+          "native_force_norm": 0.07203547149169659,
+          "token_force_norm": 0.07401123739780859,
+          "native_common_game": 0.7571794390678406,
+          "alpha1_game_replay_difference": 5.960464477539063e-08,
+          "alpha1_radial_replay_difference": 1.5836523037382477e-08
+        },
+        "D6400": {
+          "native_direction_slope": -0.07032621106299257,
+          "token_direction_slope": -0.07013119830637497,
+          "token_minus_native_slope": 0.00019501275661759632,
+          "native_token_force_cosine": 0.997902362990689,
+          "native_force_norm": 0.07203547149169659,
+          "token_force_norm": 0.07401123739780859,
+          "native_common_game": 0.7630729675292969,
+          "alpha1_game_replay_difference": -1.1920928955078125e-07,
+          "alpha1_radial_replay_difference": -2.548127059354144e-08
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2605083976970022,
+            "game_force_power_fraction": 0.34962844729747
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.3046566125211252,
+            "game_force_power_fraction": 0.18987623200783676
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2605083976970022,
+            "game_force_power_fraction": 0.31955596237235884
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.3046566125211252,
+            "game_force_power_fraction": 0.22777563361649575
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_control",
+      "fit_index": 98,
+      "source_caption_id": 17,
+      "time": 0.800000011920929,
+      "critic_batch_fit_indices": [
+        98,
+        106,
+        20,
+        39
+      ],
+      "own_native_game": 0.8025661706924438,
+      "own_token_game": 0.8059064149856567,
+      "own_native_radial_derivative": 0.21294157832608318,
+      "own_token_radial_derivative": 0.2223032092631254,
+      "own_native_origin_radial_derivative": 0.0008383150813780632,
+      "local_gap_standard_deviation": 0.16541022104666567,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.08589680526203279,
+        "token_direction_slope": -0.08567899258258423,
+        "token_minus_native_slope": 0.00021781267944856464,
+        "native_token_force_cosine": 0.9974642516821878,
+        "native_force_norm": 0.08589680526203287,
+        "token_force_norm": 0.08884742618288273
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.07762679217379816,
+          "token_direction_slope": -0.07741694550240118,
+          "token_minus_native_slope": 0.00020984667139697932,
+          "native_token_force_cosine": 0.9974642516821878,
+          "native_force_norm": 0.08589680526203287,
+          "token_force_norm": 0.08884742618288273,
+          "native_common_game": 0.7939350008964539,
+          "alpha1_game_replay_difference": -5.960464477539063e-08,
+          "alpha1_radial_replay_difference": -2.8201268487126896e-08
+        },
+        "D6400": {
+          "native_direction_slope": -0.08483791774300313,
+          "token_direction_slope": -0.08449546888317344,
+          "token_minus_native_slope": 0.00034244885982968876,
+          "native_token_force_cosine": 0.9974642516821878,
+          "native_force_norm": 0.08589680526203287,
+          "token_force_norm": 0.08884742618288273,
+          "native_common_game": 0.8044615983963013,
+          "alpha1_game_replay_difference": -5.960464477539063e-08,
+          "alpha1_radial_replay_difference": -2.3725870962332252e-08
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.25571448937285607,
+            "game_force_power_fraction": 0.3456571794334329
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.27351811993817654,
+            "game_force_power_fraction": 0.18223824736169073
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.25571448937285607,
+            "game_force_power_fraction": 0.3044083902846014
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.27351811993817654,
+            "game_force_power_fraction": 0.22405099984276686
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_control",
+      "fit_index": 106,
+      "source_caption_id": 17,
+      "time": 0.6000000238418579,
+      "critic_batch_fit_indices": [
+        98,
+        106,
+        20,
+        39
+      ],
+      "own_native_game": 0.7877415418624878,
+      "own_token_game": 0.7924289703369141,
+      "own_native_radial_derivative": 0.18298251179917735,
+      "own_token_radial_derivative": 0.19591694199428852,
+      "own_native_origin_radial_derivative": -0.001630146067074116,
+      "local_gap_standard_deviation": 0.1965936484134715,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.07802773090309269,
+        "token_direction_slope": -0.07769637010016467,
+        "token_minus_native_slope": 0.0003313608029280185,
+        "native_token_force_cosine": 0.9957532943853041,
+        "native_force_norm": 0.07802773090309281,
+        "token_force_norm": 0.08181517936695455
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.0725654401609219,
+          "token_direction_slope": -0.07210969801441179,
+          "token_minus_native_slope": 0.0004557421465101047,
+          "native_token_force_cosine": 0.9957532943853041,
+          "native_force_norm": 0.07802773090309281,
+          "token_force_norm": 0.08181517936695455,
+          "native_common_game": 0.7835888862609863,
+          "alpha1_game_replay_difference": -2.384185791015625e-07,
+          "alpha1_radial_replay_difference": -1.8676529184302737e-08
+        },
+        "D6400": {
+          "native_direction_slope": -0.07913023596061249,
+          "token_direction_slope": -0.0785968768835578,
+          "token_minus_native_slope": 0.0005333590770546792,
+          "native_token_force_cosine": 0.9957532943853041,
+          "native_force_norm": 0.07802773090309281,
+          "token_force_norm": 0.08181517936695455,
+          "native_common_game": 0.7926232814788818,
+          "alpha1_game_replay_difference": -1.1920928955078125e-07,
+          "alpha1_radial_replay_difference": -2.1342181133476856e-08
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.18457750321746813,
+            "game_force_power_fraction": 0.298596858202015
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.37124531011653,
+            "game_force_power_fraction": 0.20837757244595895
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.18457750321746813,
+            "game_force_power_fraction": 0.2496067887980436
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.37124531011653,
+            "game_force_power_fraction": 0.2705449394578433
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_control",
+      "fit_index": 20,
+      "source_caption_id": 18,
+      "time": 0.0,
+      "critic_batch_fit_indices": [
+        98,
+        106,
+        20,
+        39
+      ],
+      "own_native_game": 0.7563546895980835,
+      "own_token_game": 0.758255124092102,
+      "own_native_radial_derivative": 0.11961184089469284,
+      "own_token_radial_derivative": 0.12439101210454842,
+      "own_native_origin_radial_derivative": 0.0009260829207046544,
+      "local_gap_standard_deviation": 0.12386036779873186,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.07224490129511608,
+        "token_direction_slope": -0.07213796793957677,
+        "token_minus_native_slope": 0.00010693335553930983,
+        "native_token_force_cosine": 0.9985198491018411,
+        "native_force_norm": 0.07224490129511614,
+        "token_force_norm": 0.07457323474681744
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.06732571529333706,
+          "token_direction_slope": -0.06720840103122723,
+          "token_minus_native_slope": 0.0001173142621098272,
+          "native_token_force_cosine": 0.9985198491018411,
+          "native_force_norm": 0.07224490129511614,
+          "token_force_norm": 0.07457323474681744,
+          "native_common_game": 0.7550778388977051,
+          "alpha1_game_replay_difference": 5.960464477539063e-08,
+          "alpha1_radial_replay_difference": 1.3132256768133566e-08
+        },
+        "D6400": {
+          "native_direction_slope": -0.07260657319899141,
+          "token_direction_slope": -0.07250957354961995,
+          "token_minus_native_slope": 9.699964937145977e-05,
+          "native_token_force_cosine": 0.9985198491018411,
+          "native_force_norm": 0.07224490129511614,
+          "token_force_norm": 0.07457323474681744,
+          "native_common_game": 0.7574524879455566,
+          "alpha1_game_replay_difference": 1.1920928955078125e-07,
+          "alpha1_radial_replay_difference": 1.0615412937564628e-08
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.24788503070769738,
+            "game_force_power_fraction": 0.3363689390623598
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2741875499486969,
+            "game_force_power_fraction": 0.19758328842543393
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.24788503070769738,
+            "game_force_power_fraction": 0.30795542011577076
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2741875499486969,
+            "game_force_power_fraction": 0.22811012098743338
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_control",
+      "fit_index": 39,
+      "source_caption_id": 18,
+      "time": 0.8999999761581421,
+      "critic_batch_fit_indices": [
+        98,
+        106,
+        20,
+        39
+      ],
+      "own_native_game": 0.7574683427810669,
+      "own_token_game": 0.7591922283172607,
+      "own_native_radial_derivative": 0.12842408765709168,
+      "own_token_radial_derivative": 0.1332240543234393,
+      "own_native_origin_radial_derivative": -0.0013944897302112184,
+      "local_gap_standard_deviation": 0.11832433731290684,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.07034858114822089,
+        "token_direction_slope": -0.07020941871575523,
+        "token_minus_native_slope": 0.00013916243246565874,
+        "native_token_force_cosine": 0.9980218160736968,
+        "native_force_norm": 0.07034858114822087,
+        "token_force_norm": 0.07232903324513626
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.06293972934172319,
+          "token_direction_slope": -0.06283369227596433,
+          "token_minus_native_slope": 0.00010603706575885996,
+          "native_token_force_cosine": 0.9980218160736968,
+          "native_force_norm": 0.07034858114822087,
+          "token_force_norm": 0.07232903324513626,
+          "native_common_game": 0.7528448104858398,
+          "alpha1_game_replay_difference": 5.960464477539063e-08,
+          "alpha1_radial_replay_difference": 1.0706093900303415e-08
+        },
+        "D6400": {
+          "native_direction_slope": -0.06888979084327562,
+          "token_direction_slope": -0.06871681772100356,
+          "token_minus_native_slope": 0.0001729731222720604,
+          "native_token_force_cosine": 0.9980218160736968,
+          "native_force_norm": 0.07034858114822087,
+          "token_force_norm": 0.07232903324513626,
+          "native_common_game": 0.7586140632629395,
+          "alpha1_game_replay_difference": 1.1920928955078125e-07,
+          "alpha1_radial_replay_difference": 1.8139580781895148e-08
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2776108907989956,
+            "game_force_power_fraction": 0.37607205160531
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2902482355165693,
+            "game_force_power_fraction": 0.19803795765259255
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2776108907989956,
+            "game_force_power_fraction": 0.34667678570214916
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2902482355165693,
+            "game_force_power_fraction": 0.23853172477865436
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_hb_neutral",
+      "fit_index": 55,
+      "source_caption_id": 4,
+      "time": 0.5,
+      "critic_batch_fit_indices": [
+        55,
+        66,
+        120,
+        131
+      ],
+      "own_native_game": 0.8356173634529114,
+      "own_token_game": 0.8412288427352905,
+      "own_native_radial_derivative": 0.269069255606319,
+      "own_token_radial_derivative": 0.2834699861336932,
+      "own_native_origin_radial_derivative": 0.0011204157965825357,
+      "local_gap_standard_deviation": 0.21568748091738435,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.09421057863294927,
+        "token_direction_slope": -0.0939011066984216,
+        "token_minus_native_slope": 0.0003094719345276692,
+        "native_token_force_cosine": 0.9967151041951082,
+        "native_force_norm": 0.09421057863294939,
+        "token_force_norm": 0.09775238492611106
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.08400275285981625,
+          "token_direction_slope": -0.08384783155628481,
+          "token_minus_native_slope": 0.0001549213035314384,
+          "native_token_force_cosine": 0.9967151041951082,
+          "native_force_norm": 0.09421057863294939,
+          "token_force_norm": 0.09775238492611106,
+          "native_common_game": 0.8267834186553955,
+          "alpha1_game_replay_difference": 0.0,
+          "alpha1_radial_replay_difference": 1.022492313040857e-09
+        },
+        "D6400": {
+          "native_direction_slope": -0.0930428160653963,
+          "token_direction_slope": -0.09276435998894957,
+          "token_minus_native_slope": 0.0002784560764467342,
+          "native_token_force_cosine": 0.9967151041951082,
+          "native_force_norm": 0.09421057863294939,
+          "token_force_norm": 0.09775238492611106,
+          "native_common_game": 0.8383882641792297,
+          "alpha1_game_replay_difference": 2.980232238769531e-07,
+          "alpha1_radial_replay_difference": 4.083415666711332e-08
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2180762098025271,
+            "game_force_power_fraction": 0.34168743503976623
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2997619763855878,
+            "game_force_power_fraction": 0.15872230672103801
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2180762098025271,
+            "game_force_power_fraction": 0.2920619241774478
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2997619763855878,
+            "game_force_power_fraction": 0.20415799770906412
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_hb_neutral",
+      "fit_index": 66,
+      "source_caption_id": 4,
+      "time": 0.6000000238418579,
+      "critic_batch_fit_indices": [
+        55,
+        66,
+        120,
+        131
+      ],
+      "own_native_game": 0.7847030162811279,
+      "own_token_game": 0.7878518104553223,
+      "own_native_radial_derivative": 0.18132330924951867,
+      "own_token_radial_derivative": 0.19013831996199154,
+      "own_native_origin_radial_derivative": -0.0026474079727371513,
+      "local_gap_standard_deviation": 0.16010058874261318,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.08038480756337314,
+        "token_direction_slope": -0.08019164177373123,
+        "token_minus_native_slope": 0.00019316578964191644,
+        "native_token_force_cosine": 0.9975969863523072,
+        "native_force_norm": 0.08038480756337317,
+        "token_force_norm": 0.08334704453919427
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.07111343718253112,
+          "token_direction_slope": -0.07100734742893658,
+          "token_minus_native_slope": 0.00010608975359453765,
+          "native_token_force_cosine": 0.9975969863523072,
+          "native_force_norm": 0.08038480756337317,
+          "token_force_norm": 0.08334704453919427,
+          "native_common_game": 0.7780044674873352,
+          "alpha1_game_replay_difference": -5.960464477539063e-08,
+          "alpha1_radial_replay_difference": -8.958737279796125e-09
+        },
+        "D6400": {
+          "native_direction_slope": -0.07892883703210865,
+          "token_direction_slope": -0.07874734242023991,
+          "token_minus_native_slope": 0.0001814946118687405,
+          "native_token_force_cosine": 0.9975969863523072,
+          "native_force_norm": 0.08038480756337317,
+          "token_force_norm": 0.08334704453919427,
+          "native_common_game": 0.786135733127594,
+          "alpha1_game_replay_difference": -5.960464477539063e-08,
+          "alpha1_radial_replay_difference": 2.004289401114079e-09
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.21864256656594955,
+            "game_force_power_fraction": 0.3264716159901586
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.29851963317297636,
+            "game_force_power_fraction": 0.183203818434152
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.21864256656594955,
+            "game_force_power_fraction": 0.28518481221881037
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.29851963317297636,
+            "game_force_power_fraction": 0.221152473048943
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_hb_neutral",
+      "fit_index": 120,
+      "source_caption_id": 5,
+      "time": 0.0,
+      "critic_batch_fit_indices": [
+        55,
+        66,
+        120,
+        131
+      ],
+      "own_native_game": 0.7521660327911377,
+      "own_token_game": 0.7538832426071167,
+      "own_native_radial_derivative": 0.11479198242115113,
+      "own_token_radial_derivative": 0.11906555486766296,
+      "own_native_origin_radial_derivative": -0.001338673604832575,
+      "local_gap_standard_deviation": 0.11769072196092686,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.07028809134616197,
+        "token_direction_slope": -0.07019723197440719,
+        "token_minus_native_slope": 9.085937175477843e-05,
+        "native_token_force_cosine": 0.9987073290792969,
+        "native_force_norm": 0.0702880913461621,
+        "token_force_norm": 0.07234215041450216
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.06416582084674674,
+          "token_direction_slope": -0.06407687108737208,
+          "token_minus_native_slope": 8.89497593746652e-05,
+          "native_token_force_cosine": 0.9987073290792969,
+          "native_force_norm": 0.0702880913461621,
+          "token_force_norm": 0.07234215041450216,
+          "native_common_game": 0.7490860819816589,
+          "alpha1_game_replay_difference": 1.1920928955078125e-07,
+          "alpha1_radial_replay_difference": 2.104254578916276e-08
+        },
+        "D6400": {
+          "native_direction_slope": -0.06832986745989399,
+          "token_direction_slope": -0.06828168439576825,
+          "token_minus_native_slope": 4.8183064125739694e-05,
+          "native_token_force_cosine": 0.9987073290792969,
+          "native_force_norm": 0.0702880913461621,
+          "token_force_norm": 0.07234215041450216,
+          "native_common_game": 0.7509370446205139,
+          "alpha1_game_replay_difference": 5.960464477539063e-08,
+          "alpha1_radial_replay_difference": -8.083494776323086e-09
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2551253323580797,
+            "game_force_power_fraction": 0.3455051907683958
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2861325024448433,
+            "game_force_power_fraction": 0.18678477959423034
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2551253323580797,
+            "game_force_power_fraction": 0.31908866605824865
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2861325024448433,
+            "game_force_power_fraction": 0.21604270068735457
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_hb_neutral",
+      "fit_index": 131,
+      "source_caption_id": 5,
+      "time": 0.10000000149011612,
+      "critic_batch_fit_indices": [
+        55,
+        66,
+        120,
+        131
+      ],
+      "own_native_game": 0.7512209415435791,
+      "own_token_game": 0.7531096935272217,
+      "own_native_radial_derivative": 0.11045084269536584,
+      "own_token_radial_derivative": 0.11518690276633832,
+      "own_native_origin_radial_derivative": 0.0005640367480327976,
+      "local_gap_standard_deviation": 0.1236390792143916,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.07117798405787838,
+        "token_direction_slope": -0.07106068959334623,
+        "token_minus_native_slope": 0.00011729446453215275,
+        "native_token_force_cosine": 0.9983520962825128,
+        "native_force_norm": 0.07117798405787847,
+        "token_force_norm": 0.07356407780695534
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.0640112247364418,
+          "token_direction_slope": -0.06386738014801009,
+          "token_minus_native_slope": 0.00014384458843171022,
+          "native_token_force_cosine": 0.9983520962825128,
+          "native_force_norm": 0.07117798405787847,
+          "token_force_norm": 0.07356407780695534,
+          "native_common_game": 0.748127818107605,
+          "alpha1_game_replay_difference": 5.960464477539063e-08,
+          "alpha1_radial_replay_difference": 7.505252391792894e-09
+        },
+        "D6400": {
+          "native_direction_slope": -0.06730071078975317,
+          "token_direction_slope": -0.06725411341981963,
+          "token_minus_native_slope": 4.659736993353758e-05,
+          "native_token_force_cosine": 0.9983520962825128,
+          "native_force_norm": 0.07117798405787847,
+          "token_force_norm": 0.07356407780695534,
+          "native_common_game": 0.7485929131507874,
+          "alpha1_game_replay_difference": 5.960464477539063e-08,
+          "alpha1_radial_replay_difference": 4.628123995153999e-10
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.24184900982619273,
+            "game_force_power_fraction": 0.3111519562477903
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.30472949368809615,
+            "game_force_power_fraction": 0.20150830711465764
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.24184900982619273,
+            "game_force_power_fraction": 0.2828642354325349
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.30472949368809615,
+            "game_force_power_fraction": 0.23565929392386728
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_hb_neutral",
+      "fit_index": 213,
+      "source_caption_id": 15,
+      "time": 0.30000001192092896,
+      "critic_batch_fit_indices": [
+        213,
+        235,
+        173,
+        179
+      ],
+      "own_native_game": 0.7559794187545776,
+      "own_token_game": 0.7607717514038086,
+      "own_native_radial_derivative": 0.11592923717736929,
+      "own_token_radial_derivative": 0.12793607087910908,
+      "own_native_origin_radial_derivative": 0.0009362905814310069,
+      "local_gap_standard_deviation": 0.20207045913719437,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.06596053955034792,
+        "token_direction_slope": -0.06557267741456346,
+        "token_minus_native_slope": 0.00038786213578445583,
+        "native_token_force_cosine": 0.9941197852772504,
+        "native_force_norm": 0.06596053955034793,
+        "token_force_norm": 0.06995888766937852
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.061293485239862805,
+          "token_direction_slope": -0.06081353280379954,
+          "token_minus_native_slope": 0.0004799524360632676,
+          "native_token_force_cosine": 0.9941197852772504,
+          "native_force_norm": 0.06596053955034793,
+          "token_force_norm": 0.06995888766937852,
+          "native_common_game": 0.7571226358413696,
+          "alpha1_game_replay_difference": -2.980232238769531e-07,
+          "alpha1_radial_replay_difference": -3.050816639593723e-08
+        },
+        "D6400": {
+          "native_direction_slope": -0.06464616697698451,
+          "token_direction_slope": -0.064149282578283,
+          "token_minus_native_slope": 0.0004968843987015054,
+          "native_token_force_cosine": 0.9941197852772504,
+          "native_force_norm": 0.06596053955034793,
+          "token_force_norm": 0.06995888766937852,
+          "native_common_game": 0.7571836709976196,
+          "alpha1_game_replay_difference": 0.0,
+          "alpha1_radial_replay_difference": 3.2411676675891954e-09
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.13174359549917417,
+            "game_force_power_fraction": 0.25450783533586235
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.4846836885314481,
+            "game_force_power_fraction": 0.2589354232428703
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.13174359549917417,
+            "game_force_power_fraction": 0.21342425021611391
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.4846836885314481,
+            "game_force_power_fraction": 0.33290647595604744
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_hb_neutral",
+      "fit_index": 235,
+      "source_caption_id": 15,
+      "time": 0.5,
+      "critic_batch_fit_indices": [
+        213,
+        235,
+        173,
+        179
+      ],
+      "own_native_game": 0.7794679999351501,
+      "own_token_game": 0.7836089730262756,
+      "own_native_radial_derivative": 0.16884578672547212,
+      "own_token_radial_derivative": 0.18095655807428138,
+      "own_native_origin_radial_derivative": 0.00030964245659025405,
+      "local_gap_standard_deviation": 0.18487820501219854,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.07585682438310555,
+        "token_direction_slope": -0.07554035580727927,
+        "token_minus_native_slope": 0.00031646857582627586,
+        "native_token_force_cosine": 0.9958280803553277,
+        "native_force_norm": 0.07585682438310562,
+        "token_force_norm": 0.07984831760110268
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.06926704754386598,
+          "token_direction_slope": -0.06888018868989063,
+          "token_minus_native_slope": 0.0003868588539753526,
+          "native_token_force_cosine": 0.9958280803553277,
+          "native_force_norm": 0.07585682438310562,
+          "token_force_norm": 0.07984831760110268,
+          "native_common_game": 0.7785738706588745,
+          "alpha1_game_replay_difference": 1.1920928955078125e-07,
+          "alpha1_radial_replay_difference": -3.479027399500012e-09
+        },
+        "D6400": {
+          "native_direction_slope": -0.07399030860716053,
+          "token_direction_slope": -0.07363065491535137,
+          "token_minus_native_slope": 0.00035965369180916695,
+          "native_token_force_cosine": 0.9958280803553277,
+          "native_force_norm": 0.07585682438310562,
+          "token_force_norm": 0.07984831760110268,
+          "native_common_game": 0.7803508043289185,
+          "alpha1_game_replay_difference": 2.384185791015625e-07,
+          "alpha1_radial_replay_difference": 1.9778423565597336e-08
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.14086977579665447,
+            "game_force_power_fraction": 0.27022985759134427
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.3350850256516567,
+            "game_force_power_fraction": 0.21083527489466242
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.14086977579665447,
+            "game_force_power_fraction": 0.22504485309489555
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.3350850256516567,
+            "game_force_power_fraction": 0.2681516086578955
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_hb_neutral",
+      "fit_index": 173,
+      "source_caption_id": 16,
+      "time": 0.30000001192092896,
+      "critic_batch_fit_indices": [
+        213,
+        235,
+        173,
+        179
+      ],
+      "own_native_game": 0.7735904455184937,
+      "own_token_game": 0.7785893678665161,
+      "own_native_radial_derivative": 0.15090933405606594,
+      "own_token_radial_derivative": 0.16391139207040425,
+      "own_native_origin_radial_derivative": -0.0006337453295802292,
+      "local_gap_standard_deviation": 0.20442554988438344,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.07459709133487386,
+        "token_direction_slope": -0.07422874576510256,
+        "token_minus_native_slope": 0.00036834556977129174,
+        "native_token_force_cosine": 0.9950621993005351,
+        "native_force_norm": 0.07459709133487395,
+        "token_force_norm": 0.07849559386390051
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.0683146367204484,
+          "token_direction_slope": -0.06799260984864208,
+          "token_minus_native_slope": 0.00032202687180631073,
+          "native_token_force_cosine": 0.9950621993005351,
+          "native_force_norm": 0.07459709133487395,
+          "token_force_norm": 0.07849559386390051,
+          "native_common_game": 0.7719618678092957,
+          "alpha1_game_replay_difference": 1.1920928955078125e-07,
+          "alpha1_radial_replay_difference": 2.9090679753984716e-08
+        },
+        "D6400": {
+          "native_direction_slope": -0.07064979160889015,
+          "token_direction_slope": -0.07040448498752541,
+          "token_minus_native_slope": 0.00024530662136473813,
+          "native_token_force_cosine": 0.9950621993005351,
+          "native_force_norm": 0.07459709133487395,
+          "token_force_norm": 0.07849559386390051,
+          "native_common_game": 0.7739725112915039,
+          "alpha1_game_replay_difference": 0.0,
+          "alpha1_radial_replay_difference": 5.83543713350565e-10
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.14109552610961643,
+            "game_force_power_fraction": 0.29135916110326704
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.43597979203672116,
+            "game_force_power_fraction": 0.2145351506142459
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.14109552610961643,
+            "game_force_power_fraction": 0.24489485184244997
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.43597979203672116,
+            "game_force_power_fraction": 0.2784161822366484
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_hb_neutral",
+      "fit_index": 179,
+      "source_caption_id": 16,
+      "time": 0.8999999761581421,
+      "critic_batch_fit_indices": [
+        213,
+        235,
+        173,
+        179
+      ],
+      "own_native_game": 0.7555630207061768,
+      "own_token_game": 0.7572551965713501,
+      "own_native_radial_derivative": 0.12294987985754172,
+      "own_token_radial_derivative": 0.12730631102874645,
+      "own_native_origin_radial_derivative": -0.0010703551643290827,
+      "local_gap_standard_deviation": 0.11726189954991773,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.0704414511811623,
+        "token_direction_slope": -0.07032817317957137,
+        "token_minus_native_slope": 0.00011327800159093016,
+        "native_token_force_cosine": 0.9983918843281696,
+        "native_force_norm": 0.07044145118116227,
+        "token_force_norm": 0.07203663153030668
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.06238884443971341,
+          "token_direction_slope": -0.062337108825698706,
+          "token_minus_native_slope": 5.1735614014704334e-05,
+          "native_token_force_cosine": 0.9983918843281696,
+          "native_force_norm": 0.07044145118116227,
+          "token_force_norm": 0.07203663153030668,
+          "native_common_game": 0.7515658140182495,
+          "alpha1_game_replay_difference": -1.1920928955078125e-07,
+          "alpha1_radial_replay_difference": -6.611126229794095e-09
+        },
+        "D6400": {
+          "native_direction_slope": -0.06730968945576969,
+          "token_direction_slope": -0.06723305014818949,
+          "token_minus_native_slope": 7.663930758020077e-05,
+          "native_token_force_cosine": 0.9983918843281696,
+          "native_force_norm": 0.07044145118116227,
+          "token_force_norm": 0.07203663153030668,
+          "native_common_game": 0.7581483125686646,
+          "alpha1_game_replay_difference": -2.384185791015625e-07,
+          "alpha1_radial_replay_difference": -2.9451945549041625e-08
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2799393945041931,
+            "game_force_power_fraction": 0.3727067368883252
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2919002693527791,
+            "game_force_power_fraction": 0.17403193561379418
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2799393945041931,
+            "game_force_power_fraction": 0.3460862990967989
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2919002693527791,
+            "game_force_power_fraction": 0.20340241301563033
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_hb_neutral",
+      "fit_index": 98,
+      "source_caption_id": 17,
+      "time": 0.800000011920929,
+      "critic_batch_fit_indices": [
+        98,
+        106,
+        20,
+        39
+      ],
+      "own_native_game": 0.793088436126709,
+      "own_token_game": 0.7963839769363403,
+      "own_native_radial_derivative": 0.1925003206404304,
+      "own_token_radial_derivative": 0.201138761801536,
+      "own_native_origin_radial_derivative": -0.0006569100154159508,
+      "local_gap_standard_deviation": 0.16429632488090828,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.08252906575137209,
+        "token_direction_slope": -0.08231556499418814,
+        "token_minus_native_slope": 0.0002135007571839459,
+        "native_token_force_cosine": 0.9974130234573694,
+        "native_force_norm": 0.08252906575137217,
+        "token_force_norm": 0.08514740650809516
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.07398404849756732,
+          "token_direction_slope": -0.0739086126288468,
+          "token_minus_native_slope": 7.543586872051089e-05,
+          "native_token_force_cosine": 0.9974130234573694,
+          "native_force_norm": 0.08252906575137217,
+          "token_force_norm": 0.08514740650809516,
+          "native_common_game": 0.7844334840774536,
+          "alpha1_game_replay_difference": 0.0,
+          "alpha1_radial_replay_difference": -3.7965023902408745e-09
+        },
+        "D6400": {
+          "native_direction_slope": -0.08138163825740924,
+          "token_direction_slope": -0.08119158932075755,
+          "token_minus_native_slope": 0.00019004893665168499,
+          "native_token_force_cosine": 0.9974130234573694,
+          "native_force_norm": 0.08252906575137217,
+          "token_force_norm": 0.08514740650809516,
+          "native_common_game": 0.7946884632110596,
+          "alpha1_game_replay_difference": 0.0,
+          "alpha1_radial_replay_difference": 9.6856773712517e-09
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2456152067488784,
+            "game_force_power_fraction": 0.35348591028305093
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.28867993802185465,
+            "game_force_power_fraction": 0.17652364794601116
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2456152067488784,
+            "game_force_power_fraction": 0.3140489903338155
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.28867993802185465,
+            "game_force_power_fraction": 0.22111141936859383
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_hb_neutral",
+      "fit_index": 106,
+      "source_caption_id": 17,
+      "time": 0.6000000238418579,
+      "critic_batch_fit_indices": [
+        98,
+        106,
+        20,
+        39
+      ],
+      "own_native_game": 0.7825705409049988,
+      "own_token_game": 0.7869073152542114,
+      "own_native_radial_derivative": 0.17312741765808742,
+      "own_token_radial_derivative": 0.1847971808767581,
+      "own_native_origin_radial_derivative": -0.0027632527451893624,
+      "local_gap_standard_deviation": 0.1893233217819038,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.0775283354065064,
+        "token_direction_slope": -0.0772020427422681,
+        "token_minus_native_slope": 0.00032629266423829517,
+        "native_token_force_cosine": 0.9957913108474791,
+        "native_force_norm": 0.07752833540650649,
+        "token_force_norm": 0.08097030469501991
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.07054800323024737,
+          "token_direction_slope": -0.0702491564238283,
+          "token_minus_native_slope": 0.0002988468064190758,
+          "native_token_force_cosine": 0.9957913108474791,
+          "native_force_norm": 0.07752833540650649,
+          "token_force_norm": 0.08097030469501991,
+          "native_common_game": 0.7779536843299866,
+          "alpha1_game_replay_difference": -1.7881393432617188e-07,
+          "alpha1_radial_replay_difference": -3.4219437949900566e-08
+        },
+        "D6400": {
+          "native_direction_slope": -0.0766885616084697,
+          "token_direction_slope": -0.07636157327303858,
+          "token_minus_native_slope": 0.0003269883354311137,
+          "native_token_force_cosine": 0.9957913108474791,
+          "native_force_norm": 0.07752833540650649,
+          "token_force_norm": 0.08097030469501991,
+          "native_common_game": 0.7856073379516602,
+          "alpha1_game_replay_difference": 1.1920928955078125e-07,
+          "alpha1_radial_replay_difference": -4.184343982416294e-10
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.19088154651164482,
+            "game_force_power_fraction": 0.32067830073638504
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.3588006158388459,
+            "game_force_power_fraction": 0.20877769184101283
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.19088154651164482,
+            "game_force_power_fraction": 0.2731787833869568
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.3588006158388459,
+            "game_force_power_fraction": 0.270470932740084
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_hb_neutral",
+      "fit_index": 20,
+      "source_caption_id": 18,
+      "time": 0.0,
+      "critic_batch_fit_indices": [
+        98,
+        106,
+        20,
+        39
+      ],
+      "own_native_game": 0.761622965335846,
+      "own_token_game": 0.7634777426719666,
+      "own_native_radial_derivative": 0.12824454424987194,
+      "own_token_radial_derivative": 0.13270028056648614,
+      "own_native_origin_radial_derivative": 0.0023429471653376513,
+      "local_gap_standard_deviation": 0.12228983813427216,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.07681132666712051,
+        "token_direction_slope": -0.07671958174631383,
+        "token_minus_native_slope": 9.174492080668561e-05,
+        "native_token_force_cosine": 0.9988055808330933,
+        "native_force_norm": 0.07681132666712057,
+        "token_force_norm": 0.07907878028882337
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.06796341577710253,
+          "token_direction_slope": -0.06791512740303414,
+          "token_minus_native_slope": 4.828837406839481e-05,
+          "native_token_force_cosine": 0.9988055808330933,
+          "native_force_norm": 0.07681132666712057,
+          "token_force_norm": 0.07907878028882337,
+          "native_common_game": 0.7546532154083252,
+          "alpha1_game_replay_difference": 5.960464477539063e-08,
+          "alpha1_radial_replay_difference": 8.027376013908238e-09
+        },
+        "D6400": {
+          "native_direction_slope": -0.07216013793786426,
+          "token_direction_slope": -0.07218961628646621,
+          "token_minus_native_slope": -2.947834860195231e-05,
+          "native_token_force_cosine": 0.9988055808330933,
+          "native_force_norm": 0.07681132666712057,
+          "token_force_norm": 0.07907878028882337,
+          "native_common_game": 0.7547436356544495,
+          "alpha1_game_replay_difference": -5.960464477539063e-08,
+          "alpha1_radial_replay_difference": -8.634041703814432e-09
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2645944339128741,
+            "game_force_power_fraction": 0.32770611874575617
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2490037664588377,
+            "game_force_power_fraction": 0.1746846464125353
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.2645944339128741,
+            "game_force_power_fraction": 0.29991828526114317
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2490037664588377,
+            "game_force_power_fraction": 0.19693404167544587
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    },
+    {
+      "arm": "sampled_hb_neutral",
+      "fit_index": 39,
+      "source_caption_id": 18,
+      "time": 0.8999999761581421,
+      "critic_batch_fit_indices": [
+        98,
+        106,
+        20,
+        39
+      ],
+      "own_native_game": 0.7550742626190186,
+      "own_token_game": 0.7565183639526367,
+      "own_native_radial_derivative": 0.12457161279265114,
+      "own_token_radial_derivative": 0.12850343266355813,
+      "own_native_origin_radial_derivative": -0.00228445696388041,
+      "local_gap_standard_deviation": 0.10794668046560045,
+      "native_self_cauchy_control": {
+        "native_direction_slope": -0.07105861600028922,
+        "token_direction_slope": -0.07097350984998617,
+        "token_minus_native_slope": 8.510615030304924e-05,
+        "native_token_force_cosine": 0.9988023106120896,
+        "native_force_norm": 0.07105861600028932,
+        "token_force_norm": 0.07273158137245604
+      },
+      "common_games": {
+        "D1856": {
+          "native_direction_slope": -0.06216323027759543,
+          "token_direction_slope": -0.06211498913182654,
+          "token_minus_native_slope": 4.8241145768894433e-05,
+          "native_token_force_cosine": 0.9988023106120896,
+          "native_force_norm": 0.07105861600028932,
+          "token_force_norm": 0.07273158137245604,
+          "native_common_game": 0.750403642654419,
+          "alpha1_game_replay_difference": 0.0,
+          "alpha1_radial_replay_difference": -8.906215237525217e-09
+        },
+        "D6400": {
+          "native_direction_slope": -0.06841332208996163,
+          "token_direction_slope": -0.0683472159746838,
+          "token_minus_native_slope": 6.610611527783916e-05,
+          "native_token_force_cosine": 0.9988023106120896,
+          "native_force_norm": 0.07105861600028932,
+          "token_force_norm": 0.07273158137245604,
+          "native_common_game": 0.7573374509811401,
+          "alpha1_game_replay_difference": 1.1920928955078125e-07,
+          "alpha1_radial_replay_difference": -3.686267679992028e-10
+        }
+      },
+      "descriptive_power_allocation": {
+        "native": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.27970294905244353,
+            "game_force_power_fraction": 0.3635800993608146
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2676127961294339,
+            "game_force_power_fraction": 0.18639711513218787
+          }
+        },
+        "tokenwise": {
+          "lower_half": {
+            "descriptive_residual_power_fraction": 0.27970294905244353,
+            "game_force_power_fraction": 0.3378845256966585
+          },
+          "largest_10_percent": {
+            "descriptive_residual_power_fraction": 0.2676127961294339,
+            "game_force_power_fraction": 0.21502081972082865
+          }
+        }
+      },
+      "pooling_identity_max_absolute": 4.76837158203125e-07
+    }
+  ],
+  "decision": {
+    "own_native_restoring_all24contexts": true,
+    "common_game_cells": {
+      "sampled_control/D1856": {
+        "defined": true,
+        "mean_token_minus_native_slope": 0.00032933203513172614,
+        "contexts_improved": 0,
+        "contexts": 12
+      },
+      "sampled_control/D6400": {
+        "defined": true,
+        "mean_token_minus_native_slope": 0.00037341338239997465,
+        "contexts_improved": 0,
+        "contexts": 12
+      },
+      "sampled_hb_neutral/D1856": {
+        "defined": true,
+        "mean_token_minus_native_slope": 0.00018376594798073855,
+        "contexts_improved": 0,
+        "contexts": 12
+      },
+      "sampled_hb_neutral/D6400": {
+        "defined": true,
+        "mean_token_minus_native_slope": 0.00019057334838242074,
+        "contexts_improved": 1,
+        "contexts": 12
+      }
+    },
+    "tokenwise_local_common_descent_supported": false,
+    "next_action": "stop_this_token_granularity_mechanism_before_quality_training",
+    "decision_uses_output_error": false,
+    "optimizer_or_model_updates": 0
+  },
+  "training_updates": 0,
+  "optimizer_updates": 0,
+  "full_supra_forward_calls": 0,
+  "output_metrics_used_for_optimizer_or_selection": false,
+  "limits": [
+    "Local12fit contexts only; no held-out quality or full latent/time coverage.",
+    "Both common critics share an architectural family and cannot provide independent semantic accuracy truth.",
+    "Equal-norm residual-space directions do not establish parameter-Jacobian transfer, Adam displacement behavior or acquisition speed.",
+    "Changing tokenwise payoff also changes critic training gradients; a useful frozen direction is insufficient to establish coupled D/G improvement.",
+    "The tokenwise payoff does not repair every finite-critic origin force; fixed staleD nonstationarity is not a violation of joint GAN equilibrium.",
+    "Native per-context output-pooling and native KA2 input units are correct; this is a substantive experimental game law, not an established optimizer bug.",
+    "No output-MSE/RMSE objective, error-powered gate, rate/seed/head scan, quality run or structural control change.",
+    "Only saved clean FAST residuals are evaluated. Actual ownD trained with native per-site DV12; this audit does not estimate the perturbed training-force distribution or eliminate early-time noise effects."
+  ],
+  "software_checks": {
+    "cases": 11,
+    "seconds": 2.13,
+    "scope": "CPU source-only mathematics/contracts; no actual checkpoint/quality run."
+  },
+  "independent_review": {
+    "reviewer": "convergence_mechanism_audit",
+    "read_only": true,
+    "mean_slope_reductions_exact": true,
+    "all24_fixed_indices_preserved": true,
+    "common_game_replay_max_absolute_difference": 2.980232238769531e-07,
+    "common_radial_replay_max_absolute_difference": 4.083415666711332e-08,
+    "scope": "Qualified artifacts, exact numerical reductions, frozen input/owner checks and game-only decision; not a rerun of full-model acquisition."
+  }
+}

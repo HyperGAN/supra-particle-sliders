@@ -1,0 +1,113 @@
+{
+  "schema": "supra_token_game_force_card_v1",
+  "status": "prepared; no actual critic observation executed",
+  "hypothesis": "Pooling learned patch scores before the sigmoid may misallocate the current trained critic force; compare a paired-token payoff at the same weights and panels before any acquisition experiment.",
+  "parent_run": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400",
+  "parent_review_sha256": "a142f2fa8e074062fd9618b16180d974c23bbebdc2d56e0e6accff79895b62b4",
+  "capture_run": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-endpoint-game-rays-v1",
+  "capture_sha256": {
+    "report.json": "617e0fa0fca3fbd1eb44e7f19b4efed0b533b15401b7f832024463f0f9a304f0",
+    "residuals.pt": "5a9ea3d65f1ce14783d41482323c7d891312eb8cc0aa6888361ef536a64ffa91",
+    "completion.json": "2020edf56467c917307d90ee4f332566aa8c07b6e0f9c152e51dd766e7d92941",
+    "rays.json": "464146fcbd99cdab5aa68502fa5ee21ad31032715c7dc8b3262aee5d5e15d7cd"
+  },
+  "particlegan_root": "/ml2/hypergan/ParticleGAN-supra-neutral-develop",
+  "particlegan_commit": "6ec7e5788e14ea15ddc3e16ac71110458108b6a6",
+  "native_source_digest": "d0be475a055aae953c22dbd19f6d2357db041437e0679d2f2f2cfa356517f65b",
+  "arms": [
+    "sampled_control",
+    "sampled_hb_neutral"
+  ],
+  "checkpoint": 6400,
+  "own_judges": "Each arm uses its ACTUAL trained6400 critic loaded from that exact independently qualified checkpoint; no newly trained D or initialization substitution.",
+  "common_judges": [
+    "D1856",
+    "D6400"
+  ],
+  "fit_indices": [
+    55,
+    66,
+    120,
+    131,
+    213,
+    235,
+    173,
+    179,
+    98,
+    106,
+    20,
+    39
+  ],
+  "context_subjects": [
+    4,
+    4,
+    5,
+    5,
+    15,
+    15,
+    16,
+    16,
+    17,
+    17,
+    18,
+    18
+  ],
+  "context_times": [
+    0.5,
+    0.6000000238418579,
+    0.0,
+    0.10000000149011612,
+    0.30000001192092896,
+    0.5,
+    0.30000001192092896,
+    0.8999999761581421,
+    0.800000011920929,
+    0.6000000238418579,
+    0.0,
+    0.8999999761581421
+  ],
+  "context_selection": "Existing predeclared privateCPU7 two-per-subject fit selection, no score-based context selection. Seven time values, all six editing sources.",
+  "panel_selection": "Reuse the actual unscaled CPU72 endpoint panel batches: select batches[index//4][:,index%4], then repack into three criticB4 groups. No draws, signs, seeds or scales change. Captured full Supra student/teacher already used their original liveB4/B8 CFG3 batches; this audit never recomputes them.",
+  "draws": 4,
+  "sigma": 0.125,
+  "context_batch": 4,
+  "tokens": 256,
+  "coordinates": 16,
+  "payoffs": {
+    "native": "Four-draw context mean of public GANLoss.g_loss on the unchanged critic.forward (linear score after token feature mean).",
+    "tokenwise": "Four-draw/token mean of public GANLoss.g_loss on the same score(features(error,condition)), preserving paired patch/draw order."
+  },
+  "gradient_coordinates": "Raw physical patch coordinates. Residual is divided by each critic.scale inside autograd; output_sigma applies only to captured normalized Gaussian panels.",
+  "direction_comparison": "Per context, normalize the two ownD gradients to equal unit Euclidean norm in physical patch space. Evaluate their infinitesimal negative-direction derivatives under each unchanged common native game. No finite step, optimizer, Jacobian or quality score.",
+  "self_control": "Under native ownD pooled game, its negative unit gradient has slope minus its norm. Tokenwise unit gradient cannot yield a smaller slope (Cauchy). Verify this explicitly before interpreting common-critic direction differences.",
+  "descriptive_bins": "Lower half and largest ceil(0.1*256) patches by saved physical residual power. These fractions describe existing error power and game-force allocation; they never enter any objective, guard, stopping, context/artifact choice or mechanism decision.",
+  "slope_tolerance": 1e-08,
+  "undefined_norm_at_or_below": 1e-20,
+  "decision": "Local support requires native ownD radial derivative positive above1e-8 in all24 fixed contexts AND tokenwise-minus-native equal-norm common-game slope mean below minus1e-8 in EACH of both arms x both common Ds. Otherwise stop this proposed granularity mechanism before quality training. Passing permits only a separately frozen tiny acquisition check; it is not optimizer adoption, performance selection or proof of full-Supra cause.",
+  "execution_budget_seconds": 120,
+  "cpu_threads": 1,
+  "training_updates": 0,
+  "full_supra_forward_calls": 0,
+  "budget_scope": "Separate CPU wall budget from command startup through imports, binding checks, checkpoint SHA/mmap critic extraction, all observations, input rehashes, report/hash and completion writes. Root owns execution; no automatic rerun/continuation.",
+  "immutability": "All source/input/checkpoint hashes before and after; all retained capture/panel tensors, loaded checkpoint critic tensors and copied critic weights/modes/flags/.grad unchanged; global CPU RNG unchanged; CUDA remains uninitialized. No optimizer, policy/controller, teacher or generator constructed. mmap reads checkpoint metadata and critic tensors only; no full native tensor traversal.",
+  "limits": [
+    "Local12fit contexts only; no held-out quality or full latent/time coverage.",
+    "Both common critics share an architectural family and cannot provide independent semantic accuracy truth.",
+    "Equal-norm residual-space directions do not establish parameter-Jacobian transfer, Adam displacement behavior or acquisition speed.",
+    "Changing tokenwise payoff also changes critic training gradients; a useful frozen direction is insufficient to establish coupled D/G improvement.",
+    "The tokenwise payoff does not repair every finite-critic origin force; fixed staleD nonstationarity is not a violation of joint GAN equilibrium.",
+    "Native per-context output-pooling and native KA2 input units are correct; this is a substantive experimental game law, not an established optimizer bug.",
+    "No output-MSE/RMSE objective, error-powered gate, rate/seed/head scan, quality run or structural control change.",
+    "Only saved clean FAST residuals are evaluated. Actual ownD trained with native per-site DV12; this audit does not estimate the perturbed training-force distribution or eliminate early-time noise effects."
+  ],
+  "source_sha256": {
+    "scripts/diagnose_e22_supra_token_game_force.py": "480c705e01465d369acd3667b5cf9c6af984fb75cbb7b0efabb667572ae55499",
+    "tests/test_e22_supra_token_game_force.py": "cd0bc1b7b39d1086a8bbd7bc5c18f995e4f1a17d7925581da24268ad18b9ded2",
+    "scripts/diagnose_e22_supra_endpoint_game_rays.py": "5449f3d5cdd662f06643e99abeb750102299cbb8a76c0a80b0e2c09588ae239b",
+    "supra/particle_game.py": "6a10cc15ea44651953fd46fefa3f097a832f594cca98084f17a67f3c4a94f35d",
+    "scripts/experiment_e22_supra_particle_gated.py": "9bf7c08f087e8ea00e4929dbd149cf8085a3ded66e1e82edad2cfd2ec70e7e5f",
+    "scripts/review_e22_supra_neutral_initialization.py": "dda4feddb4dc0df0e61bb7cf391fecf57314065f79aa210f470606afbbeb9802",
+    "scripts/review_e22_supra_pr223.py": "8ef90eccbc4774abb674bb959234ea949c971c64627f6266d655653dbe4ed1e2"
+  },
+  "baseline_identity": "Both common native alpha1 per-context games AND radial derivatives must match the completed captured ray records at the same fixed indices/panels: atol2e-6, rtol1e-5. Replay differences are retained. No tolerance adapts to observed data."
+}
