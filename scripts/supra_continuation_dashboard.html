@@ -18,26 +18,26 @@
 <section class="panel hero">
 <div class="panel-head"><h2 id="outcome">Waiting for a full-set checkpoint</h2><span id="qualification" class="tag">Full set · 240 contexts</span></div>
 <p id="outcomeDetail" class="muted"></p>
-<div class="toolbar"><label for="judge">Compare with frozen critic</label><select id="judge"><option value="D1856">D1856</option><option value="D6400">D6400</option></select></div>
+<div class="toolbar"><label for="judge">Full-set critic</label><select id="judge"><option value="D1856">D1856</option><option value="D6400">D6400</option></select><label for="graphMeasure">Graph values</label><select id="graphMeasure"><option value="score">Actual game scores</option><option value="gap">Difference from best original</option></select><label><input id="olderParticles" type="checkbox" checked> Show earlier particle checkpoints</label></div>
 <div class="cards">
 <div class="card" style="--accent:var(--green)"><div id="particleName" class="name">New particles</div><div id="particleValue" class="value good">—</div><div id="particleDetail" class="delta muted">Waiting for a full-set checkpoint</div></div>
 <div class="card" style="--accent:var(--gray)"><div class="name">Ordinary LoRA · 6,400</div><div id="ordinary6400Value" class="value">—</div><div id="ordinary6400Detail" class="delta">—</div></div>
 <div class="card" style="--accent:var(--purple)"><div class="name">Ordinary LoRA · 12,800</div><div id="ordinary12800Value" class="value">—</div><div id="ordinary12800Detail" class="delta">—</div></div>
 <div class="card" style="--accent:var(--gold)"><div class="name gold">Best original · 28,000</div><div id="bestValue" class="value gold">—</div><div id="bestDetail" class="delta">—</div></div>
 </div>
-<h2>Full-set progress: distance from the best original</h2>
-<p class="muted">The gold line is the target. Above zero = behind it. Below zero = ahead. Each dot is an actual full-set checkpoint; connecting lines show the sequence, with no measurements between dots.</p>
-<div class="legend"><span style="--line:var(--green)">Current particles · neutral H/b init</span><span style="--line:var(--blue)">Current particles · sampled H/b init</span><span class="dashed" style="--line:var(--gold)">Best original · 28,000</span><span class="dashed" style="--line:var(--gray)">LoRA · 6,400</span><span class="dashed" style="--line:var(--purple)">LoRA · 12,800</span></div>
+<div class="panel-head"><h2 id="fullChartTitle">Full-set game scores at each checkpoint</h2><div class="range-controls"><button id="matchedRange" type="button" aria-pressed="true">Through 12,800</button><button id="extendedRange" type="button" aria-pressed="false">Include 28,000</button></div></div>
+<p id="fullChartExplanation" class="muted">Each dot sits at its actual training step. Lines connect measured checkpoints; they do not add measurements between dots. Lower scores are better.</p>
+<div class="legend"><span style="--line:var(--green)">Current particles · neutral H/b init</span><span style="--line:var(--blue)">Current particles · sampled H/b init</span><span style="--line:var(--gold)">Original LoRA · checkpoint curve</span><span class="dashed" style="--line:var(--gold)">Selected 28,000 · target level</span><span id="v2Legend" style="--line:#e6a0cf">Earlier particles V2 · 6,400</span><span id="v3Legend" style="--line:#eda67c">Earlier particles V3 · 6,400</span></div>
 <div id="fullChart" class="chart"></div>
 <p id="fullChartDetail" class="muted chart-note"></p>
-<p class="muted note">Particle updates are editing only. LoRA labels count historical total updates, including preservation. Passing a shorter reference after more updates does not establish faster convergence. Ordinary LoRA is a standard low-rank adapter; the original models used MSE/AdamW, while these particles train on the native learned game.</p>
+<p class="muted note">Current particle runs train on editing only; earlier V2/V3 checkpoints include preservation (editing counts are in tooltips). LoRA labels count historical total updates, including preservation. Passing a shorter reference after more updates does not establish faster convergence. Ordinary LoRA is a standard low-rank adapter; the original models used MSE/AdamW, while these particles train on the native learned game.</p>
 </section>
 
 <section class="panel">
 <div class="panel-head"><h2>Live progress · recent updates</h2><div class="range-controls"><button id="recentRange" type="button" aria-pressed="true">Last 3,200</button><button id="allRange" type="button" aria-pressed="false">Whole run</button></div></div>
 <p class="muted">A separate 12-context probe, refreshed every 200 updates. This shows fluctuations during training; the full-set chart above determines the checkpoint comparison. Live probes always use D1856.</p>
-<div class="toolbar"><label><input id="olderParticles" type="checkbox"> Show older particle V2 / V3 references</label></div>
 <div id="liveChart" class="chart"></div>
+<div id="liveBaseline" class="muted"></div>
 <div id="liveDetail" class="muted"></div>
 <div id="plateau" class="muted"></div>
 </section>
@@ -55,8 +55,10 @@ const NS='http://www.w3.org/2000/svg',ARMS=['sampled_control','sampled_hb_neutra
 const COLORS={sampled_control:'#75bbff',sampled_hb_neutral:'#9aebc2',best:'#ffd47e',ordinary6400:'#c4ccd9',ordinary12800:'#c0b0ff'};
 const NAMES={sampled_control:'Particles · sampled H/b',sampled_hb_neutral:'Particles · neutral H/b'};
 const REFERENCES=[['ordinary_lora_6400','LoRA 6,400',COLORS.ordinary6400],['ordinary_lora_12800','LoRA 12,800',COLORS.ordinary12800],['ordinary_lora_selected_28000','Best original 28,000',COLORS.best]];
+const HISTORICAL=[['ordinary_lora_6400',6400,5120],['ordinary_lora_12800',12800,10240],['ordinary_lora_selected_28000',28000,22400]];
+const EARLIER=[['historical_particle_v2','Earlier particles V2',6400,5120,'#e6a0cf'],['historical_particle_v3','Earlier particles V3',6400,6080,'#eda67c']];
 const $=id=>document.getElementById(id),finite=v=>Number.isFinite(v),fmt=(v,n=5)=>finite(v)?v.toFixed(n):'—',signed=v=>finite(v)?(v>0?'+':'')+fmt(v):'—',count=v=>v.toLocaleString();
-let latestState=null,range='recent';
+let latestState=null,range='recent',fullRange='matched';
 function node(tag,attributes={},text=''){const n=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(attributes))n.setAttribute(k,v);n.textContent=text;return n}
 function row(values){const tr=document.createElement('tr');for(const value of values){const td=document.createElement('td');td.textContent=value;tr.append(td)}return tr}
 function probe(p){return p?.probes?.edit?.clean?.frozen_start_D}
@@ -66,8 +68,8 @@ function latestFull(s){return [...STEPS].reverse().find(step=>{const v=evaluatio
 function compareText(value,reference){if(!finite(value)||!finite(reference))return 'Reference pending';const d=value-reference;return Math.abs(d)<1e-8?'Same game score':'Particles '+fmt(Math.abs(d))+(d<0?' ahead':' behind')}
 
 // A separate label gutter keeps close reference levels from overwriting each other.
-function chart(id,series,refs,{minX=0,maxX=12800,ylabel='Game score',gap=false,labelPoints=false}={}){
- const svg=node('svg',{viewBox:'0 0 1120 385',role:'img','aria-label':ylabel+' versus completed editing updates'});$(id).replaceChildren(svg);
+function chart(id,series,refs,{minX=0,maxX=12800,ylabel='Game score',gap=false,labelPoints=false,xlabel='Total training updates'}={}){
+ const svg=node('svg',{viewBox:'0 0 1120 385',role:'img','aria-label':ylabel+' versus '+xlabel.toLowerCase()});$(id).replaceChildren(svg);
  const visible=series.map(s=>({...s,points:s.points.filter(p=>finite(p.x)&&finite(p.y)&&p.x>=minX&&p.x<=maxX).sort((a,b)=>a.x-b.x)}));
  const levels=refs.filter(r=>finite(r.y)),values=[...visible.flatMap(s=>s.points.map(p=>p.y)),...levels.map(r=>r.y)];
  if(!values.length){svg.append(node('text',{x:85,y:170,fill:'#aab8cc','font-size':17},'Waiting for comparable recorded scores'));return}
@@ -75,16 +77,17 @@ function chart(id,series,refs,{minX=0,maxX=12800,ylabel='Game score',gap=false,l
  const left=86,right=812,top=46,bottom=315,X=x=>left+(x-minX)/Math.max(1,maxX-minX)*(right-left),Y=y=>bottom-(y-lo)/(hi-lo)*(bottom-top);
  svg.append(node('text',{x:left,y:22,fill:'#c6d3e5','font-size':15},ylabel));
  for(let i=0;i<=5;i++){const y=lo+(hi-lo)*i/5,x=minX+(maxX-minX)*i/5;svg.append(node('line',{x1:left,x2:right,y1:Y(y),y2:Y(y),stroke:'#304158'}),node('text',{x:left-11,y:Y(y)+5,fill:'#bdc9dc','text-anchor':'end','font-size':14},gap?signed(y):fmt(y,3)),node('text',{x:X(x),y:344,fill:'#bdc9dc','text-anchor':'middle','font-size':14},count(Math.round(x))))}
- svg.append(node('text',{x:(left+right)/2,y:375,fill:'#bdc9dc','text-anchor':'middle','font-size':14},'Particle editing updates'));
+ svg.append(node('text',{x:(left+right)/2,y:375,fill:'#bdc9dc','text-anchor':'middle','font-size':14},xlabel));
  const labels=levels.map(r=>({...r,wanted:Y(r.y)})).sort((a,b)=>a.wanted-b.wanted);
  for(let i=0;i<labels.length;i++)labels[i].labelY=Math.max(top+8,labels[i].wanted,i?labels[i-1].labelY+40:top+8);
  for(let i=labels.length-1;i>=0;i--)labels[i].labelY=Math.min(bottom-12,labels[i].labelY,i<labels.length-1?labels[i+1].labelY-40:bottom-12);
  for(const r of labels){svg.append(node('line',{x1:left,x2:right,y1:Y(r.y),y2:Y(r.y),stroke:r.color,'stroke-width':r.target?3:1.8,'stroke-dasharray':r.target?'9 5':'4 7'}),node('polyline',{points:`${right},${Y(r.y)} ${right+14},${Y(r.y)} ${right+28},${r.labelY}`,fill:'none',stroke:r.color,'stroke-width':1.3}),node('text',{x:right+36,y:r.labelY-3,fill:r.color,'font-size':14,'font-weight':r.target?700:500},r.name),node('text',{x:right+36,y:r.labelY+15,fill:r.color,'font-size':13},(gap?signed(r.y):fmt(r.y))+(r.target?' · target':'')))}
- for(const s of visible){if(!s.points.length)continue;svg.append(node('polyline',{points:s.points.map(p=>`${X(p.x)},${Y(p.y)}`).join(' '),fill:'none',stroke:s.color,'stroke-width':s.primary?4:2.8,'stroke-dasharray':s.dash?'7 5':''}));for(const p of s.points){const dot=node('circle',{cx:X(p.x),cy:Y(p.y),r:labelPoints?5:3,fill:s.color,stroke:'#162131','stroke-width':1.5});dot.append(node('title',{},`${s.name} · ${count(p.x)} updates · ${fmt(p.y,6)}`));svg.append(dot);if(labelPoints&&s.primary)svg.append(node('text',{x:X(p.x),y:Y(p.y)-12,fill:s.color,'text-anchor':'middle','font-size':14,'font-weight':700},gap?signed(p.y):fmt(p.y)))} }
+ for(const s of visible){if(!s.points.length)continue;svg.append(node('polyline',{points:s.points.map(p=>`${X(p.x)},${Y(p.y)}`).join(' '),fill:'none',stroke:s.color,'stroke-width':s.primary?4:2.8,'stroke-dasharray':s.dash?'7 5':''}));for(const p of s.points){const dot=node('circle',{cx:X(p.x),cy:Y(p.y),r:labelPoints||s.historical?5:3,fill:s.color,stroke:'#162131','stroke-width':1.5});dot.append(node('title',{},`${s.name} · ${count(p.x)} total updates${finite(p.editing)?' / '+count(p.editing)+' editing':''} · ${gap?'gap ':'game score '}${fmt(p.y,6)}`));svg.append(dot);if(labelPoints&&(s.primary||s.name==='Original LoRA'))svg.append(node('text',{x:X(p.x),y:Y(p.y)+(s.primary?-12:22),fill:s.color,'text-anchor':'middle','font-size':14,'font-weight':700},gap?signed(p.y):fmt(p.y)))} }
 }
 
 function render(s){
  latestState=s;const judge=$('judge').value,step=latestFull(s),result=evaluation(s,'sampled_hb_neutral',step),value=result?.[judge],refs=s.historical_references||{},best=refs.ordinary_lora_selected_28000?.test?.[judge],status=s.status||{};
+ const gap=$('graphMeasure').value==='gap',display=(value,baseline)=>gap?difference(value,baseline):finite(value)?value:null;
  $('status').textContent=`${status.phase||'preparing'} · ${count(status.editing_updates??status.step??0)} / 12,800 edits`;
  $('qualification').textContent=step?`240 contexts · ${step<=6400||s.continuation_qualified?'qualified':'preliminary'}`:'Full-set checkpoint pending';
  $('particleName').textContent=step?`New particles · ${count(step)} edits`:'New particles';$('particleValue').textContent=fmt(value);
@@ -93,16 +96,25 @@ function render(s){
  if(step&&finite(best)){const allBest=['D1856','D6400'].every(j=>result[j]<refs.ordinary_lora_selected_28000?.test?.[j]);const all12800=['D1856','D6400'].every(j=>result[j]<refs.ordinary_lora_12800?.test?.[j]);const all6400=['D1856','D6400'].every(j=>result[j]<refs.ordinary_lora_6400?.test?.[j]);$('outcome').textContent=allBest?'Particles have passed the best original':all12800?'Passed LoRA 12,800; best original still leads':all6400?'Passed LoRA 6,400; best original still leads':'The original LoRA references still lead';$('outcomeDetail').textContent=`Latest full-set checkpoint: ${count(step)} particle edits. ${judge} score ${fmt(value)} vs best original ${fmt(best)}. ${compareText(value,best)}. Comparison status above uses both frozen critics.`}
  else{$('outcome').textContent='Waiting for a full-set comparison';$('outcomeDetail').textContent='The original 28,000-update model remains the target; only source-verified references appear.'}
  if(step>6400&&!s.continuation_qualified&&finite(best))$('outcome').textContent='Preliminary · '+$('outcome').textContent;
- const fullSeries=ARMS.map(arm=>({name:NAMES[arm],color:COLORS[arm],primary:arm==='sampled_hb_neutral',points:STEPS.map(x=>({x,y:difference(evaluation(s,arm,x)?.[judge],best)}))}));
- const fullRefs=REFERENCES.map(([key,name,color])=>({name,color,target:key==='ordinary_lora_selected_28000',y:difference(refs[key]?.test?.[judge],best)}));
- chart('fullChart',fullSeries,fullRefs,{minX:4800,maxX:12800,ylabel:`Full-set game − best original · ${judge} · lower is better`,gap:true,labelPoints:true});
- $('fullChartDetail').textContent=step?`Latest full measurement: ${count(step)} edits. Scheduled full checks: 5,120 / 6,400 / 9,600 / 12,800. Every point uses all 240 contexts; line segments are not extra measurements.`:'Waiting for full-set measurements.';
+ const fullSeries=ARMS.map(arm=>({name:NAMES[arm],color:COLORS[arm],primary:arm==='sampled_hb_neutral',points:STEPS.map(x=>({x,y:display(evaluation(s,arm,x)?.[judge],best)}))}));
+ fullSeries.push({name:'Original LoRA',color:COLORS.best,historical:true,points:HISTORICAL.map(([key,x,editing])=>({x,editing,y:display(refs[key]?.test?.count===240?refs[key].test[judge]:null,best)}))});
+ if($('olderParticles').checked)for(const[key,name,x,editing,color]of EARLIER)fullSeries.push({name,color,historical:true,points:[{x,editing,y:display(refs[key]?.test?.count===240?refs[key].test[judge]:null,best)}]});
+ const fullRefs=[{name:'Selected original 28,000',color:COLORS.best,target:true,y:display(best,best)}];
+ chart('fullChart',fullSeries,fullRefs,{minX:4800,maxX:fullRange==='extended'?28000:12800,ylabel:`${gap?'Game − best original':'Actual full-set game score'} · ${judge} · lower is better`,gap,labelPoints:true});
+ $('fullChartTitle').textContent=gap?'Full-set progress: difference from best original':'Full-set game scores at each checkpoint';
+ $('fullChartExplanation').textContent=(gap?`Gap = game score minus the original's ${fmt(best)} score. Gold zero means matching that score; the original did not score zero. `:`The gold target level is the original's actual ${fmt(best)} score. `)+'Dots sit at actual total training steps. Lines only connect measured checkpoints; values between dots are not additional measurements.';
+ $('matchedRange').setAttribute('aria-pressed',String(fullRange==='matched'));$('extendedRange').setAttribute('aria-pressed',String(fullRange==='extended'));
+ $('v2Legend').hidden=$('v3Legend').hidden=!$('olderParticles').checked;
+ $('fullChartDetail').textContent=step?`Latest particle full measurement: ${count(step)} edits. Original LoRA has matched full-set measurements at 6,400 / 12,800 / 28,000 total updates; earlier particle V2 / V3 have a matched 6,400 checkpoint. All dots use the same 240 held-out contexts and chosen frozen critic.`:'Waiting for full-set measurements.';
 
  const histories=ARMS.map(arm=>s.arms?.[arm]?.history||[]),lastX=Math.max(0,...histories.flatMap(h=>h.map(p=>p.step))),minX=range==='recent'?Math.max(0,lastX-3200):0;
  const probeBest=s.historical_probes?.scores?.ordinary_lora_selected_28000;
- const liveRefs=REFERENCES.map(([key,name,color])=>({name,color,target:key==='ordinary_lora_selected_28000',y:difference(s.historical_probes?.scores?.[key],probeBest)}));
- if($('olderParticles').checked)for(const[key,name,color]of [['historical_particle_v2','Older particle V2','#e6a0cf'],['historical_particle_v3','Older particle V3','#eda67c']])liveRefs.push({name,color,y:difference(s.historical_probes?.scores?.[key],probeBest)});
- chart('liveChart',ARMS.map((arm,i)=>({name:NAMES[arm],color:COLORS[arm],primary:arm==='sampled_hb_neutral',points:histories[i].map(p=>({x:p.step,y:difference(probe(p),probeBest)}))})),liveRefs,{minX,maxX:Math.max(minX+200,lastX),ylabel:'12-context probe − best original · D1856 · lower is better',gap:true});
+ const liveRefs=[{name:'Selected original 28,000',color:COLORS.best,target:true,y:display(probeBest,probeBest)}];
+ const liveSeries=ARMS.map((arm,i)=>({name:NAMES[arm],color:COLORS[arm],primary:arm==='sampled_hb_neutral',points:histories[i].map(p=>({x:p.step,y:display(probe(p),probeBest)}))}));
+ liveSeries.push({name:'Original LoRA',color:COLORS.best,historical:true,points:HISTORICAL.map(([key,x,editing])=>({x,editing,y:display(s.historical_probes?.scores?.[key],probeBest)}))});
+ if($('olderParticles').checked)for(const[key,name,x,editing,color]of EARLIER)liveSeries.push({name,color,historical:true,points:[{x,editing,y:display(s.historical_probes?.scores?.[key],probeBest)}]});
+ chart('liveChart',liveSeries,liveRefs,{minX,maxX:Math.max(12800,minX+200,lastX),ylabel:`12-context ${gap?'game − best original':'actual game score'} · D1856 · lower is better`,gap});
+ $('liveBaseline').textContent=`Best original on this 12-context TEST probe: ${fmt(probeBest)}. The full 240-context D1856 score is ${fmt(refs.ordinary_lora_selected_28000?.test?.D1856)}; the context sets differ.`;
  $('recentRange').setAttribute('aria-pressed',String(range==='recent'));$('allRange').setAttribute('aria-pressed',String(range==='all'));
  $('liveDetail').textContent=ARMS.map((arm,i)=>{const p=histories[i].at(-1);return p?`${NAMES[arm]} at ${count(p.step)}: ${fmt(probe(p))} (${signed(difference(probe(p),probeBest))} from best on this probe).`:''}).filter(Boolean).join(' ');
  $('plateau').textContent=histories.map((h,i)=>{const f=h.at(-1)?.plateau_diagnostic?.edit;return f?`${NAMES[ARMS[i]]}: ${f.regressed?'probe regressed':f.possible_plateau?'possible probe plateau':'probe is changing'} over ${count(f.steps)} edits.`:''}).filter(Boolean).join(' ');
@@ -115,8 +127,9 @@ function render(s){
  $('activity').textContent=ARMS.map(arm=>{const c=s.receipt?.coverage?.[arm]||status.arms?.[arm]?.coverage;return c?`${NAMES[arm]}: ${count(c.live_bank_updates)} live-bank updates, ${count(c.dense_128_row_updates)} dense updates, ${count(c.moves)} accepted moves.`:''}).filter(Boolean).join(' ');
  $('failure').hidden=!s.failure;if(s.failure)$('failure').textContent=s.failure.error||JSON.stringify(s.failure,null,2);$('updated').textContent=`Last read: ${s.updated} · refresh every 5 seconds.`;
 }
-for(const id of ['judge','olderParticles'])$(id).addEventListener('change',()=>{if(latestState)render(latestState)});
+for(const id of ['judge','graphMeasure','olderParticles'])$(id).addEventListener('change',()=>{if(latestState)render(latestState)});
 for(const[id,value]of [['recentRange','recent'],['allRange','all']])$(id).addEventListener('click',()=>{range=value;if(latestState)render(latestState)});
+for(const[id,value]of [['matchedRange','matched'],['extendedRange','extended']])$(id).addEventListener('click',()=>{fullRange=value;if(latestState)render(latestState)});
 async function refresh(){try{const response=await fetch('/api',{cache:'no-store'});if(!response.ok)throw Error('HTTP '+response.status);render(await response.json())}catch(error){$('updated').textContent=`Refresh failed: ${error.message} · retrying in 5 seconds.`}}
 refresh();setInterval(refresh,5000);
 </script>
