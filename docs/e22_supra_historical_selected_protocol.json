@@ -1,0 +1,53 @@
+{
+  "schema": "supra_historical_selected_observation_card_v1",
+  "status": "prepared_for_peer_review",
+  "parent_run": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400",
+  "particlegan_root": "/ml2/hypergan/ParticleGAN-supra-neutral-develop",
+  "parent_review_sha256": "a142f2fa8e074062fd9618b16180d974c23bbebdc2d56e0e6accff79895b62b4",
+  "artifacts": {
+    "ordinary_lora_6400": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/checkpoint-06400/final-boss-supra.safetensors",
+      "sha256": "24a98ba055d0b5298136d67dc7491a339684da03416c510d1d443fe730eb7069",
+      "step": 6400,
+      "editing_updates": 5120,
+      "preservation_updates": 1280
+    },
+    "ordinary_lora_selected_28000": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/final-boss-supra.safetensors",
+      "sha256": "b2191a46f59fa058bfacbcc659e8d7b6a7da4eeacbf65a3b619c438c3f449d3e",
+      "step": 28000,
+      "editing_updates": 22400,
+      "preservation_updates": 5600
+    }
+  },
+  "historical_status": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/status.json",
+  "historical_metadata": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/final-boss-supra.json",
+  "historical_selected_checkpoint": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/checkpoint-28000/final-boss-supra.safetensors",
+  "probe_indices_path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/sampled_control/monitor/progress-edit-indices.json",
+  "prompts_sha256": "7ca91dbfbd269b5d8ca1bb5baf428d104c0afd26a2ff85bc1c3e8b824232ed61",
+  "extra_input_and_source_sha256": {
+    "/ml2/hypergan/supra-e22-neutral-init/scripts/score_e22_supra_historical_selected.py": "58c3fa070f0d8e2ed1d775a39132e83f3232b7fc3c578587f6d28d602f58d134",
+    "/ml2/hypergan/supra-e22-neutral-init/scripts/e22_supra_neutral_continuation_contract.py": "aa782323c32f8e0c08c2369bee9621e3e3dd501d5a9b409a245c7849acae28de",
+    "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/status.json": "c80b0c44862a999bfdaf9db30b16a3a732b12f710326be19c2142c63a374682d",
+    "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/final-boss-supra.json": "7ad33fe237913afbf819364fd29d2c31674ca57dc7af3deb57f2e39f6e5a16e1",
+    "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/checkpoint-28000/final-boss-supra.safetensors": "b355297550a7940503564466b645fee5c6855c9d288cb695f5f044ff682b3998",
+    "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/checkpoint-28000/final-boss-supra.json": "e648a63263cd84de0c437cb43ba028f5b4470bd37d3eed057340e03b2390779d",
+    "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/checkpoint-28000/validation.json": "fa6c8d742e75cf74a14aae818a777887850f75d4f51b74bea4ae949dd8653693",
+    "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/sampled_control/monitor/progress-edit-indices.json": "90363bff61673353e77e1af1b57dfee4d3f94353325c6c9fdeb9959c458b9ad0",
+    "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/checkpoint-06400/final-boss-supra.safetensors": "24a98ba055d0b5298136d67dc7491a339684da03416c510d1d443fe730eb7069",
+    "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/final-boss-supra.safetensors": "b2191a46f59fa058bfacbcc659e8d7b6a7da4eeacbf65a3b619c438c3f449d3e"
+  },
+  "output": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-historical-selected-28000",
+  "budget_seconds": 300,
+  "training_updates": 0,
+  "selection": false,
+  "physical_gpu_binding": "CUDA_VISIBLE_DEVICES=0",
+  "evaluation": "Exact qualified held full evaluator: 570contexts/all6editing subjects/both common D1856/D6400, CPU72 panels/B4/BF16CFG3/live target teacher. Exact ordinary6400 record replay mandatory. RMSE diagnostic only.",
+  "comparison": "Historical best28000 is selected by the original MSE/AdamW validation controller, not our new observations. 22400editing+5600preservation updates. Separate best-model reference, not a comparable budget or optimizer intervention.",
+  "limits": [
+    "No changes to active6400\u219212800 study, native source, optimization, guards, stopping or selection.",
+    "Historical validation score is not comparable directly with current learned games or output RMSE; new shared full-task scores required.",
+    "All outcomes retained.300secondstartup-through-final-write deadline.",
+    "Agreement between two learned endogenous critics is not general editing-quality or SOTA proof."
+  ]
+}
