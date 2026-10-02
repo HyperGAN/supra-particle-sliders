@@ -1,0 +1,433 @@
+{
+  "schema": "supra_neutral_continuation_protocol_v1",
+  "status": "Fixed authorized execution after source/software review; mandatory actual6400-to6402 GPU recovery precedes quality continuation.",
+  "execution_authorized": true,
+  "objective": "Continue both independently qualified native6400 particle runs to fixed12800 editing updates, without changing their formulation/optimizer/streams. Ordinary6400 remains the primary target; ordinary12800 is fixed secondary budget context.",
+  "scope": "One cohort and continuation; no seed/architecture/amplitude/CFG/head/endpoint scan, output-metric intervention, early quality stop, Forge/default promotion, or general SOTA claim.",
+  "run": {
+    "output": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-continuation-12800",
+    "device": "cuda:0",
+    "physical_gpu": 0,
+    "cuda_visible_devices": "0"
+  },
+  "parent": {
+    "run": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400",
+    "review_sha256": "a142f2fa8e074062fd9618b16180d974c23bbebdc2d56e0e6accff79895b62b4",
+    "plan_sha256": "4dcfcf52d3753da093e6ae5756517f9ae47d24a7f7f6f63c0b1ab821e965be77",
+    "receipt_sha256": "be1631db4f5fd402df620f027c84faf74af978bbea46d2791ddbf764dff8f480",
+    "checkpoints": {
+      "sampled_control": {
+        "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/sampled_control/checkpoint-06400.pt",
+        "sha256": "947ae2315ceb828e75e3a1c6b56f0f589f7c04cdce0da3645bf31ad205c31096",
+        "native_digest": "9a7ed19da456aac86177165aeecc85f9bedfac571303ad0798a8cc7e7a70e80a"
+      },
+      "sampled_hb_neutral": {
+        "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/sampled_hb_neutral/checkpoint-06400.pt",
+        "sha256": "50b4adba4fe5b577342f6952b6aeb9bd60c74eaaa11499a1567f26aa9c2f432f",
+        "native_digest": "596d1b125ad378a54c906701bdd4c12fa8c388abdfbc5d4c63453cba4c29b8a3"
+      }
+    },
+    "qualified_clock": 6400,
+    "prior_runtime_seconds": 11199.208892873023
+  },
+  "particlegan": {
+    "root": "/ml2/hypergan/ParticleGAN-supra-neutral-develop",
+    "commit": "6ec7e5788e14ea15ddc3e16ac71110458108b6a6",
+    "package_git_tree": "8ff34578b1f63bd232436d39a751e6134f4cc8ab",
+    "python_source_digest": "d0be475a055aae953c22dbd19f6d2357db041437e0679d2f2f2cfa356517f65b",
+    "native_package_edits": false
+  },
+  "host": {
+    "model_id": "SupraLabs/Supra2-IMG",
+    "model_revision": "10dec6e4b4b5d1c44fd1d7d3fe5e50137333da5b",
+    "text_encoder_revision": "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2",
+    "vae_revision": "31f26fdeee1355a5c34592e401dd41e45d25a493",
+    "backend_commit": "01beecc6866a0c1a5dd6b34493af8290a0ed725b",
+    "architecture": "gated_particle_v3",
+    "formula": "up(h+tanh(Hh+b)+h*tanh(Cz)); h=down(x)",
+    "sites": 71,
+    "branch_rank": 16,
+    "bank": [
+      128,
+      4
+    ],
+    "conditioning_dimension": 769,
+    "cfg": 3.0,
+    "frozen_dtype": "bfloat16",
+    "trainable_dtype": "float32",
+    "velocity_shape": [
+      4,
+      4,
+      32,
+      32
+    ],
+    "patch_shape": [
+      4,
+      256,
+      16
+    ],
+    "trainable_generator_parameters": 1722672,
+    "trainable_router_parameters": 164636,
+    "trainable_bank_parameters": 512,
+    "trainable_critic_parameters": 38529
+  },
+  "training": {
+    "start": 6400,
+    "stop": 12800,
+    "additional_updates_per_arm": 6400,
+    "endpoints": [
+      9600,
+      12800
+    ],
+    "local_checkpoints": [
+      6402,
+      6800,
+      7200,
+      7600,
+      8000,
+      8400,
+      8800,
+      9200,
+      9600,
+      10000,
+      10400,
+      10800,
+      11200,
+      11600,
+      12000,
+      12400,
+      12800
+    ],
+    "preservation_updates": 0,
+    "output_objective": false,
+    "output_error_guard": false,
+    "max_feature_context_harm": 0,
+    "optimizer_interventions": false
+  },
+  "native_law": "Exact parent native recipe/config, FAST/EMA models, optimizers and moments, controllers, penalty/noise state, routing/evidence/guards, all native/caller CPU/CUDA RNG owners. Only the external fixed horizon extends; native total_steps remainsNone.",
+  "initializer": "Public initialize_ only in transient fresh constructor with identical modes/seeds, before strict public native restore. No initializer, zero-up or H/b neutralization after6400 restore.",
+  "recovery": {
+    "from_step": 6400,
+    "to_step": 6402,
+    "independent_restores": 2,
+    "native_updates_per_arm": 4,
+    "total_native_replay_updates": 8,
+    "before_quality": true,
+    "authoritative_first_two_rows_and_full_state_must_match": true,
+    "scope": "Actual GPU execution; CPU reviewer binds archived source and raw witnesses without re-execution."
+  },
+  "evaluation": {
+    "inherited_protocol_sha256": "31c1f596f9d3ba2ff600115311029ec3fa3b895a0925d9bcd35413049f5195cf",
+    "judges": {
+      "D1856": "e248f16ada2cdb6137f670e9c1dece3740db9175dee9eb324702bfab4b759d2d",
+      "D6400": "43aa3af32850ccf5d17c4a12ca52f903d61901d734fbd0bc570280afcee16929"
+    },
+    "pools": {
+      "fit": 240,
+      "test": 240,
+      "holds": 30,
+      "preservation": 60
+    },
+    "gaussian_panels": "Exact inherited private CPU72 panels and all contexts, normalized frozen-teacher residual; fixed D1856+V2D6400.",
+    "served_head": "FAST only",
+    "mandatory_endpoints": [
+      9600,
+      12800
+    ],
+    "ablations": [
+      "zero particle code",
+      "mass-only routing"
+    ],
+    "both_judges_and_all_six_subject_means": true,
+    "probe_every": 200,
+    "probe_contexts": 12,
+    "probe_native_dv12_state": "Qualified parent initial noise_generator stream",
+    "primary": "ordinary_lora_6400",
+    "secondary": "ordinary_lora_12800",
+    "target_definition": "Report each predeclared endpoint test-game mean against primary under BOTH fixed critics; report all six subject means and paired raw240-context changes. Neither endpoint is selected or omitted.",
+    "diagnostic_rmse": "Offline only; never an optimizer/structural guard/horizon/selection/stop input."
+  },
+  "historical_comparison": {
+    "ordinary_6400": {
+      "editing": 5120,
+      "preservation": 1280
+    },
+    "ordinary_12800": {
+      "editing": 10240,
+      "preservation": 2560
+    },
+    "particle_12800": {
+      "editing": 12800,
+      "preservation": 0
+    },
+    "objective": "Historical ordinary models use output MSE/AdamW and validation-based plateau controller; no LR reductions occurred through12800 in the pinned12800 controller state. Fixed clock artifacts were selected before this continuation.",
+    "limitation": "An extra-training win over historical6400 is not matched optimizer superiority. Historical12800 has equal total updates but different editing/preservation composition, objective, initialization, and architecture. Control vs neutral is the matched comparison."
+  },
+  "budget": {
+    "gpu_seconds": 14400,
+    "charged_seconds_per_arm": 7200,
+    "external_cpu_review_seconds": 1200,
+    "total_seconds_including_review": 15600,
+    "disk_free_bytes_required": 137438953472,
+    "scope": "Startup, input/source qualification, restore/replay, all updates, checkpoints, probes, fixed references, endpoints, exports, and final writes; separate external CPU qualification."
+  },
+  "workload": {
+    "new_full_states": 34,
+    "external_parent_states": 2,
+    "expected_new_full_state_bytes": 60000000000,
+    "expected_external_parent_bytes": 3528208650,
+    "source_inputs_referenced_not_copied": true,
+    "wall_estimate_basis_seconds": 11199.208892873023
+  },
+  "completion": "Requires bounded launcher exit0, execution-completion.json complete=true with exact receipt/plan SHA, actual independent report plus its complete=true SHA companion and external1200-second zero exit; overruns/interruption remain unqualified.",
+  "inputs": {
+    "data": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/data.pt",
+      "sha256": "4cf1dffebd909078838488156b7ac5e35e9c3f0806ec3e8217d50c102f5b6fcc"
+    },
+    "teacher": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/final.pt",
+      "sha256": "54b243580206beb772db77132ff367fca9389b209149dcef9573449aeb8b7fcf"
+    },
+    "D1856": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-noise-update-256/latest/final.pt",
+      "sha256": "db06166f66fa0fa70ac36e4130bc30d7bd9c7028f075a4c6e71e9c46d3baa102"
+    },
+    "D6400": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/final.pt",
+      "sha256": "54b243580206beb772db77132ff367fca9389b209149dcef9573449aeb8b7fcf"
+    },
+    "original6400": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/checkpoint-06400/final-boss-supra.safetensors",
+      "sha256": "24a98ba055d0b5298136d67dc7491a339684da03416c510d1d443fe730eb7069"
+    },
+    "original12800": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/checkpoint-12800/final-boss-supra.safetensors",
+      "sha256": "38101e2e1190ec58ba769828ff82ff8c600229b1e2a44ca28f9cfa4d31b79540"
+    },
+    "ordinary_training_state_6400": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/checkpoint-06400/training_state.pt",
+      "sha256": "4f3bfd9eae651927553f2a479f148690c2bcabd12c45dc61d4d258b60e924fe6"
+    },
+    "ordinary_training_state_12800": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/checkpoint-12800/training_state.pt",
+      "sha256": "b84ce20cae7fdfc41add990c53ad58006eab51eab562ff0822d34bbab4424910"
+    },
+    "ordinary_first400_trace": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra/train.jsonl",
+      "sha256": "b1eb3bbe6543d171afcc86ea6836bbc58dbbdd2226c387a7510eca859ba47217"
+    },
+    "ordinary_continuation_trace": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/train.jsonl",
+      "sha256": "6c903a91c1b4f62c7272365c06da273edbae170e504980ec2b64b04d5c8f6291"
+    },
+    "ordinary_run": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/run.json",
+      "sha256": "c62f58466769fbcc550cc3b7b6fe09ebc6d72579ab01b91bceabc91764455f1b"
+    },
+    "ordinary_archived_trainer": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/source/converge_final_boss.py",
+      "sha256": "591f1e8e071454cb57751ff1313da38e4822bfa5a38dc11250dce167480741d9"
+    },
+    "ordinary_archived_initial_trainer": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/source/train_final_boss.py",
+      "sha256": "61bf75d7f900f852b65009aa702d29348c874fe6923667fc46f84d64022cb3dd"
+    },
+    "ordinary_archived_controller": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/source/convergence.py",
+      "sha256": "d374192828537797e8c6d20b6d574b3c90789873cdbf03b7e72c637076ef9809"
+    },
+    "ordinary_prompts": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/source/prompts-final-boss.yaml",
+      "sha256": "7ca91dbfbd269b5d8ca1bb5baf428d104c0afd26a2ff85bc1c3e8b824232ed61"
+    },
+    "parent_probe_indices": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/sampled_control/monitor/progress-edit-indices.json",
+      "sha256": "90363bff61673353e77e1af1b57dfee4d3f94353325c6c9fdeb9959c458b9ad0"
+    },
+    "parent_probe_metadata": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/historical-probes.json",
+      "sha256": "e7febad0b964b2178c4484f01f68480d74609fb48a15dbf19e34e362bfc840f1"
+    },
+    "parent_boundary_sampled_control": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/sampled_control/checkpoint-06400.pt",
+      "sha256": "947ae2315ceb828e75e3a1c6b56f0f589f7c04cdce0da3645bf31ad205c31096"
+    },
+    "parent_initial_sampled_control": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/sampled_control/checkpoint-00000.pt",
+      "sha256": "a1c8aed3c028090af82ba643118ed17eb16ec53044e210ba168cb80a6ff04f12"
+    },
+    "parent_boundary_sampled_hb_neutral": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/sampled_hb_neutral/checkpoint-06400.pt",
+      "sha256": "50b4adba4fe5b577342f6952b6aeb9bd60c74eaaa11499a1567f26aa9c2f432f"
+    },
+    "parent_initial_sampled_hb_neutral": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-initialization-6400/sampled_hb_neutral/checkpoint-00000.pt",
+      "sha256": "34bf5ce26f5b2c57000401c9a33c5ee6eea82009e3c4a7db33332b3348e1bddf"
+    },
+    "inherited_data": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/data.pt",
+      "sha256": "4cf1dffebd909078838488156b7ac5e35e9c3f0806ec3e8217d50c102f5b6fcc",
+      "use": "Immutable contexts/masks/coordinate scales; live frozen teacher supplies same-batch target velocities."
+    },
+    "inherited_data_provenance": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/run.json",
+      "sha256": "77348e0f78d2c8b7f5d375d061c13d3085fedf4f43d78aadb2410d3d607c02ee"
+    },
+    "inherited_frozen_teacher": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/final.pt",
+      "sha256": "54b243580206beb772db77132ff367fca9389b209149dcef9573449aeb8b7fcf",
+      "use": "Use only policy.models.encoder teacher.* frozen tensors; never migrate trained model/table/optimizer/controller."
+    },
+    "inherited_frozen_teacher_review": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/qualification-review.json",
+      "sha256": "3a97778911d880ce726918aa3adf1bd843e7928a7079171a1ed174d17cf8abd2"
+    },
+    "inherited_common_D1856": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-noise-update-256/latest/final.pt",
+      "sha256": "db06166f66fa0fa70ac36e4130bc30d7bd9c7028f075a4c6e71e9c46d3baa102",
+      "use": "Load only policy.models.critic; frozen for every arm/reference."
+    },
+    "inherited_common_V2_D6400": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/final.pt",
+      "sha256": "54b243580206beb772db77132ff367fca9389b209149dcef9573449aeb8b7fcf",
+      "use": "Load only policy.models.critic; frozen for every arm/reference."
+    },
+    "inherited_historical_V2_6400_export": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/final.safetensors",
+      "sha256": "931e130227d6de514dcb5ad577471efadbe935cba93711faaffa5c192ac0faf8"
+    },
+    "inherited_historical_V3_6400_export": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-gated-v3-editing-only-6400/final.safetensors",
+      "sha256": "4de2c4bc9c2e2f83f146d5c87128b6d832bbf3d068cebb34a8a0ff35f22dbd35"
+    },
+    "inherited_historical_V3_5440_checkpoint": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-gated-v3-editing-only-6400/checkpoint-05440.pt",
+      "sha256": "ad57aa897d27c88d5736bcaffa89c693196e019ae8892c85933f6e4187c5581c",
+      "use": "Optional fixed historical checkpoint; no native optimizer migration to the new pin."
+    },
+    "inherited_historical_V3_review": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-gated-v3-editing-only-6400/independent-review.json",
+      "sha256": "49907401abf861abecfedb55528b4a86659f9aa3c6612c070887b72c46564d13"
+    },
+    "inherited_historical_ordinary_6400": {
+      "path": "/ml2/hypergan/supra-concept-sliders/outputs/final-boss-supra-converged/checkpoint-06400/final-boss-supra.safetensors",
+      "sha256": "24a98ba055d0b5298136d67dc7491a339684da03416c510d1d443fe730eb7069"
+    },
+    "inherited_backend_lock": {
+      "path": "/ml2/hypergan/supra-e22-verification/backend.lock.json",
+      "sha256": "2a6b8ad9212d13fed6e86b3d587b67edd9985fe28d3cb287cc0d5ac289b5a027"
+    },
+    "inherited_backend_model_source": {
+      "path": "/ml2/hypergan/supra-e22-verification/vendor/particle-sliders/conceptmod/textsliders/supra_model.py",
+      "sha256": "640851f4570d0f9eacccac70022f06668ddf92dcf8629e978a76443db60acdc4"
+    }
+  },
+  "sources": {
+    "scripts/e22_supra_neutral_continuation_contract.py": "aa782323c32f8e0c08c2369bee9621e3e3dd501d5a9b409a245c7849acae28de",
+    "scripts/continue_e22_supra_neutral_initialization.py": "5b4d4ebdd611e2384859ffc958fa3c48871de59a00eb28f94ae699b3a0b1f2aa",
+    "scripts/launch_e22_supra_neutral_continuation.py": "e2d6bff5d4000a7545e38713868511562c960cf1efcbb12e3e92436210e1c003",
+    "scripts/review_e22_supra_neutral_continuation.py": "c09abe24ff6b6ce76fcd1c2e120b070ffb3f622a4fb867d03930bf9cb83233df",
+    "scripts/review_e22_supra_neutral_initialization.py": "dda4feddb4dc0df0e61bb7cf391fecf57314065f79aa210f470606afbbeb9802",
+    "scripts/review_e22_supra_pr223.py": "8ef90eccbc4774abb674bb959234ea949c971c64627f6266d655653dbe4ed1e2",
+    "tests/test_e22_supra_neutral_continuation.py": "37a6763219148dc956d9e15666a4de83c978ef32a82901afbb2fba84815baa51",
+    "tests/test_experimental_e22_bank_game_trust.py": "1720e891c59df3e0de96a824835b57722270486eba56485fc44146cbec60079a",
+    "scripts/experimental_e22_bank_game_trust.py": "2570118f0792cc5196137ec2f4fb9fb0c930d745256c13831967bd5f5c1a7cb5"
+  },
+  "orchestration_adapter": {
+    "source_sha256": "94b70532cd832cc934b130dc74f47216cd4b2ada14222099815997c4a8829c93",
+    "main_code_sha256": "f694802895d7f9a3aecd1c90b6074f0fec0fd8cf9770aa0ea1f605f0cf9dce52",
+    "helpers": {
+      "save_state": {
+        "code_sha256": "606a5cd436a8899657482080dea4001fab94ec42cc694ad2995971a57b1b2fe1",
+        "closure_names": [
+          "checkpoint",
+          "torch"
+        ]
+      },
+      "immutable_owners": {
+        "code_sha256": "23e3e01f7d589dde0c92df15cb73711ca0eb4dec39d008b3caa2210a83d3fcef",
+        "closure_names": [
+          "frozen_digest",
+          "state_digest"
+        ]
+      },
+      "all_edit": {
+        "code_sha256": "6f19b71616c5a099182bfb5e4cefca8942894716fd4ab236e323dbe9344fa343",
+        "closure_names": [
+          "device",
+          "require",
+          "torch",
+          "update"
+        ]
+      },
+      "fresh": {
+        "code_sha256": "52361540862150dc9b9cbe44d7c5d32e51a7a4477641ac3facc1b0b3cba96a7d",
+        "closure_names": [
+          "GATED_PARTICLE_V3",
+          "SHARED_ROUTED_PROFILE",
+          "base",
+          "data",
+          "device",
+          "make_training_loop",
+          "mode_names",
+          "torch"
+        ]
+      },
+      "full_evaluation": {
+        "code_sha256": "f0668869740c931585d36d910374fb3281fe7270d2d722e90b3138517fe35708",
+        "closure_names": [
+          "F",
+          "device",
+          "patchify",
+          "protocol",
+          "require",
+          "torch"
+        ]
+      },
+      "clean_probe": {
+        "code_sha256": "179862f6b32991281af3306e0b4f524ed23bfdf497c5f5dc1376adc497691baa",
+        "closure_names": [
+          "F",
+          "judges",
+          "patchify",
+          "probe_context",
+          "probe_panels"
+        ]
+      }
+    },
+    "classes": {
+      "FastReference": {
+        "__init__": {
+          "code_sha256": "ca47dd87412824f45171463c8f1d1897118f03b0b67c8686a89b22752499bb9f",
+          "closure_names": []
+        },
+        "routed_forward": {
+          "code_sha256": "a539d3f490beb6941d5195411aeb04e564ceaf98a73aaa8a277d19a51bcbac55",
+          "closure_names": [
+            "torch"
+          ]
+        }
+      },
+      "OrdinaryReference": {
+        "__init__": {
+          "code_sha256": "5545145753f51741e445f57a45a40df564c599a9db28fb1d47f412913568acf4",
+          "closure_names": [
+            "base",
+            "control",
+            "inputs",
+            "load_adapter_state",
+            "load_file"
+          ]
+        },
+        "routed_forward": {
+          "code_sha256": "547b2f9eb9af41ba6e8b6a127a1d15627fab915e31ab4a92f1fc86bcb28cd7ee",
+          "closure_names": [
+            "torch"
+          ]
+        }
+      }
+    },
+    "binding": "Exact held code objects; new isolated globals and explicit closure cells; no source copy or module mutation."
+  }
+}

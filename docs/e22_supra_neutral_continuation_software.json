@@ -1,0 +1,91 @@
+{
+  "schema": "supra_neutral_continuation_software_preparation_v1",
+  "prepared": true,
+  "execution_authorized": false,
+  "card_sha256": "4c030ea863650687f73dc9318d993789bd5f21877fb8fb33d125c63b367e7884",
+  "source_preflight": {
+    "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-continuation-source-preflight.json",
+    "sha256": "ec33a014f0adb71cc06ffa572fbe12316a1508db9c10056af3c41c61bed30e61",
+    "seconds": 30.738338195020333,
+    "ready": true,
+    "cuda_initialized": false,
+    "model_forward_calls": 0,
+    "quality_updates": 0
+  },
+  "final_software": {
+    "cases": 19,
+    "pytest_reported_seconds": 4.64,
+    "full_process_wall_seconds": null,
+    "command": "PYTHONPATH=/ml2/hypergan/ParticleGAN-supra-neutral-develop:/ml2/hypergan/supra-e22-neutral-init:/ml2/hypergan/supra-e22-neutral-init/tests /ml2/ntc-image-studio/.venv-anima/bin/python -m pytest -q tests/test_e22_supra_neutral_continuation.py",
+    "full_process_wall_note": "Pytest duration is reported; interpreter startup/full subprocess clock was not separately captured.",
+    "native_cpu_software_updates": 5,
+    "clock": "Explicit synthetic6400; CPU7 independently advanced through6400 draws, never6400 actual quality updates.",
+    "actual_checks": [
+      "Exact held all_edit code object and two-site128x4 native public restore across four real CPU recovery updates after one backend-resolution update",
+      "Full native/caller checkpoint equality; changed model/EMA/optimizer/controller/native/caller RNG rejected",
+      "Canonical JSON config comparison preserves raw tuples for strict native restore",
+      "Editing-only stream and unchanged zero feature harm/output guard contract",
+      "Actual safetensors export tensors/head metadata and evaluation reductions rejected on tampering",
+      "Historical JSON-encoded safetensors metadata pins decoded and mismatches rejected"
+    ]
+  },
+  "preparation_attempts": [
+    {
+      "kind": "test_collection",
+      "result": "failed native import without explicit PYTHONPATH",
+      "pytest_reported_seconds": 1.53,
+      "native_updates": 0
+    },
+    {
+      "kind": "software_before_new_cases",
+      "cases": 16,
+      "pytest_reported_seconds": 4.92,
+      "native_cpu_updates": 5
+    },
+    {
+      "kind": "software_with_export_cases",
+      "cases": 18,
+      "pytest_reported_seconds": 4.49,
+      "native_cpu_updates": 5
+    },
+    {
+      "kind": "metadata_regression_before_final_source_freeze",
+      "cases": 19,
+      "pytest_reported_seconds": 4.54,
+      "native_cpu_updates": 5
+    },
+    {
+      "kind": "final_software",
+      "cases": 19,
+      "pytest_reported_seconds": 4.64,
+      "native_cpu_updates": 5
+    }
+  ],
+  "total_native_cpu_software_updates": 20,
+  "actual_full_supra_gpu_replay_updates": 0,
+  "continuation_quality_updates": 0,
+  "preserved_failed_preflight": {
+    "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-continuation-source-preflight-attempt1/failure.json",
+    "card_sha256": "db825819bead0c2d07977764737e92fcd962aad2bae4a89b4c674fbb0df526fa",
+    "cause": "Historical safetensors metadata scalar values are JSON encoded; raw-string check was corrected before any model/CUDA/quality update.",
+    "elapsed_seconds": null,
+    "source_and_card_archived": true
+  },
+  "budget_scope": "These source/software preparation attempts are external to the separately bounded future14400s GPU continuation and1200s actual independent CPU qualification; preparation costs are not hidden in quality time.",
+  "source_sha256": {
+    "scripts/e22_supra_neutral_continuation_contract.py": "aa782323c32f8e0c08c2369bee9621e3e3dd501d5a9b409a245c7849acae28de",
+    "scripts/continue_e22_supra_neutral_initialization.py": "5b4d4ebdd611e2384859ffc958fa3c48871de59a00eb28f94ae699b3a0b1f2aa",
+    "scripts/launch_e22_supra_neutral_continuation.py": "e2d6bff5d4000a7545e38713868511562c960cf1efcbb12e3e92436210e1c003",
+    "scripts/review_e22_supra_neutral_continuation.py": "c09abe24ff6b6ce76fcd1c2e120b070ffb3f622a4fb867d03930bf9cb83233df",
+    "scripts/review_e22_supra_neutral_initialization.py": "dda4feddb4dc0df0e61bb7cf391fecf57314065f79aa210f470606afbbeb9802",
+    "scripts/review_e22_supra_pr223.py": "8ef90eccbc4774abb674bb959234ea949c971c64627f6266d655653dbe4ed1e2",
+    "tests/test_e22_supra_neutral_continuation.py": "37a6763219148dc956d9e15666a4de83c978ef32a82901afbb2fba84815baa51",
+    "tests/test_experimental_e22_bank_game_trust.py": "1720e891c59df3e0de96a824835b57722270486eba56485fc44146cbec60079a",
+    "scripts/experimental_e22_bank_game_trust.py": "2570118f0792cc5196137ec2f4fb9fb0c930d745256c13831967bd5f5c1a7cb5"
+  },
+  "limits": [
+    "Preparation only; no actual full-Supra6400\u21926402 GPU recovery or continuation training has occurred.",
+    "One fixed cohort/task; no Forge/default or SOTA claim; all endpoints mandatory.",
+    "Root must peer review and explicitly freeze card authorization before the single fresh launch."
+  ]
+}

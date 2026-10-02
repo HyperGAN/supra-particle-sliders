@@ -22,7 +22,8 @@ def state(run, parent):
     prior = parent_view.state(parent)
     current = parent_view.state(run)
     prior_probes = prior["historical_probes"]
-    new_probes = current["historical_probes"]
+    new_probes = current["historical_probes"] or parent_view.read_json(
+        run / "historical-probes/references.json", {})
     probes = {**prior_probes, **new_probes}
     probes["scores"] = {**prior_probes.get("scores", {}), **new_probes.get("scores", {})}
     arms = {}

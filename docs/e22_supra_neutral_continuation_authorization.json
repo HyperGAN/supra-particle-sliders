@@ -1,0 +1,18 @@
+{
+  "schema": "supra_neutral_continuation_authorization_v1",
+  "authorized_at": "2026-10-02T01:46:36.034971+00:00",
+  "prepared_card_sha256": "4c030ea863650687f73dc9318d993789bd5f21877fb8fb33d125c63b367e7884",
+  "authorized_card_sha256": "91d1c32168d6cec1209cadb34e30b88377d4116d7d969b9ad73136026719c3d6",
+  "changed_fields": [
+    "status",
+    "execution_authorized"
+  ],
+  "scientific_law_changed": false,
+  "source_only_peer_review": "convergence_mechanism_audit: all source/card hashes and restore/budget/endpoints passed; actual GPU recovery remains mandatory before quality.",
+  "software_preparation_receipt": "docs/e22_supra_neutral_continuation_software.json",
+  "software_preparation_receipt_sha256": "7a91b2d867af8888e52c73fc6a47026621c4022e9a4d40ba82d1d3446c461b01",
+  "prepared_card_archive": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-continuation-authorization/prepared-card.json",
+  "actual_gpu_recovery_before_quality": true,
+  "resource_policy": "Intentional GPU0 sharing with existing model-glue/desktop processes and separately bounded caption-transfer prerequisites; no speed comparison or throughput superiority is inferred.",
+  "continuation_updates_at_authorization": 0
+}
