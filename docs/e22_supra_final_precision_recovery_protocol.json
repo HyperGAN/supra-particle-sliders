@@ -1,0 +1,375 @@
+{
+  "schema": "supra_final_precision_recovery_protocol_v1",
+  "id": "supra_final_precision_12800_recovery_v1",
+  "status": "SOURCE_PREPARED; ten-case tiny software PASS; peer/root GPU300 source review pending",
+  "software_qualified": true,
+  "seconds": 300,
+  "device": "cuda:0",
+  "CUDA_VISIBLE_DEVICES": "0",
+  "start_step": 12800,
+  "end_step": 12802,
+  "native_updates": 6,
+  "optimizer_steps": 12,
+  "arms": [
+    "BF16",
+    "FP32_final"
+  ],
+  "precision_modes": {
+    "BF16": "student_final_bf16_v1",
+    "FP32_final": "student_final_fp32_v1"
+  },
+  "output": "/ml2/hypergan/supra-final-precision-continuation/outputs/e22-supra-final-precision-recovery-v1",
+  "particlegan_root": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop",
+  "sources": {
+    "scripts/qualify_e22_supra_final_precision_recovery.py": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/scripts/qualify_e22_supra_final_precision_recovery.py",
+      "sha256": "4ab932db26215d35e8757ee5682a4287ad512b69245546880d83cdec8ca236a9"
+    },
+    "supra/__init__.py": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/supra/__init__.py",
+      "sha256": "f1d36943af013d2b8dcbf2439234f1d986618afa1d6e40a5acdda65f40e39b00"
+    },
+    "supra/particle_final_precision.py": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/supra/particle_final_precision.py",
+      "sha256": "4109973ffbf5e172612fb3a9e4e9fce14e86d9fb7ddd5dc842549925612bbb44"
+    },
+    "supra/particle_final_precision_export.py": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/supra/particle_final_precision_export.py",
+      "sha256": "5e5d43074b89bc453adb21d21ee6dac86fa703a402be3ada013478ba301b1b86"
+    },
+    "supra/particle_final_precision_evaluation.py": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/supra/particle_final_precision_evaluation.py",
+      "sha256": "44b05d21a87b4107e93f4208ddc521478562a8c0e63c70d4da7637a85ee05334"
+    },
+    "supra/particle_final_precision_task.py": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/supra/particle_final_precision_task.py",
+      "sha256": "b908ee2040b0398f3655fe7e4c2d0c0579f6e4cc16aa79fdd5b54b68427802ee"
+    },
+    "supra/particle_adapter.py": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/supra/particle_adapter.py",
+      "sha256": "1a9814217dfaca2b37552b01b0441a6820330212031ccd931a02f712fdaac7dd"
+    },
+    "supra/particle_export.py": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/supra/particle_export.py",
+      "sha256": "3a201bf42073de74391b1cc4abc3555dde76c27b61a7fb592c39ac0bd0bbb10d"
+    },
+    "supra/particle_game.py": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/supra/particle_game.py",
+      "sha256": "6a10cc15ea44651953fd46fefa3f097a832f594cca98084f17a67f3c4a94f35d"
+    },
+    "supra/particle_pilot.py": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/supra/particle_pilot.py",
+      "sha256": "da97cef920160a6707de60c1303a90138346386d2a2bf5b4470c55cf8b08e329"
+    },
+    "supra/particle_training.py": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/supra/particle_training.py",
+      "sha256": "3b20daf9fee45001c6846062b8c242f6879a7a1ff17c2a4c12c24c21e8194b6c"
+    },
+    "supra/particle_training_data.py": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/supra/particle_training_data.py",
+      "sha256": "4a0787d187de02e2619e8956c1b2b6a74fe268db00ee16a89601e5d6b229a78c"
+    },
+    "supra/runtime.py": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/supra/runtime.py",
+      "sha256": "9b56409101a8c674b29e02066ef0d6ed257f231d9aa68fef34a7197c445a151c"
+    },
+    "tests/test_particle_final_precision.py": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/tests/test_particle_final_precision.py",
+      "sha256": "3e4cecc5ddbb74eb0f0846a4412655dc41f2cf174b4b218417155209270ba598"
+    }
+  },
+  "dependencies": {
+    "backend": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/vendor/particle-sliders/conceptmod/textsliders/supra_model.py",
+      "sha256": "640851f4570d0f9eacccac70022f06668ddf92dcf8629e978a76443db60acdc4"
+    },
+    "backend_lock": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/backend.lock.json",
+      "sha256": "2a6b8ad9212d13fed6e86b3d587b67edd9985fe28d3cb287cc0d5ac289b5a027"
+    },
+    "native:particlegan/__init__.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/__init__.py",
+      "sha256": "b56efa562acc551d639548c299002e2cd76338b3fd7062699780add51f4f5e8c"
+    },
+    "native:particlegan/_qr.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/_qr.py",
+      "sha256": "b59cd62cc27ed557b41b2d17ed86ed578c762a3a8a392d63731a5a3b2b018916"
+    },
+    "native:particlegan/anchor_birth.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/anchor_birth.py",
+      "sha256": "aa50983d8b61304acf4e1138f16fd4784798983df91e931863bcacd3b511f76f"
+    },
+    "native:particlegan/autoencoder.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/autoencoder.py",
+      "sha256": "f3fbb9184e9f44112e15eccf0c0246dfba5ed490d3c7b81b0f837a5335916402"
+    },
+    "native:particlegan/birth_death.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/birth_death.py",
+      "sha256": "b14c50c611a8cf188347e391739fca50a5171200eb6be90e4e3d1509d64e47ed"
+    },
+    "native:particlegan/birth_phase.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/birth_phase.py",
+      "sha256": "5ff929e5e9858aa24c4cc2f8999b5d0603e25e42ca3844d1da4cc28b1981d3d7"
+    },
+    "native:particlegan/capabilities.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/capabilities.py",
+      "sha256": "39df9c67dbedf612740057e5fa743bc724678a1bc323d1f7cf550b37c0c01177"
+    },
+    "native:particlegan/conditioning.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/conditioning.py",
+      "sha256": "8734fe338868ace4b5851a8fdb1f071e46d47396f66a3765e6b1ef37f0481486"
+    },
+    "native:particlegan/continuous.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/continuous.py",
+      "sha256": "4ceab49c7d51d1769ae91b7f8bc892eaf380ca6fbd77a948a086ade6627e9a41"
+    },
+    "native:particlegan/diffusion.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/diffusion.py",
+      "sha256": "19c3aa8772703891551b9122fde8e74c07996f779892b7cb6be09553691efa61"
+    },
+    "native:particlegan/discriminators.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/discriminators.py",
+      "sha256": "0e2efb125ffb314577612ab7a2eba66b0a1a2d28ad25f403f42c18b6f6ee333f"
+    },
+    "native:particlegan/feature_cells.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/feature_cells.py",
+      "sha256": "e0ea05f61abd7845c7437eed9a79c3a2511d5551ff04f4e619b6b9c8992e221a"
+    },
+    "native:particlegan/feature_policy.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/feature_policy.py",
+      "sha256": "de1a50f70a37d4c9174c8850ce3eac2a2597ed01f19fc4fe1a2ce0ec3176a8b2"
+    },
+    "native:particlegan/feature_reference.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/feature_reference.py",
+      "sha256": "58e076e9e04600be25e28afafc537a340de727371f4acbbfb2b7dd8bebac18b1"
+    },
+    "native:particlegan/gan_loss.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/gan_loss.py",
+      "sha256": "1c1019dfe71c583e32a05df0d2f794f9fff6d9ee1ea0332f57f6379ae70cf6b7"
+    },
+    "native:particlegan/grad_regularizers.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/grad_regularizers.py",
+      "sha256": "a540d05a4a992540b6a5f3b5ff7ccc11ebaf18592135b87c95638adbe68aa747"
+    },
+    "native:particlegan/init.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/init.py",
+      "sha256": "e15d4de01eb49f7097bc249abacab907ff067385412346f54ab0d510cb8649d0"
+    },
+    "native:particlegan/k3p.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/k3p.py",
+      "sha256": "200ead2c27ab0b2aa6068f1b1b1b5c826b8125aa8602bfec08b31aaa2894401c"
+    },
+    "native:particlegan/ka2.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/ka2.py",
+      "sha256": "95fdaa58a2bdc229d5d146ef89548bc3fe07582d06181a149ed1bb4f5d632703"
+    },
+    "native:particlegan/mean_transport.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/mean_transport.py",
+      "sha256": "57a68e0a65c5424a4460f65002f3862a69e90af330a4d47c700dc773683a2c06"
+    },
+    "native:particlegan/output_moments.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/output_moments.py",
+      "sha256": "dcf3e27228d2c3c9738e473c5b22ee9e6d5047ddcd60c538b66526adb53ef188"
+    },
+    "native:particlegan/particle_prior.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/particle_prior.py",
+      "sha256": "0220878bebea227da63abbf9f5b1ebdabdc6aea54fd2332fd2cab02ed734238f"
+    },
+    "native:particlegan/policy.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/policy.py",
+      "sha256": "8370e36b5b93afe95ae24d2b385aac8735a587f86ef2b87ed369ecfdfcb6fec5"
+    },
+    "native:particlegan/population_continuity.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/population_continuity.py",
+      "sha256": "378cd75cca45bc8da4da33e686a12cf99df853042687978314e37c532bc17fe6"
+    },
+    "native:particlegan/recipe_schedules.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/recipe_schedules.py",
+      "sha256": "d05e459b3e9e5f938b01a854273b74343f2b6d382bec4ae5151dd1f1cd032500"
+    },
+    "native:particlegan/recipes.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/recipes.py",
+      "sha256": "1a7f9df746e242a2774068c819d70d50cd72dc4f7f6b22b0bd13e1345dcf8ab2"
+    },
+    "native:particlegan/routing.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/routing.py",
+      "sha256": "63249d808fccb3d4e113eb1d638a245ee665c3cade20a1542bb706f316b4abcc"
+    },
+    "native:particlegan/row_evidence.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/row_evidence.py",
+      "sha256": "78be40141ef3946860458e9842159be9321f05c217a4800dd4134113b6eba93e"
+    },
+    "native:particlegan/training.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/training.py",
+      "sha256": "7dadc219135bc3e6bf657bfe9bc3fa81dd14d4b2a31c70d5ff61e2941db35c94"
+    },
+    "native:particlegan/vicreg_loss.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/vicreg_loss.py",
+      "sha256": "ab1c4dc266dec2c35337f449917240eb38afede7590d2154b63f6f471dc45a36"
+    }
+  },
+  "inputs": {
+    "data": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/data.pt",
+      "sha256": "4cf1dffebd909078838488156b7ac5e35e9c3f0806ec3e8217d50c102f5b6fcc",
+      "use": "Immutable contexts/masks/coordinate scales; live frozen teacher supplies same-batch target velocities."
+    },
+    "neutral_checkpoint": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-continuation-12800/sampled_hb_neutral/checkpoint-12800.pt",
+      "sha256": "e20aa5eda8a19221d043c8757b73b9a88cb6825a038b256e40d942418f0c06c4"
+    },
+    "D1856": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-noise-update-256/latest/final.pt",
+      "sha256": "db06166f66fa0fa70ac36e4130bc30d7bd9c7028f075a4c6e71e9c46d3baa102",
+      "use": "Load only policy.models.critic; frozen for every arm/reference."
+    },
+    "D6400": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/final.pt",
+      "sha256": "54b243580206beb772db77132ff367fca9389b209149dcef9573449aeb8b7fcf",
+      "use": "Load only policy.models.critic; frozen for every arm/reference."
+    },
+    "neutral_review": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-continuation-12800/independent-review.json",
+      "sha256": "582f31d96cff2e3a0f10300dc0bd73aadbeb7cf861aa50139f0b71594a8cb899"
+    },
+    "neutral_review_completion": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-continuation-12800/independent-review.json.completion.json",
+      "sha256": "5349068fd205444562370916b04531c93afd0b856e4f39183d032ea2d01e0446"
+    },
+    "neutral_evaluation": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-continuation-12800/sampled_hb_neutral/evaluation-12800.json",
+      "sha256": "837dae7d4cac289ba44f672c6432c967c8d0835e5ead13435d5e0cd2ef185197"
+    },
+    "scorer_raw": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/runs/full12800-selected28000-student-final-precision-v2/observed-full-student-final-precision.pt",
+      "sha256": "e7c5306ef7a1118e431ea0174119551b7dce60a22964be39c6e4956c6e4d604d"
+    },
+    "scorer_report": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/runs/full12800-selected28000-student-final-precision-v2/report.json",
+      "sha256": "86f919102dca4330c2569886a00c93da0eb008a14c3225317fb2b4c31c8d15f7"
+    },
+    "scorer_completion": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/runs/full12800-selected28000-student-final-precision-v2/completion.json",
+      "sha256": "e6ad9d7bbb2d530dca4a7f436110b27c33d0de7f69fc2199e3fa8c2494fcfb0b"
+    },
+    "scorer_review": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/docs/e22_routed_full_student_final_precision_v2_independent_review.json",
+      "sha256": "e63aa64dc93bf3374de4c91303d5a65b33a025bca27d78793d7a064efb6a873b"
+    },
+    "scorer_review_completion": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/docs/e22_routed_full_student_final_precision_v2_independent_review.completion.json",
+      "sha256": "4b793bf715107d39bef907f93e963e8f74505f90e702ca9bceca812b68d5c093"
+    },
+    "software_external": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/outputs/final-precision-software-v1/external.json",
+      "sha256": "5b972701a1aca666653fc4c219723c169f7b2a9911ebdf30025e4fca0a3eabf4"
+    },
+    "software_stdout": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/outputs/final-precision-software-v1/stdout.log",
+      "sha256": "3a1e851c5201099352c435d5575d6cbdf347601edc7f2ed7f6244e529ca0c58a"
+    },
+    "software_junit": {
+      "path": "/ml2/hypergan/supra-final-precision-continuation/outputs/final-precision-software-v1/junit.xml",
+      "sha256": "c58fe62055855930b820b6b60ba9ca57240effb5103d88d639c3e6c1f081f4a5"
+    },
+    "software_plan": {
+      "path": "/tmp/supra-final-precision-software-v1-plan.json",
+      "sha256": "93595798eeef36a31d722c24d73b1c91d10a070a537082b653608b16f473536e"
+    },
+    "software_launcher": {
+      "path": "/tmp/run_supra_final_precision_software_v1.py",
+      "sha256": "3238311b064c252b4adb5b002d39adcc2aa0ba908b3420e5f31e0a3837c4f0f8"
+    }
+  },
+  "backend_sha256": "640851f4570d0f9eacccac70022f06668ddf92dcf8629e978a76443db60acdc4",
+  "data_digest": "45846a7dcdb76c16d7b2d230aebbb1b43c890de498f2651a8254e34daa498319",
+  "neutral_native_digest": "07c1d4ab931240808db3989bbf97b4136fdb76cecf67e734b858d5b7e6237f79",
+  "critic_tensor_digests": {
+    "D1856": "e248f16ada2cdb6137f670e9c1dece3740db9175dee9eb324702bfab4b759d2d",
+    "D6400": "43aa3af32850ccf5d17c4a12ca52f903d61901d734fbd0bc570280afcee16929"
+  },
+  "TEST_panel_sha256": "8f8478e96b0a70309a835d504672f4733815edaf1fc8b4bef59f53b12d629bb9",
+  "precision_backend": {
+    "float32_matmul_precision": "highest",
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": true,
+    "allow_bf16_reduced_precision_reduction": true
+  },
+  "training": {
+    "batch_size": 4,
+    "pool": "FIT",
+    "explicit_CPU7_indices": true,
+    "targets": "zero physical residual",
+    "game_weight": 1.0,
+    "preservation_updates": 0,
+    "output_objective": false,
+    "output_error_guard": false,
+    "optimizer_intervention": false
+  },
+  "recovery": {
+    "reference": "Each matched arm original public12800 restore ->12801; save full own precision checkpoint ->12802. Interleave references with independent owned native/caller globals.",
+    "resume": "Independently fresh same-precision owners; exact legacy bootstrap then own saved12801 public restore ->12802. One resumed update per arm; total3updates/arm.",
+    "equality": "Exact every native and caller tensor byte/device and scalar incl intentional monitor NaNs; native rows, gradients/modes/flags/classes, global CPU/CUDA plus all private generator streams; own-arm comparison only.",
+    "across_arms": "Compare actual sampled4indices/data CPU7/paired43/DV12 draw addresses and base sums. Do not force differing adaptive controller, loss, weights or internal state to agree.",
+    "no_reinitialization": "Fresh public initialize_ before optimizer/EMA only. Original trained12800 restore before explicit precision tag; no initializer after any learned restore. Scratch public table draw replaced by exact original state; preserved native nn.Parameter ownership."
+  },
+  "initial_scorer_parity": {
+    "required": true,
+    "keys": {
+      "BF16": "neutral12800_BF16",
+      "FP32_final": "neutral12800_FP32_final"
+    },
+    "physical_residual_mse_panels_context_games_records": "Exact retained TEST240 arrays/scalar records for each mode, correct original source block order18/4/17/5/16/15,40each; CPU72 burn60 FIT panel draws then60 TEST draws; sameB4 CFG3/live teacher.",
+    "summaries": "Same authoritative per-context records/order => exact summary; also within existing independent summary tolerance1e-12*max(1,abs(reference)).",
+    "state": "Native/caller full state immutable across each offline evaluator call."
+  },
+  "exports": {
+    "sources": [
+      "fast",
+      "averaged"
+    ],
+    "strengths": [
+      0.0,
+      1.0
+    ],
+    "format": "supra_particlegan_clean_final_precision_v1",
+    "proof": "Independently copied explicit source and represented mass; raw public RoutedRows velocity equals precision-aware reload exactly for B4 both strengths. Wrong precision/source rejected; native/caller/teacher unchanged.",
+    "scope": "Clean raw velocity only. Student strength-zero arithmetic differs in FP32 mode; no claim FP32 zero strength equals old BF16 baseline."
+  },
+  "counts": {
+    "native_updates": 6,
+    "optimizer_steps": 12,
+    "mandatory_native_student": 12,
+    "mandatory_native_live_teacher": 12,
+    "initial_TEST_student": 120,
+    "initial_TEST_live_teacher": 120,
+    "export_raw_student": 16,
+    "minimum_student_total": 148,
+    "minimum_live_teacher_total": 132,
+    "native_control_extra_forwards": "Native KA2/structural paths unchanged; counted when executed, no copied/bypassed controls."
+  },
+  "qualification_contract": {
+    "exit0": "Complete engineering recovery/scorer/export PASS only. Scientific_status=PASS is qualification plumbing, not convergence.",
+    "exit2": "Any error/mismatch/overrun ->INCOMPLETE; preserve partial checkpoints/arrays/error and never silently repair or retry.",
+    "scope": "One root GPU300 startup through all input qualification, teacher/owners, two initial fullTEST captures, six native updates, checkpoint IO/reload, FAST/EMA exports, wrong-mode controls, rollback and final writes."
+  },
+  "source_preflight": "--preflight-only uses stdlib SHA/JSON/schema/qualified anchor receipts; no Torch/API/model/assets tensor loads. Actual root GPU invocation additionally requires source-qualified CPU software metadata/packet bindings.",
+  "software": {
+    "qualification": "PASS",
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "native_tiny_updates": 3,
+    "optimizer_steps": 6,
+    "external_seconds": 3.938927897019312,
+    "external_cap_seconds": 60,
+    "all43_before_after_pins_unchanged": true,
+    "actual_asset_loads": 0,
+    "CUDA": false,
+    "old_tests_rerun": 0,
+    "scope": "Tiny public API/class/parameter/math/restore/export controls only; actual full12800 GPU qualifier has not run."
+  },
+  "scope": "LOCAL actual full-Supra ENGINEERING QUALIFICATION before any continuation authorization. Same original native E22 game/KA2/DV12/routing/optimizers, no output objective/guard/selection/stop. Does not establish convergence/optimizer/causal remedy, precision-specific benefit, or beating original Supra.",
+  "CLI": "CUDA_VISIBLE_DEVICES=0 /ml2/ntc-image-studio/.venv-anima/bin/python /ml2/hypergan/supra-final-precision-continuation/scripts/qualify_e22_supra_final_precision_recovery.py --card /ml2/hypergan/supra-final-precision-continuation/docs/e22_supra_final_precision_recovery_protocol.json --out /ml2/hypergan/supra-final-precision-continuation/outputs/e22-supra-final-precision-recovery-v1"
+}

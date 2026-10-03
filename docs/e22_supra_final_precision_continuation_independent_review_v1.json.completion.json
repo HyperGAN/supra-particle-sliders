@@ -1,0 +1,11 @@
+{
+  "task": "supra_final_precision_matched_19200_v1",
+  "complete": true,
+  "qualification": "PASS",
+  "scientific_status": "FAIL",
+  "exit_code": 0,
+  "report_sha256": "74ebbeed9f1f15d40d7f776f07ec8998b56062abbbe3e90303303f462f54f247",
+  "seconds": 56.43604308180511,
+  "limit_seconds": 1200,
+  "error": null
+}
