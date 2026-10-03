@@ -1,0 +1,61 @@
+{
+  "id": "supra_latent_coverage_saved_data_review_v1",
+  "status": "FROZEN_PRE_EXECUTION",
+  "approved_for_execution": true,
+  "seconds": 120,
+  "final_reserve_seconds": 10,
+  "output": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-saved-data-review-v1",
+  "sources": {
+    "reader": {
+      "path": "/ml2/hypergan/supra-latent-coverage/scripts/review_e22_supra_latent_coverage_data.py",
+      "sha256": "ffd8063ac4e0399d74f3172f6016dee0b971bc063a9fa763188561b1e83fed38"
+    },
+    "preregistration": {
+      "path": "/ml2/hypergan/supra-latent-coverage/docs/e22_supra_latent_coverage_data_reader_preregistration_v1.json",
+      "sha256": "5333eeb256b7945278eb6c6610f873bc9a299c155e3ab7274b14ee54c5cfdb99"
+    },
+    "metadata_creator": {
+      "path": "/tmp/prepare_supra_latent_coverage_saved_data_review_v1.py",
+      "sha256": "deae8c03395ed9b3104216691784bed769c2c9843ea4bafd810946575257f95a"
+    },
+    "qualification_watchdog": {
+      "path": "/tmp/bounded-particle-api-qualification-launcher-v1.py",
+      "sha256": "cb9a32b3d64155c2999c5bab3199f4f190176e4ab18945e546ee9639c3e04fca"
+    }
+  },
+  "inputs": {
+    "data": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/data.pt",
+      "sha256": "4cf1dffebd909078838488156b7ac5e35e9c3f0806ec3e8217d50c102f5b6fcc"
+    },
+    "neutral_checkpoint": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-continuation-12800/sampled_hb_neutral/checkpoint-12800.pt",
+      "sha256": "e20aa5eda8a19221d043c8757b73b9a88cb6825a038b256e40d942418f0c06c4"
+    },
+    "artifact": {
+      "path": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-data-v1/latent-coverage-data.pt",
+      "sha256": "2e877b0b35a3f5c74b62e308aa1a764a88a21fbd0c85023be37c7ca5117c298e"
+    },
+    "generation_card": {
+      "path": "/ml2/hypergan/supra-latent-coverage/docs/e22_supra_latent_coverage_data_preparation_v1.json",
+      "sha256": "a886c642a3e43f079d0b1680cb19fc675076a4c403ee3bbd4de13d6d04923288"
+    },
+    "generation_report": {
+      "path": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-data-v1/report.json",
+      "sha256": "7dc9654dc4c31f046944c7c0465e2791ecc02f08973810831db7af3a8d1be7a3"
+    },
+    "generation_completion": {
+      "path": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-data-v1/completion.json",
+      "sha256": "720a680768f6be7d8fcc872b37cc56bbcba7bb54b7749a75dbfa4fc801c83ec4"
+    },
+    "generation_external": {
+      "path": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-data-v1.external.json",
+      "sha256": "7ab22b0820d6c592574289e5489ca752583a4ea58635d22ebaff01a3588bfcda"
+    },
+    "generation_manifest": {
+      "path": "/tmp/supra-latent-coverage-data-v1-launch-pins.json",
+      "sha256": "77c2f740752e3260d4af67f07f950d88cacbd71467909d75ca3c2e96a0ab1cf6"
+    }
+  },
+  "scope": "Metadata-only actual output hash binding; frozen preregistered gates/caps/digest law unchanged"
+}

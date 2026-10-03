@@ -1,0 +1,426 @@
+{
+  "backend_sha256": "640851f4570d0f9eacccac70022f06668ddf92dcf8629e978a76443db60acdc4",
+  "data_digest": "45846a7dcdb76c16d7b2d230aebbb1b43c890de498f2651a8254e34daa498319",
+  "neutral_native_digest": "07c1d4ab931240808db3989bbf97b4136fdb76cecf67e734b858d5b7e6237f79",
+  "critic_tensor_digests": {
+    "D1856": "e248f16ada2cdb6137f670e9c1dece3740db9175dee9eb324702bfab4b759d2d",
+    "D6400": "43aa3af32850ccf5d17c4a12ca52f903d61901d734fbd0bc570280afcee16929"
+  },
+  "TEST_panel_sha256": "8f8478e96b0a70309a835d504672f4733815edaf1fc8b4bef59f53b12d629bb9",
+  "precision_backend": {
+    "float32_matmul_precision": "highest",
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": true,
+    "allow_bf16_reduced_precision_reduction": true
+  },
+  "id": "supra_latent_coverage_full12800_recovery_v1",
+  "schema": "supra_latent_coverage_full12800_recovery_protocol_v1",
+  "status": "FROZEN_PRE_EXECUTION",
+  "approved_for_execution": true,
+  "seconds": 300,
+  "device": "cuda:0",
+  "CUDA_VISIBLE_DEVICES": "0",
+  "application_root": "/ml2/hypergan/supra-latent-coverage",
+  "particlegan_root": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop",
+  "precision": "student_final_bf16_v1",
+  "output": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-full12800-recovery-v1",
+  "sources": {
+    "supra/__init__.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/__init__.py",
+      "sha256": "f1d36943af013d2b8dcbf2439234f1d986618afa1d6e40a5acdda65f40e39b00"
+    },
+    "supra/particle_final_precision.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_final_precision.py",
+      "sha256": "4109973ffbf5e172612fb3a9e4e9fce14e86d9fb7ddd5dc842549925612bbb44"
+    },
+    "supra/particle_final_precision_export.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_final_precision_export.py",
+      "sha256": "5e5d43074b89bc453adb21d21ee6dac86fa703a402be3ada013478ba301b1b86"
+    },
+    "supra/particle_final_precision_evaluation.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_final_precision_evaluation.py",
+      "sha256": "44b05d21a87b4107e93f4208ddc521478562a8c0e63c70d4da7637a85ee05334"
+    },
+    "supra/particle_final_precision_task.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_final_precision_task.py",
+      "sha256": "b908ee2040b0398f3655fe7e4c2d0c0579f6e4cc16aa79fdd5b54b68427802ee"
+    },
+    "supra/particle_adapter.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_adapter.py",
+      "sha256": "1a9814217dfaca2b37552b01b0441a6820330212031ccd931a02f712fdaac7dd"
+    },
+    "supra/particle_export.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_export.py",
+      "sha256": "3a201bf42073de74391b1cc4abc3555dde76c27b61a7fb592c39ac0bd0bbb10d"
+    },
+    "supra/particle_game.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_game.py",
+      "sha256": "6a10cc15ea44651953fd46fefa3f097a832f594cca98084f17a67f3c4a94f35d"
+    },
+    "supra/particle_pilot.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_pilot.py",
+      "sha256": "da97cef920160a6707de60c1303a90138346386d2a2bf5b4470c55cf8b08e329"
+    },
+    "supra/particle_training.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_training.py",
+      "sha256": "3b20daf9fee45001c6846062b8c242f6879a7a1ff17c2a4c12c24c21e8194b6c"
+    },
+    "supra/particle_training_data.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_training_data.py",
+      "sha256": "4a0787d187de02e2619e8956c1b2b6a74fe268db00ee16a89601e5d6b229a78c"
+    },
+    "supra/runtime.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/runtime.py",
+      "sha256": "9b56409101a8c674b29e02066ef0d6ed257f231d9aa68fef34a7197c445a151c"
+    },
+    "supra/particle_latent_coverage.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_latent_coverage.py",
+      "sha256": "32e8fc845e61a9d151cd0e24d73846339d9d5ab94cc56b4fb98579e02a6d048d"
+    },
+    "scripts/prepare_e22_supra_latent_coverage.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/scripts/prepare_e22_supra_latent_coverage.py",
+      "sha256": "88d9625c1e709c4a0e8d4f1d719d86a804d42b96be509d0f07c06d034137ae41"
+    },
+    "scripts/qualify_e22_supra_latent_coverage.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/scripts/qualify_e22_supra_latent_coverage.py",
+      "sha256": "c5f3b3844e0dda534ffbc545cac4f4e3e1c545096c0bdb43f92793364ec8cfe2"
+    },
+    "scripts/review_e22_supra_latent_coverage_data.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/scripts/review_e22_supra_latent_coverage_data.py",
+      "sha256": "ffd8063ac4e0399d74f3172f6016dee0b971bc063a9fa763188561b1e83fed38"
+    },
+    "tests/test_particle_latent_coverage_qualification.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/tests/test_particle_latent_coverage_qualification.py",
+      "sha256": "51d5e6dd424c6500872dbb3ec34c6ed8dffc2c89b5aa4e14ee8fa3dae344ad87"
+    }
+  },
+  "dependencies": {
+    "backend": {
+      "path": "/ml2/hypergan/supra-latent-coverage/vendor/particle-sliders/conceptmod/textsliders/supra_model.py",
+      "sha256": "640851f4570d0f9eacccac70022f06668ddf92dcf8629e978a76443db60acdc4"
+    },
+    "backend_lock": {
+      "path": "/ml2/hypergan/supra-latent-coverage/backend.lock.json",
+      "sha256": "2a6b8ad9212d13fed6e86b3d587b67edd9985fe28d3cb287cc0d5ac289b5a027"
+    },
+    "native:particlegan/__init__.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/__init__.py",
+      "sha256": "b56efa562acc551d639548c299002e2cd76338b3fd7062699780add51f4f5e8c"
+    },
+    "native:particlegan/_qr.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/_qr.py",
+      "sha256": "b59cd62cc27ed557b41b2d17ed86ed578c762a3a8a392d63731a5a3b2b018916"
+    },
+    "native:particlegan/anchor_birth.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/anchor_birth.py",
+      "sha256": "aa50983d8b61304acf4e1138f16fd4784798983df91e931863bcacd3b511f76f"
+    },
+    "native:particlegan/autoencoder.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/autoencoder.py",
+      "sha256": "f3fbb9184e9f44112e15eccf0c0246dfba5ed490d3c7b81b0f837a5335916402"
+    },
+    "native:particlegan/birth_death.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/birth_death.py",
+      "sha256": "b14c50c611a8cf188347e391739fca50a5171200eb6be90e4e3d1509d64e47ed"
+    },
+    "native:particlegan/birth_phase.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/birth_phase.py",
+      "sha256": "5ff929e5e9858aa24c4cc2f8999b5d0603e25e42ca3844d1da4cc28b1981d3d7"
+    },
+    "native:particlegan/capabilities.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/capabilities.py",
+      "sha256": "39df9c67dbedf612740057e5fa743bc724678a1bc323d1f7cf550b37c0c01177"
+    },
+    "native:particlegan/conditioning.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/conditioning.py",
+      "sha256": "8734fe338868ace4b5851a8fdb1f071e46d47396f66a3765e6b1ef37f0481486"
+    },
+    "native:particlegan/continuous.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/continuous.py",
+      "sha256": "4ceab49c7d51d1769ae91b7f8bc892eaf380ca6fbd77a948a086ade6627e9a41"
+    },
+    "native:particlegan/diffusion.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/diffusion.py",
+      "sha256": "19c3aa8772703891551b9122fde8e74c07996f779892b7cb6be09553691efa61"
+    },
+    "native:particlegan/discriminators.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/discriminators.py",
+      "sha256": "0e2efb125ffb314577612ab7a2eba66b0a1a2d28ad25f403f42c18b6f6ee333f"
+    },
+    "native:particlegan/feature_cells.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/feature_cells.py",
+      "sha256": "e0ea05f61abd7845c7437eed9a79c3a2511d5551ff04f4e619b6b9c8992e221a"
+    },
+    "native:particlegan/feature_policy.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/feature_policy.py",
+      "sha256": "de1a50f70a37d4c9174c8850ce3eac2a2597ed01f19fc4fe1a2ce0ec3176a8b2"
+    },
+    "native:particlegan/feature_reference.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/feature_reference.py",
+      "sha256": "58e076e9e04600be25e28afafc537a340de727371f4acbbfb2b7dd8bebac18b1"
+    },
+    "native:particlegan/gan_loss.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/gan_loss.py",
+      "sha256": "1c1019dfe71c583e32a05df0d2f794f9fff6d9ee1ea0332f57f6379ae70cf6b7"
+    },
+    "native:particlegan/grad_regularizers.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/grad_regularizers.py",
+      "sha256": "a540d05a4a992540b6a5f3b5ff7ccc11ebaf18592135b87c95638adbe68aa747"
+    },
+    "native:particlegan/init.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/init.py",
+      "sha256": "e15d4de01eb49f7097bc249abacab907ff067385412346f54ab0d510cb8649d0"
+    },
+    "native:particlegan/k3p.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/k3p.py",
+      "sha256": "200ead2c27ab0b2aa6068f1b1b1b5c826b8125aa8602bfec08b31aaa2894401c"
+    },
+    "native:particlegan/ka2.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/ka2.py",
+      "sha256": "95fdaa58a2bdc229d5d146ef89548bc3fe07582d06181a149ed1bb4f5d632703"
+    },
+    "native:particlegan/mean_transport.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/mean_transport.py",
+      "sha256": "57a68e0a65c5424a4460f65002f3862a69e90af330a4d47c700dc773683a2c06"
+    },
+    "native:particlegan/output_moments.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/output_moments.py",
+      "sha256": "dcf3e27228d2c3c9738e473c5b22ee9e6d5047ddcd60c538b66526adb53ef188"
+    },
+    "native:particlegan/particle_prior.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/particle_prior.py",
+      "sha256": "0220878bebea227da63abbf9f5b1ebdabdc6aea54fd2332fd2cab02ed734238f"
+    },
+    "native:particlegan/policy.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/policy.py",
+      "sha256": "8370e36b5b93afe95ae24d2b385aac8735a587f86ef2b87ed369ecfdfcb6fec5"
+    },
+    "native:particlegan/population_continuity.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/population_continuity.py",
+      "sha256": "378cd75cca45bc8da4da33e686a12cf99df853042687978314e37c532bc17fe6"
+    },
+    "native:particlegan/recipe_schedules.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/recipe_schedules.py",
+      "sha256": "d05e459b3e9e5f938b01a854273b74343f2b6d382bec4ae5151dd1f1cd032500"
+    },
+    "native:particlegan/recipes.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/recipes.py",
+      "sha256": "1a7f9df746e242a2774068c819d70d50cd72dc4f7f6b22b0bd13e1345dcf8ab2"
+    },
+    "native:particlegan/routing.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/routing.py",
+      "sha256": "63249d808fccb3d4e113eb1d638a245ee665c3cade20a1542bb706f316b4abcc"
+    },
+    "native:particlegan/row_evidence.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/row_evidence.py",
+      "sha256": "78be40141ef3946860458e9842159be9321f05c217a4800dd4134113b6eba93e"
+    },
+    "native:particlegan/training.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/training.py",
+      "sha256": "7dadc219135bc3e6bf657bfe9bc3fa81dd14d4b2a31c70d5ff61e2941db35c94"
+    },
+    "native:particlegan/vicreg_loss.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/vicreg_loss.py",
+      "sha256": "ab1c4dc266dec2c35337f449917240eb38afede7590d2154b63f6f471dc45a36"
+    }
+  },
+  "inputs": {
+    "data": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/data.pt",
+      "sha256": "4cf1dffebd909078838488156b7ac5e35e9c3f0806ec3e8217d50c102f5b6fcc"
+    },
+    "neutral_checkpoint": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-continuation-12800/sampled_hb_neutral/checkpoint-12800.pt",
+      "sha256": "e20aa5eda8a19221d043c8757b73b9a88cb6825a038b256e40d942418f0c06c4"
+    },
+    "D1856": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-noise-update-256/latest/final.pt",
+      "sha256": "db06166f66fa0fa70ac36e4130bc30d7bd9c7028f075a4c6e71e9c46d3baa102"
+    },
+    "D6400": {
+      "path": "/ml2/hypergan/supra-e22-verification/outputs/e22-particle-v2-6400/final.pt",
+      "sha256": "54b243580206beb772db77132ff367fca9389b209149dcef9573449aeb8b7fcf"
+    },
+    "neutral_review": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-continuation-12800/independent-review.json",
+      "sha256": "582f31d96cff2e3a0f10300dc0bd73aadbeb7cf861aa50139f0b71594a8cb899"
+    },
+    "neutral_review_completion": {
+      "path": "/ml2/hypergan/supra-e22-neutral-init/outputs/e22-supra-neutral-continuation-12800/independent-review.json.completion.json",
+      "sha256": "5349068fd205444562370916b04531c93afd0b856e4f39183d032ea2d01e0446"
+    },
+    "coverage_software_external": {
+      "path": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-software-v1/external.json",
+      "sha256": "d5ebb41a9ef22c52647537c9b14742f4ff7cf1c05a5b8522deb1a4b7aac878c4"
+    },
+    "coverage_software_junit": {
+      "path": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-software-v1/junit.xml",
+      "sha256": "67541a90ae3a2fd25e0f7df83b4ef97fe2a1f4f719ff74111099b8a11a95296e"
+    },
+    "coverage_software_card": {
+      "path": "/ml2/hypergan/supra-latent-coverage/docs/e22_supra_latent_coverage_software_v1.json",
+      "sha256": "8532893f4ba0585b2d10137261ea9fa7dc05256162050459b7cdcb547dba8be8"
+    },
+    "saved_data_reader_preregistration": {
+      "path": "/ml2/hypergan/supra-latent-coverage/docs/e22_supra_latent_coverage_data_reader_preregistration_v1.json",
+      "sha256": "5333eeb256b7945278eb6c6610f873bc9a299c155e3ab7274b14ee54c5cfdb99"
+    },
+    "registration_creator": {
+      "path": "/tmp/prepare_supra_latent_coverage_data_v1.py",
+      "sha256": "5a7f6bd7ff89dced0c6b6bef9d1c9f751d6512500521a4c58f94ac7685f11c17"
+    },
+    "qualification_watchdog": {
+      "path": "/tmp/bounded-particle-api-qualification-launcher-v1.py",
+      "sha256": "cb9a32b3d64155c2999c5bab3199f4f190176e4ab18945e546ee9639c3e04fca"
+    },
+    "precision_backend_metadata": {
+      "path": "/tmp/latent-coverage-backend-metadata-v1.json",
+      "sha256": "2a12aa1016a5aeeffdb63d3a5fc99b65b27bc67bba69ddcaf50f89d62acfc7d7"
+    },
+    "coverage_toy_report": {
+      "path": "/ml2/hypergan/ParticleGAN-routed-latent-coverage-fresh-owner-develop/runs/latent-coverage-science-v2/report.json",
+      "sha256": "b3e926090f7eef219bbcba015dc819b57ef30d21d6b86505f35dc15b9b8317b7"
+    },
+    "coverage_software_plan": {
+      "path": "/tmp/latent-coverage-software-trials-v2-preparation/app-cpu60-plan.json",
+      "sha256": "e61763e465884c66f6bea9d3f585a209e97d9b38452a3feda619a985457c6ada"
+    },
+    "coverage_data": {
+      "path": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-data-v1/latent-coverage-data.pt",
+      "sha256": "2e877b0b35a3f5c74b62e308aa1a764a88a21fbd0c85023be37c7ca5117c298e"
+    },
+    "coverage_report": {
+      "path": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-data-v1/report.json",
+      "sha256": "7dc9654dc4c31f046944c7c0465e2791ecc02f08973810831db7af3a8d1be7a3"
+    },
+    "coverage_completion": {
+      "path": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-data-v1/completion.json",
+      "sha256": "720a680768f6be7d8fcc872b37cc56bbcba7bb54b7749a75dbfa4fc801c83ec4"
+    },
+    "coverage_external": {
+      "path": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-data-v1.external.json",
+      "sha256": "7ab22b0820d6c592574289e5489ca752583a4ea58635d22ebaff01a3588bfcda"
+    },
+    "coverage_preparation_card": {
+      "path": "/ml2/hypergan/supra-latent-coverage/docs/e22_supra_latent_coverage_data_preparation_v1.json",
+      "sha256": "a886c642a3e43f079d0b1680cb19fc675076a4c403ee3bbd4de13d6d04923288"
+    },
+    "coverage_reader_descriptor": {
+      "path": "/ml2/hypergan/supra-latent-coverage/docs/e22_supra_latent_coverage_saved_data_review_v1.json",
+      "sha256": "462db4f3ee3ade788251bede4d9cc8e5f805c1d074ea1547a94c1f9b3cbebfb2"
+    },
+    "coverage_reader_report": {
+      "path": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-saved-data-review-v1/report.json",
+      "sha256": "3accf78a3c0a36f0a5b34b18cab65bfde2563cbbc76efe2d2f0d12abcf6f55f2"
+    },
+    "coverage_reader_completion": {
+      "path": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-saved-data-review-v1/completion.json",
+      "sha256": "77b326643f9d19679f7a67b7380a770c0b164a5eaf6fa635e3ea20a27f7dec89"
+    },
+    "coverage_reader_external": {
+      "path": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-saved-data-review-v1.external.json",
+      "sha256": "ad081d8fa50481044d772f11973e3df325dcb61426519f89eeeb27cd5843f8d1"
+    },
+    "coverage_reader_manifest": {
+      "path": "/tmp/supra-latent-coverage-saved-data-review-v1-launch-pins.json",
+      "sha256": "8a26cb85ac05d00da42d2d79e6af17777cb46353ca8a12d9fad9b92d5964b4e7"
+    },
+    "recovery_registration_creator": {
+      "path": "/tmp/prepare_supra_latent_coverage_recovery_v1.py",
+      "sha256": "33c63833df71e87a84a33ff87d9d0ee44fec094728ab393f3bacd1bf59cbd204"
+    }
+  },
+  "frozen_data_law": {
+    "TRAIN_seeds": [
+      7063,
+      7064,
+      7065,
+      7066,
+      7067,
+      7068,
+      7069,
+      7070
+    ],
+    "TEST_seeds": [
+      39001,
+      39002
+    ],
+    "original_FIT_rows": 240,
+    "expanded_FIT_rows": 960,
+    "TEST_rows": 240,
+    "guard_rows": 64,
+    "source_order": [
+      18,
+      4,
+      17,
+      5,
+      16,
+      15
+    ],
+    "target_order": [
+      11,
+      3,
+      2,
+      13,
+      12,
+      14
+    ],
+    "Euler_steps": 50,
+    "recorded_steps": [
+      0,
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45
+    ],
+    "CFG": 3,
+    "builder_batch": 4,
+    "internal_teacher_CFG_batch": 8,
+    "teacher_B4_forwards": 1080,
+    "Euler_B4_forwards": 900,
+    "opposite_caption_B4_forwards": 180,
+    "private_seed_draws": 6,
+    "native_updates": 0,
+    "optimizer_steps": 0,
+    "original_subset": "Copy original240, cached velocities and prompts byte-exact; no regeneration",
+    "non_FIT": "Every original field outsideFIT byte-exact, including scale/guard/TEST/text",
+    "arithmetic": "Original frozen FP32 storage with original BF16 teacher arithmetic; added rows B4/CFG B8"
+  },
+  "independent_saved_reader": {
+    "path": "/ml2/hypergan/supra-latent-coverage/scripts/review_e22_supra_latent_coverage_data.py",
+    "sha256": "ffd8063ac4e0399d74f3172f6016dee0b971bc063a9fa763188561b1e83fed38",
+    "registration_path": "/ml2/hypergan/supra-latent-coverage/docs/e22_supra_latent_coverage_data_reader_preregistration_v1.json",
+    "registration_sha256": "5333eeb256b7945278eb6c6610f873bc9a299c155e3ab7274b14ee54c5cfdb99",
+    "seconds": 120,
+    "reserve_seconds": 10,
+    "CUDA_VISIBLE_DEVICES": "",
+    "model_forwards": 0,
+    "native_updates": 0,
+    "materialization": "Only actual future artifact/report/completion/external hashes are filled after producer; verification law frozen before generation"
+  },
+  "scope": "Genuine full14 trained12800 data attachment/reload prerequisite; zero training/quality verdict",
+  "budget_scope": "WholeGPU300 including startup/hashes/fresh owners/publicoriginalrestore/migration/6forwards/checkpointwrites/cleanup/posthash/finalreceipt",
+  "manifest": "/tmp/supra-latent-coverage-full12800-recovery-v1-launch-pins.json",
+  "external": "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-full12800-recovery-v1.external.json",
+  "recovery_law": {
+    "full_clock": 12800,
+    "supports": [
+      2,
+      8
+    ],
+    "native_updates": 0,
+    "optimizer_steps": 0,
+    "public_routed_generate": 6,
+    "student_forwards": 6,
+    "teacher_forwards": 6,
+    "public_bootstrap": "Exact original12800 before attachment, init only before fresh optimizer/EMA",
+    "prediction": "Common original FIT B4 prediction byte-exact before/after migration/fresh own-state reload",
+    "rejection": "Wrong data tag rejects before public load and preserves entire caller/native state",
+    "rollback": "Complete finally original config/FIT/precision/native/caller restore exact for both supports"
+  }
+}
