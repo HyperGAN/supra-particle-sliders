@@ -1,0 +1,289 @@
+{
+  "id": "supra_latent_coverage_software_v1",
+  "status": "FROZEN_PRE_EXECUTION",
+  "scientific_status": null,
+  "scope": "Synthetic CPU wrapper software qualification; not actual pretrained12800 migration, teacher-cache generation, a portable convergence toy, or quality science.",
+  "seconds": 60,
+  "CUDA_visible_devices": "",
+  "Torch_threads": 1,
+  "autograd_multithreading": false,
+  "command": [
+    "/ml2/ntc-image-studio/.venv-anima/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/test_particle_latent_coverage_qualification.py"
+  ],
+  "environment": {
+    "cwd": "/ml2/hypergan/supra-latent-coverage",
+    "PYTHONPATH": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop:/ml2/hypergan/supra-latent-coverage",
+    "CUDA_VISIBLE_DEVICES": ""
+  },
+  "external_clock": "Root-owned whole-process60s startup through cleanup, stdout/JUnit/receipt writes and final hashes; one execution only after source review/freeze.",
+  "source_bindings": {
+    "supra/__init__.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/__init__.py",
+      "sha256": "f1d36943af013d2b8dcbf2439234f1d986618afa1d6e40a5acdda65f40e39b00"
+    },
+    "supra/particle_adapter.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_adapter.py",
+      "sha256": "1a9814217dfaca2b37552b01b0441a6820330212031ccd931a02f712fdaac7dd"
+    },
+    "supra/particle_game.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_game.py",
+      "sha256": "6a10cc15ea44651953fd46fefa3f097a832f594cca98084f17a67f3c4a94f35d"
+    },
+    "supra/particle_pilot.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_pilot.py",
+      "sha256": "da97cef920160a6707de60c1303a90138346386d2a2bf5b4470c55cf8b08e329"
+    },
+    "supra/particle_training.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_training.py",
+      "sha256": "3b20daf9fee45001c6846062b8c242f6879a7a1ff17c2a4c12c24c21e8194b6c"
+    },
+    "supra/particle_training_data.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_training_data.py",
+      "sha256": "4a0787d187de02e2619e8956c1b2b6a74fe268db00ee16a89601e5d6b229a78c"
+    },
+    "supra/particle_final_precision.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_final_precision.py",
+      "sha256": "4109973ffbf5e172612fb3a9e4e9fce14e86d9fb7ddd5dc842549925612bbb44"
+    },
+    "supra/particle_latent_coverage.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_latent_coverage.py",
+      "sha256": "32e8fc845e61a9d151cd0e24d73846339d9d5ab94cc56b4fb98579e02a6d048d"
+    },
+    "tests/test_particle_latent_coverage_qualification.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/tests/test_particle_latent_coverage_qualification.py",
+      "sha256": "51d5e6dd424c6500872dbb3ec34c6ed8dffc2c89b5aa4e14ee8fa3dae344ad87"
+    },
+    "tests/test_particle_final_precision.py": {
+      "path": "/ml2/hypergan/supra-latent-coverage/tests/test_particle_final_precision.py",
+      "sha256": "3e4cecc5ddbb74eb0f0846a4412655dc41f2cf174b4b218417155209270ba598"
+    },
+    "native:particlegan/__init__.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/__init__.py",
+      "sha256": "b56efa562acc551d639548c299002e2cd76338b3fd7062699780add51f4f5e8c"
+    },
+    "native:particlegan/_qr.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/_qr.py",
+      "sha256": "b59cd62cc27ed557b41b2d17ed86ed578c762a3a8a392d63731a5a3b2b018916"
+    },
+    "native:particlegan/anchor_birth.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/anchor_birth.py",
+      "sha256": "aa50983d8b61304acf4e1138f16fd4784798983df91e931863bcacd3b511f76f"
+    },
+    "native:particlegan/autoencoder.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/autoencoder.py",
+      "sha256": "f3fbb9184e9f44112e15eccf0c0246dfba5ed490d3c7b81b0f837a5335916402"
+    },
+    "native:particlegan/birth_death.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/birth_death.py",
+      "sha256": "b14c50c611a8cf188347e391739fca50a5171200eb6be90e4e3d1509d64e47ed"
+    },
+    "native:particlegan/birth_phase.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/birth_phase.py",
+      "sha256": "5ff929e5e9858aa24c4cc2f8999b5d0603e25e42ca3844d1da4cc28b1981d3d7"
+    },
+    "native:particlegan/capabilities.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/capabilities.py",
+      "sha256": "39df9c67dbedf612740057e5fa743bc724678a1bc323d1f7cf550b37c0c01177"
+    },
+    "native:particlegan/conditioning.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/conditioning.py",
+      "sha256": "8734fe338868ace4b5851a8fdb1f071e46d47396f66a3765e6b1ef37f0481486"
+    },
+    "native:particlegan/continuous.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/continuous.py",
+      "sha256": "4ceab49c7d51d1769ae91b7f8bc892eaf380ca6fbd77a948a086ade6627e9a41"
+    },
+    "native:particlegan/diffusion.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/diffusion.py",
+      "sha256": "19c3aa8772703891551b9122fde8e74c07996f779892b7cb6be09553691efa61"
+    },
+    "native:particlegan/discriminators.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/discriminators.py",
+      "sha256": "0e2efb125ffb314577612ab7a2eba66b0a1a2d28ad25f403f42c18b6f6ee333f"
+    },
+    "native:particlegan/feature_cells.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/feature_cells.py",
+      "sha256": "e0ea05f61abd7845c7437eed9a79c3a2511d5551ff04f4e619b6b9c8992e221a"
+    },
+    "native:particlegan/feature_policy.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/feature_policy.py",
+      "sha256": "de1a50f70a37d4c9174c8850ce3eac2a2597ed01f19fc4fe1a2ce0ec3176a8b2"
+    },
+    "native:particlegan/feature_reference.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/feature_reference.py",
+      "sha256": "58e076e9e04600be25e28afafc537a340de727371f4acbbfb2b7dd8bebac18b1"
+    },
+    "native:particlegan/gan_loss.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/gan_loss.py",
+      "sha256": "1c1019dfe71c583e32a05df0d2f794f9fff6d9ee1ea0332f57f6379ae70cf6b7"
+    },
+    "native:particlegan/grad_regularizers.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/grad_regularizers.py",
+      "sha256": "a540d05a4a992540b6a5f3b5ff7ccc11ebaf18592135b87c95638adbe68aa747"
+    },
+    "native:particlegan/init.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/init.py",
+      "sha256": "e15d4de01eb49f7097bc249abacab907ff067385412346f54ab0d510cb8649d0"
+    },
+    "native:particlegan/k3p.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/k3p.py",
+      "sha256": "200ead2c27ab0b2aa6068f1b1b1b5c826b8125aa8602bfec08b31aaa2894401c"
+    },
+    "native:particlegan/ka2.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/ka2.py",
+      "sha256": "95fdaa58a2bdc229d5d146ef89548bc3fe07582d06181a149ed1bb4f5d632703"
+    },
+    "native:particlegan/mean_transport.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/mean_transport.py",
+      "sha256": "57a68e0a65c5424a4460f65002f3862a69e90af330a4d47c700dc773683a2c06"
+    },
+    "native:particlegan/output_moments.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/output_moments.py",
+      "sha256": "dcf3e27228d2c3c9738e473c5b22ee9e6d5047ddcd60c538b66526adb53ef188"
+    },
+    "native:particlegan/particle_prior.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/particle_prior.py",
+      "sha256": "0220878bebea227da63abbf9f5b1ebdabdc6aea54fd2332fd2cab02ed734238f"
+    },
+    "native:particlegan/policy.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/policy.py",
+      "sha256": "8370e36b5b93afe95ae24d2b385aac8735a587f86ef2b87ed369ecfdfcb6fec5"
+    },
+    "native:particlegan/population_continuity.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/population_continuity.py",
+      "sha256": "378cd75cca45bc8da4da33e686a12cf99df853042687978314e37c532bc17fe6"
+    },
+    "native:particlegan/recipe_schedules.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/recipe_schedules.py",
+      "sha256": "d05e459b3e9e5f938b01a854273b74343f2b6d382bec4ae5151dd1f1cd032500"
+    },
+    "native:particlegan/recipes.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/recipes.py",
+      "sha256": "1a7f9df746e242a2774068c819d70d50cd72dc4f7f6b22b0bd13e1345dcf8ab2"
+    },
+    "native:particlegan/routing.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/routing.py",
+      "sha256": "63249d808fccb3d4e113eb1d638a245ee665c3cade20a1542bb706f316b4abcc"
+    },
+    "native:particlegan/row_evidence.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/row_evidence.py",
+      "sha256": "78be40141ef3946860458e9842159be9321f05c217a4800dd4134113b6eba93e"
+    },
+    "native:particlegan/training.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/training.py",
+      "sha256": "7dadc219135bc3e6bf657bfe9bc3fa81dd14d4b2a31c70d5ff61e2941db35c94"
+    },
+    "native:particlegan/vicreg_loss.py": {
+      "path": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop/particlegan/vicreg_loss.py",
+      "sha256": "ab1c4dc266dec2c35337f449917240eb38afede7590d2154b63f6f471dc45a36"
+    }
+  },
+  "particlegan_root": "/ml2/hypergan/ParticleGAN-supra-native-adam-direction-develop",
+  "native_source_identity": {
+    "files": {
+      "particlegan/__init__.py": "b56efa562acc551d639548c299002e2cd76338b3fd7062699780add51f4f5e8c",
+      "particlegan/_qr.py": "b59cd62cc27ed557b41b2d17ed86ed578c762a3a8a392d63731a5a3b2b018916",
+      "particlegan/anchor_birth.py": "aa50983d8b61304acf4e1138f16fd4784798983df91e931863bcacd3b511f76f",
+      "particlegan/autoencoder.py": "f3fbb9184e9f44112e15eccf0c0246dfba5ed490d3c7b81b0f837a5335916402",
+      "particlegan/birth_death.py": "b14c50c611a8cf188347e391739fca50a5171200eb6be90e4e3d1509d64e47ed",
+      "particlegan/birth_phase.py": "5ff929e5e9858aa24c4cc2f8999b5d0603e25e42ca3844d1da4cc28b1981d3d7",
+      "particlegan/capabilities.py": "39df9c67dbedf612740057e5fa743bc724678a1bc323d1f7cf550b37c0c01177",
+      "particlegan/conditioning.py": "8734fe338868ace4b5851a8fdb1f071e46d47396f66a3765e6b1ef37f0481486",
+      "particlegan/continuous.py": "4ceab49c7d51d1769ae91b7f8bc892eaf380ca6fbd77a948a086ade6627e9a41",
+      "particlegan/diffusion.py": "19c3aa8772703891551b9122fde8e74c07996f779892b7cb6be09553691efa61",
+      "particlegan/discriminators.py": "0e2efb125ffb314577612ab7a2eba66b0a1a2d28ad25f403f42c18b6f6ee333f",
+      "particlegan/feature_cells.py": "e0ea05f61abd7845c7437eed9a79c3a2511d5551ff04f4e619b6b9c8992e221a",
+      "particlegan/feature_policy.py": "de1a50f70a37d4c9174c8850ce3eac2a2597ed01f19fc4fe1a2ce0ec3176a8b2",
+      "particlegan/feature_reference.py": "58e076e9e04600be25e28afafc537a340de727371f4acbbfb2b7dd8bebac18b1",
+      "particlegan/gan_loss.py": "1c1019dfe71c583e32a05df0d2f794f9fff6d9ee1ea0332f57f6379ae70cf6b7",
+      "particlegan/grad_regularizers.py": "a540d05a4a992540b6a5f3b5ff7ccc11ebaf18592135b87c95638adbe68aa747",
+      "particlegan/init.py": "e15d4de01eb49f7097bc249abacab907ff067385412346f54ab0d510cb8649d0",
+      "particlegan/k3p.py": "200ead2c27ab0b2aa6068f1b1b1b5c826b8125aa8602bfec08b31aaa2894401c",
+      "particlegan/ka2.py": "95fdaa58a2bdc229d5d146ef89548bc3fe07582d06181a149ed1bb4f5d632703",
+      "particlegan/mean_transport.py": "57a68e0a65c5424a4460f65002f3862a69e90af330a4d47c700dc773683a2c06",
+      "particlegan/output_moments.py": "dcf3e27228d2c3c9738e473c5b22ee9e6d5047ddcd60c538b66526adb53ef188",
+      "particlegan/particle_prior.py": "0220878bebea227da63abbf9f5b1ebdabdc6aea54fd2332fd2cab02ed734238f",
+      "particlegan/policy.py": "8370e36b5b93afe95ae24d2b385aac8735a587f86ef2b87ed369ecfdfcb6fec5",
+      "particlegan/population_continuity.py": "378cd75cca45bc8da4da33e686a12cf99df853042687978314e37c532bc17fe6",
+      "particlegan/recipe_schedules.py": "d05e459b3e9e5f938b01a854273b74343f2b6d382bec4ae5151dd1f1cd032500",
+      "particlegan/recipes.py": "1a7f9df746e242a2774068c819d70d50cd72dc4f7f6b22b0bd13e1345dcf8ab2",
+      "particlegan/routing.py": "63249d808fccb3d4e113eb1d638a245ee665c3cade20a1542bb706f316b4abcc",
+      "particlegan/row_evidence.py": "78be40141ef3946860458e9842159be9321f05c217a4800dd4134113b6eba93e",
+      "particlegan/training.py": "7dadc219135bc3e6bf657bfe9bc3fa81dd14d4b2a31c70d5ff61e2941db35c94",
+      "particlegan/vicreg_loss.py": "ab1c4dc266dec2c35337f449917240eb38afede7590d2154b63f6f471dc45a36"
+    },
+    "sha256": "4fffe28c1bf31845704f53456e015022bede1360f84ee429e6807be43c309ef4"
+  },
+  "legacy_native_path_bytes_sha256": "7b814e32627ac5a332637d336ebaa13b6baab0b9373f6841d9a22fb8ab39cde9",
+  "native_binding_scope": "Current software execution identity, not a permanent future package allowlist; root verifies actually imported package path and pins.",
+  "software_schema": "supra_latent_coverage_software_data_v1",
+  "production_schema": "supra_latent_coverage_data_v1",
+  "origin": {
+    "completed_steps": 0,
+    "public_restore": "Fresh same-owner native checkpoint0/load_state_dict roundtrip, exact before attachment. No clock override.",
+    "initialized_after_restore": false
+  },
+  "fixture": {
+    "backbone": "Exact TinyOrdinaryLoRA/TinyFinal/TinyBackbone declarations copied from bound existing precision test. Older test module is not imported or collected.",
+    "latent_values": "Analytic deterministic synthetic values, not Gaussian Euler trajectories.",
+    "original_FIT_rows": 240,
+    "expanded_FIT_rows": 960,
+    "TEST_rows": 240,
+    "guard_rows": 64,
+    "teacher_cache_generation_calls": 0,
+    "Euler_calls": 0,
+    "actual_assets": 0,
+    "full14_block_models": 0,
+    "fresh_init": "Public initialize_ while fresh trainable parameters are declared; freeze backbone before public production factory; learned owners initialized before optimizers/EMA."
+  },
+  "tests": [
+    {
+      "name": "test_synthetic_schema_rejects_production_and_corrupt_lineage_before_attach",
+      "native_updates": 0,
+      "checks": "Software schema accepted only by explicit software validator; production validator/attach reject; rehashed corrupt original subset, guard, seed leak, fabricated1080 counts and dtype reject."
+    },
+    {
+      "name": "test_attachment_retains_native_owners_guards_scales_and_uniform_paired_addresses",
+      "native_updates": 0,
+      "checks": "Both support tags leave policy/caller/RNG/guards/scale/historical digest unchanged; all960 common addresses give baseline240 multiplicity4 with identical source/time/path tails."
+    },
+    {
+      "name": "test_native_three_update_split_replay_and_wrong_state_rejection",
+      "native_updates": 3,
+      "checks": "Real fresh0\u21921\u21922 and separate saved1\u21922 replay; exact native/caller/modes/gradients/streams/full checkpoint and row parity; wrong support/order/dtype/precision rejects neutrally; initializer forbidden after fresh resume construction."
+    }
+  ],
+  "expected_counts": {
+    "test_cases": 3,
+    "native_updates": 3,
+    "generator_optimizer_steps": 3,
+    "critic_optimizer_steps": 3,
+    "teacher_cache_generation_calls": 0,
+    "actual_asset_loads": 0,
+    "full14_block_models": 0,
+    "CUDA": false
+  },
+  "qualification": {
+    "PASS": "All three unchanged test cases pass within external60s; root receipt binds source/import identities and actual update count.",
+    "FAIL": "Any assertion, setup or integrity failure is software qualification failure, never a scientific negative.",
+    "INCOMPLETE": "Timeout or late cleanup/final-write/pin failure; preserve attempt."
+  },
+  "no_accuracy_feedback": true,
+  "production_migration": "Separate genuine12800/full-artifact qualification remains mandatory; software PASS does not authorize model generation or training.",
+  "execution": {
+    "performed": false,
+    "owner": "root only",
+    "results": null
+  },
+  "root_review": {
+    "source_clear": true,
+    "expected_native_updates": 3,
+    "precision_fixture_only": true,
+    "original_source_card_sha256": "305c3207871f3ba2a846538c8a31884a272e49fb90e6f2facb9b6f619cec9b1e",
+    "genuine_12800_migration_qualified": false
+  }
+}

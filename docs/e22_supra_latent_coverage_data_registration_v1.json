@@ -1,0 +1,14 @@
+{
+  "complete": true,
+  "models": 0,
+  "API_calls": 0,
+  "GPU_calls": 0,
+  "native_updates": 0,
+  "card_sha256": "a886c642a3e43f079d0b1680cb19fc675076a4c403ee3bbd4de13d6d04923288",
+  "manifest_sha256": "77c2f740752e3260d4af67f07f950d88cacbd71467909d75ca3c2e96a0ab1cf6",
+  "reader_sha256": "ffd8063ac4e0399d74f3172f6016dee0b971bc063a9fa763188561b1e83fed38",
+  "registration_sha256": "5333eeb256b7945278eb6c6610f873bc9a299c155e3ab7274b14ee54c5cfdb99",
+  "bound_files": 65,
+  "seconds": 3.374638153007254,
+  "limit_seconds": 30
+}

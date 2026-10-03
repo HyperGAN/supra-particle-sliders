@@ -1,0 +1,159 @@
+{
+  "id": "supra_latent_coverage_saved_data_review_v1",
+  "status": "SOURCE_PREREGISTRATION_DRAFT",
+  "scientific_status": null,
+  "reader": {
+    "path": "/ml2/hypergan/supra-latent-coverage/scripts/review_e22_supra_latent_coverage_data.py",
+    "sha256": "ffd8063ac4e0399d74f3172f6016dee0b971bc063a9fa763188561b1e83fed38"
+  },
+  "seconds": 120,
+  "final_reserve_seconds": 10,
+  "root_only_execution": true,
+  "purpose": "Independent integrity qualification of cached data before actual training; no teacher/model replay or quality/convergence verdict.",
+  "source_law": {
+    "generator": {
+      "path": "/ml2/hypergan/supra-latent-coverage/scripts/prepare_e22_supra_latent_coverage.py",
+      "sha256": "88d9625c1e709c4a0e8d4f1d719d86a804d42b96be509d0f07c06d034137ae41"
+    },
+    "helper": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_latent_coverage.py",
+      "sha256": "32e8fc845e61a9d151cd0e24d73846339d9d5ab94cc56b4fb98579e02a6d048d"
+    },
+    "nested_digest": {
+      "path": "/ml2/hypergan/supra-latent-coverage/supra/particle_pilot.py",
+      "sha256": "da97cef920160a6707de60c1303a90138346386d2a2bf5b4470c55cf8b08e329"
+    }
+  },
+  "original": {
+    "data_sha256": "4cf1dffebd909078838488156b7ac5e35e9c3f0806ec3e8217d50c102f5b6fcc",
+    "dataset_digest": "45846a7dcdb76c16d7b2d230aebbb1b43c890de498f2651a8254e34daa498319",
+    "neutral_checkpoint_sha256": "e20aa5eda8a19221d043c8757b73b9a88cb6825a038b256e40d942418f0c06c4",
+    "neutral_native_digest": "07c1d4ab931240808db3989bbf97b4136fdb76cecf67e734b858d5b7e6237f79",
+    "config": "Genuine completed12800, FIT-only, preservation game weight0, same71 sites/rank16; original dataset digest retained.",
+    "student_training_arithmetic": "student_final_bf16_v1",
+    "teacher": "original BF16 arithmetic; original frozen tensor storage unchanged"
+  },
+  "fixed_data": {
+    "production_schema": "supra_latent_coverage_data_v1",
+    "software_only": false,
+    "source_order": [
+      18,
+      4,
+      17,
+      5,
+      16,
+      15
+    ],
+    "target_order": [
+      11,
+      3,
+      2,
+      13,
+      12,
+      14
+    ],
+    "original_seeds": [
+      7063,
+      7064
+    ],
+    "train_seeds": [
+      7063,
+      7064,
+      7065,
+      7066,
+      7067,
+      7068,
+      7069,
+      7070
+    ],
+    "TEST_seeds": [
+      39001,
+      39002
+    ],
+    "FIT_rows": 960,
+    "original_subset_rows": 240,
+    "TEST_rows": 240,
+    "index_law": "160*s+20*j+10*p+k",
+    "paths": [
+      "neutral",
+      "positive"
+    ],
+    "times": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "Euler_steps": 50,
+    "recorded_steps": [
+      0,
+      5,
+      10,
+      15,
+      20,
+      25,
+      30,
+      35,
+      40,
+      45
+    ],
+    "cfg": 3.0,
+    "builder_batch": 4,
+    "internal_CFG_batch": 8,
+    "teacher_B4_forwards": 1080,
+    "Euler_B4_forwards": 900,
+    "opposite_caption_B4_forwards": 180,
+    "private_seed_draws": 6,
+    "native_updates": 0,
+    "optimizer_steps": 0
+  },
+  "verification": [
+    "Strict original and expanded nested tensor/scalar digests; saved native12800 config/state digest; saved encoder tensor digest and original text/mask bytes.",
+    "All240 old rows preserve context/base/absolute-target/hold bytes and prompts in canonical subset. Non-FIT dictionary/scalar/list/tensor structure+bytes remain exact, including guard64, scales, holds, TEST, text/masks.",
+    "All960 ordered context tails, prompt pairing, source indices, seed/path/time metadata; all eight time0 initial values reused across sources/paths and distinct by TRAIN seed.",
+    "Declared TRAIN and TEST seed sets disjoint; no exact packed-context or latent-row FIT/TEST overlap. This is not a test of distributional independence.",
+    "Producer/card/source/input/artifact/report/companion/outer-manifest hashes and complete null-science PASS status; zero native/optimizer work and exact rollback remain authenticated producer/source proofs.",
+    "CUDA hidden/uninitialized, CPU RNG unchanged, threads restored, all input/source/artifact/descriptor bytes unchanged; exclusive result files, whole CPU120 including finalwrites; late error INCOMPLETE."
+  ],
+  "counts_scope": "1080 is checked as declared/source-qualified generation count. No independent module instrumentation, teacher replay or seed-RNG trajectory reproduction.",
+  "qualification": {
+    "PASS": "All fixed schema/value/digest/receipt/state-integrity predicates pass within CPU120.",
+    "FAIL": "Completed integrity mismatch; not a scientific negative or data-quality verdict.",
+    "INCOMPLETE": "Setup/read/hash/clock/cleanup failure; preserve attempt, never overwrite.",
+    "scientific_status": null
+  },
+  "sizes": {
+    "original_data_bytes": 38022437,
+    "original_neutral_checkpoint_bytes": 1760571965,
+    "expected_expanded_data_bytes": "Approximately74-90MB; actual hash/size bound only after generation.",
+    "other_generator_inputs": "D1856 and D6400 ~1.76GB each are rehashed for complete declared loader closure, never loaded.",
+    "prospective_working_memory": "Original+expanded CPU data plus mmap native tensor pages and transient contiguous digest buffers; no model reconstruction."
+  },
+  "descriptor_finalization": "Before generation root freezes this reader/preregistration law and generator/card/source envelope. After generation, root creates metadata-only output-specific descriptor from actual bytes. Gates/caps/index/count/digest law stay unchanged.",
+  "descriptor_schema": {
+    "id": "supra_latent_coverage_saved_data_review_v1",
+    "seconds": 120,
+    "final_reserve_seconds": 10,
+    "output": "root-selected exclusive CPU review folder",
+    "sources": "logical-name->{path,sha256}, including this reader and frozen preregistration",
+    "inputs": {
+      "artifact": "{path,sha256}; actual byte hash supplied by root after generation",
+      "data": "{path,sha256}; actual byte hash supplied by root after generation",
+      "neutral_checkpoint": "{path,sha256}; actual byte hash supplied by root after generation",
+      "generation_card": "{path,sha256}; actual byte hash supplied by root after generation",
+      "generation_report": "{path,sha256}; actual byte hash supplied by root after generation",
+      "generation_completion": "{path,sha256}; actual byte hash supplied by root after generation",
+      "generation_external": "{path,sha256}; actual byte hash supplied by root after generation",
+      "generation_manifest": "{path,sha256}; actual byte hash supplied by root after generation"
+    }
+  },
+  "command": "CUDA_VISIBLE_DEVICES='' <qualified-python> scripts/review_e22_supra_latent_coverage_data.py --descriptor <actual-bound-descriptor.json> --out <exclusive-review-output>",
+  "performed": false,
+  "future_training_eligible": false
+}
