@@ -1,0 +1,24 @@
+{
+  "complete": true,
+  "exit_code": 0,
+  "timed_out": false,
+  "seconds": 101.89709056611173,
+  "limit_seconds": 600,
+  "manifest": "/tmp/supra-latent-coverage-data-v1-launch-pins.json",
+  "manifest_sha256": "77c2f740752e3260d4af67f07f950d88cacbd71467909d75ca3c2e96a0ab1cf6",
+  "launcher_sha256": "cb9a32b3d64155c2999c5bab3199f4f190176e4ab18945e546ee9639c3e04fca",
+  "command": [
+    "/ml2/ntc-image-studio/.venv-anima/bin/python",
+    "/ml2/hypergan/supra-latent-coverage/scripts/prepare_e22_supra_latent_coverage.py",
+    "--card",
+    "/ml2/hypergan/supra-latent-coverage/docs/e22_supra_latent_coverage_data_preparation_v1.json",
+    "--out",
+    "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-data-v1"
+  ],
+  "child_completion_sha256": "720a680768f6be7d8fcc872b37cc56bbcba7bb54b7749a75dbfa4fc801c83ec4",
+  "child_scientific_status": null,
+  "child_qualification": "PASS",
+  "bound_file_count": 65,
+  "all_source_input_checks_pass": true,
+  "external_receipt_sha256": "7ab22b0820d6c592574289e5489ca752583a4ea58635d22ebaff01a3588bfcda"
+}

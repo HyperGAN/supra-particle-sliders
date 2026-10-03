@@ -1,0 +1,12 @@
+{
+  "task": "supra_latent_coverage_full12800_recovery_v1",
+  "complete": true,
+  "qualification": "PASS",
+  "scientific_status": null,
+  "exit_code": 0,
+  "report_sha256": "4cf3f7573d150c8eda7f3d290f7d98c680d0b4f38d17d4bb7ce3b75b889d6b88",
+  "protocol_sha256": "6ccf26a18d3467e4d76f9299d51c94738377ed414770744d32e023244f784f14",
+  "seconds": 173.82465576194227,
+  "limit_seconds": 300,
+  "error": null
+}

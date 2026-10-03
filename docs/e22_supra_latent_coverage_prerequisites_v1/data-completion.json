@@ -1,0 +1,13 @@
+{
+  "task": "supra_latent_coverage_data_preparation_v1",
+  "complete": true,
+  "qualification": "PASS",
+  "scientific_status": null,
+  "exit_code": 0,
+  "report_sha256": "7dc9654dc4c31f046944c7c0465e2791ecc02f08973810831db7af3a8d1be7a3",
+  "protocol_sha256": "a886c642a3e43f079d0b1680cb19fc675076a4c403ee3bbd4de13d6d04923288",
+  "artifact_sha256": "2e877b0b35a3f5c74b62e308aa1a764a88a21fbd0c85023be37c7ca5117c298e",
+  "seconds": 94.61267968500033,
+  "limit_seconds": 600,
+  "error": null
+}

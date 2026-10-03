@@ -1,0 +1,26 @@
+{
+  "complete": true,
+  "exit_code": 0,
+  "timed_out": false,
+  "seconds": 15.775971739087254,
+  "limit_seconds": 120,
+  "manifest": "/tmp/supra-latent-coverage-saved-data-review-v1-launch-pins.json",
+  "manifest_sha256": "8a26cb85ac05d00da42d2d79e6af17777cb46353ca8a12d9fad9b92d5964b4e7",
+  "launcher_sha256": "cb9a32b3d64155c2999c5bab3199f4f190176e4ab18945e546ee9639c3e04fca",
+  "command": [
+    "/usr/bin/env",
+    "CUDA_VISIBLE_DEVICES=",
+    "/ml2/ntc-image-studio/.venv-anima/bin/python",
+    "/ml2/hypergan/supra-latent-coverage/scripts/review_e22_supra_latent_coverage_data.py",
+    "--descriptor",
+    "/ml2/hypergan/supra-latent-coverage/docs/e22_supra_latent_coverage_saved_data_review_v1.json",
+    "--out",
+    "/ml2/hypergan/supra-latent-coverage/outputs/latent-coverage-saved-data-review-v1"
+  ],
+  "child_completion_sha256": "77b326643f9d19679f7a67b7380a770c0b164a5eaf6fa635e3ea20a27f7dec89",
+  "child_scientific_status": null,
+  "child_qualification": "PASS",
+  "bound_file_count": 72,
+  "all_source_input_checks_pass": true,
+  "external_receipt_sha256": "ad081d8fa50481044d772f11973e3df325dcb61426519f89eeeb27cd5843f8d1"
+}

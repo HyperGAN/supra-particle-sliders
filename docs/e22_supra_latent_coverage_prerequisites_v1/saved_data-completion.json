@@ -1,0 +1,12 @@
+{
+  "task": "supra_latent_coverage_saved_data_review_v1",
+  "complete": true,
+  "qualification": "PASS",
+  "scientific_status": null,
+  "report_sha256": "3accf78a3c0a36f0a5b34b18cab65bfde2563cbbc76efe2d2f0d12abcf6f55f2",
+  "descriptor_sha256": "462db4f3ee3ade788251bede4d9cc8e5f805c1d074ea1547a94c1f9b3cbebfb2",
+  "exit_code": 0,
+  "error": null,
+  "seconds": 9.306766293011606,
+  "limit_seconds": 120
+}
