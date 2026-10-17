@@ -1,0 +1,19 @@
+{
+  "cwd": "/tmp",
+  "source_checkout_override": null,
+  "module_paths": {
+    "particle_sliders.pg09": "/ml2/codex-storage/future-workspaces/2026-10-17/task-10/wheel-test-site/particle_sliders/pg09.py",
+    "particle_sliders.pg09_remaining_campaigns": "/ml2/codex-storage/future-workspaces/2026-10-17/task-10/wheel-test-site/particle_sliders/pg09_remaining_campaigns.py",
+    "particle_sliders.pg09_moss_campaign": "/ml2/codex-storage/future-workspaces/2026-10-17/task-10/wheel-test-site/particle_sliders/pg09_moss_campaign.py",
+    "particle_sliders.pg09_backends": "/ml2/codex-storage/future-workspaces/2026-10-17/task-10/wheel-test-site/particle_sliders/pg09_backends.py",
+    "particle_sliders.supra_model": "/ml2/codex-storage/future-workspaces/2026-10-17/task-10/wheel-test-site/particle_sliders/supra_model.py"
+  },
+  "package_version": "0.6.0",
+  "particlegan_version": "0.9.1",
+  "torch_version": "2.11.0+cu128",
+  "python_version": "3.11.15",
+  "source_commit": "42a2e371c537180bd189fd4a288b640f9f1c98fc",
+  "shared_lock_sha256": "7e0fb85bb2e0480da9b947cf71c65ed969c4066d3968118cb7e7ed318ef08ba0",
+  "cuda_initialized": false,
+  "research_compatibility_modules_imported": false
+}

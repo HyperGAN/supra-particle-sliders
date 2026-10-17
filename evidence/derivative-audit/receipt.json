@@ -1,5 +1,5 @@
 {
-  "status": "draft awaiting exact shared package head and installed-wheel gate",
+  "status": "draft exact shared candidate pinned; installed-wheel CPU gate passed; Ada and native runtime gates pending",
   "repository": "HyperGAN/supra-particle-sliders",
   "integration_target": "main",
   "verified_base": "a908cc8ace35e4019a19bd25c1af7fd7e9ec72b6",
@@ -8,8 +8,12 @@
     "version": "0.6.0",
     "particlegan": "0.9.1",
     "candidate_sources": "shared.lock.json",
-    "exact_dependency_head": null,
-    "installed_wheel_qualified": false
+    "exact_dependency_head": "42a2e371c537180bd189fd4a288b640f9f1c98fc",
+    "installed_wheel_qualified": true,
+    "wheel_sha256": "7418efe0d89782b2fd266c6a8e536539243d06dd42ff5d393e409bf4b0f2c872",
+    "particlegan_wheel_sha256": "b01b7957169cb3de45887e22b4d525fd54071577e1de58089707cf05fe6992ec",
+    "ada_approved": false,
+    "published_to_github_when_checked": false
   },
   "native_contract": {
     "unique_contexts": 19,
@@ -25,15 +29,18 @@
     "particlegan": "0.9.1",
     "CUDA_VISIBLE_DEVICES": "",
     "cuda_initialized": false,
-    "dependencies": "official PG0.9.1 wheel layered in isolated /tmp test deps; no existing environment modified"
+    "dependencies": "official PG0.9.1 + frozen shared0.6.0 wheels installed --no-deps in task10/wheel-test-site; original environments unchanged",
+    "cwd": "/tmp",
+    "PARTICLE_SLIDERS_ROOT": null
   },
   "receipts": {
     "product": {
-      "file": "product-cpu.xml",
-      "sha256": "7fc2caef747bcbbe94ab827b509f7c367053955c0b27b28a43f8ebbc9af10598",
-      "tests": 56,
+      "file": "product-installed-wheel-cpu.xml",
+      "sha256": "5a3bce1b60753e4d72ee55418a9c142461d7340482d6f075e6915f4d632e2d4f",
+      "tests": 62,
       "failures": 0,
-      "errors": 0
+      "errors": 0,
+      "seconds": 12.147
     },
     "embedded": {
       "file": "embedded-cpu.xml",
@@ -41,6 +48,17 @@
       "tests": 29,
       "failures": 0,
       "errors": 0
+    },
+    "product_provisional_source": {
+      "file": "product-cpu.xml",
+      "sha256": "7fc2caef747bcbbe94ab827b509f7c367053955c0b27b28a43f8ebbc9af10598",
+      "tests": 56,
+      "failures": 0,
+      "errors": 0
+    },
+    "installed_imports": {
+      "file": "installed-wheel-imports.json",
+      "sha256": "fcfea6d29aff25cdb07d00b14fdb876f958ea8a23a0d3e2a1bc6ea34da6bb92f"
     }
   },
   "embedded_closure": {
@@ -53,12 +71,19 @@
     "status": "exact repaired head pending independent shared review/integration"
   },
   "remaining_gates": [
-    "Freeze packaging owner exact head and wheel, re-pin dependency/source manifest and test installed wheel outside research checkout",
+    "Shared owner publishes candidate commit (GitHub commit lookup returned422 at last check); offline frozen wheel verified",
     "Ada reviews exact derivative and shared closure heads; parent verifies merges",
     "Coordinator alone admits native GPU context export/base/cache parity/zero/no-grad/export-reload/fresh-process full state replay/signed image controls"
   ],
   "gpu_jobs_launched": false,
   "resident_services_changed": false,
   "models_published": false,
-  "merges_performed": false
+  "merges_performed": false,
+  "independent_review": {
+    "candidate_wheel_and_source_map_verified": true,
+    "source_files": 30,
+    "context_rejection_tests": 2,
+    "remaining_actionable_findings": 0,
+    "render_validation_fix": "PG renderer rejects negative/nonfinite CFG and nonfinite scales before native noise"
+  }
 }

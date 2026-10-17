@@ -185,3 +185,14 @@ def test_pg_rank_capture_keeps_adapter_registration_and_runs_without_gradients(r
     assert modules["projection"] is runtime.loras[0]
     assert all(parameter.requires_grad for parameter in runtime.parameters())
     assert all(parameter.grad is None for parameter in runtime.model.parameters())
+
+
+@pytest.mark.parametrize("cfg,scale", [(-1., 1.), (float("nan"), 1.), (float("inf"), 1.),
+    (3., float("nan")), (3., float("inf")), (3., -float("inf"))])
+def test_public_pg_render_rejects_invalid_guidance_or_scale_before_native_noise(runtime, cfg, scale):
+    runtime.cfg_adapter_branch = "conditional_only"
+    def forbidden(*args, **kwargs):
+        raise AssertionError("Invalid render must not allocate native noise or execute the model")
+    runtime.noise = forbidden
+    with pytest.raises(ValueError, match="guidance|scale"):
+        runtime.render("neutral", 42, scale=scale, cfg=cfg, steps=1)

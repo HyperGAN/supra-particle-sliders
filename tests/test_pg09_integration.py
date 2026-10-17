@@ -12,7 +12,7 @@ import yaml
 
 from supra.pg09 import build_run, frozen_digest, load_checkpoint, save_checkpoint, verify_teacher_cache
 from supra.runtime import SupraRuntime, TARGETS, model_module
-from supra.shared import file_sha, shared_module
+from supra.shared import file_sha, shared_module, shared_root
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -171,8 +171,7 @@ def test_context_preparation_rejects_before_runtime_load_or_output(tmp_path, mon
     spec = importlib.util.spec_from_file_location("prepare", ROOT / "scripts/prepare_pg09_contexts.py")
     script = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(script)
-    import os
-    monkeypatch.setattr(sys, "argv", ["prepare", "--shared-root", os.environ["PARTICLE_SLIDERS_ROOT"],
+    monkeypatch.setattr(sys, "argv", ["prepare", "--shared-root", str(shared_root()),
         "--config", str(path), "--out", str(tmp_path / "absent.safetensors")])
     with pytest.raises(ValueError, match="19|reviewed"):
         script.main()

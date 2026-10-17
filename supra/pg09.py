@@ -5,6 +5,7 @@ from copy import deepcopy
 import hashlib
 import inspect
 import json
+import math
 from pathlib import Path
 import shutil
 import tempfile
@@ -136,6 +137,8 @@ def verify_teacher_cache(run):
 @torch.no_grad()
 def render(runtime, prompt, seed, scale, steps, cfg):
     """Shared response renderer with the product's native RNG and VAE."""
+    if not math.isfinite(cfg) or cfg < 0 or not math.isfinite(scale):
+        raise ValueError("Finite scale and nonnegative guidance required")
     backend_module = shared_module("particle_sliders.pg09_backends")
     backend = backend_module.SupraRuntimeResponseAdapter(runtime,
         model_identity=dict(frozen_parameter_sha256=frozen_digest(runtime)))
