@@ -1,0 +1,29 @@
+{
+  "repository": "https://github.com/HyperGAN/particle-sliders",
+  "commit": "1e960d9b56014833925a4db5e07d2fa15d6373c9",
+  "pg_version": "0.9.0",
+  "sources": {
+    "conceptmod/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "conceptmod/textsliders/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "conceptmod/textsliders/pg09_backends.py": "e540d77bf56810e2e2411fb5d0122de2a025cccfa8757671d9ea577c4d07e1fe",
+    "conceptmod/textsliders/pg09_moss_campaign.py": "32f8f042d3a76af531b566e07c4048ec2557acb31cadcc8988ee0518dbc3d565",
+    "conceptmod/textsliders/pg09_remaining_campaigns.py": "fcf8dcb6a2016a4083f1319d30b7c1402bcd06cbd290dee37a3bdf264cb2bac9",
+    "conceptmod/textsliders/supra_model.py": "640851f4570d0f9eacccac70022f06668ddf92dcf8629e978a76443db60acdc4",
+    "packages/particle-sliders-core/src/particle_sliders/__init__.py": "a4d8f05036fd09bd7133eb0bff1e4253a1933cd5b4ad70235fe664627f462dc1",
+    "packages/particle-sliders-core/src/particle_sliders/bispf_game.py": "043b639d17d3d69b0f19bdce1f10f8e93388eab4b07f29aa7f2d966c666f8adc",
+    "packages/particle-sliders-core/src/particle_sliders/bispf_provenance.json": "00b294a9e1a36539c2b6f6e58921b955b973c54c8b75c92fd69b88b31c73333c",
+    "packages/particle-sliders-core/src/particle_sliders/distillation.py": "b277e561517a9cb40d1a399ad07c6350aa22a287232aea816b7f6e434e18a232",
+    "packages/particle-sliders-core/src/particle_sliders/endpoint_game.py": "85ea55b67a4f9112e8d9dd1df1096d3488ca8f2c69c666174370b8f3a5c77655",
+    "packages/particle-sliders-core/src/particle_sliders/formulation.py": "a61b06e93efb24e92a72d826f696ede8694e97a3c27c5e6262a2912caac28e12",
+    "packages/particle-sliders-core/src/particle_sliders/formulation_game.py": "f7e78be912e309e01f305ca4ed09a5e25fe67fa720e736694fe343be89fc9f74",
+    "packages/particle-sliders-core/src/particle_sliders/grad_regularizers.py": "b1d27df47870814b8a3b05839c833792489e2fe5aff3b2875ab03c74f983a33a",
+    "packages/particle-sliders-core/src/particle_sliders/locked_provenance.json": "c38e864b789823476036800eea435586ba6d5208bba4008cbd54fdb8cc88826d",
+    "packages/particle-sliders-core/src/particle_sliders/pg09.py": "426abc25323aea96be91e92f1f4101063d5b3c4062f042e869c729027b4f9256",
+    "packages/particle-sliders-core/src/particle_sliders/pg09_continuous_profile.json": "7064de0a995cf0df598515bb5b7574bb69ef21b0d252b7590a78c3f7a9374499",
+    "packages/particle-sliders-core/src/particle_sliders/pg09_release_sources.json": "d7b9d5944207fe6421111d85d19311964aca22bfafa18563938c985ec0d03b5b",
+    "packages/particle-sliders-core/src/particle_sliders/provenance.json": "efd60e615dc247b531dfb01a0be5728edcd7e442a9b6b888b848e716273ab45a",
+    "packages/particle-sliders-core/src/particle_sliders/recipe.py": "63726226e681e517c49943f6150989a8277031762c6253a338892dac340b5600",
+    "packages/particle-sliders-core/src/particle_sliders/reference.py": "2c5809edd3818fab9efdd0c5234ea6b5027de5fc0130155e537950471018a371",
+    "packages/particle-sliders-core/src/particle_sliders/teachers.py": "9a35fcff05a15d00f6aa67b5cb9e53cf55526d7e06631ef8cfeb0169519818d2"
+  }
+}

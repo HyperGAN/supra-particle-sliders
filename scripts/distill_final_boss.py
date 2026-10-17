@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -93,7 +94,10 @@ def main():
     p.add_argument("--rank", type=int, default=8)
     p.add_argument("--device", default="cuda:0")
     p.add_argument("--allow-hub", action="store_true")
+    p.add_argument("--shared-root", type=Path, help="Reviewed shared checkout (or PARTICLE_SLIDERS_ROOT)")
     args = p.parse_args()
+    if args.shared_root:
+        os.environ["PARTICLE_SLIDERS_ROOT"] = str(args.shared_root.resolve())
     if args.out.exists() and any(args.out.iterdir()):
         p.error("Choose a new output directory; distillation does not overwrite evidence")
     args.out.mkdir(parents=True, exist_ok=True)
@@ -129,11 +133,15 @@ def main():
         projections.append(dict(target=name, train_tokens=counts[name], dev_tokens=dev_counts[name],
             squared_error=error, teacher_squared_norm=norm, relative_mse=error/max(norm, 1e-20)))
     student = SupraRuntime(args.device, args.rank, args.allow_hub)
+    student.cfg_adapter_branch = teacher.cfg_adapter_branch
     student.cache = teacher.cache
     student.text_encoder.to("cpu")
     load_adapter_state(student.model, state)
     path = args.out/f"final-boss-supra-rank{args.rank}.safetensors"
     student.save(path, dict(teacher_sha256=sha(args.teacher), teacher_step=teacher_metadata.get("step"),
+        training_objective=teacher_metadata.get("training_objective", "legacy_mse"),
+        **({"shared_lock_sha256": teacher_metadata["shared_lock_sha256"]}
+           if teacher.cfg_adapter_branch == "conditional_only" else {}),
         method="activation-weighted reduced-rank regression", calibration_seeds=[49001,49002]))
     probe = teacher.noise(991)
     with torch.no_grad():

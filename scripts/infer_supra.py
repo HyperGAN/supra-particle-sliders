@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Render the base Supra model or a saved native Supra LoRA."""
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -19,7 +20,10 @@ def main():
     p.add_argument("--device", default="cuda:0")
     p.add_argument("--out", type=Path, required=True)
     p.add_argument("--allow-hub", action="store_true")
+    p.add_argument("--shared-root", type=Path, help="Reviewed external particle-sliders checkout (or PARTICLE_SLIDERS_ROOT)")
     args = p.parse_args()
+    if args.shared_root:
+        os.environ["PARTICLE_SLIDERS_ROOT"] = str(args.shared_root.resolve())
     import torch
     torch.set_num_threads(8)
     rank = 16

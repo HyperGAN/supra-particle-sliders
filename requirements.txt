@@ -1,7 +1,6 @@
 # Tested package versions. Install a CUDA-enabled PyTorch build separately.
-# Shared game pin. Import particle_sliders. See docs/shared-core.md.
 torch>=2.6
-particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@a119ca1ecd3d5d6c437065839d22739b04f2f4d8#subdirectory=packages/particle-sliders-core
+particlegan==0.9.0
 transformers==5.15.0
 diffusers>=0.36
 huggingface-hub>=1.0

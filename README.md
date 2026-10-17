@@ -1,4 +1,18 @@
-# Final Boss: 1,600 training steps in 134.4 seconds
+# Supra sliders: shared ParticleGAN 0.9 training
+
+New training uses [`scripts/train_pg09.py`](scripts/train_pg09.py), which executes
+the external shared `particle_sliders.pg09.ConditionalPG09` game and shared native
+Supra response adapter. Follow [the PG0.9 integration instructions](docs/pg09.md)
+for the exact source pin, asset checks, full checkpoint resume and CPU evidence.
+No new GPU run or model release is qualified by this integration.
+
+The original MSE trainer and continuation script require `--allow-legacy-mse`
+for archival reproduction. Existing released adapters retain their original
+both-branch CFG behavior; new PG exports use conditional-only adaptation.
+All executable architecture/LoRA imports now require the reviewed external
+`PARTICLE_SLIDERS_ROOT`; vendored source is not executed.
+
+## Historical MSE release: 1,600 training steps in 134.4 seconds
 
 **A 104.1M-parameter image model. A 6.8 MB LoRA. A 3.4 MB rank-8 distill.**
 
