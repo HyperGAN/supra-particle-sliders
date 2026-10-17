@@ -10,7 +10,7 @@ import pytest
 import torch
 import yaml
 
-from supra.pg09 import build_run, frozen_digest, load_checkpoint, save_checkpoint
+from supra.pg09 import build_run, frozen_digest, load_checkpoint, save_checkpoint, verify_teacher_cache
 from supra.runtime import SupraRuntime, TARGETS, model_module
 from supra.shared import file_sha, shared_module
 
@@ -25,7 +25,7 @@ class FixtureRuntime(SupraRuntime):
         self.model = mod.SupraDiT(latent_ch=4, d_model=16, depth=1, n_heads=2, ctx_dim=8,
                                   mlp_ratio=2., num_tokens=256, patch=2)
         self.loras = mod.attach_supra_lora(self.model, rank=2, alpha=2, targets=TARGETS)
-        bridge = shared_module("conceptmod.textsliders.pg09_remaining_campaigns")
+        bridge = shared_module("particle_sliders.pg09_remaining_campaigns")
         self.cache = {p: (torch.randn(1, 3, 8), torch.ones(1, 3))
                       for p in bridge.required_supra_prompts(config)}
         self.stored_unconditional = True
@@ -52,7 +52,7 @@ def admitted(tmp_path, monkeypatch):
     monkeypatch.setattr(torch, "autocast", lambda *args, **kwargs: nullcontext())
     config = yaml.safe_load((ROOT / "configs/supra/prompts-final-boss.yaml").read_text())
     runtime = FixtureRuntime(config)
-    bridge = shared_module("conceptmod.textsliders.pg09_remaining_campaigns")
+    bridge = shared_module("particle_sliders.pg09_remaining_campaigns")
     contexts = tmp_path / "contexts.safetensors"
     bridge.export_live_supra_contexts(runtime, config, contexts,
         runtime_identity=dict(model_revision=runtime.MODEL_REV, text_revision=runtime.T5_REV))
@@ -94,6 +94,7 @@ def test_product_executes_shared_gan_and_fresh_checkpoint_replay(admitted, tmp_p
     assert type(run.game) is ConditionalPG09
     assert run.game.sampling == "balanced" and run.game.batch_size == 4
     assert runtime.cfg_adapter_branch == "conditional_only"
+    assert len(verify_teacher_cache(run)) == 15  # Both paths for six subjects, plus three controls.
     frozen = frozen_digest(runtime)
     adapter = deepcopy(run.backend.network.state_dict())
     critic = deepcopy(run.game.critic.state_dict())
@@ -131,6 +132,28 @@ def test_checkpoint_corruption_and_binding_mismatch_reject_without_mutation(admi
     assert equal(run.game.state_dict(), before)
     with pytest.raises(FileExistsError):
         save_checkpoint(run, directory)
+
+
+def test_changed_frozen_base_rejects_checkpoint_before_output(admitted, tmp_path):
+    run = run_for(admitted)
+    with torch.no_grad():
+        next(parameter for parameter in run.runtime.model.parameters() if not parameter.requires_grad).add_(1)
+    directory = tmp_path / "absent"
+    with pytest.raises(ValueError, match="Frozen base"):
+        save_checkpoint(run, directory)
+    assert not directory.exists()
+
+
+def test_changed_context_runtime_receipt_rejects_before_adapter_mutation(admitted):
+    runtime, config, cache, contexts = admitted
+    receipt_path = contexts.with_suffix(".json")
+    receipt = json.loads(receipt_path.read_text())
+    receipt["runtime_source_sha256"] = "0" * 64
+    receipt_path.write_text(json.dumps(receipt))
+    before = deepcopy(runtime.model.state_dict())
+    with pytest.raises(ValueError, match="preparation binding"):
+        run_for(admitted)
+    assert equal(runtime.model.state_dict(), before)
 
 
 @pytest.mark.parametrize("mutation", ["over_budget", "same_count_wrong_config"])

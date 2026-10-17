@@ -1,15 +1,10 @@
 {
   "package": "particle-sliders-core",
   "repository": "https://github.com/HyperGAN/particle-sliders",
-  "commit": "a119ca1ecd3d5d6c437065839d22739b04f2f4d8",
-  "subdirectory": "packages/particle-sliders-core",
-  "requirement": "particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@a119ca1ecd3d5d6c437065839d22739b04f2f4d8#subdirectory=packages/particle-sliders-core",
-  "import": "particle_sliders",
-  "entrypoint": "winning_formulation",
-  "role": "Shared gmix game. The product calls winning_formulation().require(). Do not install concept-slider-core.",
-  "dit_backbone": {
-    "path": "vendor/particle-sliders/conceptmod/textsliders/supra_model.py",
-    "sha256": "640851f4570d0f9eacccac70022f06668ddf92dcf8629e978a76443db60acdc4",
-    "role": "Supra2-IMG DiT and ordinary LoRA attachment. Not the particle game."
-  }
+  "import_namespace": "particle_sliders",
+  "entrypoint": "pg09.ConditionalPG09",
+  "source_lock": "shared.lock.json",
+  "role": "Shared native-response GAN, campaign, DiT and ordinary LoRA; no vendored implementation",
+  "historical_core_commit": "a119ca1ecd3d5d6c437065839d22739b04f2f4d8",
+  "historical_dit_sha256": "640851f4570d0f9eacccac70022f06668ddf92dcf8629e978a76443db60acdc4"
 }

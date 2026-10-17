@@ -11,14 +11,15 @@ sys.path.insert(0, str(ROOT))
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--shared-root", type=Path, required=True)
+    parser.add_argument("--shared-root", type=Path, help="Optional reviewed source checkout; default is the pinned installed package")
     parser.add_argument("--config", type=Path, default=ROOT / "configs/supra/prompts-final-boss.yaml")
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--device", default="cuda:0")
     args = parser.parse_args()
-    os.environ["PARTICLE_SLIDERS_ROOT"] = str(args.shared_root.resolve())
+    if args.shared_root:
+        os.environ["PARTICLE_SLIDERS_ROOT"] = str(args.shared_root.resolve())
     from supra.shared import shared_module
-    bridge = shared_module("conceptmod.textsliders.pg09_remaining_campaigns")
+    bridge = shared_module("particle_sliders.pg09_remaining_campaigns")
     from supra.runtime import SupraRuntime, MODEL_REV, T5_REV
     import yaml
     config = yaml.safe_load(args.config.read_text())

@@ -171,6 +171,17 @@ def test_native_trajectory_and_shared_schedule_use_positive_euler_flow_time(runt
     assert calls == [(time, -0.5, 3) for time in (0.0, 0.25, 0.5, 0.75)]
     assert [float(state.flatten()[0]) for state in states] == [5.0, 5.75, 6.5, 7.25]
     assert torch.equal(end, torch.full_like(end, 8.0))
-    schedule = shared_module("conceptmod.textsliders.pg09_backends").FlowSchedule.supra(4)
+    schedule = shared_module("particle_sliders.pg09_backends").FlowSchedule.supra(4)
     assert schedule.timesteps == (0.0, 0.25, 0.5, 0.75)
     assert schedule.deltas == (0.25, 0.25, 0.25, 0.25)
+
+
+def test_pg_rank_capture_keeps_adapter_registration_and_runs_without_gradients(runtime):
+    from scripts.distill_final_boss import capture
+    runtime.cfg_adapter_branch = "conditional_only"
+    covariance, counts, modules = capture(runtime, ["neutral"], (42,))
+    assert set(covariance) == {"projection"} and counts["projection"] > 0
+    assert torch.isfinite(covariance["projection"]).all()
+    assert modules["projection"] is runtime.loras[0]
+    assert all(parameter.requires_grad for parameter in runtime.parameters())
+    assert all(parameter.grad is None for parameter in runtime.model.parameters())

@@ -147,12 +147,8 @@ CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 \
   --scale 1 --seed 42 --out outputs/my-final-boss.png
 ```
 
-For a fresh machine, install PyTorch with CUDA and `pip install -r requirements.txt`.
-That install pins `particle-sliders-core` (not `concept-slider-core`). The
-concept-slider entry is `scripts/train_lora_supra.py`; it calls
-`winning_formulation().require(...)`. This final-boss script is the separate
-ordinary-LoRA recipe. The DiT file under `vendor/` is that backbone, and its
-SHA-256 is `backend.lock.json` → `dit_backbone`. Run the Python training
-entrypoint with `HF_HUB_OFFLINE=0` and `--allow-hub` to fetch the pinned model
-components. The GPU shell launcher above is specific to the original local
-cached run. See [shared-core.md](shared-core.md).
+For new training, see [pg09.md](pg09.md). All public training aliases execute
+the native shared PG0.9 worker. This document records the historical MSE
+ordinary-LoRA recipe, whose trainer and continuation now require
+`--allow-legacy-mse` explicitly. Architecture and LoRA come from the pinned
+external shared package; historical license notices remain in `licenses/`.

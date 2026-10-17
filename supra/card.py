@@ -1,9 +1,8 @@
-"""Supra2-IMG product surface. The particle game is not defined here.
-
-Hub ids, the Euler sample card, and model-surface step sizes stay in this
-repository. ``particle_sliders.winning_formulation()`` owns the game.
-"""
+"""Native Supra sampling constants; all training recipe controls are shared."""
 from __future__ import annotations
+
+import json
+from pathlib import Path
 
 # Base checkpoint. Inference and the ordinary-LoRA release pin the same revision.
 BASE_MODEL_ID = "SupraLabs/Supra2-IMG"
@@ -24,15 +23,8 @@ SAMPLE_STEPS = 50
 CFG = 3.0
 EULER_SCHEDULE = "t=i/K, z<-z+(1/K)*v"
 
-# Model surface. require() allows these to differ from the stamp's reference
-# values. They are not a second copy of the game.
-SUPRA_G_LR = 1e-4
-SUPRA_ADV_BATCH = 4
-
-# Reference iteration count from the research card. Smoke runs pass --steps.
-REFERENCE_ITERATIONS = 500
-
-CORE_COMMIT = "a119ca1ecd3d5d6c437065839d22739b04f2f4d8"
+# The dependency identity follows the single reviewed package lock.
+CORE_COMMIT = json.loads((Path(__file__).resolve().parents[1] / "shared.lock.json").read_text())["commit"]
 CORE_REQUIREMENT = (
     "particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@"
     f"{CORE_COMMIT}#subdirectory=packages/particle-sliders-core"

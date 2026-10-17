@@ -1,8 +1,9 @@
-"""Resolve the reviewed external particle-sliders tree; never use vendor code."""
+"""Resolve the reviewed installed shared package; never use vendor code."""
 from __future__ import annotations
 
 import hashlib
 import importlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -21,9 +22,16 @@ def file_sha(path):
 
 def shared_root(root=None):
     value = root or os.environ.get("PARTICLE_SLIDERS_ROOT")
-    if not value:
-        raise RuntimeError("Set PARTICLE_SLIDERS_ROOT to the reviewed external particle-sliders checkout; see docs/pg09.md")
-    root = Path(value).resolve()
+    if value:
+        root = Path(value).resolve()
+        candidates = (root / "packages/particle-sliders-core/src/particle_sliders",
+                      root / "particle_sliders", root)
+        root = next((p for p in candidates if (p / "pg09.py").is_file()), root)
+    else:
+        spec = importlib.util.find_spec("particle_sliders")
+        if spec is None or not spec.origin:
+            raise RuntimeError("Install the pinned particle-sliders-core package; see docs/pg09.md")
+        root = Path(spec.origin).resolve().parent
     lock = json.loads(LOCK.read_text())
     for relative, expected in lock["sources"].items():
         path = (root / relative).resolve()
@@ -35,16 +43,15 @@ def shared_root(root=None):
 def shared_module(name, root=None):
     """Use one pinned package, refusing an already-imported shadow package."""
     root = shared_root(root)
-    package_root = root / "packages/particle-sliders-core/src"
-    for prefix, expected_root in (("particle_sliders", package_root), ("conceptmod", root)):
-        for module_name, module in tuple(sys.modules.items()):
-            if module_name == prefix or module_name.startswith(prefix + "."):
-                filename = getattr(module, "__file__", None)
-                if filename and not Path(filename).resolve().is_relative_to(expected_root):
-                    raise RuntimeError("Shared import is shadowed: " + module_name)
-    for path in (str(root), str(package_root)):
-        if path not in sys.path:
-            sys.path.insert(0, path)
+    if not name.startswith("particle_sliders."):
+        raise ValueError("Only the public shared package namespace is supported")
+    for module_name, module in tuple(sys.modules.items()):
+        if module_name == "particle_sliders" or module_name.startswith("particle_sliders."):
+            filename = getattr(module, "__file__", None)
+            if filename and not Path(filename).resolve().is_relative_to(root):
+                raise RuntimeError("Shared import is shadowed: " + module_name)
+    if str(root.parent) not in sys.path:
+        sys.path.insert(0, str(root.parent))
     module = importlib.import_module(name)
     if not Path(module.__file__).resolve().is_relative_to(root):
         raise RuntimeError("Shared module resolved outside reviewed checkout: " + name)

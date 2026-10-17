@@ -107,7 +107,7 @@ def main():
         teacher_metadata = {k: json.loads(v) for k, v in f.metadata().items()}
     teacher = SupraRuntime(args.device, teacher_metadata["rank"], args.allow_hub)
     teacher.load(args.teacher)
-    teacher.model.requires_grad_(False)
+    # capture/evaluate are no-grad; keep adapter leaves registered for shared response IO.
     config = yaml.safe_load((ROOT/"configs/supra/prompts-final-boss.yaml").read_text())
     prompts = [r["neutral"] for r in config["rows"]] + config["preservation"]
     for prompt in prompts + [r["prompt"] for r in config["verification"]]:

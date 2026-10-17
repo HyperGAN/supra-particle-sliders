@@ -10,7 +10,7 @@ from pathlib import Path
 import torch
 from PIL import Image
 from safetensors.torch import load_file, save_file
-from supra.shared import shared_module
+from supra.shared import shared_module, shared_root
 
 MODEL_ID = "SupraLabs/Supra2-IMG"
 MODEL_REV = "10dec6e4b4b5d1c44fd1d7d3fe5e50137333da5b"
@@ -18,13 +18,12 @@ T5_REV = "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2"
 VAE_REV = "31f26fdeee1355a5c34592e401dd41e45d25a493"
 TARGETS = ("ctx_proj", "cross_attn.q", "cross_attn.kv", "cross_attn.proj",
            "self_attn.qkv", "self_attn.proj")
-BACKEND_ROOT = Path(os.environ.get("PARTICLE_SLIDERS_ROOT",
-    str(Path(__file__).resolve().parents[1] / "external-particle-sliders")))
-MODEL_SOURCE = BACKEND_ROOT / "conceptmod/textsliders/supra_model.py"
+def model_source():
+    return shared_root() / "supra_model.py"
 
 
 def model_module():
-    return shared_module("conceptmod.textsliders.supra_model")
+    return shared_module("particle_sliders.supra_model")
 
 
 def adapter_state(model):
@@ -130,7 +129,7 @@ class SupraRuntime:
         if len(prompts) != z.shape[0]:
             raise ValueError("One prompt per latent required")
         if self.cfg_adapter_branch == "conditional_only":
-            mod = shared_module("conceptmod.textsliders.pg09_backends")
+            mod = shared_module("particle_sliders.pg09_backends")
             backend = mod.SupraRuntimeResponseAdapter(self,
                 model_identity=dict(model_revision=MODEL_REV))
             times = torch.as_tensor(t, device=z.device).float().reshape(-1)

@@ -25,7 +25,7 @@ import torch.nn.functional as F
 import yaml
 from PIL import Image, ImageDraw
 
-from supra.runtime import MODEL_REV, MODEL_SOURCE, T5_REV, VAE_REV, SupraRuntime
+from supra.runtime import MODEL_REV, model_source, T5_REV, VAE_REV, SupraRuntime
 
 
 def write_json(path, data):
@@ -157,6 +157,7 @@ def main():
     args = parser.parse_args()
     if not args.allow_legacy_mse:
         parser.error("Historical MSE trainer requires --allow-legacy-mse; use scripts/train_pg09.py for shared PG0.9 GAN-only training")
+    MODEL_SOURCE = model_source()
     if min(args.steps, args.batch_size, args.cache_seeds, args.sample_steps, args.save_every, args.rank) < 1:
         parser.error("steps, batch, cache seeds, sampling, save interval and rank must be positive")
     out = args.out

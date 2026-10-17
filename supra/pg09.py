@@ -42,7 +42,7 @@ def binding(config, cache_path, contexts_path, frozen_sha256):
 def build_run(runtime, config, cache_path, contexts_path, *, cache_sha256,
               contexts_sha256, expected_frozen_sha256, total_steps=28800, seed=7,
               critic_width=32):
-    bridge = shared_module("conceptmod.textsliders.pg09_remaining_campaigns")
+    bridge = shared_module("particle_sliders.pg09_remaining_campaigns")
     identity = dict(model_revision=runtime.MODEL_REV, text_revision=runtime.T5_REV)
     bridge.validate_live_supra_context_preparation(config, identity)
     receipt = json.loads(Path(contexts_path).with_suffix(".json").read_text())
@@ -125,7 +125,7 @@ def load_checkpoint(run, directory):
 
 def verify_teacher_cache(run):
     """Check both native trajectories for every subject and preservation prompt."""
-    bridge = shared_module("conceptmod.textsliders.pg09_remaining_campaigns")
+    bridge = shared_module("particle_sliders.pg09_remaining_campaigns")
     selected = {}
     for i in range(len(run.rows)):
         hold, source = run.rows._source(i)
@@ -136,7 +136,7 @@ def verify_teacher_cache(run):
 @torch.no_grad()
 def render(runtime, prompt, seed, scale, steps, cfg):
     """Shared response renderer with the product's native RNG and VAE."""
-    backend_module = shared_module("conceptmod.textsliders.pg09_backends")
+    backend_module = shared_module("particle_sliders.pg09_backends")
     backend = backend_module.SupraRuntimeResponseAdapter(runtime,
         model_identity=dict(frozen_parameter_sha256=frozen_digest(runtime)))
     row = backend_module.ResponseRow(prompt, prompt, "", runtime.noise(seed),

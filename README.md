@@ -90,29 +90,9 @@ Set `CUDA_VISIBLE_DEVICES` to select a GPU. See the
 
 ## Shared core
 
-The concept slider trains `particle_sliders.winning_formulation()` from
-[particle-sliders-core](https://github.com/HyperGAN/particle-sliders/tree/a119ca1ecd3d5d6c437065839d22739b04f2f4d8/packages/particle-sliders-core)
-at `a119ca1ecd3d5d6c437065839d22739b04f2f4d8`. The deprecated package name
-`concept-slider-core` is not used. The train entry in this repo is
-`scripts/train_lora_supra.py`. It calls `winning_formulation().require(...)`
-and takes the regularizer and losses from that stamp. Generator learning rate
-`1e-4` and batch `4` are a Supra model surface.
-
-Sampling stays the Supra Euler card: native 256×256, 50 steps, CFG 3,
-`t = i/K`, `z <- z + (1/K) * v`. The concept-slider Hub id is
-`ntc-ai/supra-concept-sliders`. There is no ComfyUI node in this repository.
-The ordinary LoRA release on this page remains
-`ntc-ai/supra-particle-sliders`.
-
-`vendor/particle-sliders/.../supra_model.py` is the DiT backbone for that
-ordinary LoRA. It is not the particle game. See
-[the shared-core note](docs/shared-core.md), including the research trainer
-that still lives in HyperGAN/particle-sliders.
-
-```bash
-python scripts/train_lora_supra.py --dummy --steps 8 --device cpu
-python scripts/train_lora_supra.py --print-card
-```
+`scripts/train_lora_supra.py` and `python -m supra.train` are aliases of the
+same native shared PG0.9 worker. The previous pooled-feature smoke was not a
+native adapter trainer and is removed. See [the integration contract](docs/pg09.md).
 
 ## How it learns
 
@@ -164,11 +144,10 @@ memory. Another workload used GPU 0 while this run used GPU 1.
 
 Base: [SupraLabs/Supra2-IMG](https://huggingface.co/SupraLabs/Supra2-IMG), pinned to
 `10dec6e4b4b5d1c44fd1d7d3fe5e50137333da5b`. Encoder and VAE revisions are embedded in the adapter
-metadata. The DiT backbone in `vendor/` is the ordinary-LoRA architecture, checked
-against [backend.lock.json](https://github.com/HyperGAN/supra-particle-sliders/blob/main/backend.lock.json).
-The particle game is the `particle-sliders-core` pin in that lock, not a
-vendored copy of the game and not `concept-slider-core`. Source and adapters
-are Apache-2.0; the DiT file is MIT and the VAE is separately MIT licensed.
+metadata. The DiT, ordinary LoRA and native response game come from the
+reviewed external shared package, checked against `shared.lock.json`. Source
+and adapters are Apache-2.0; the shared DiT and VAE are separately MIT licensed.
+Historical license notices remain in `licenses/particle-sliders/`.
 No base weights are redistributed.
 
 [Catalog and sample metadata](https://huggingface.co/ntc-ai/supra-particle-sliders/resolve/main/catalog.json) ·

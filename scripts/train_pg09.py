@@ -12,9 +12,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--shared-root", type=Path, required=True)
+    parser.add_argument("--shared-root", type=Path, help="Optional reviewed source checkout; default is the pinned installed package")
     parser.add_argument("--config", type=Path, default=ROOT / "configs/supra/prompts-final-boss.yaml")
     parser.add_argument("--cache", type=Path, required=True)
     parser.add_argument("--cache-sha256", required=True)
@@ -28,16 +28,17 @@ def main():
     parser.add_argument("--save-every", type=int, default=80)
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--device", default="cuda:0")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     if not 1 <= args.steps <= 28800 or args.save_every < 1:
         parser.error("Require a bounded positive budget and checkpoint interval")
     stop = args.steps if args.stop_at is None else args.stop_at
     if not 1 <= stop <= args.steps:
         parser.error("--stop-at must lie inside the unchanged maximum recipe budget")
 
-    os.environ["PARTICLE_SLIDERS_ROOT"] = str(args.shared_root.resolve())
+    if args.shared_root:
+        os.environ["PARTICLE_SLIDERS_ROOT"] = str(args.shared_root.resolve())
     from supra.shared import shared_module, file_sha
-    bridge = shared_module("conceptmod.textsliders.pg09_remaining_campaigns")
+    bridge = shared_module("particle_sliders.pg09_remaining_campaigns")
     import yaml
     config = yaml.safe_load(args.config.read_text())
     from supra.runtime import SupraRuntime, MODEL_REV, T5_REV

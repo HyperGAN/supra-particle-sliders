@@ -1,0 +1,64 @@
+{
+  "status": "draft awaiting exact shared package head and installed-wheel gate",
+  "repository": "HyperGAN/supra-particle-sliders",
+  "integration_target": "main",
+  "verified_base": "a908cc8ace35e4019a19bd25c1af7fd7e9ec72b6",
+  "native_checkout_head": "a569e00aa78ea8afeb83c75482f6d7a83cf2d376",
+  "shared_package": {
+    "version": "0.6.0",
+    "particlegan": "0.9.1",
+    "candidate_sources": "shared.lock.json",
+    "exact_dependency_head": null,
+    "installed_wheel_qualified": false
+  },
+  "native_contract": {
+    "unique_contexts": 19,
+    "new_t5_encodes_when_stored_unconditional": 18,
+    "config_sha256": "d32639ad9084f60d13faea1ef0e4d92b4bfc2e0420bc0fd15f4992c6270edd5b",
+    "timestep": "native i/steps in [0,1]; internal DiT embedding scales by1000",
+    "euler": "positive z+=v/steps",
+    "pg_cfg": "conditional adapter, frozen negative branch"
+  },
+  "test_environment": {
+    "python": "3.11.15",
+    "torch": "2.11.0+cu128",
+    "particlegan": "0.9.1",
+    "CUDA_VISIBLE_DEVICES": "",
+    "cuda_initialized": false,
+    "dependencies": "official PG0.9.1 wheel layered in isolated /tmp test deps; no existing environment modified"
+  },
+  "receipts": {
+    "product": {
+      "file": "product-cpu.xml",
+      "sha256": "7fc2caef747bcbbe94ab827b509f7c367053955c0b27b28a43f8ebbc9af10598",
+      "tests": 56,
+      "failures": 0,
+      "errors": 0
+    },
+    "embedded": {
+      "file": "embedded-cpu.xml",
+      "sha256": "20354c4d39254ddfef8c5aacb58a4f958937ec76a1aea8f33249c3b6802f599a",
+      "tests": 29,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "embedded_closure": {
+    "repository": "HyperGAN/particle-sliders",
+    "base": "8ef11728323233194adaf6b1bbc0152c6364bc16",
+    "commits": [
+      "bf52b8a38870bda69a00744d1043bd47d04691a3",
+      "dc6f000d167fbec54b43ab02e7a0da047cad0974"
+    ],
+    "status": "exact repaired head pending independent shared review/integration"
+  },
+  "remaining_gates": [
+    "Freeze packaging owner exact head and wheel, re-pin dependency/source manifest and test installed wheel outside research checkout",
+    "Ada reviews exact derivative and shared closure heads; parent verifies merges",
+    "Coordinator alone admits native GPU context export/base/cache parity/zero/no-grad/export-reload/fresh-process full state replay/signed image controls"
+  ],
+  "gpu_jobs_launched": false,
+  "resident_services_changed": false,
+  "models_published": false,
+  "merges_performed": false
+}
