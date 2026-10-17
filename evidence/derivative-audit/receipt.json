@@ -1,5 +1,5 @@
 {
-  "status": "draft exact shared candidate pinned; installed-wheel CPU gate passed; Ada and native runtime gates pending",
+  "status": "provisional first candidate; known shared optimizer-state P1; replacement exact head/wheel and final acceptance pending",
   "repository": "HyperGAN/supra-particle-sliders",
   "integration_target": "main",
   "verified_base": "a908cc8ace35e4019a19bd25c1af7fd7e9ec72b6",
@@ -9,11 +9,14 @@
     "particlegan": "0.9.1",
     "candidate_sources": "shared.lock.json",
     "exact_dependency_head": "42a2e371c537180bd189fd4a288b640f9f1c98fc",
-    "installed_wheel_qualified": true,
+    "installed_wheel_qualified": false,
     "wheel_sha256": "7418efe0d89782b2fd266c6a8e536539243d06dd42ff5d393e409bf4b0f2c872",
     "particlegan_wheel_sha256": "b01b7957169cb3de45887e22b4d525fd54071577e1de58089707cf05fe6992ec",
     "ada_approved": false,
-    "published_to_github_when_checked": false
+    "published_to_github_when_checked": false,
+    "installed_wheel_cpu_tests_passed": true,
+    "migration_target_accepted": false,
+    "candidate_role": "reviewed first candidate; not final migration target"
   },
   "native_contract": {
     "unique_contexts": 19,
@@ -71,8 +74,9 @@
     "status": "exact repaired head pending independent shared review/integration"
   },
   "remaining_gates": [
-    "Shared owner publishes candidate commit (GitHub commit lookup returned422 at last check); offline frozen wheel verified",
-    "Ada reviews exact derivative and shared closure heads; parent verifies merges",
+    "Shared owner freezes and supplies exact replacement head/wheel containing optimizer-state validation repair",
+    "Re-pin Supra to replacement, verify wheel/source hashes and run focused restore regression plus installed-wheel CPU suite",
+    "Ada reviews exact final derivative/dependency/shared-closure heads; parent verifies merges",
     "Coordinator alone admits native GPU context export/base/cache parity/zero/no-grad/export-reload/fresh-process full state replay/signed image controls"
   ],
   "gpu_jobs_launched": false,
@@ -83,7 +87,19 @@
     "candidate_wheel_and_source_map_verified": true,
     "source_files": 30,
     "context_rejection_tests": 2,
-    "remaining_actionable_findings": 0,
-    "render_validation_fix": "PG renderer rejects negative/nonfinite CFG and nonfinite scales before native noise"
+    "render_validation_fix": "PG renderer rejects negative/nonfinite CFG and nonfinite scales before native noise",
+    "remaining_actionable_findings_at_that_review": 0,
+    "scope": "Historical derivative/import/source-map review; known later central optimizer-state P1 remains open for replacement qualification"
+  },
+  "pending_replacement": {
+    "status": "awaiting frozen exact replacement head and wheel",
+    "reported_checkpoint_validation_fix": "2632b6c",
+    "reported_staged_head": "1bfafe1",
+    "reason": "Finite correct-shape negative Adam second moment accepted on restore, then next step becomes nonfinite",
+    "shared_owner_responsibility": true,
+    "replacement_wheel_sha256": null,
+    "exact_replacement_head": null,
+    "broad_reruns_deferred": true,
+    "old_receipts_preserved": true
   }
 }

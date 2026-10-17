@@ -6,6 +6,10 @@ Supra response adapter. Follow [the PG0.9 integration instructions](docs/pg09.md
 for the exact source pin, asset checks, full checkpoint resume and CPU evidence.
 No new GPU run or model release is qualified by this integration.
 
+The current shared pin is a provisional first candidate. A known optimizer-state
+restore defect blocks migration acceptance; the exact replacement wheel is
+pending from the shared owner. Existing CPU receipts are preserved.
+
 The original MSE trainer and continuation script require `--allow-legacy-mse`
 for archival reproduction. Existing released adapters retain their original
 both-branch CFG behavior; new PG exports use conditional-only adaptation.
