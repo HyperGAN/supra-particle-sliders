@@ -162,6 +162,45 @@ class CriticWithUnusedParameter(torch.nn.Module):
         return self.field_critic(response, condition)
 
 
+@pytest.mark.parametrize("optimizer,count", [
+    ("opt_g", 0), ("opt_g", 2), ("opt_d", 0), ("opt_d", 2),
+])
+def test_product_io_original_adam_guard_probe_rejects_invalid_clock_atomically(
+        admitted, tmp_path, monkeypatch, optimizer, count):
+    # Production Supra uses bispf_optimized's step-only DualNorm histories.
+    # This fresh, test-only original-Adam arm probes the changed shared guard
+    # through real product packet/checksum IO; it does not qualify a native
+    # production optimizer change or migrate an existing checkpoint.
+    core = shared_module("particle_sliders.pg09")
+    native_constructor = core.ConditionalPG09
+
+    def original_adam_probe(*args, **kwargs):
+        assert kwargs.pop("preset") == "bispf_optimized"
+        return native_constructor(*args, preset="bispf", **kwargs)
+
+    monkeypatch.setattr(core, "ConditionalPG09", original_adam_probe)
+    bridge = shared_module("particle_sliders.pg09_remaining_campaigns")
+    monkeypatch.setattr(bridge, "CampaignFieldCritic", CriticWithUnusedParameter)
+    source, receiver, directory = _started_checkpoint(admitted, tmp_path)
+    assert isinstance(source.game.opt_g, torch.optim.Adam)
+    assert isinstance(source.game.opt_d, torch.optim.Adam)
+
+    def corrupt(game):
+        assert game["completed_steps"] == 1
+        # One genuine unused critic leaf retains no history. Bounds apply only
+        # to present Adam histories, so honest sparse D state remains distinct.
+        assert any(value is None for value in game["optimizer_history_schema"]["d"].values())
+        saved = game[optimizer]
+        slots = next(iter(saved["state"].values()))
+        assert slots.keys() == {"step", "exp_avg", "exp_avg_sq"}
+        assert slots["step"].item() == 1
+        slots["step"].fill_(count)
+
+    _rewrite_checkpoint(directory, corrupt)
+    _assert_product_rejects_atomically(receiver, directory, monkeypatch,
+                                      match="Adam step count differs from completed updates")
+
+
 def test_product_unused_critic_history_exports_and_resumes_exact_native_update(
         admitted, tmp_path, monkeypatch):
     bridge = shared_module("particle_sliders.pg09_remaining_campaigns")

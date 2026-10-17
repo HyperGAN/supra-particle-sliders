@@ -1,0 +1,114 @@
+{
+  "status": "proposed authoritative replacement pinned; 21 narrow consumer CPU cases pass; final acceptance/Ada/native gates pending",
+  "repository": "HyperGAN/supra-particle-sliders",
+  "integration_target": "main",
+  "verified_base": "a908cc8ace35e4019a19bd25c1af7fd7e9ec72b6",
+  "native_checkout_head": "a569e00aa78ea8afeb83c75482f6d7a83cf2d376",
+  "shared_package": {
+    "version": "0.6.0",
+    "particlegan": "0.9.1",
+    "candidate_sources": "shared.lock.json",
+    "exact_dependency_head": "4be0b5b29d2e2c741431f468d71ba8a7c884b724",
+    "wheel_sha256": "2e7621c370e790f65702acf76cfa2f428b393cd3f863245aa26d8a76ff096ada",
+    "particlegan_wheel_sha256": "b01b7957169cb3de45887e22b4d525fd54071577e1de58089707cf05fe6992ec",
+    "source_files": 32,
+    "installed_wheel_narrow_consumer_gate_passed": true,
+    "migration_target_accepted": false,
+    "ada_approved": false,
+    "candidate_role": "authoritative frozen replacement, proposed only"
+  },
+  "native_contract": {
+    "unique_contexts": 19,
+    "new_t5_encodes_when_stored_unconditional": 18,
+    "config_sha256": "d32639ad9084f60d13faea1ef0e4d92b4bfc2e0420bc0fd15f4992c6270edd5b",
+    "timestep": "native i/steps in [0,1]; internal DiT embedding scales by1000",
+    "euler": "positive z+=v/steps",
+    "pg_cfg": "conditional adapter, frozen negative branch"
+  },
+  "test_environment": {
+    "python": "3.11.15",
+    "torch": "2.11.0+cu128",
+    "particlegan": "0.9.1",
+    "CUDA_VISIBLE_DEVICES": "",
+    "cuda_initialized": false,
+    "dependencies": "official PG0.9.1 + frozen replacement shared0.6.0 wheels installed --no-deps in task10/wheel-test-site-4be0; prior environments and 42a2 evidence unchanged",
+    "cwd": "/tmp",
+    "PARTICLE_SLIDERS_ROOT": null
+  },
+  "embedded_closure": {
+    "repository": "HyperGAN/particle-sliders",
+    "base": "8ef11728323233194adaf6b1bbc0152c6364bc16",
+    "commits": [
+      "bf52b8a38870bda69a00744d1043bd47d04691a3",
+      "dc6f000d167fbec54b43ab02e7a0da047cad0974"
+    ],
+    "status": "exact repaired head pending independent shared review/integration"
+  },
+  "remaining_gates": [
+    "Shared producer completes publication and release review of authoritative replacement; final derivative/dependency acceptance remains pending",
+    "Ada reviews exact final derivative/dependency/shared-closure heads; parent verifies merges",
+    "Coordinator alone admits native GPU context export/base/cache parity/zero/no-grad/export-reload/fresh-process full state replay/signed image controls"
+  ],
+  "gpu_jobs_launched": false,
+  "resident_services_changed": false,
+  "models_published": false,
+  "merges_performed": false,
+  "receipts": {
+    "replacement_restore_history": {
+      "file": "replacement-4be0-restore-history.xml",
+      "sha256": "46ebc545b47436579041f0b6459e2c6b20057f7b9a06ebe16766b463065af8e7",
+      "tests": 19,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 8.576
+    },
+    "replacement_native_update_replay": {
+      "file": "replacement-4be0-native-update-replay.xml",
+      "sha256": "f4003ae98d622f9236e5970dd8a03019b4db5ccd3d20420fbe2d5323096117d3",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 3.207
+    },
+    "replacement_installed_imports": {
+      "file": "installed-4be0-imports.json",
+      "sha256": "291fa9d1c584985c7bbdf5016709c240faf4cbad5178df20492268424e603511"
+    }
+  },
+  "superseded_candidate_evidence": {
+    "head": "42a2e371c537180bd189fd4a288b640f9f1c98fc",
+    "receipt_file": "receipt-42a2-provisional.json",
+    "receipt_sha256": "62e3e3d2dacf2e72e0ec8ed95059c2c3c3d251ff2defffe04623d95f0c7fffe3",
+    "source_lock_file": "shared-42a2.lock.json",
+    "source_lock_sha256": "7e0fb85bb2e0480da9b947cf71c65ed969c4066d3968118cb7e7ed318ef08ba0",
+    "all_xml_and_import_receipts_unchanged": true,
+    "final_acceptance": false
+  },
+  "consumer_restore_coverage": {
+    "actual_native_preset": "bispf_optimized with DualNorm step-only optimizer history",
+    "negative_moment_injection": "Finite native-shape exp_avg_sq/max_exp_avg_sq injected into started G/D packets, asserting shared negative-moment error (not claiming native Adam defaults)",
+    "corruptions": [
+      "started G/D negative second moments",
+      "missing/extra slots",
+      "deleted/emptied parameter histories",
+      "extra parameter histories",
+      "all histories reset",
+      "mandatory optimizer_history_schema missing"
+    ],
+    "checksum_rebound_to_reach_shared_validator": true,
+    "atomically_rejected_state": [
+      "network/critic/optimizers/regularizers",
+      "sampler RNG/orders/cursors/exposures",
+      "native model/frozen hash",
+      "CPU model/ambient RNG",
+      "failure/export flags and LoRA scales",
+      "critic modes/requires_grad and thermal observer"
+    ],
+    "valid_initial_empty_history_exact_resume": true,
+    "honest_unused_critic_history_exact_resume": true,
+    "native_adapter_export_reload_velocity_equal": true,
+    "exact_next_update_metrics_and_full_state": true,
+    "broad_previous_suite_rerun": false,
+    "test_source_sha256": "b52464849be9209debf9efca4a1d92873fb0cd32c8225e72f5dd0b949d2e7eb8"
+  }
+}

@@ -6,10 +6,10 @@ Supra response adapter. Follow [the PG0.9 integration instructions](docs/pg09.md
 for the exact source pin, asset checks, full checkpoint resume and CPU evidence.
 No new GPU run or model release is qualified by this integration.
 
-The shared dependency now pins authoritative replacement `4be0b5b2`. Its
-installed wheel passes 21 focused consumer cases for restore-history rejection,
-valid empty/unused histories and native update/export/resume. Final acceptance
-and Ada review remain pending; superseded candidate receipts are preserved.
+The shared dependency now pins producer-final frozen core `cdfb80a7`. Its
+installed wheel passes 21 native consumer cases plus 4 explicit test-only Adam
+clock probes. Final acceptance and Ada review remain pending; prior source
+cohorts and receipts are preserved without checkpoint retargeting.
 
 The original MSE trainer and continuation script require `--allow-legacy-mse`
 for archival reproduction. Existing released adapters retain their original

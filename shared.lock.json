@@ -2,7 +2,7 @@
   "package": "particle-sliders-core",
   "package_version": "0.6.0",
   "repository": "https://github.com/HyperGAN/particle-sliders",
-  "commit": "4be0b5b29d2e2c741431f468d71ba8a7c884b724",
+  "commit": "cdfb80a76b882b4b73861b12f555263bd64ffeb7",
   "pg_version": "0.9.1",
   "sources": {
     "__init__.py": "2424d5a850d1f10734f452175b40caa9761d579e69eb8f0eb2b919776beb1d25",
@@ -19,12 +19,12 @@
     "locked_provenance.json": "c38e864b789823476036800eea435586ba6d5208bba4008cbd54fdb8cc88826d",
     "music3_native.py": "bbdd408259475b6d2a16158eaa283d302f22f6d8e7a64c44aad35d8a1e943819",
     "native_lora.py": "9cb43b8b03148e11c9b957e81ed3897a965f2a21c69d440c6aaafee452aa6018",
-    "pg09.py": "0a4a3a298784f7d250286cb27b1c7c230fbedcbd53773e2352d520b516ba5c07",
+    "pg09.py": "190a7e6c3a8b53d7d495a577183deacce5c8a1250b674de87c349fb7aead84b3",
     "pg09_audio.py": "b46a66c56fe237510f06b5d963c084c34bdb1ea87b2732c361f2665c9d221a79",
     "pg09_backends.py": "5db98918880af33f55ca7312975a0fd112bdae8a7c69a3e357433beb056e32c1",
     "pg09_continuous_profile.json": "97a92b88aa341369d4ad93595d5beea0dbcc54a0151599b320e5bef940d0ef0b",
     "pg09_hndl.py": "437b0915264ef6ab886408d2bee8817e7dd47f63a46dbf998fa10a06960bc31e",
-    "pg09_images.py": "e92e36fdcc8e5327ea096fa8d48adc8749d453d19c4e945fd246dd931fe2c5c3",
+    "pg09_images.py": "f37ef7db2e43a33a20389a4695e78c44be3c231057ea71ec24909aa08d02ae65",
     "pg09_moss_campaign.py": "29ab37cc00a1d3785a90630071c286275be1710c9134f8d05581bb3f28c5f0c5",
     "pg09_readout_critic.py": "b83322a2ef2192ac3693fe136d019259c7fd8bf26fba25bb254931ba25462a57",
     "pg09_release_sources.json": "dae443e436a3a9d3e3d351663bb9480c3340659fb82fdf75282bd5ceeceadd3d",
@@ -38,6 +38,6 @@
     "tiny_llm_backend.py": "392344c0c2e966db72a46bd44fd4363c05914f6ab134414133e87bb983523186",
     "tiny_native.py": "336df6f61d12429420caa4a4bbe349e04021f7da594a3f185471a86e4d5f334e"
   },
-  "wheel_sha256": "2e7621c370e790f65702acf76cfa2f428b393cd3f863245aa26d8a76ff096ada",
+  "wheel_sha256": "4abc83988fdeb6d7478de830e7ee8ec5d9bd99c20d52f89e4ce594d50dfd39a3",
   "pg_wheel_sha256": "b01b7957169cb3de45887e22b4d525fd54071577e1de58089707cf05fe6992ec"
 }

@@ -1,5 +1,5 @@
 {
-  "status": "proposed authoritative replacement pinned; 21 narrow consumer CPU cases pass; final acceptance/Ada/native gates pending",
+  "status": "producer-final frozen CDF core pinned; 21 native consumer cases and 4 explicit Adam guard probes pass; Ada/final derivative/native gates pending",
   "repository": "HyperGAN/supra-particle-sliders",
   "integration_target": "main",
   "verified_base": "a908cc8ace35e4019a19bd25c1af7fd7e9ec72b6",
@@ -8,14 +8,15 @@
     "version": "0.6.0",
     "particlegan": "0.9.1",
     "candidate_sources": "shared.lock.json",
-    "exact_dependency_head": "4be0b5b29d2e2c741431f468d71ba8a7c884b724",
-    "wheel_sha256": "2e7621c370e790f65702acf76cfa2f428b393cd3f863245aa26d8a76ff096ada",
+    "exact_dependency_head": "cdfb80a76b882b4b73861b12f555263bd64ffeb7",
+    "wheel_sha256": "4abc83988fdeb6d7478de830e7ee8ec5d9bd99c20d52f89e4ce594d50dfd39a3",
     "particlegan_wheel_sha256": "b01b7957169cb3de45887e22b4d525fd54071577e1de58089707cf05fe6992ec",
     "source_files": 32,
     "installed_wheel_narrow_consumer_gate_passed": true,
     "migration_target_accepted": false,
     "ada_approved": false,
-    "candidate_role": "authoritative frozen replacement, proposed only"
+    "candidate_role": "sole-owner producer-final frozen core; proposed pending Ada/parent integration",
+    "published_to_github_when_checked": true
   },
   "native_contract": {
     "unique_contexts": 19,
@@ -31,7 +32,7 @@
     "particlegan": "0.9.1",
     "CUDA_VISIBLE_DEVICES": "",
     "cuda_initialized": false,
-    "dependencies": "official PG0.9.1 + frozen replacement shared0.6.0 wheels installed --no-deps in task10/wheel-test-site-4be0; prior environments and 42a2 evidence unchanged",
+    "dependencies": "official PG0.9.1 + exact frozen final shared0.6.0 wheels installed --no-deps in task10/wheel-test-site-cdfb; prior environments/receipts unchanged",
     "cwd": "/tmp",
     "PARTICLE_SLIDERS_ROOT": null
   },
@@ -45,8 +46,8 @@
     "status": "exact repaired head pending independent shared review/integration"
   },
   "remaining_gates": [
-    "Shared producer completes publication and release review of authoritative replacement; final derivative/dependency acceptance remains pending",
-    "Ada reviews exact final derivative/dependency/shared-closure heads; parent verifies merges",
+    "Ada reviews exact final derivative/dependency/shared-closure heads; final derivative acceptance remains with parent",
+    "Parent verifies merges; no merge performed by this audit",
     "Coordinator alone admits native GPU context export/base/cache parity/zero/no-grad/export-reload/fresh-process full state replay/signed image controls"
   ],
   "gpu_jobs_launched": false,
@@ -54,25 +55,25 @@
   "models_published": false,
   "merges_performed": false,
   "receipts": {
-    "replacement_restore_history": {
-      "file": "replacement-4be0-restore-history.xml",
-      "sha256": "46ebc545b47436579041f0b6459e2c6b20057f7b9a06ebe16766b463065af8e7",
-      "tests": 19,
+    "cdfb_native_consumer": {
+      "file": "cdfb-native-consumer.xml",
+      "sha256": "e234b0af3bec97ba469bc35af6289b7000512e97f6ca91757a3ff7d7ef75ddf7",
+      "tests": 21,
       "failures": 0,
       "errors": 0,
-      "seconds": 8.576
+      "seconds": 8.63
     },
-    "replacement_native_update_replay": {
-      "file": "replacement-4be0-native-update-replay.xml",
-      "sha256": "f4003ae98d622f9236e5970dd8a03019b4db5ccd3d20420fbe2d5323096117d3",
-      "tests": 2,
+    "cdfb_adam_guard_probe": {
+      "file": "cdfb-adam-guard-probe.xml",
+      "sha256": "4484a2c4e0df937705191b8d757c82f624d20d17cd81ed2ee9df3ed35e549d3d",
+      "tests": 4,
       "failures": 0,
       "errors": 0,
-      "seconds": 3.207
+      "seconds": 3.238
     },
-    "replacement_installed_imports": {
-      "file": "installed-4be0-imports.json",
-      "sha256": "291fa9d1c584985c7bbdf5016709c240faf4cbad5178df20492268424e603511"
+    "cdfb_installed_imports": {
+      "file": "installed-cdfb-imports.json",
+      "sha256": "e578aa376b9f8a620f3e0577ead981f2cf059b5ab81eb28b45c53f607cb7ce5e"
     }
   },
   "superseded_candidate_evidence": {
@@ -109,6 +110,32 @@
     "native_adapter_export_reload_velocity_equal": true,
     "exact_next_update_metrics_and_full_state": true,
     "broad_previous_suite_rerun": false,
-    "test_source_sha256": "b52464849be9209debf9efca4a1d92873fb0cd32c8225e72f5dd0b949d2e7eb8"
-  }
+    "test_source_sha256": "7ed8d041de574898b86af5f60ead81243a6a495c9cf5717cd87f7591fe8734aa",
+    "cdfb_clock_probe": {
+      "scope": "fresh test-only original BISPF Adam arm through product IO; production stays optimized DualNorm",
+      "cases": 4,
+      "started_g_clocks": [
+        0,
+        2
+      ],
+      "present_sparse_d_clocks": [
+        0,
+        2
+      ],
+      "completed_steps": 1,
+      "atomic_rejection": true,
+      "source_cohorts_not_retargeted": true
+    }
+  },
+  "previous_4be0_evidence": {
+    "head": "4be0b5b29d2e2c741431f468d71ba8a7c884b724",
+    "receipt_file": "receipt-4be0-narrow.json",
+    "receipt_sha256": "f22ef788413eb7105396460ce8f6991de3b3aa045b59496ce33d92da6adfff78",
+    "source_lock_file": "shared-4be0.lock.json",
+    "source_lock_sha256": "872bc734df85551426a0ddb966cb8e107b9724826480c4ed4aaa105b3b7afd5c",
+    "all_prior_xml_and_import_receipts_unchanged": true,
+    "not_requalified_as_cdfb": true
+  },
+  "public_shared_image_payload_added": false,
+  "broad_unrelated_reruns": false
 }
