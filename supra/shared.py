@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import hashlib
+from contextlib import contextmanager
+from contextvars import ContextVar
 import importlib
 import importlib.util
 import json
@@ -10,6 +12,24 @@ from pathlib import Path
 import sys
 
 LOCK = Path(__file__).resolve().parents[1] / "shared.lock.json"
+if not LOCK.is_file():
+    LOCK = Path(__file__).with_name("shared.lock.json")
+_SOURCE_LOCK = ContextVar("supra_source_lock", default=None)
+
+
+@contextmanager
+def source_cohort(lock):
+    """Scope a separately reviewed dependency cohort without retargeting CDF.
+
+    The new lifecycle factory selects its own packaged lock. Legacy entrypoints
+    retain LOCK and their existing checkpoint schemas. Context-local selection
+    avoids changing process environment or another session's source cohort.
+    """
+    token = _SOURCE_LOCK.set(Path(lock))
+    try:
+        yield
+    finally:
+        _SOURCE_LOCK.reset(token)
 
 
 def file_sha(path):
@@ -32,7 +52,7 @@ def shared_root(root=None):
         if spec is None or not spec.origin:
             raise RuntimeError("Install the pinned particle-sliders-core package; see docs/pg09.md")
         root = Path(spec.origin).resolve().parent
-    lock = json.loads(LOCK.read_text())
+    lock = json.loads((_SOURCE_LOCK.get() or LOCK).read_text())
     for relative, expected in lock["sources"].items():
         path = (root / relative).resolve()
         if not path.is_relative_to(root) or not path.is_file() or file_sha(path) != expected:

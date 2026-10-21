@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "supra-particle-sliders"
+version = "0.2.0"
+description = "Supra native image adapter GAN lifecycle"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+dependencies = [
+  "particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@fd89e1c780ab5210cd1be98ec3b70977e6349379#subdirectory=packages/particle-sliders-core",
+  "safetensors>=0.5",
+  "Pillow>=10",
+]
+
+[project.optional-dependencies]
+native = ["transformers==5.15.0", "diffusers>=0.36", "huggingface-hub>=1.0", "sentencepiece>=0.2", "numpy>=1.26"]
+test = ["pytest>=8", "PyYAML>=6"]
+
+[project.entry-points."particle_sliders.image_backends"]
+supra = "supra.lifecycle:BACKEND"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["supra*"]
+
+[tool.setuptools.package-data]
+supra = ["lifecycle.lock.json", "shared.lock.json"]

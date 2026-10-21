@@ -158,3 +158,42 @@ No base weights are redistributed.
 [Catalog and sample metadata](https://huggingface.co/ntc-ai/supra-particle-sliders/resolve/main/catalog.json) ·
 [Release checksums](https://huggingface.co/ntc-ai/supra-particle-sliders/resolve/main/release-manifest.json) ·
 [Source provenance](https://huggingface.co/ntc-ai/supra-particle-sliders/resolve/main/source-provenance.json)
+# Image lifecycle integration draft
+
+The isolated image-v1 integration adds the installed `supra` backend against
+core 0.7.0 at `fd89e1c780ab5210cd1be98ec3b70977e6349379`. See the
+[entrypoint audit and migration plan](docs/image-lifecycle-integration.md).
+This is a new source cohort; existing `requirements.txt`, CDF source locks and
+historical checkpoint loaders retain their original roles. Their prior test
+receipts do not qualify this draft.
+
+After separately reviewed installation in a native Supra environment, supply
+already admitted local config/context/cache assets and their exact digests:
+
+```python
+from particle_sliders.lifecycle import SessionConfig, open_session
+
+# native_config is the parsed existing configs/supra/prompts-final-boss.yaml.
+config = SessionConfig("supra", "new-supra-image-v1-cohort",
+    native_config=native_config, cache=cache_path, cache_sha256=cache_sha256,
+    contexts=contexts_path, contexts_sha256=contexts_sha256,
+    frozen_base_sha256=frozen_base_sha256, device="cuda:0", rank=16,
+    steps=28800, batch=4, seed=7, ema_decay=.99)
+# These native calls require separate GPU admission; none ran in this draft.
+with open_session(config) as session:
+    session.train(stop_after=80, on_step=hypergan_observer)
+    session.checkpoint("new-run/training.pt")
+    session.export("new-run/adapter.pt", selection="ema")
+with open_session(config, artifact="new-run/adapter.pt", operation="render") as session:
+    image = session.render(prompt="a red cup", strength=.5, seed=42, steps=50, cfg=3.)
+```
+
+The common CLI consumes `config.as_dict()` JSON. Exported lifecycle packets use
+the common loader; they are not native safetensors for `infer_supra.py`.
+Evaluation returns velocity fields. Native image rendering returns PIL through
+Supra's existing noise/Euler/VAE path and accepts finite signed strengths without
+reference images. New-prompt encoding remains local to rendering and does not
+extend the training contexts. The initial common inference loader reconstructs
+the prepared game/cache; compact inference loading remains core-owned work.
+Installed CPU conformance, source guard execution and native/GPU qualification
+are pending. No installation, model load or training is implied by this example.
