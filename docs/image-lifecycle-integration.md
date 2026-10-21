@@ -55,6 +55,11 @@ not pretrained quality qualification.
 
 ## Core rough spots / review boundaries
 
+Follow-up: [clean core 0.8.1 adoption assessment](core081-adoption-assessment.md)
+records the parent's reviewed fixes and the missing Supra source-closure gate.
+The points below retain the original 0.7 inspection context; PG already refused
+training from inference exports, even before the newer session diagnostic gate.
+
 - At exact fd89e1c, `SliderSession.load_inference` marks `inference_only=True`,
   but `step()` and `train()` do not check it. Shared docs promise adapter-only
   artifacts cannot resume training. Fix in core; no product workaround.

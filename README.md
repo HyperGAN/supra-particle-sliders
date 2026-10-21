@@ -163,6 +163,8 @@ No base weights are redistributed.
 The isolated image-v1 integration adds the installed `supra` backend against
 core 0.7.0 at `fd89e1c780ab5210cd1be98ec3b70977e6349379`. See the
 [entrypoint audit and migration plan](docs/image-lifecycle-integration.md).
+The reviewed [clean core 0.8.1 assessment](docs/core081-adoption-assessment.md)
+identifies a missing native/campaign source closure; its pin is not yet adopted.
 This is a new source cohort; existing `requirements.txt`, CDF source locks and
 historical checkpoint loaders retain their original roles. Their prior test
 receipts do not qualify this draft.
