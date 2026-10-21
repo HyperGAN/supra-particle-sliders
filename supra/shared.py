@@ -53,9 +53,13 @@ def shared_root(root=None):
             raise RuntimeError("Install the pinned particle-sliders-core package; see docs/pg09.md")
         root = Path(spec.origin).resolve().parent
     lock = json.loads((_SOURCE_LOCK.get() or LOCK).read_text())
-    for relative, expected in lock["sources"].items():
-        path = (root / relative).resolve()
-        if not path.is_relative_to(root) or not path.is_file() or file_sha(path) != expected:
+    # Canonical 0.8.1 producer receipts use package-src-relative keys, including
+    # concept_slider_core. Keep that map intact; legacy locks stay root-relative.
+    base = root.parent if "source_sha256" in lock else root
+    sources = lock["source_sha256"] if "source_sha256" in lock else lock["sources"]
+    for relative, expected in sources.items():
+        path = (base / relative).resolve()
+        if not path.is_relative_to(base) or not path.is_file() or file_sha(path) != expected:
             raise RuntimeError("Shared particle-sliders source differs: " + relative)
     return root
 

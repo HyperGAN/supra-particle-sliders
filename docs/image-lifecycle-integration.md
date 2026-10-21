@@ -1,5 +1,9 @@
 # Supra image lifecycle migration, source-inspection plan
 
+This records the initial 0.7 draft. The later parent-approved
+[thin product 0.8.1 source proposal](thin-product-core081.md) preserves this
+milestone and its receipts; its prepared equivalence tests have not run.
+
 This is a new, unpublished source cohort against particle-sliders-core 0.7.0 at
 `fd89e1c780ab5210cd1be98ec3b70977e6349379`. The isolated product base is draft
 [PR4](https://github.com/HyperGAN/supra-particle-sliders/pull/4), exact head

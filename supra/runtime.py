@@ -1,4 +1,4 @@
-"""Native Supra components with architecture/LoRA from shared particle-sliders."""
+"""Native Supra components with unchanged, cohort-selected DiT/LoRA definitions."""
 from __future__ import annotations
 
 import json
@@ -47,8 +47,10 @@ def load_adapter_state(model, state):
 class SupraRuntime:
     MODEL_REV, T5_REV = MODEL_REV, T5_REV
 
-    def __init__(self, device="cuda:0", rank=16, allow_hub=False):
-        mod = model_module()
+    def __init__(self, device="cuda:0", rank=16, allow_hub=False, *, native_model=None):
+        # New cohorts inject the unchanged product-owned definition. Historical
+        # callers keep the original pinned shared-module resolution.
+        mod = native_model if native_model is not None else model_module()
         from diffusers import AutoencoderKL
         from huggingface_hub import hf_hub_download
         from transformers import AutoTokenizer, T5EncoderModel

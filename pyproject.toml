@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = {file = "LICENSE"}
 dependencies = [
-  "particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@fd89e1c780ab5210cd1be98ec3b70977e6349379#subdirectory=packages/particle-sliders-core",
+  "particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@32f6830f6402e85aa77b6631db64fcbbb2131f6b#subdirectory=packages/particle-sliders-core",
   "safetensors>=0.5",
   "Pillow>=10",
 ]
@@ -22,9 +22,12 @@ test = ["pytest>=8", "PyYAML>=6"]
 [project.entry-points."particle_sliders.image_backends"]
 supra = "supra.lifecycle:BACKEND"
 
+[project.entry-points."particle_sliders.inference_backends"]
+supra = "supra.native_inference:BACKEND"
+
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["supra*"]
 
 [tool.setuptools.package-data]
-supra = ["lifecycle.lock.json", "shared.lock.json"]
+supra = ["lifecycle.lock.json", "shared.lock.json", "core081-receipt.json", "thin-product-provenance.json", "licenses/*"]

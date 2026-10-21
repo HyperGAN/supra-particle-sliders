@@ -160,11 +160,14 @@ No base weights are redistributed.
 [Source provenance](https://huggingface.co/ntc-ai/supra-particle-sliders/resolve/main/source-provenance.json)
 # Image lifecycle integration draft
 
-The isolated image-v1 integration adds the installed `supra` backend against
-core 0.7.0 at `fd89e1c780ab5210cd1be98ec3b70977e6349379`. See the
+The isolated source proposal registers `supra` against clean core 0.8.1 at
+`32f6830f6402e85aa77b6631db64fcbbb2131f6b`. See the
 [entrypoint audit and migration plan](docs/image-lifecycle-integration.md).
-The reviewed [clean core 0.8.1 assessment](docs/core081-adoption-assessment.md)
-identifies a missing native/campaign source closure; its pin is not yet adopted.
+The [thin product closure](docs/thin-product-core081.md) relocates unchanged
+Supra-only definitions and wires native-only inference plus common hooks.
+Equivalence/conformance tests are prepared but **not executed**; this dependency
+proposal is not a qualified installation. The earlier 0.7 draft and the
+[initial closure assessment](docs/core081-adoption-assessment.md) remain in history.
 This is a new source cohort; existing `requirements.txt`, CDF source locks and
 historical checkpoint loaders retain their original roles. Their prior test
 receipts do not qualify this draft.
@@ -174,6 +177,7 @@ already admitted local config/context/cache assets and their exact digests:
 
 ```python
 from particle_sliders.lifecycle import SessionConfig, open_session
+from particle_sliders.inference import open_inference
 
 # native_config is the parsed existing configs/supra/prompts-final-boss.yaml.
 config = SessionConfig("supra", "new-supra-image-v1-cohort",
@@ -185,17 +189,19 @@ config = SessionConfig("supra", "new-supra-image-v1-cohort",
 with open_session(config) as session:
     session.train(stop_after=80, on_step=hypergan_observer)
     session.checkpoint("new-run/training.pt")
-    session.export("new-run/adapter.pt", selection="ema")
-with open_session(config, artifact="new-run/adapter.pt", operation="render") as session:
+    session.export_inference("new-run/adapter.pt", selection="ema")
+with open_inference("new-run/adapter.pt", options=dict(device="cuda:0",
+        frozen_base_sha256=frozen_base_sha256)) as session:
     image = session.render(prompt="a red cup", strength=.5, seed=42, steps=50, cfg=3.)
 ```
 
-The common CLI consumes `config.as_dict()` JSON. Exported lifecycle packets use
-the common loader; they are not native safetensors for `infer_supra.py`.
+The common training CLI consumes `config.as_dict()` JSON; v2 inference uses
+`particle-slider infer` with native local options and no training configuration.
+Exported lifecycle packets are not native safetensors for `infer_supra.py`.
 Evaluation returns velocity fields. Native image rendering returns PIL through
 Supra's existing noise/Euler/VAE path and accepts finite signed strengths without
 reference images. New-prompt encoding remains local to rendering and does not
-extend the training contexts. The initial common inference loader reconstructs
-the prepared game/cache; compact inference loading remains core-owned work.
+extend the training contexts. The proposed v2 loader constructs only native
+base/adapter/T5/VAE objects, without a training cache, critic, game or optimizer.
 Installed CPU conformance, source guard execution and native/GPU qualification
 are pending. No installation, model load or training is implied by this example.

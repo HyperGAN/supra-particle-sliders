@@ -1,5 +1,10 @@
 # Supra assessment of clean core 0.8.1
 
+Historical assessment: parent subsequently selected the thin product path.
+[The follow-up source proposal](thin-product-core081.md) resolves the missing
+closure in product code and stages the exact candidate dependency. Execution,
+equivalence qualification and derivative promotion remain pending a CPU slot.
+
 Decision: **pin adoption blocked by the clean package source closure**. This is
 not a ParticleGAN downgrade or a proposed change to the mathematical formulation.
 The operative local proposal remains core 0.7.0 at
