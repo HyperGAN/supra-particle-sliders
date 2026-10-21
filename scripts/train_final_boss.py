@@ -25,7 +25,7 @@ import torch.nn.functional as F
 import yaml
 from PIL import Image, ImageDraw
 
-from supra.runtime import MODEL_REV, MODEL_SOURCE, T5_REV, VAE_REV, SupraRuntime
+from supra.runtime import MODEL_REV, model_source, T5_REV, VAE_REV, SupraRuntime
 
 
 def write_json(path, data):
@@ -138,6 +138,7 @@ def evaluate(rt, config, args):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--allow-legacy-mse", action="store_true", help="Explicit archival MSE reproduction; new training uses train_pg09.py")
     parser.add_argument("--prompts", type=Path, default=ROOT / "configs/supra/prompts-final-boss.yaml")
     parser.add_argument("--out", type=Path, default=ROOT / "outputs/final-boss-supra")
     parser.add_argument("--steps", type=int, default=400)
@@ -154,6 +155,9 @@ def main():
     parser.add_argument("--allow-hub", action="store_true")
     parser.add_argument("--resume", type=Path)
     args = parser.parse_args()
+    if not args.allow_legacy_mse:
+        parser.error("Historical MSE trainer requires --allow-legacy-mse; use scripts/train_pg09.py for shared PG0.9 GAN-only training")
+    MODEL_SOURCE = model_source()
     if min(args.steps, args.batch_size, args.cache_seeds, args.sample_steps, args.save_every, args.rank) < 1:
         parser.error("steps, batch, cache seeds, sampling, save interval and rank must be positive")
     out = args.out

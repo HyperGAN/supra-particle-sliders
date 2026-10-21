@@ -1,4 +1,23 @@
-# Final Boss: 1,600 training steps in 134.4 seconds
+# Supra sliders: shared ParticleGAN 0.9 training
+
+New training uses [`scripts/train_pg09.py`](scripts/train_pg09.py), which executes
+the external shared `particle_sliders.pg09.ConditionalPG09` game and shared native
+Supra response adapter. Follow [the PG0.9 integration instructions](docs/pg09.md)
+for the exact source pin, asset checks, full checkpoint resume and CPU evidence.
+No new GPU run or model release is qualified by this integration.
+
+The shared dependency now pins producer-final frozen core `cdfb80a7`. Its
+installed wheel passes 21 native consumer cases plus 4 explicit test-only Adam
+clock probes. Final acceptance and Ada review remain pending; prior source
+cohorts and receipts are preserved without checkpoint retargeting.
+
+The original MSE trainer and continuation script require `--allow-legacy-mse`
+for archival reproduction. Existing released adapters retain their original
+both-branch CFG behavior; new PG exports use conditional-only adaptation.
+All executable architecture/LoRA imports now require the reviewed external
+`PARTICLE_SLIDERS_ROOT`; vendored source is not executed.
+
+## Historical MSE release: 1,600 training steps in 134.4 seconds
 
 **A 104.1M-parameter image model. A 6.8 MB LoRA. A 3.4 MB rank-8 distill.**
 
@@ -76,29 +95,9 @@ Set `CUDA_VISIBLE_DEVICES` to select a GPU. See the
 
 ## Shared core
 
-The concept slider trains `particle_sliders.winning_formulation()` from
-[particle-sliders-core](https://github.com/HyperGAN/particle-sliders/tree/a119ca1ecd3d5d6c437065839d22739b04f2f4d8/packages/particle-sliders-core)
-at `a119ca1ecd3d5d6c437065839d22739b04f2f4d8`. The deprecated package name
-`concept-slider-core` is not used. The train entry in this repo is
-`scripts/train_lora_supra.py`. It calls `winning_formulation().require(...)`
-and takes the regularizer and losses from that stamp. Generator learning rate
-`1e-4` and batch `4` are a Supra model surface.
-
-Sampling stays the Supra Euler card: native 256×256, 50 steps, CFG 3,
-`t = i/K`, `z <- z + (1/K) * v`. The concept-slider Hub id is
-`ntc-ai/supra-concept-sliders`. There is no ComfyUI node in this repository.
-The ordinary LoRA release on this page remains
-`ntc-ai/supra-particle-sliders`.
-
-`vendor/particle-sliders/.../supra_model.py` is the DiT backbone for that
-ordinary LoRA. It is not the particle game. See
-[the shared-core note](docs/shared-core.md), including the research trainer
-that still lives in HyperGAN/particle-sliders.
-
-```bash
-python scripts/train_lora_supra.py --dummy --steps 8 --device cpu
-python scripts/train_lora_supra.py --print-card
-```
+`scripts/train_lora_supra.py` and `python -m supra.train` are aliases of the
+same native shared PG0.9 worker. The previous pooled-feature smoke was not a
+native adapter trainer and is removed. See [the integration contract](docs/pg09.md).
 
 ## How it learns
 
@@ -150,13 +149,61 @@ memory. Another workload used GPU 0 while this run used GPU 1.
 
 Base: [SupraLabs/Supra2-IMG](https://huggingface.co/SupraLabs/Supra2-IMG), pinned to
 `10dec6e4b4b5d1c44fd1d7d3fe5e50137333da5b`. Encoder and VAE revisions are embedded in the adapter
-metadata. The DiT backbone in `vendor/` is the ordinary-LoRA architecture, checked
-against [backend.lock.json](https://github.com/HyperGAN/supra-particle-sliders/blob/main/backend.lock.json).
-The particle game is the `particle-sliders-core` pin in that lock, not a
-vendored copy of the game and not `concept-slider-core`. Source and adapters
-are Apache-2.0; the DiT file is MIT and the VAE is separately MIT licensed.
+metadata. The DiT, ordinary LoRA and native response game come from the
+reviewed external shared package, checked against `shared.lock.json`. Source
+and adapters are Apache-2.0; the shared DiT and VAE are separately MIT licensed.
+Historical license notices remain in `licenses/particle-sliders/`.
 No base weights are redistributed.
 
 [Catalog and sample metadata](https://huggingface.co/ntc-ai/supra-particle-sliders/resolve/main/catalog.json) ·
 [Release checksums](https://huggingface.co/ntc-ai/supra-particle-sliders/resolve/main/release-manifest.json) ·
 [Source provenance](https://huggingface.co/ntc-ai/supra-particle-sliders/resolve/main/source-provenance.json)
+# Image lifecycle integration draft
+
+The isolated source proposal registers `supra` against clean core 0.8.1 at
+`32f6830f6402e85aa77b6631db64fcbbb2131f6b`. See the
+[entrypoint audit and migration plan](docs/image-lifecycle-integration.md).
+The [thin product closure](docs/thin-product-core081.md) relocates unchanged
+Supra-only definitions and wires native-only inference plus common hooks.
+The [bounded CPU slot](docs/core081-cpu-validation.md) passed **18 installed-wheel
+checks** at exact head `73537b7`, with CUDA uninitialized. Pretrained/GPU,
+fresh-process inference and full CLI/legacy qualification remain pending.
+The earlier 0.7 draft and the
+[initial closure assessment](docs/core081-adoption-assessment.md) remain in history.
+This is a new source cohort; existing `requirements.txt`, CDF source locks and
+historical checkpoint loaders retain their original roles. Their prior test
+receipts do not qualify this draft.
+
+After separately reviewed installation in a native Supra environment, supply
+already admitted local config/context/cache assets and their exact digests:
+
+```python
+from particle_sliders.lifecycle import SessionConfig, open_session
+from particle_sliders.inference import open_inference
+
+# native_config is the parsed existing configs/supra/prompts-final-boss.yaml.
+config = SessionConfig("supra", "new-supra-image-v1-cohort",
+    native_config=native_config, cache=cache_path, cache_sha256=cache_sha256,
+    contexts=contexts_path, contexts_sha256=contexts_sha256,
+    frozen_base_sha256=frozen_base_sha256, device="cuda:0", rank=16,
+    steps=28800, batch=4, seed=7, ema_decay=.99)
+# These native calls require separate GPU admission; none ran in this draft.
+with open_session(config) as session:
+    session.train(stop_after=80, on_step=hypergan_observer)
+    session.checkpoint("new-run/training.pt")
+    session.export_inference("new-run/adapter.pt", selection="ema")
+with open_inference("new-run/adapter.pt", options=dict(device="cuda:0",
+        frozen_base_sha256=frozen_base_sha256)) as session:
+    image = session.render(prompt="a red cup", strength=.5, seed=42, steps=50, cfg=3.)
+```
+
+The common training CLI consumes `config.as_dict()` JSON; v2 inference uses
+`particle-slider infer` with native local options and no training configuration.
+Exported lifecycle packets are not native safetensors for `infer_supra.py`.
+Evaluation returns velocity fields. Native image rendering returns PIL through
+Supra's existing noise/Euler/VAE path and accepts finite signed strengths without
+reference images. New-prompt encoding remains local to rendering and does not
+extend the training contexts. The proposed v2 loader constructs only native
+base/adapter/T5/VAE objects, without a training cache, critic, game or optimizer.
+Narrow installed CPU conformance passed; native/GPU qualification remains
+pending. No native model load or training is implied by this example.

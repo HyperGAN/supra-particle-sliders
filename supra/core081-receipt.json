@@ -1,0 +1,67 @@
+{
+  "shared_stacked_head": "fc075ab4cd9c1dc65617c6c45be7710dc06a616f",
+  "preserved_milestone": "fd89e1c780ab5210cd1be98ec3b70977e6349379",
+  "clean_head": "32f6830f6402e85aa77b6631db64fcbbb2131f6b",
+  "clean_base": "20fdf98d25455582e7e7191eef8ef51cf73173ae",
+  "held_candidate": "36a086470513b01f3981ad5528517b73af21d544",
+  "review_status": "independent rereview pending",
+  "version": "0.8.1",
+  "artifacts": {
+    "particle_sliders_core-0.8.1.tar.gz": "36b84f56e2ac23e807c262c5ef25eddad9c121e1d573c4773937d58508632803",
+    "particle_sliders_core-0.8.1-py3-none-any.whl": "279aaab83da05b6ebeca030dfe115e1ae2232ca4924fe4278ea48103918fbd8d"
+  },
+  "source_sha256": {
+    "concept_slider_core/__init__.py": "9afadb5c36b00413160442900e6190a7d93f272b61413f72a932c1db948623d3",
+    "particle_sliders/__init__.py": "871326a9d52954827845b3e93d73d515e9f4c0cb603f9225f93af12e7e0eb6f5",
+    "particle_sliders/_training.py": "0a5802997adec58998beb6598861f6a0f0aa1245a10053666e16300b67d3bc44",
+    "particle_sliders/bispf_game.py": "3c95d19a9adcfde3a468359fec44dcf1f7dce2d63a5a6318d6c4b3b6d6091a5e",
+    "particle_sliders/bispf_provenance.json": "00b294a9e1a36539c2b6f6e58921b955b973c54c8b75c92fd69b88b31c73333c",
+    "particle_sliders/distillation.py": "b277e561517a9cb40d1a399ad07c6350aa22a287232aea816b7f6e434e18a232",
+    "particle_sliders/endpoint_game.py": "78ace462127468dff98eb2eccfbdae442d188999cace8f72137fefc2a4924f45",
+    "particle_sliders/fibo_native.py": "30f38ddb93fa02fbd968f054b8fff66a0be6dd056e7e3f67e5147870cbf2bbe4",
+    "particle_sliders/fibo_provenance.json": "710929d0b34a188a7327269cd765b69014cdd3f3987a37c5216679b1b67fc1e1",
+    "particle_sliders/field_critic.py": "4fbff8f1a01497f43c4b50b116a69bde5b01a6aeff6bb63d4e0c9418e69f39d1",
+    "particle_sliders/formulation.py": "a61b06e93efb24e92a72d826f696ede8694e97a3c27c5e6262a2912caac28e12",
+    "particle_sliders/formulation_game.py": "a11585b4dc6b549de6e62716f0b05d6810addcf61932e190ed50cd2469c21490",
+    "particle_sliders/grad_regularizers.py": "b1d27df47870814b8a3b05839c833792489e2fe5aff3b2875ab03c74f983a33a",
+    "particle_sliders/inference.py": "3bfdf49b39458c7489d0fd365bec3ef5fd8ee49a8f242468fdd311b1a9e2922e",
+    "particle_sliders/lifecycle.py": "b70eb161bf16d986a691579fb2308f08684a0e89531ef6b1483418ff84ffe43a",
+    "particle_sliders/locked_provenance.json": "c38e864b789823476036800eea435586ba6d5208bba4008cbd54fdb8cc88826d",
+    "particle_sliders/pg09.py": "190a7e6c3a8b53d7d495a577183deacce5c8a1250b674de87c349fb7aead84b3",
+    "particle_sliders/pg09_backends.py": "5db98918880af33f55ca7312975a0fd112bdae8a7c69a3e357433beb056e32c1",
+    "particle_sliders/pg09_continuous_profile.json": "97a92b88aa341369d4ad93595d5beea0dbcc54a0151599b320e5bef940d0ef0b",
+    "particle_sliders/pg09_hndl.py": "437b0915264ef6ab886408d2bee8817e7dd47f63a46dbf998fa10a06960bc31e",
+    "particle_sliders/pg09_images.py": "15a2c36014d4c2cc878adf4d97388083cb9418e5c951df9b45f4d789d071f23a",
+    "particle_sliders/pg09_readout_critic.py": "b83322a2ef2192ac3693fe136d019259c7fd8bf26fba25bb254931ba25462a57",
+    "particle_sliders/pg09_release_sources.json": "dae443e436a3a9d3e3d351663bb9480c3340659fb82fdf75282bd5ceeceadd3d",
+    "particle_sliders/provenance.json": "efd60e615dc247b531dfb01a0be5728edcd7e442a9b6b888b848e716273ab45a",
+    "particle_sliders/qwen_native.py": "3ecfceb5b3bda5db985dfc07fe9811c2188e80a46f9bd463beac434369779610",
+    "particle_sliders/recipe.py": "63726226e681e517c49943f6150989a8277031762c6253a338892dac340b5600",
+    "particle_sliders/reference.py": "2c5809edd3818fab9efdd0c5234ea6b5027de5fc0130155e537950471018a371",
+    "particle_sliders/routed_projection.py": "d71e032c1a578e7fdc0494b3d43b982b3b4afdbc4ba859f21f75e2118c347e04",
+    "particle_sliders/session_cli.py": "734035915b17917c25553738dcfd9e959bcfd8da5b860cfb5b1826ba9483d0cf",
+    "particle_sliders/teachers.py": "9a35fcff05a15d00f6aa67b5cb9e53cf55526d7e06631ef8cfeb0169519818d2"
+  },
+  "tests": {
+    "core081-full-source": {
+      "tests": 428,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 46,
+      "passed": 382
+    },
+    "core081-installed": {
+      "tests": 284,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 17,
+      "passed": 267
+    }
+  },
+  "limitations": [
+    "CPU/offline conformance only",
+    "No derivative adoption or pretrained qualification claimed",
+    "Audio/profile generalization, HyperGAN reporting bridge and matched-weight HNDL remain separate",
+    "No public writes, merges or active cohort changes"
+  ]
+}

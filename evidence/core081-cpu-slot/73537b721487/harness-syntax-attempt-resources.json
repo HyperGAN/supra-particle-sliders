@@ -1,0 +1,31 @@
+{
+  "source_head": "73537b7214878cf22c1fd44b36ee8f78091ae9d7",
+  "command": [
+    "/ml2/codex-storage/future-workspaces/2026-10-21/task-5/.venv-supra-validation/bin/python",
+    "-I",
+    "-c",
+    "import sys,resource,json,hashlib,importlib.util\nfrom pathlib import Path\nresource.setrlimit(resource.RLIMIT_AS,(2147483648,2147483648))\nimport torch\ntorch.set_num_threads(1); torch.set_num_interop_threads(1)\nassert not torch.cuda.is_initialized()\nimport supra,particle_sliders,particlegan\nimport importlib.metadata as metadata\nassert metadata.version('particle-sliders-core')=='0.8.1'\nassert metadata.version('particlegan')=='0.9.1'\nassert 'source' not in str(Path(supra.__file__).resolve()).split('/')\nfor name in ('supra_model','pg09_remaining_campaigns','pg09_moss_campaign'):\n    assert importlib.util.find_spec('particle_sliders.'+name) is None\nimport supra.lifecycle,supra.native_inference\nfrom particle_sliders.lifecycle import backend\nfrom particle_sliders.inference import inference_backend\nassert backend('supra').name == inference_backend('supra').name == 'supra'\nreceipt=json.loads(Path(supra.__file__).with_name('core081-receipt.json').read_text())\nroot=Path(particle_sliders.__file__).parent.parent\nfor key,digest in receipt['source_sha256'].items():\n    assert hashlib.sha256((root/key).read_bytes()).hexdigest()==digest,key\norigins=dict(supra=supra.__file__,core=particle_sliders.__file__,pg=particlegan.__file__,\n            torch=torch.__version__,core_version=metadata.version('particle-sliders-core'),\n            pg_version=metadata.version('particlegan'),cuda_initialized=torch.cuda.is_initialized(),canonical_hashes=len(receipt['source_sha256']))\nPath(sys.argv[1]).write_text(json.dumps(origins,indent=2)+'\n')\nprint(json.dumps(origins),flush=True)\nimport pytest\ncode=pytest.main(sys.argv[2:])\nassert not torch.cuda.is_initialized()\nraise SystemExit(code)\n",
+    "/ml2/codex-storage/future-workspaces/2026-10-21/task-5/supra/evidence/core081-cpu-slot/73537b721487/installed-origins.json",
+    "-q",
+    "/ml2/codex-storage/future-workspaces/2026-10-21/task-5/validation/73537b721487/source/tests/core081",
+    "--import-mode=importlib",
+    "-o",
+    "pythonpath=",
+    "--tb=short",
+    "-p",
+    "no:cacheprovider",
+    "--junitxml=/ml2/codex-storage/future-workspaces/2026-10-21/task-5/supra/evidence/core081-cpu-slot/73537b721487/tests.xml"
+  ],
+  "cwd": "/tmp",
+  "exit_code": 1,
+  "elapsed_seconds": 0.20070298399878084,
+  "address_space_limit_bytes": 2147483648,
+  "minimum_host_available_bytes": 45725786112,
+  "required_host_reserve_bytes": 17179869184,
+  "maximum_child_rss_kib": 31244,
+  "operator_threads": 1,
+  "interop_threads": 1,
+  "cuda_visible_devices": "",
+  "offline": true,
+  "stopped": null
+}

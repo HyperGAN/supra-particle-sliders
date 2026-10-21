@@ -1,16 +1,9 @@
 # Reproduce the Final Boss release
 
-Install a CUDA-enabled PyTorch build and `pip install -r requirements.txt`.
-That file pins `particle-sliders-core` from HyperGAN/particle-sliders at
-`a119ca1ecd3d5d6c437065839d22739b04f2f4d8`. The product imports
-`particle_sliders.winning_formulation`. It does not install
-`concept-slider-core` and it does not use `PARTICLE_SLIDERS_ROOT`.
-
-The DiT used by this ordinary-LoRA release is the in-repo file
-`vendor/particle-sliders/conceptmod/textsliders/supra_model.py`, with its
-licenses. The runtime checks that file against `dit_backbone.sha256` in
-`backend.lock.json` before loading. The concept-slider train entry is
-`scripts/train_lora_supra.py`. See [shared-core.md](shared-core.md).
+This is the historical MSE release recipe. New GAN integration and remaining
+runtime gates are documented in [pg09.md](pg09.md). Native model code now comes
+from the pinned external shared package, and both archival training commands
+require `--allow-legacy-mse`. No model publication is part of this audit.
 
 The measured machine used physical GPU 1, an RTX A6000, eight CPU threads,
 bf16 forward computation and fp32 parameters. Exact measured package versions

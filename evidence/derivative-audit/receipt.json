@@ -1,0 +1,141 @@
+{
+  "status": "producer-final frozen CDF core pinned; 21 native consumer cases and 4 explicit Adam guard probes pass; Ada/final derivative/native gates pending",
+  "repository": "HyperGAN/supra-particle-sliders",
+  "integration_target": "main",
+  "verified_base": "a908cc8ace35e4019a19bd25c1af7fd7e9ec72b6",
+  "native_checkout_head": "a569e00aa78ea8afeb83c75482f6d7a83cf2d376",
+  "shared_package": {
+    "version": "0.6.0",
+    "particlegan": "0.9.1",
+    "candidate_sources": "shared.lock.json",
+    "exact_dependency_head": "cdfb80a76b882b4b73861b12f555263bd64ffeb7",
+    "wheel_sha256": "4abc83988fdeb6d7478de830e7ee8ec5d9bd99c20d52f89e4ce594d50dfd39a3",
+    "particlegan_wheel_sha256": "b01b7957169cb3de45887e22b4d525fd54071577e1de58089707cf05fe6992ec",
+    "source_files": 32,
+    "installed_wheel_narrow_consumer_gate_passed": true,
+    "migration_target_accepted": false,
+    "ada_approved": false,
+    "candidate_role": "sole-owner producer-final frozen core; proposed pending Ada/parent integration",
+    "published_to_github_when_checked": true
+  },
+  "native_contract": {
+    "unique_contexts": 19,
+    "new_t5_encodes_when_stored_unconditional": 18,
+    "config_sha256": "d32639ad9084f60d13faea1ef0e4d92b4bfc2e0420bc0fd15f4992c6270edd5b",
+    "timestep": "native i/steps in [0,1]; internal DiT embedding scales by1000",
+    "euler": "positive z+=v/steps",
+    "pg_cfg": "conditional adapter, frozen negative branch"
+  },
+  "test_environment": {
+    "python": "3.11.15",
+    "torch": "2.11.0+cu128",
+    "particlegan": "0.9.1",
+    "CUDA_VISIBLE_DEVICES": "",
+    "cuda_initialized": false,
+    "dependencies": "official PG0.9.1 + exact frozen final shared0.6.0 wheels installed --no-deps in task10/wheel-test-site-cdfb; prior environments/receipts unchanged",
+    "cwd": "/tmp",
+    "PARTICLE_SLIDERS_ROOT": null
+  },
+  "embedded_closure": {
+    "repository": "HyperGAN/particle-sliders",
+    "base": "8ef11728323233194adaf6b1bbc0152c6364bc16",
+    "commits": [
+      "bf52b8a38870bda69a00744d1043bd47d04691a3",
+      "dc6f000d167fbec54b43ab02e7a0da047cad0974"
+    ],
+    "status": "exact repaired head pending independent shared review/integration"
+  },
+  "remaining_gates": [
+    "Ada reviews exact final derivative/dependency/shared-closure heads; final derivative acceptance remains with parent",
+    "Parent verifies merges; no merge performed by this audit",
+    "Coordinator alone admits native GPU context export/base/cache parity/zero/no-grad/export-reload/fresh-process full state replay/signed image controls"
+  ],
+  "gpu_jobs_launched": false,
+  "resident_services_changed": false,
+  "models_published": false,
+  "merges_performed": false,
+  "receipts": {
+    "cdfb_native_consumer": {
+      "file": "cdfb-native-consumer.xml",
+      "sha256": "e234b0af3bec97ba469bc35af6289b7000512e97f6ca91757a3ff7d7ef75ddf7",
+      "tests": 21,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 8.63
+    },
+    "cdfb_adam_guard_probe": {
+      "file": "cdfb-adam-guard-probe.xml",
+      "sha256": "4484a2c4e0df937705191b8d757c82f624d20d17cd81ed2ee9df3ed35e549d3d",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 3.238
+    },
+    "cdfb_installed_imports": {
+      "file": "installed-cdfb-imports.json",
+      "sha256": "e578aa376b9f8a620f3e0577ead981f2cf059b5ab81eb28b45c53f607cb7ce5e"
+    }
+  },
+  "superseded_candidate_evidence": {
+    "head": "42a2e371c537180bd189fd4a288b640f9f1c98fc",
+    "receipt_file": "receipt-42a2-provisional.json",
+    "receipt_sha256": "62e3e3d2dacf2e72e0ec8ed95059c2c3c3d251ff2defffe04623d95f0c7fffe3",
+    "source_lock_file": "shared-42a2.lock.json",
+    "source_lock_sha256": "7e0fb85bb2e0480da9b947cf71c65ed969c4066d3968118cb7e7ed318ef08ba0",
+    "all_xml_and_import_receipts_unchanged": true,
+    "final_acceptance": false
+  },
+  "consumer_restore_coverage": {
+    "actual_native_preset": "bispf_optimized with DualNorm step-only optimizer history",
+    "negative_moment_injection": "Finite native-shape exp_avg_sq/max_exp_avg_sq injected into started G/D packets, asserting shared negative-moment error (not claiming native Adam defaults)",
+    "corruptions": [
+      "started G/D negative second moments",
+      "missing/extra slots",
+      "deleted/emptied parameter histories",
+      "extra parameter histories",
+      "all histories reset",
+      "mandatory optimizer_history_schema missing"
+    ],
+    "checksum_rebound_to_reach_shared_validator": true,
+    "atomically_rejected_state": [
+      "network/critic/optimizers/regularizers",
+      "sampler RNG/orders/cursors/exposures",
+      "native model/frozen hash",
+      "CPU model/ambient RNG",
+      "failure/export flags and LoRA scales",
+      "critic modes/requires_grad and thermal observer"
+    ],
+    "valid_initial_empty_history_exact_resume": true,
+    "honest_unused_critic_history_exact_resume": true,
+    "native_adapter_export_reload_velocity_equal": true,
+    "exact_next_update_metrics_and_full_state": true,
+    "broad_previous_suite_rerun": false,
+    "test_source_sha256": "7ed8d041de574898b86af5f60ead81243a6a495c9cf5717cd87f7591fe8734aa",
+    "cdfb_clock_probe": {
+      "scope": "fresh test-only original BISPF Adam arm through product IO; production stays optimized DualNorm",
+      "cases": 4,
+      "started_g_clocks": [
+        0,
+        2
+      ],
+      "present_sparse_d_clocks": [
+        0,
+        2
+      ],
+      "completed_steps": 1,
+      "atomic_rejection": true,
+      "source_cohorts_not_retargeted": true
+    }
+  },
+  "previous_4be0_evidence": {
+    "head": "4be0b5b29d2e2c741431f468d71ba8a7c884b724",
+    "receipt_file": "receipt-4be0-narrow.json",
+    "receipt_sha256": "f22ef788413eb7105396460ce8f6991de3b3aa045b59496ce33d92da6adfff78",
+    "source_lock_file": "shared-4be0.lock.json",
+    "source_lock_sha256": "872bc734df85551426a0ddb966cb8e107b9724826480c4ed4aaa105b3b7afd5c",
+    "all_prior_xml_and_import_receipts_unchanged": true,
+    "not_requalified_as_cdfb": true
+  },
+  "public_shared_image_payload_added": false,
+  "broad_unrelated_reruns": false
+}

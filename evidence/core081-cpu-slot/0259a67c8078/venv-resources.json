@@ -1,0 +1,22 @@
+{
+  "source_head": "0259a67c8078fddbd22aa586c84fff8d67720f6a",
+  "command": [
+    "/ml2/codex-storage/future-workspaces/2026-10-21/task-2/.venv-core081/bin/python",
+    "-I",
+    "-c",
+    "import resource,venv,sys; resource.setrlimit(resource.RLIMIT_AS,(2147483648,2147483648)); venv.create(sys.argv[1],with_pip=False)",
+    "/ml2/codex-storage/future-workspaces/2026-10-21/task-5/.venv-supra-validation"
+  ],
+  "cwd": "/tmp",
+  "exit_code": 0,
+  "elapsed_seconds": 0.20172768600059499,
+  "address_space_limit_bytes": 2147483648,
+  "minimum_host_available_bytes": 49922838528,
+  "required_host_reserve_bytes": 17179869184,
+  "maximum_child_rss_kib": 14888,
+  "operator_threads": 1,
+  "interop_threads": 1,
+  "cuda_visible_devices": "",
+  "offline": true,
+  "stopped": null
+}

@@ -1,0 +1,105 @@
+{
+  "status": "provisional first candidate; known shared optimizer-state P1; replacement exact head/wheel and final acceptance pending",
+  "repository": "HyperGAN/supra-particle-sliders",
+  "integration_target": "main",
+  "verified_base": "a908cc8ace35e4019a19bd25c1af7fd7e9ec72b6",
+  "native_checkout_head": "a569e00aa78ea8afeb83c75482f6d7a83cf2d376",
+  "shared_package": {
+    "version": "0.6.0",
+    "particlegan": "0.9.1",
+    "candidate_sources": "shared.lock.json",
+    "exact_dependency_head": "42a2e371c537180bd189fd4a288b640f9f1c98fc",
+    "installed_wheel_qualified": false,
+    "wheel_sha256": "7418efe0d89782b2fd266c6a8e536539243d06dd42ff5d393e409bf4b0f2c872",
+    "particlegan_wheel_sha256": "b01b7957169cb3de45887e22b4d525fd54071577e1de58089707cf05fe6992ec",
+    "ada_approved": false,
+    "published_to_github_when_checked": false,
+    "installed_wheel_cpu_tests_passed": true,
+    "migration_target_accepted": false,
+    "candidate_role": "reviewed first candidate; not final migration target"
+  },
+  "native_contract": {
+    "unique_contexts": 19,
+    "new_t5_encodes_when_stored_unconditional": 18,
+    "config_sha256": "d32639ad9084f60d13faea1ef0e4d92b4bfc2e0420bc0fd15f4992c6270edd5b",
+    "timestep": "native i/steps in [0,1]; internal DiT embedding scales by1000",
+    "euler": "positive z+=v/steps",
+    "pg_cfg": "conditional adapter, frozen negative branch"
+  },
+  "test_environment": {
+    "python": "3.11.15",
+    "torch": "2.11.0+cu128",
+    "particlegan": "0.9.1",
+    "CUDA_VISIBLE_DEVICES": "",
+    "cuda_initialized": false,
+    "dependencies": "official PG0.9.1 + frozen shared0.6.0 wheels installed --no-deps in task10/wheel-test-site; original environments unchanged",
+    "cwd": "/tmp",
+    "PARTICLE_SLIDERS_ROOT": null
+  },
+  "receipts": {
+    "product": {
+      "file": "product-installed-wheel-cpu.xml",
+      "sha256": "5a3bce1b60753e4d72ee55418a9c142461d7340482d6f075e6915f4d632e2d4f",
+      "tests": 62,
+      "failures": 0,
+      "errors": 0,
+      "seconds": 12.147
+    },
+    "embedded": {
+      "file": "embedded-cpu.xml",
+      "sha256": "20354c4d39254ddfef8c5aacb58a4f958937ec76a1aea8f33249c3b6802f599a",
+      "tests": 29,
+      "failures": 0,
+      "errors": 0
+    },
+    "product_provisional_source": {
+      "file": "product-cpu.xml",
+      "sha256": "7fc2caef747bcbbe94ab827b509f7c367053955c0b27b28a43f8ebbc9af10598",
+      "tests": 56,
+      "failures": 0,
+      "errors": 0
+    },
+    "installed_imports": {
+      "file": "installed-wheel-imports.json",
+      "sha256": "fcfea6d29aff25cdb07d00b14fdb876f958ea8a23a0d3e2a1bc6ea34da6bb92f"
+    }
+  },
+  "embedded_closure": {
+    "repository": "HyperGAN/particle-sliders",
+    "base": "8ef11728323233194adaf6b1bbc0152c6364bc16",
+    "commits": [
+      "bf52b8a38870bda69a00744d1043bd47d04691a3",
+      "dc6f000d167fbec54b43ab02e7a0da047cad0974"
+    ],
+    "status": "exact repaired head pending independent shared review/integration"
+  },
+  "remaining_gates": [
+    "Shared owner freezes and supplies exact replacement head/wheel containing optimizer-state validation repair",
+    "Re-pin Supra to replacement, verify wheel/source hashes and run focused restore regression plus installed-wheel CPU suite",
+    "Ada reviews exact final derivative/dependency/shared-closure heads; parent verifies merges",
+    "Coordinator alone admits native GPU context export/base/cache parity/zero/no-grad/export-reload/fresh-process full state replay/signed image controls"
+  ],
+  "gpu_jobs_launched": false,
+  "resident_services_changed": false,
+  "models_published": false,
+  "merges_performed": false,
+  "independent_review": {
+    "candidate_wheel_and_source_map_verified": true,
+    "source_files": 30,
+    "context_rejection_tests": 2,
+    "render_validation_fix": "PG renderer rejects negative/nonfinite CFG and nonfinite scales before native noise",
+    "remaining_actionable_findings_at_that_review": 0,
+    "scope": "Historical derivative/import/source-map review; known later central optimizer-state P1 remains open for replacement qualification"
+  },
+  "pending_replacement": {
+    "status": "awaiting frozen exact replacement head and wheel",
+    "reported_checkpoint_validation_fix": "2632b6c",
+    "reported_staged_head": "1bfafe1",
+    "reason": "Finite correct-shape negative Adam second moment accepted on restore, then next step becomes nonfinite",
+    "shared_owner_responsibility": true,
+    "replacement_wheel_sha256": null,
+    "exact_replacement_head": null,
+    "broad_reruns_deferred": true,
+    "old_receipts_preserved": true
+  }
+}

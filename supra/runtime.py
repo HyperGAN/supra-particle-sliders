@@ -1,20 +1,16 @@
-"""Pinned Hub inference with ordinary LoRA on the vendored Supra DiT.
-
-The particle game is particle-sliders-core (``winning_formulation``), imported
-by ``supra.train``. This module loads the in-repo DiT backbone and checks its
-hash against ``backend.lock.json``. It does not read ``PARTICLE_SLIDERS_ROOT``.
-"""
+"""Native Supra components with unchanged, cohort-selected DiT/LoRA definitions."""
 from __future__ import annotations
 
-import importlib.util
-import hashlib
 import json
+import math
+import os
 from contextlib import contextmanager
 from pathlib import Path
 
 import torch
 from PIL import Image
 from safetensors.torch import load_file, save_file
+from supra.shared import shared_module, shared_root
 
 MODEL_ID = "SupraLabs/Supra2-IMG"
 MODEL_REV = "10dec6e4b4b5d1c44fd1d7d3fe5e50137333da5b"
@@ -22,21 +18,12 @@ T5_REV = "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2"
 VAE_REV = "31f26fdeee1355a5c34592e401dd41e45d25a493"
 TARGETS = ("ctx_proj", "cross_attn.q", "cross_attn.kv", "cross_attn.proj",
            "self_attn.qkv", "self_attn.proj")
-ROOT = Path(__file__).resolve().parents[1]
-MODEL_SOURCE = ROOT / "vendor/particle-sliders/conceptmod/textsliders/supra_model.py"
+def model_source():
+    return shared_root() / "supra_model.py"
 
 
 def model_module():
-    if not MODEL_SOURCE.is_file():
-        raise FileNotFoundError(f"missing Supra DiT backbone {MODEL_SOURCE}")
-    lock = json.loads((ROOT / "backend.lock.json").read_text())
-    expected = lock["dit_backbone"]["sha256"]
-    if hashlib.sha256(MODEL_SOURCE.read_bytes()).hexdigest() != expected:
-        raise RuntimeError("Supra DiT backbone differs from backend.lock.json dit_backbone.sha256")
-    spec = importlib.util.spec_from_file_location("supra_particle_model", MODEL_SOURCE)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
+    return shared_module("particle_sliders.supra_model")
 
 
 def adapter_state(model):
@@ -45,14 +32,25 @@ def adapter_state(model):
 
 
 def load_adapter_state(model, state):
-    expected = set(adapter_state(model))
-    if set(state) != expected:
-        raise ValueError(f"Adapter keys differ: missing={expected-set(state)}, extra={set(state)-expected}")
+    expected = {n: p for n, p in model.named_parameters() if n.endswith((".down.weight", ".up.weight"))}
+    if set(state) != set(expected):
+        raise ValueError(f"Adapter keys differ: missing={set(expected)-set(state)}, extra={set(state)-set(expected)}")
+    # Validate the complete payload before load_state_dict can copy any leaf.
+    for name, value in state.items():
+        parameter = expected[name]
+        if (not isinstance(value, torch.Tensor) or value.shape != parameter.shape
+                or value.dtype != parameter.dtype or not torch.isfinite(value).all()):
+            raise ValueError("Adapter tensor schema/finiteness differs: " + name)
     model.load_state_dict(state, strict=False)
 
 
 class SupraRuntime:
-    def __init__(self, device="cuda:0", rank=16, allow_hub=False):
+    MODEL_REV, T5_REV = MODEL_REV, T5_REV
+
+    def __init__(self, device="cuda:0", rank=16, allow_hub=False, *, native_model=None):
+        # New cohorts inject the unchanged product-owned definition. Historical
+        # callers keep the original pinned shared-module resolution.
+        mod = native_model if native_model is not None else model_module()
         from diffusers import AutoencoderKL
         from huggingface_hub import hf_hub_download
         from transformers import AutoTokenizer, T5EncoderModel
@@ -62,10 +60,10 @@ class SupraRuntime:
             raise RuntimeError("Live Supra training/sampling requires CUDA")
         torch.cuda.set_device(self.device)
         self.rank = rank
+        self.cfg_adapter_branch = "both"
         local = not allow_hub
         self.checkpoint = hf_hub_download(MODEL_ID, "model_final_ema.pt", revision=MODEL_REV,
                                           local_files_only=local)
-        mod = model_module()
         state = torch.load(self.checkpoint, map_location="cpu", weights_only=True)
         cfg = state.get("config", {})
         self.ctx_len = int(cfg.get("ctx_len", 128))
@@ -122,21 +120,41 @@ class SupraRuntime:
                 m.multiplier = old
 
     def velocity(self, prompts, z, t, scale=0.0, cfg=3.0):
+        if not math.isfinite(cfg) or cfg < 0 or not math.isfinite(scale):
+            raise ValueError("Finite scale and nonnegative guidance required")
+        times = torch.as_tensor(t, device=z.device).float().reshape(-1)
+        if (times.numel() not in (1, z.shape[0]) or not torch.isfinite(times).all()
+                or torch.any((times < 0) | (times > 1))):
+            raise ValueError("One native timestep in [0,1] per latent required")
         if isinstance(prompts, str):
             prompts = [prompts] * z.shape[0]
+        if len(prompts) != z.shape[0]:
+            raise ValueError("One prompt per latent required")
+        if self.cfg_adapter_branch == "conditional_only":
+            mod = shared_module("particle_sliders.pg09_backends")
+            backend = mod.SupraRuntimeResponseAdapter(self,
+                model_identity=dict(model_revision=MODEL_REV))
+            times = torch.as_tensor(t, device=z.device).float().reshape(-1)
+            if times.numel() == 1:
+                times = times.expand(z.shape[0])
+            if times.numel() != z.shape[0]:
+                raise ValueError("One native timestep per latent required")
+            return torch.cat([backend.cfg(mod.ResponseRow(prompt, prompt, "", latent,
+                timestep=time, guidance=cfg), latent, time, scale=scale)
+                for prompt, latent, time in zip(prompts, z.split(1), times)])
         contexts, masks = zip(*(self.encode(p) for p in prompts))
         ctx, mask = torch.cat(contexts), torch.cat(masks)
         t = torch.as_tensor(t, device=self.device).float().reshape(-1)
         if t.numel() == 1:
             t = t.expand(z.shape[0])
-        if cfg > 1:
+        if cfg != 1:
             uctx, umask = self.encode("")
             ctx = torch.cat([ctx, uctx.expand(z.shape[0], -1, -1)])
             mask = torch.cat([mask, umask.expand(z.shape[0], -1)])
             z, t = torch.cat([z, z]), torch.cat([t, t])
         with self.scale(scale), torch.autocast("cuda", dtype=torch.bfloat16):
             v = self.model(z, t, ctx, mask).float()
-        if cfg > 1:
+        if cfg != 1:
             cond, uncond = v.chunk(2)
             v = uncond + cfg * (cond - uncond)
         return v
@@ -147,6 +165,8 @@ class SupraRuntime:
 
     @torch.no_grad()
     def trajectory(self, prompt, seed, steps=50, cfg=3.0, scale=0.0, keep=False):
+        if type(steps) is not int or steps < 1:
+            raise ValueError("Positive integer sampling steps required")
         z = self.noise(seed)
         states = []
         for i in range(steps):
@@ -157,6 +177,9 @@ class SupraRuntime:
 
     @torch.no_grad()
     def render(self, prompt, seed, scale=0.0, steps=50, cfg=3.0):
+        if self.cfg_adapter_branch == "conditional_only":
+            from supra.pg09 import render
+            return render(self, prompt, seed, scale, steps, cfg)
         z = self.trajectory(prompt, seed, steps, cfg, scale)
         with torch.autocast("cuda", dtype=torch.bfloat16):
             x = self.vae.decode(z / 0.18215).sample
@@ -167,7 +190,8 @@ class SupraRuntime:
         metadata = {"format": "supra-native-lora-v1", "model_id": MODEL_ID,
                     "model_revision": MODEL_REV, "rank": self.rank, "alpha": self.rank,
                     "targets": list(TARGETS), "text_encoder_revision": T5_REV,
-                    "vae_revision": VAE_REV, **(extra or {})}
+                    "vae_revision": VAE_REV, "cfg_adapter_branch": self.cfg_adapter_branch,
+                    **(extra or {})}
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
         save_file(adapter_state(self.model), str(path),
@@ -184,4 +208,13 @@ class SupraRuntime:
                            "text_encoder_revision": T5_REV, "vae_revision": VAE_REV}.items():
             if meta.get(key) != value:
                 raise ValueError(f"Adapter {key} mismatch: {meta.get(key)} != {value}")
+        branch = meta.get("cfg_adapter_branch", "both")
+        if branch not in ("both", "conditional_only"):
+            raise ValueError("Unknown adapter CFG branch policy")
+        if branch == "conditional_only":
+            from supra.shared import LOCK, file_sha
+            if (meta.get("training_objective") != "pg09_gan_only"
+                    or meta.get("shared_lock_sha256") != file_sha(LOCK)):
+                raise ValueError("PG adapter objective/shared source binding differs")
         load_adapter_state(self.model, load_file(str(path)))
+        self.cfg_adapter_branch = branch

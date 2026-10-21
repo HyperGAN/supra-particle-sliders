@@ -1,0 +1,18 @@
+Supra thin product relocation (new source cohort; no weights distributed).
+
+native_model.py is copied byte-for-byte from HyperGAN/particle-sliders commit
+fd89e1c780ab5210cd1be98ec3b70977e6349379, path
+packages/particle-sliders-core/src/particle_sliders/supra_model.py.
+That MIT-licensed port preserves the Supra2-IMG architecture from
+SupraLabs/Supra2-IMG inference.py at revision
+10dec6e4b4b5d1c44fd1d7d3fe5e50137333da5b (Apache-2.0).
+Original MIT and Apache-2.0 license texts accompany this notice.
+The product's existing historical licenses/particle-sliders/NOTICE is preserved.
+
+cache.py and campaign.py relocate only named Supra-specific definitions from
+pg09_remaining_campaigns.py at the same commit, under the same MIT license.
+Definition hashes and the sole import-path rewrite are recorded in
+thin-product-provenance.json. Generic losses, penalties, prior, optimizers,
+critic definitions, native response adapters and lifecycle machinery remain
+imports from particle-sliders-core. No MOSS or FinalForm implementation is
+included. Relocation changes source identity; old checkpoints keep old pins.

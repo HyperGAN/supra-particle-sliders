@@ -1,0 +1,22 @@
+{
+  "cwd": "/tmp",
+  "source_checkout_override": null,
+  "source_commit": "cdfb80a76b882b4b73861b12f555263bd64ffeb7",
+  "wheel_sha256": "4abc83988fdeb6d7478de830e7ee8ec5d9bd99c20d52f89e4ce594d50dfd39a3",
+  "shared_lock_sha256": "3b3017e1ee06f8151af8294c9c3e418f39e3e2427cd067009eaccca4f7c43153",
+  "source_files": 32,
+  "package_version": "0.6.0",
+  "particlegan_version": "0.9.1",
+  "torch_version": "2.11.0+cu128",
+  "python_version": "3.11.15",
+  "module_paths": {
+    "particle_sliders.pg09": "/ml2/codex-storage/future-workspaces/2026-10-17/task-10/wheel-test-site-cdfb/particle_sliders/pg09.py",
+    "particle_sliders.pg09_remaining_campaigns": "/ml2/codex-storage/future-workspaces/2026-10-17/task-10/wheel-test-site-cdfb/particle_sliders/pg09_remaining_campaigns.py",
+    "particle_sliders.pg09_moss_campaign": "/ml2/codex-storage/future-workspaces/2026-10-17/task-10/wheel-test-site-cdfb/particle_sliders/pg09_moss_campaign.py",
+    "particle_sliders.pg09_backends": "/ml2/codex-storage/future-workspaces/2026-10-17/task-10/wheel-test-site-cdfb/particle_sliders/pg09_backends.py",
+    "particle_sliders.supra_model": "/ml2/codex-storage/future-workspaces/2026-10-17/task-10/wheel-test-site-cdfb/particle_sliders/supra_model.py"
+  },
+  "cuda_initialized": false,
+  "research_compatibility_modules_imported": false,
+  "image_cli_payload_added": false
+}

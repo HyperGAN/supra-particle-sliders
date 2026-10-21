@@ -1,0 +1,71 @@
+{
+  "schema": "supra-thin-product-relocation-v1",
+  "repository": "https://github.com/HyperGAN/particle-sliders",
+  "commit": "fd89e1c780ab5210cd1be98ec3b70977e6349379",
+  "native_model": {
+    "source": "packages/particle-sliders-core/src/particle_sliders/supra_model.py",
+    "destination": "native_model.py",
+    "sha256": "640851f4570d0f9eacccac70022f06668ddf92dcf8629e978a76443db60acdc4",
+    "mode": "byte-identical"
+  },
+  "selected_source": "packages/particle-sliders-core/src/particle_sliders/pg09_remaining_campaigns.py",
+  "selected_source_sha256": "cdb2221953607540d68dbe6c9262a9bc4a21f3f736cc3023180a84d364cff82f",
+  "definitions": {
+    "tensor_identity": {
+      "destination": "cache.py",
+      "source_segment_sha256": "147d771360fbb83b1870762376b691af387bfd130a67c366e7e62a22a058a903"
+    },
+    "required_supra_prompts": {
+      "destination": "cache.py",
+      "source_segment_sha256": "d7714c7c8901f79e53c319bde7f1bc55c0c09a2289adf79f7266a698c63fd86b"
+    },
+    "export_admitted_supra_contexts": {
+      "destination": "cache.py",
+      "source_segment_sha256": "59bac37182e29a86dff338e30eee2cae962e5a5cc9caf2dbff0909837e51e66a"
+    },
+    "validate_live_supra_context_preparation": {
+      "destination": "cache.py",
+      "source_segment_sha256": "0b6b52b04529bf08c6e70bf1fa8675eacaf21fdca3fae7cc49685601d0e7b8f6"
+    },
+    "export_live_supra_contexts": {
+      "destination": "cache.py",
+      "source_segment_sha256": "4cd97c11379194a6ec64539c2062cb9037968738ae8573789cf0b3240e73394e"
+    },
+    "load_supra_contexts": {
+      "destination": "cache.py",
+      "source_segment_sha256": "39f4613f6cd6e34fa5f5f72b1d4f27b4513788ce032a9dd5d9131430fe8a9e37"
+    },
+    "SupraCampaignRows": {
+      "destination": "cache.py",
+      "source_segment_sha256": "7afb11b780b0e11ae615d968ee806e29a675a0b3503c33e569959d9174ee0424"
+    },
+    "SupraCampaignRun": {
+      "destination": "campaign.py",
+      "source_segment_sha256": "74cb3b8146b610e58bd060bbba65023d38743aae136905e80ce64de4c1b05b25"
+    },
+    "build_supra_campaign": {
+      "destination": "campaign.py",
+      "source_segment_sha256": "78e2b940137fe51471a536090ab3ed9a65f9e25fc7eae4563624469aa9c96a38"
+    },
+    "teacher_parity": {
+      "destination": "campaign.py",
+      "source_segment_sha256": "501493dcfdd5d7fe305b8a36a25c1f944940835252d3508ce42d2cc97edec7fa"
+    }
+  },
+  "allowed_rewrite": {
+    "build_supra_campaign": "from .pg09 import ConditionalPG09 -> from particle_sliders.pg09 import ConditionalPG09"
+  },
+  "shared_imports": [
+    "particle_sliders.pg09.ConditionalPG09",
+    "particle_sliders.field_critic.FieldCritic",
+    "particle_sliders.field_critic.seed_initialization_rng",
+    "particle_sliders.pg09_backends"
+  ],
+  "excluded": [
+    "build_final_form_campaign",
+    "proposal_identity",
+    "FINAL_FORM_SCALE",
+    "pg09_moss_campaign",
+    "all generic GAN/lifecycle implementation"
+  ]
+}

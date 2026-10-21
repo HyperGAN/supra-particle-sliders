@@ -21,7 +21,7 @@ import yaml
 from PIL import Image, ImageDraw
 
 from supra.convergence import Plateau
-from supra.runtime import MODEL_SOURCE, SupraRuntime
+from supra.runtime import model_source, SupraRuntime
 from train_final_boss import compare, evaluate, sha, write_json
 
 VALIDATION_SEEDS = (39001, 39002)
@@ -127,6 +127,7 @@ def compare_iterations(rt, config, args, original_adapter, selected_adapter, out
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--allow-legacy-mse", action="store_true", help="Explicit archival MSE continuation; new training uses train_pg09.py")
     p.add_argument("--source", type=Path, default=ROOT / "outputs/final-boss-supra")
     p.add_argument("--out", type=Path, default=ROOT / "outputs/final-boss-supra-converged")
     p.add_argument("--device", default="cuda:0")
@@ -134,6 +135,9 @@ def main():
     p.add_argument("--max-step", type=int, default=0, help="Optional interruption limit; never claims convergence")
     p.add_argument("--resume", type=Path, help="Continuation checkpoint from this script")
     args = p.parse_args()
+    if not args.allow_legacy_mse:
+        p.error("Historical MSE continuation requires --allow-legacy-mse; use scripts/train_pg09.py for full shared GAN resume")
+    MODEL_SOURCE = model_source()
     out = args.out
     out.mkdir(parents=True, exist_ok=True)
     if (out / "run.json").exists() and not args.resume:
