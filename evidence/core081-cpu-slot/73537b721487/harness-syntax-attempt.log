@@ -1,0 +1,4 @@
+  File "<string>", line 25
+    Path(sys.argv[1]).write_text(json.dumps(origins,indent=2)+'
+                                                              ^
+SyntaxError: unterminated string literal (detected at line 25)

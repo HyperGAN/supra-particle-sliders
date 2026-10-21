@@ -165,8 +165,10 @@ The isolated source proposal registers `supra` against clean core 0.8.1 at
 [entrypoint audit and migration plan](docs/image-lifecycle-integration.md).
 The [thin product closure](docs/thin-product-core081.md) relocates unchanged
 Supra-only definitions and wires native-only inference plus common hooks.
-Equivalence/conformance tests are prepared but **not executed**; this dependency
-proposal is not a qualified installation. The earlier 0.7 draft and the
+The [bounded CPU slot](docs/core081-cpu-validation.md) passed **18 installed-wheel
+checks** at exact head `73537b7`, with CUDA uninitialized. Pretrained/GPU,
+fresh-process inference and full CLI/legacy qualification remain pending.
+The earlier 0.7 draft and the
 [initial closure assessment](docs/core081-adoption-assessment.md) remain in history.
 This is a new source cohort; existing `requirements.txt`, CDF source locks and
 historical checkpoint loaders retain their original roles. Their prior test
@@ -203,5 +205,5 @@ Supra's existing noise/Euler/VAE path and accepts finite signed strengths withou
 reference images. New-prompt encoding remains local to rendering and does not
 extend the training contexts. The proposed v2 loader constructs only native
 base/adapter/T5/VAE objects, without a training cache, critic, game or optimizer.
-Installed CPU conformance, source guard execution and native/GPU qualification
-are pending. No installation, model load or training is implied by this example.
+Narrow installed CPU conformance passed; native/GPU qualification remains
+pending. No native model load or training is implied by this example.

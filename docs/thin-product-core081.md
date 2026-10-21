@@ -1,5 +1,10 @@
 # Supra thin product source proposal for clean core 0.8.1
 
+CPU follow-up: [18 narrow installed-wheel checks passed](core081-cpu-validation.md)
+at exact head 73537b7214878cf22c1fd44b36ee8f78091ae9d7. The preparation record
+below describes the prior source-only phase; pretrained/GPU, fresh-process
+inference and broader CLI/legacy qualification remain pending.
+
 Status: **source implementation prepared; no derivative execution or conformance
 claim**. Parent approved the thin product relocation after the source-closure
 assessment. The proposed package dependency now names immutable clean core

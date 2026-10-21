@@ -1,0 +1,11 @@
+{
+  "source_head": "73537b7214878cf22c1fd44b36ee8f78091ae9d7",
+  "core_head": "32f6830f6402e85aa77b6631db64fcbbb2131f6b",
+  "artifacts": {
+    "/ml2/codex-storage/future-workspaces/2026-10-21/task-2/evidence/core081-build/particle_sliders_core-0.8.1-py3-none-any.whl": "279aaab83da05b6ebeca030dfe115e1ae2232ca4924fe4278ea48103918fbd8d",
+    "/ml2/codex-storage/future-workspaces/2026-10-21/task-2/dependencies/particlegan-0.9.1-py3-none-any.whl": "b01b7957169cb3de45887e22b4d525fd54071577e1de58089707cf05fe6992ec",
+    "/ml2/codex-storage/future-workspaces/2026-10-21/task-5/validation/73537b721487/dist/supra_particle_sliders-0.2.0-py3-none-any.whl": "d26cef5d9ff138af44a4fe0853aac9b30293079abb50a047b97fed98c9b330ce"
+  },
+  "evidence": "/ml2/codex-storage/future-workspaces/2026-10-21/task-5/supra/evidence/core081-cpu-slot/73537b721487",
+  "native_reference_head": "fd89e1c780ab5210cd1be98ec3b70977e6349379"
+}

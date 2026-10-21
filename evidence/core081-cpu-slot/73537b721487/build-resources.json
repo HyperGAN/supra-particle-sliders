@@ -1,0 +1,22 @@
+{
+  "source_head": "73537b7214878cf22c1fd44b36ee8f78091ae9d7",
+  "command": [
+    "/ml2/codex-storage/future-workspaces/2026-10-21/task-5/.venv-supra-validation/bin/python",
+    "-I",
+    "-c",
+    "import resource,sys; resource.setrlimit(resource.RLIMIT_AS,(2147483648,2147483648)); import setuptools.build_meta as b; print(b.build_wheel(sys.argv[1]))",
+    "/ml2/codex-storage/future-workspaces/2026-10-21/task-5/validation/73537b721487/dist"
+  ],
+  "cwd": "/ml2/codex-storage/future-workspaces/2026-10-21/task-5/validation/73537b721487/source",
+  "exit_code": 0,
+  "elapsed_seconds": 0.20060837399978482,
+  "address_space_limit_bytes": 2147483648,
+  "minimum_host_available_bytes": 45766791168,
+  "required_host_reserve_bytes": 17179869184,
+  "maximum_child_rss_kib": 31244,
+  "operator_threads": 1,
+  "interop_threads": 1,
+  "cuda_visible_devices": "",
+  "offline": true,
+  "stopped": null
+}

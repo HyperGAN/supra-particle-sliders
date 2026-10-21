@@ -1,0 +1,3 @@
+{"supra": "/ml2/codex-storage/future-workspaces/2026-10-21/task-5/.venv-supra-validation/lib/python3.12/site-packages/supra/__init__.py", "core": "/ml2/codex-storage/future-workspaces/2026-10-21/task-5/.venv-supra-validation/lib/python3.12/site-packages/particle_sliders/__init__.py", "pg": "/ml2/codex-storage/future-workspaces/2026-10-21/task-5/.venv-supra-validation/lib/python3.12/site-packages/particlegan/__init__.py", "torch": "2.14.1+cpu", "core_version": "0.8.1", "pg_version": "0.9.1", "cuda_initialized": false, "canonical_hashes": 30}
+..................                                                       [100%]
+18 passed in 3.14s
