@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=84.2.1"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -12,7 +12,7 @@ license = {file = "LICENSE"}
 dependencies = [
   "particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@32f6830f6402e85aa77b6631db64fcbbb2131f6b#subdirectory=packages/particle-sliders-core",
   "safetensors>=0.5",
-  "Pillow>=10",
+  "Pillow>=13.0.0",
 ]
 
 [project.optional-dependencies]
