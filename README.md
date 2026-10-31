@@ -1,3 +1,5 @@
+[Current and historical installation cohorts](INSTALL-COHORTS.md).
+
 # Supra sliders: shared ParticleGAN 0.9 training
 
 New training uses [`scripts/train_pg09.py`](scripts/train_pg09.py), which executes
@@ -79,7 +81,7 @@ Install a CUDA-enabled PyTorch build, then:
 ```bash
 git clone https://github.com/HyperGAN/supra-particle-sliders.git
 cd supra-particle-sliders
-pip install -r requirements.txt
+pip install -r requirements-legacy.txt
 hf download ntc-ai/supra-particle-sliders distilled/final-boss-converged-rank8.safetensors --local-dir adapters
 python scripts/infer_supra.py --allow-hub \
   --adapter adapters/distilled/final-boss-converged-rank8.safetensors \
@@ -170,7 +172,7 @@ checks** at exact head `73537b7`, with CUDA uninitialized. Pretrained/GPU,
 fresh-process inference and full CLI/legacy qualification remain pending.
 The earlier 0.7 draft and the
 [initial closure assessment](docs/core081-adoption-assessment.md) remain in history.
-This is a new source cohort; existing `requirements.txt`, CDF source locks and
+This is a new source cohort; existing `requirements-legacy.txt`, CDF source locks and
 historical checkpoint loaders retain their original roles. Their prior test
 receipts do not qualify this draft.
 

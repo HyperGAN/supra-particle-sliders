@@ -40,7 +40,7 @@ not pretrained quality qualification.
 ## Bounded implementation
 
 1. Add package metadata and `particle_sliders.image_backends` registration; new
-   dependency points product -> core -> ParticleGAN. Preserve `requirements.txt`
+   dependency points product -> core -> ParticleGAN. Preserve `requirements-legacy.txt`
    and `shared.lock.json` as legacy CDF records. A separate packaged source lock
    validates exact 0.7 milestone bytes in a scoped product resolver.
 2. Validate JSON options, fixed recipe bounds, config and local asset hashes,
