@@ -30,4 +30,4 @@ where = ["."]
 include = ["supra*"]
 
 [tool.setuptools.package-data]
-supra = ["lifecycle.lock.json", "shared.lock.json", "core081-receipt.json", "thin-product-provenance.json", "licenses/*"]
+supra = ["lifecycle.lock.json", "shared.lock.json", "core081-receipt.json", "core012-receipt.json", "thin-product-provenance.json", "*.hndl", "licenses/*"]

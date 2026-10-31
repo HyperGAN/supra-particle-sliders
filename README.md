@@ -2,13 +2,21 @@
 
 # Supra sliders: shared ParticleGAN 0.9 training
 
-New training uses [`scripts/train_pg09.py`](scripts/train_pg09.py), which executes
+The packaged lifecycle installs with `python -m pip install -r requirements.txt`
+and uses core 0.8.1 at `32f6830f6402e85aa77b6631db64fcbbb2131f6b`, with
+ParticleGAN 0.9.1. It registers the `supra` training and native inference backends
+for the installed shared lifecycle. See [installation cohorts](INSTALL-COHORTS.md)
+for native dependencies, historical entrypoints and the upgrade boundary.
+
+## Historical CDF training entrypoints
+
+The source CLI [`scripts/train_pg09.py`](scripts/train_pg09.py) executes
 the external shared `particle_sliders.pg09.ConditionalPG09` game and shared native
 Supra response adapter. Follow [the PG0.9 integration instructions](docs/pg09.md)
 for the exact source pin, asset checks, full checkpoint resume and CPU evidence.
 No new GPU run or model release is qualified by this integration.
 
-The shared dependency now pins producer-final frozen core `cdfb80a7`. Its
+That historical installer pins producer-final frozen core `cdfb80a7`. Its
 installed wheel passes 21 native consumer cases plus 4 explicit test-only Adam
 clock probes. Final acceptance and Ada review remain pending; prior source
 cohorts and receipts are preserved without checkpoint retargeting.
@@ -16,8 +24,8 @@ cohorts and receipts are preserved without checkpoint retargeting.
 The original MSE trainer and continuation script require `--allow-legacy-mse`
 for archival reproduction. Existing released adapters retain their original
 both-branch CFG behavior; new PG exports use conditional-only adaptation.
-All executable architecture/LoRA imports now require the reviewed external
-`PARTICLE_SLIDERS_ROOT`; vendored source is not executed.
+Historical architecture/LoRA imports resolve the reviewed external package or
+an explicit `PARTICLE_SLIDERS_ROOT`; vendored source is not executed.
 
 ## Historical MSE release: 1,600 training steps in 134.4 seconds
 
