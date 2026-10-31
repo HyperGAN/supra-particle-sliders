@@ -1,22 +1,27 @@
-# Supra inventory repair and reviewed HNDL candidate CPU validation
+# Supra dev1 preview review and CPU validation history
+
+This page preserves the reviewed dev1 preview receipts for core commit
+`4abc0eb03a4e3a84fc3e6d02734c13dc7e8ea231`. The active candidate has a separate
+[coordinated final-pin receipt](hndl-a794-migration.md); the old packets and
+receipts are not relabeled.
 
 The default installer repair reuses commit `517dab3a11e8ab402631002c06eebbdbf890f133`.
-The supported root0.2.0 wheel retains the exact core0.8.1/PG0.9.1 dependency;
-`requirements-legacy.txt` retains the CDF core0.6.0 environment byte-for-byte.
+The supported root 0.2.0 wheel retains the exact core 0.8.1/PG 0.9.1 dependency;
+`requirements-legacy.txt` retains the CDF core 0.6.0 environment byte-for-byte.
 Source locks and checkpoint labels are not retargeted. See
 [installation cohorts](../INSTALL-COHORTS.md).
 
 The separate [0.3.0.dev1 prerelease](../profiles/hndl/README.md) executes the real
-shared core0.12 game, HyperGAN develop `5f368a3770cf5bdae0448995c9f76e29af8049f7`
-and HNDL0.10.0. Native responses remain `[B,4,32,32]`; no response-domain or width
+shared core 0.12 game, HyperGAN develop `5f368a3770cf5bdae0448995c9f76e29af8049f7`
+and HNDL 0.10.0. Native responses remain `[B,4,32,32]`; no response-domain or width
 admission is changed. Native-only inference remains separate from training.
 
 ## Corrections after source review
 
-The supported wheel now contains exactly21 product files, excluding the three
+The supported wheel now contains exactly 21 product files, excluding the three
 HNDL modules, graph and core012 receipt. The candidate contains those additional
 five files and uses a prerelease version. A real pip dry-run with both wheels
-available selects stable0.2.0 without `--pre`. The two profiles share a namespace
+available selects stable 0.2.0 without `--pre`. The two profiles share a namespace
 and require separate environments; an explicit candidate install is never a
 supported upgrade of an existing historical environment.
 The fixture now asserts both artifact files exist and isolates the wheelhouse.
@@ -54,7 +59,7 @@ override to `ConditionalPG09`, and introduces no game objective.
 
 These source fixes change the stable lifecycle source identity. Checkpoints
 bound to pre-fix source must retain their original source environment (for
-example PR6 head `5f6d2a521038388a930ff509f70710c98b908b3d`). No converter,
+example PR 6 head `5f6d2a521038388a930ff509f70710c98b908b3d`). No converter,
 checkpoint relabeling or new source hashes are injected into old receipts.
 Historical CDF loaders and source locks retain their original roles.
 
@@ -63,23 +68,23 @@ Historical CDF loaders and source locks retain their original roles.
 The exact core commit `4abc0eb03a4e3a84fc3e6d02734c13dc7e8ea231` is publicly
 reachable on branch `qualify/core012-cutpoints-20261031`. It was independently
 fetched and checked. The prerelease metadata now pins this immutable Git source
-with its real `hypergan-hndl` extra. No core0.12 PyPI release is assumed.
+with its real `hypergan-hndl` extra. No core 0.12 PyPI release is assumed.
 
 Two new virtual environments contain no borrowed third-party runtime paths.
 Normal pip resolution installed each product wheel and its exact public Git
 core, including the candidate's exact HyperGAN Git build. No `--no-deps`,
 resolver override or copied installed packages were used in these environments.
-Both use the existing official Torch2.6.0+cpu wheel, actual imported version
+Both use the existing official Torch 2.6.0+cpu wheel, actual imported version
 checked, and both pass `pip check`. NumPy is now an explicit base dependency
 because the native digest code uses tensor-to-NumPy conversion.
 
 ## Final checks
 
-- Clean supported installed wheel on Torch2.6.0+cpu: **32 passed**: the original
+- Clean supported installed wheel on Torch 2.6.0+cpu: **32 passed**: the original
   equivalence/lifecycle/installer checks, cleanup/context/import guards and
   four built-wheel/resolver checks plus the stable collection guard.
-- Clean prerelease installed wheel on Torch2.6.0+cpu: **60 passed**: the18
-  original HNDL checks,38 review regression checks and four wheel/resolver
+- Clean prerelease installed wheel on Torch 2.6.0+cpu: **60 passed**: the 18
+  original HNDL checks, 38 review regression checks and four wheel/resolver
   checks. Coverage includes native graph/critic derivatives, actual shared-game
   updates, exact EMA/split resume, zero strength, atomic source/model/config/
   builder/checkpoint rejection and fresh-process raw/EMA inference after training
@@ -89,9 +94,9 @@ because the native digest code uses tensor-to-NumPy conversion.
   that historical CLI is not an installed-wheel API.
 
 Correction to the earlier minimum-version receipt: the old environment labeled
-Torch2.6 actually imported Torch2.14 through a borrowed path. Its18 passes are
-not Torch2.6 evidence. The fresh resolved environments above replace that claim.
-The original stable21, candidate18 and CDF29 observations remain historical
+Torch 2.6 actually imported Torch 2.14 through a borrowed path. Its 18 passes are
+not Torch 2.6 evidence. The fresh resolved environments above replace that claim.
+The original stable 21, candidate 18 and CDF 29 observations remain historical
 receipts, without being relabeled as clean installs or GPU qualification.
 
 Installed tests run from `/tmp` with `python -I -m pytest --import-mode=importlib
@@ -103,7 +108,7 @@ supply exact fd89e1c source via `SUPRA_REFERENCE_CORE`. Candidate selectors are
 `tests/hypergan_profile tests/test_wheel_contents.py`. The packaging suite receives
 both exact wheel paths as `SUPRA_STABLE_WHEEL` and `SUPRA_CANDIDATE_WHEEL`.
 
-Native CUDA/T5/VAE loading, pretrained cache parity, actual256px decoding, GPU
+Native CUDA/T5/VAE loading, pretrained cache parity, actual 256px decoding, GPU
 fit, convergence and image quality remain unrun. There is no model download,
 GPU training, weight publication, deployment, package release or merge. There
 are no tracked GitHub workflows or merge-triggered release/deployment hooks.

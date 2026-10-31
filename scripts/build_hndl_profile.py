@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, default=ROOT / "artifacts/hndl-wheels")
+    parser.add_argument("--sdist", action="store_true", help="also build the standalone source distribution (requires build)")
     options = parser.parse_args(argv)
     output = options.out.resolve()
     output.mkdir(parents=True, exist_ok=True)
@@ -25,6 +26,9 @@ def main(argv=None):
         shutil.copy2(ROOT / "LICENSE", stage / "LICENSE")
         subprocess.run([sys.executable, "-m", "pip", "wheel", "--no-index", "--no-deps",
             "--no-build-isolation", "--wheel-dir", str(output), str(stage)], check=True)
+        if options.sdist:
+            subprocess.run([sys.executable, "-m", "build", "--sdist", "--no-isolation",
+                            "--outdir", str(output), str(stage)], check=True)
 
 
 if __name__ == "__main__":

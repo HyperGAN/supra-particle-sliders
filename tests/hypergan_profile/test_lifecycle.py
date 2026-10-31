@@ -29,7 +29,7 @@ def configured(assets):
         steps=4, batch=4, seed=7, critic_width=8, ema_decay=.9)
     with pytest.MonkeyPatch.context() as patch:
         patch.setattr(cache, "SUPRA_SCALE", rows.response_scale())
-        yield runtime, SessionConfig("supra_hndl", "synthetic-supra-hndl-v1", **options)
+        yield runtime, SessionConfig("supra_hndl", "synthetic-supra-hndl-a794e3-v1", **options)
 
 
 def fresh_runtime(config):

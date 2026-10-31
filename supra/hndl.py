@@ -16,13 +16,25 @@ from . import native_model
 from .shared import file_sha, verify_imported_sources
 
 GRAPH = Path(__file__).with_name("supra_lora.hndl")
-PROFILE = "supra-hypergan-hndl-v1"
-LOCK = Path(__file__).with_name("core012-receipt.json")
+CORE_COMMIT = "a794e3b4a8813b012f2c4faa3da82b78d4a90214"
+PROFILE = "supra-hypergan-hndl-a794e3-v1"
+LOCK = Path(__file__).with_name("core012-a794e3-receipt.json")
 
 
 def verify_sources():
     """Hash the actually imported core; source-root overrides are irrelevant."""
     receipt = verify_imported_sources(LOCK)
+    if (receipt.get("schema") != "supra-hndl-recursive-core-closure-v2"
+            or receipt.get("source_commit") != CORE_COMMIT
+            or receipt.get("namespaces") != ["concept_slider_core", "particle_sliders"]):
+        raise ValueError("Modern core closure identity contradicts the source receipt")
+    import particle_sliders
+    base = Path(particle_sliders.__file__).resolve().parent.parent
+    actual = {str(path.relative_to(base)): file_sha(path)
+              for namespace in receipt["namespaces"] for path in (base / namespace).rglob("*")
+              if path.is_file() and "__pycache__" not in path.parts and path.suffix not in (".pyc", ".pyo")}
+    if actual != receipt["source_sha256"]:
+        raise RuntimeError("Imported shared recursive source/data closure differs from receipt")
     for package, field in (("particle-sliders-core", "version"), ("particlegan", "pg_version"),
                            ("hndl", "hndl_version")):
         if version(package) != receipt[field]:

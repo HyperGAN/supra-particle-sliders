@@ -112,7 +112,7 @@ def test_partial_native_attachment_rolls_back_model_and_list_identity():
     assert equal(model.state_dict(), state)
 
 
-@pytest.mark.parametrize("field", ["version", "pg_version", "hndl_version", "hypergan_commit"])
+@pytest.mark.parametrize("field", ["version", "pg_version", "hndl_version", "hypergan_commit", "schema", "source_commit", "namespaces"])
 def test_changed_receipt_runtime_versions_are_enforced(tmp_path, monkeypatch, field):
     receipt = json.loads(hndl.LOCK.read_text())
     receipt[field] = "invalid"
