@@ -80,3 +80,27 @@ def shared_module(name, root=None):
     if not Path(module.__file__).resolve().is_relative_to(root):
         raise RuntimeError("Shared module resolved outside reviewed checkout: " + name)
     return module
+
+
+def verify_imported_sources(lock):
+    """Verify the core being executed, independently of checkout overrides."""
+    core = importlib.import_module("particle_sliders")
+    root = Path(core.__file__).resolve().parent
+    receipt = json.loads(Path(lock).read_text())
+    canonical = "source_sha256" in receipt
+    base = root.parent if canonical else root
+    sources = receipt["source_sha256"] if canonical else receipt["sources"]
+    for relative, expected in sources.items():
+        path = (base / relative).resolve()
+        if not path.is_relative_to(base) or not path.is_file() or file_sha(path) != expected:
+            raise RuntimeError("Imported shared particle-sliders source differs: " + relative)
+    for name, module in tuple(sys.modules.items()):
+        if name == "particle_sliders" or name.startswith("particle_sliders.") or name == "concept_slider_core":
+            filename = getattr(module, "__file__", None)
+            relative = name.replace(".", "/")
+            expected = root.parent / (relative + ".py")
+            if not expected.is_file():
+                expected = root.parent / relative / "__init__.py"
+            if filename and Path(filename).resolve() != expected.resolve():
+                raise RuntimeError("Imported shared module is shadowed: " + name)
+    return receipt

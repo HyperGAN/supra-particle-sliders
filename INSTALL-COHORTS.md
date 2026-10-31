@@ -50,9 +50,9 @@ remain separate checks. Preserve the old receipt, loaders and checkpoint labels
 so existing artifacts continue to name their original source cohort.
 
 An opt-in [HyperGAN/HNDL candidate profile](profiles/hndl/README.md) now has
-separate 0.3.0 wheel metadata and build plumbing. It registers `supra_hndl`,
+separate 0.3.0.dev1 prerelease metadata and build plumbing. It registers `supra_hndl`,
 executes real HNDL native LoRA graphs and the shared HNDL spatial critic, and
 uses the common core0.12 game/lifecycle. The root 0.2.0 installer still selects
 the supported core0.8.1 cohort. Use one profile per environment; the two exact
-core pins are intentionally incompatible. Candidate CPU tests do not promote
+core pins are intentionally incompatible. The supported wheel excludes all candidate modules/assets. Candidate CPU tests do not promote
 the default or qualify pretrained/GPU output.

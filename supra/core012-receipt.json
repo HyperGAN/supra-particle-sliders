@@ -1,7 +1,6 @@
 {
   "schema": "supra-core012-hndl-source-cohort-v1",
   "version": "0.12.0",
-  "clean_head": "4abc0eb03a4e3a84fc3e6d02734c13dc7e8ea231",
   "pg_version": "0.9.4",
   "hypergan_commit": "5f368a3770cf5bdae0448995c9f76e29af8049f7",
   "hndl_version": "0.10.0",

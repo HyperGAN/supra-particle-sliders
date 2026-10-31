@@ -45,6 +45,10 @@ def validate(options):
         value = options.get(key, default)
         if type(value) is not int or not low <= value <= high:
             raise ValueError(key + " differs from the bounded Supra recipe")
+    decay = options.get("ema_decay")
+    if decay is not None and (isinstance(decay, bool) or not isinstance(decay, (int, float))
+                              or not math.isfinite(decay) or not 0 <= decay < 1):
+        raise ValueError("EMA decay must be a finite number in [0,1)")
     if options.get("base_precision", "float32") != "float32":
         raise ValueError("Supra HNDL requires FP32 native storage")
     device = options.get("device")
@@ -54,7 +58,7 @@ def validate(options):
     hndl.verify_sources()
     cache.validate_live_supra_context_preparation(options["native_config"],
         dict(model_revision=MODEL_REV, text_revision=T5_REV))
-    receipt = json.loads(Path(options["contexts"]).with_suffix(".json").read_text())
+    receipt = native_io.read_context_receipt(options["contexts"])
     if (receipt.get("sha256") != options["contexts_sha256"]
             or file_sha(options["contexts"]) != options["contexts_sha256"]
             or file_sha(options["cache"]) != options["cache_sha256"]):
@@ -80,8 +84,8 @@ def prepare(options, *, runtime=None):
 
     hndl.verify_sources()
     config = options["native_config"]
+    receipt = native_io.read_context_receipt(options["contexts"])
     contexts = cache.load_supra_contexts(options["contexts"], options["contexts_sha256"], config)
-    receipt = json.loads(Path(options["contexts"]).with_suffix(".json").read_text())
     if (receipt.get("config_sha256") != cache.canonical_digest(config)
             or receipt.get("runtime_identity") != dict(model_revision=MODEL_REV, text_revision=T5_REV)
             or receipt.get("unique_contexts") != 19 or receipt.get("max_encode_calls") != 19

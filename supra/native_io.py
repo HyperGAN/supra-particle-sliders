@@ -5,17 +5,31 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import sys
 
 from particle_sliders.lifecycle import native_cleanup
 
-from .shared import file_sha, shared_root, source_cohort
+from .shared import file_sha, source_cohort
+from .shared import verify_imported_sources
 
 LOCK = Path(__file__).with_name("core081-receipt.json")
 
 
+def read_context_receipt(contexts):
+    try:
+        receipt = json.loads(Path(contexts).with_suffix(".json").read_text())
+    except (OSError, ValueError) as error:
+        raise ValueError("Readable JSON frozen context receipt required") from error
+    if not isinstance(receipt, dict):
+        raise ValueError("Frozen context receipt must be a JSON object")
+    return receipt
+
+
 def verify_sources():
-    with source_cohort(LOCK):
-        shared_root()
+    from importlib.metadata import version
+    receipt = verify_imported_sources(LOCK)
+    if version("particle-sliders-core") != receipt["version"]:
+        raise ValueError("Installed core version contradicts the source receipt")
 
 
 def model_identity(runtime):
@@ -62,19 +76,37 @@ def snapshot_native(runtime):
     multipliers = [(module, module.multiplier) for module in runtime.loras]
 
     def restore():
+        primary = sys.exception()
+        errors = []
+
+        def attempt(operation):
+            try:
+                operation()
+            except BaseException as error:
+                errors.append(error)
+
         for cleanup in reversed(cleanups):
-            cleanup()
-        runtime.cache, runtime.cfg_adapter_branch = cache, branch
+            attempt(cleanup)
+        attempt(lambda: setattr(runtime, "cache", cache))
+        attempt(lambda: setattr(runtime, "cfg_adapter_branch", branch))
         if had_encode:
-            runtime.encode = encode
+            attempt(lambda: setattr(runtime, "encode", encode))
         else:
-            vars(runtime).pop("encode", None)
+            attempt(lambda: vars(runtime).pop("encode", None))
         if tokens is not None:
-            tokens.clear()
-            tokens.update(token_values)
-            runtime.token_counts = tokens
+            attempt(tokens.clear)
+            attempt(lambda: tokens.update(token_values))
+            attempt(lambda: setattr(runtime, "token_counts", tokens))
         for module, multiplier in multipliers:
-            module.multiplier = multiplier
+            attempt(lambda module=module, multiplier=multiplier: setattr(module, "multiplier", multiplier))
+        if errors:
+            if primary is not None:
+                for error in errors:
+                    primary.add_note("Supra native cleanup failed: " + str(error))
+            else:
+                for error in errors[1:]:
+                    errors[0].add_note("Additional Supra cleanup failure: " + str(error))
+                raise errors[0]
     return restore
 
 

@@ -5,6 +5,7 @@ shared ParticleGAN game keep their existing owners; no GAN law is defined here.
 """
 from copy import deepcopy
 import hashlib
+from importlib.metadata import version
 import json
 from pathlib import Path
 
@@ -12,7 +13,7 @@ import torch
 from torch import nn
 
 from . import native_model
-from .shared import file_sha, shared_root, source_cohort
+from .shared import file_sha, verify_imported_sources
 
 GRAPH = Path(__file__).with_name("supra_lora.hndl")
 PROFILE = "supra-hypergan-hndl-v1"
@@ -20,8 +21,18 @@ LOCK = Path(__file__).with_name("core012-receipt.json")
 
 
 def verify_sources():
-    with source_cohort(LOCK):
-        shared_root()
+    """Hash the actually imported core; source-root overrides are irrelevant."""
+    receipt = verify_imported_sources(LOCK)
+    for package, field in (("particle-sliders-core", "version"), ("particlegan", "pg_version"),
+                           ("hndl", "hndl_version")):
+        if version(package) != receipt[field]:
+            raise ValueError("Installed " + package + " version contradicts the source receipt")
+    from particle_sliders.pg09 import _released_sources
+    from particle_sliders.fibo_hndl import verified_builder
+    _released_sources()
+    _, identity = verified_builder()
+    if identity["hypergan_commit"] != receipt["hypergan_commit"]:
+        raise ValueError("HyperGAN build provenance contradicts the source receipt")
 
 
 def model_identity(runtime):
@@ -65,6 +76,10 @@ class HNDLLoRALinear(nn.Module):
         self.up.to(original.up.weight)
         self.down.load_state_dict(original.down.state_dict())
         self.up.load_state_dict(original.up.state_dict())
+        self.training = original.training
+        self.down.training, self.up.training = original.down.training, original.up.training
+        self.down.weight.requires_grad_(original.down.weight.requires_grad)
+        self.up.weight.requires_grad_(original.up.weight.requires_grad)
         self.scale, self.multiplier = original.scale, original.multiplier
         self._identity = dict(profile=PROFILE, runtime=deepcopy(identity),
             graph_sha256=hashlib.sha256(source.encode()).hexdigest(),
@@ -91,7 +106,8 @@ def bind_native_loras(runtime):
     from particle_sliders.fibo_hndl import verified_builder
     verify_sources()
     builder, identity = verified_builder()
-    originals = list(runtime.loras)
+    original_list = runtime.loras
+    originals = list(original_list)
     found = [(name, module) for name, module in runtime.model.named_modules()
              if isinstance(module, native_model.LoRALinear)]
     if (not originals or {id(module) for _, module in found} != {id(module) for module in originals}
@@ -102,13 +118,28 @@ def bind_native_loras(runtime):
                     for name, module in found]
     by_original = {id(module): replacement for (_, module), (_, replacement)
                    in zip(found, replacements)}
-    for name, replacement in replacements:
-        parent, attr = native_model._module_by_path(runtime.model, name)
-        if attr.isdigit():
-            parent[int(attr)] = replacement
-        else:
-            setattr(parent, attr, replacement)
-    runtime.loras = [by_original[id(module)] for module in originals]
+    targets = [(native_model._module_by_path(runtime.model, name), original, replacement)
+               for (_, original), (name, replacement) in zip(found, replacements)]
+    try:
+        for (parent, attr), _, replacement in targets:
+            if attr.isdigit():
+                parent[int(attr)] = replacement
+            else:
+                setattr(parent, attr, replacement)
+        runtime.loras = [by_original[id(module)] for module in originals]
+    except BaseException as error:
+        # Torch stores these native child modules in _modules. Restore all
+        # targets directly, including a setter that mutated before raising.
+        for (parent, attr), original, _ in reversed(targets):
+            try:
+                parent._modules[attr] = original
+            except BaseException as cleanup_error:
+                error.add_note("Supra binding rollback failed: " + str(cleanup_error))
+        try:
+            runtime.loras = original_list
+        except BaseException as cleanup_error:
+            error.add_note("Supra LoRA-list rollback failed: " + str(cleanup_error))
+        raise
     return dict(profile=PROFILE, runtime=identity,
                 graph_sha256=hashlib.sha256(GRAPH.read_bytes()).hexdigest())
 

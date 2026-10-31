@@ -13,6 +13,7 @@ dependencies = [
   "particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@32f6830f6402e85aa77b6631db64fcbbb2131f6b#subdirectory=packages/particle-sliders-core",
   "safetensors>=0.5",
   "Pillow>=13.0.0",
+  "numpy>=1.26",
 ]
 
 [project.optional-dependencies]
@@ -30,4 +31,7 @@ where = ["."]
 include = ["supra*"]
 
 [tool.setuptools.package-data]
-supra = ["lifecycle.lock.json", "shared.lock.json", "core081-receipt.json", "core012-receipt.json", "thin-product-provenance.json", "*.hndl", "licenses/*"]
+supra = ["lifecycle.lock.json", "shared.lock.json", "core081-receipt.json", "thin-product-provenance.json", "licenses/*"]
+
+[tool.setuptools.exclude-package-data]
+supra = ["core012-receipt.json", "*.hndl"]
