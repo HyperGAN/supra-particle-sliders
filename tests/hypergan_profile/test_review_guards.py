@@ -1,5 +1,6 @@
 """Exercise the shipped candidate validation and transactional ownership guards."""
 from copy import deepcopy
+from importlib.metadata import version
 import json
 import os
 from pathlib import Path
@@ -9,6 +10,10 @@ import sys
 from types import SimpleNamespace
 
 import pytest
+
+if version("particle-sliders-core") != "0.12.0":
+    pytest.skip("requires the distinct core0.12 HyperGAN/HNDL environment", allow_module_level=True)
+
 import torch
 
 from supra import hndl, hndl_inference, hndl_lifecycle, native_model

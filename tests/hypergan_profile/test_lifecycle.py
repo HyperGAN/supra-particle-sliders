@@ -5,6 +5,10 @@ from importlib.metadata import version
 from pathlib import Path
 
 import pytest
+
+if version("particle-sliders-core") != "0.12.0":
+    pytest.skip("requires the distinct core0.12 HyperGAN/HNDL environment", allow_module_level=True)
+
 import torch
 
 from particle_sliders.lifecycle import CheckpointError, SessionConfig, UnsupportedOperation
@@ -13,10 +17,6 @@ from supra import cache, hndl, hndl_lifecycle, native_io
 from supra.shared import file_sha
 
 from .fixtures import TinyRuntime, assets, equal  # noqa: F401
-
-pytestmark = pytest.mark.skipif(version("particle-sliders-core") != "0.12.0",
-    reason="requires the distinct core0.12 HyperGAN/HNDL candidate environment")
-
 
 @pytest.fixture
 def configured(assets):

@@ -3,13 +3,13 @@ from copy import deepcopy
 from importlib.metadata import version
 
 import pytest
+
+if version("particle-sliders-core") != "0.12.0":
+    pytest.skip("requires the distinct core0.12 HyperGAN/HNDL environment", allow_module_level=True)
+
 import torch
 
 from supra import hndl, native_model
-
-pytestmark = pytest.mark.skipif(version("particle-sliders-core") != "0.12.0",
-    reason="requires the distinct core0.12 HyperGAN/HNDL candidate environment")
-
 
 @pytest.mark.parametrize("strength", [0., -.5, .25, 1.])
 def test_real_hndl_lora_matches_native_forward_gradients_and_state(strength):

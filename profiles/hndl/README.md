@@ -17,6 +17,12 @@ The two profiles replace the same namespace and must never be coinstalled or
 installed over a historical checkpoint environment. Never use `--pre` in a
 stable environment or force the two core dependency pins to coexist.
 
+The resolver test verifies that both wheel files exist before testing selection.
+If a wheelhouse contains only the candidate, pip can select that prerelease
+without `--pre`; the development version is not an installation guard. Choosing
+such a candidate-only source is an explicit opt-in and still requires a new
+environment. No candidate is published to PyPI by this work.
+
 Build from the source checkout with:
 
 ```bash
@@ -44,6 +50,10 @@ Python/JSON/HNDL files, independently of `PARTICLE_SLIDERS_ROOT`. Core/PG/HNDL
 versions and HyperGAN build provenance are enforced. No wheel hash is treated
 as a runtime identity: independently built wheels can have different archive
 bytes while containing the same admitted source files.
+These are source-file checks at resolved import paths, not an attestation of
+already executed bytecode or protection against runtime monkeypatching or
+concurrent file replacement. The negative tests cover changed on-disk source
+under an imported root while a separate good checkout override is supplied.
 
 The native factory accepts local campaign/config/cache/context/base checksums,
 backend `supra_hndl` and a fresh explicit cohort name. It uses shared training,
@@ -51,6 +61,9 @@ response, render, evaluation and full-state resume APIs. Raw/EMA native-only v2
 exports use a distinct inference factory without training contexts/cache/game
 construction. The fresh CPU inference worker is explicitly a test profile;
 separate tests exercise the shipped CUDA/rank/precision/base validation.
+`ema_decay` belongs in `SessionConfig` options: shared `SliderSession` owns EMA
+updates and checkpoint/export state. It is not forwarded to `ConditionalPG09`
+as a game recipe option or an additional loss.
 
 Existing CDF source environments and locks retain their roles. Cleanup and
 source-validation fixes change the stable lifecycle's source identity; a packet

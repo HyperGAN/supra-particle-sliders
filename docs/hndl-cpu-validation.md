@@ -19,6 +19,11 @@ five files and uses a prerelease version. A real pip dry-run with both wheels
 available selects stable0.2.0 without `--pre`. The two profiles share a namespace
 and require separate environments; an explicit candidate install is never a
 supported upgrade of an existing historical environment.
+The fixture now asserts both artifact files exist and isolates the wheelhouse.
+With only the candidate available, pip selects the prerelease without `--pre`;
+versioning does not enforce environment isolation. This explicit candidate-only
+case is tested and documented. Stable full-suite collection also runs without
+importing excluded candidate modules, HNDL or HyperGAN.
 
 Both source gates hash the actually imported core, ignoring checkout overrides.
 A subprocess test imports a deliberately altered core while pointing
@@ -26,6 +31,10 @@ A subprocess test imports a deliberately altered core while pointing
 receipt enforces core/PG/HNDL versions and exact HyperGAN build provenance.
 Its previously unused source-commit field was removed; archive hashes are build
 receipts, not claimed runtime identity checks.
+This verifies source files at resolved import paths and module-file locations.
+Tests cover altered on-disk source under the imported root and a good separate
+checkout override. They do not attest already executed bytecode, runtime
+monkeypatching or concurrent file replacement.
 
 Native cleanup attempts every callback and native attribute restoration even
 after an error, reports cleanup failures, and preserves an already active primary
@@ -39,6 +48,9 @@ EMA decay is checked as a finite numeric value in `[0,1)`. Independent tests
 exercise the shipped inference validator's CUDA, rank, precision, base and
 training-input gates. The fresh-process CPU worker remains explicitly a test
 profile; it does not qualify production CUDA execution.
+`ema_decay` is a shared session option: `SliderSession` owns EMA update,
+checkpoint and export state. It is not forwarded as an argument or recipe
+override to `ConditionalPG09`, and introduces no game objective.
 
 These source fixes change the stable lifecycle source identity. Checkpoints
 bound to pre-fix source must retain their original source environment (for
@@ -63,11 +75,11 @@ because the native digest code uses tensor-to-NumPy conversion.
 
 ## Final checks
 
-- Clean supported installed wheel on Torch2.6.0+cpu: **30 passed**: the original
+- Clean supported installed wheel on Torch2.6.0+cpu: **32 passed**: the original
   equivalence/lifecycle/installer checks, cleanup/context/import guards and
-  three built-wheel/resolver checks.
-- Clean prerelease installed wheel on Torch2.6.0+cpu: **59 passed**: the18
-  original HNDL checks,38 review regression checks and three wheel/resolver
+  four built-wheel/resolver checks plus the stable collection guard.
+- Clean prerelease installed wheel on Torch2.6.0+cpu: **60 passed**: the18
+  original HNDL checks,38 review regression checks and four wheel/resolver
   checks. Coverage includes native graph/critic derivatives, actual shared-game
   updates, exact EMA/split resume, zero strength, atomic source/model/config/
   builder/checkpoint rejection and fresh-process raw/EMA inference after training
@@ -85,7 +97,8 @@ receipts, without being relabeled as clean installs or GPU qualification.
 Installed tests run from `/tmp` with `python -I -m pytest --import-mode=importlib
 -p no:cacheprovider -o pythonpath=`, empty PYTHONPATH, plugin autoload disabled,
 offline model settings, no visible CUDA and one operator thread. Stable selectors
-are `tests/core081 tests/test_install_cohorts.py tests/test_wheel_contents.py`;
+are `tests/core081 tests/test_install_cohorts.py tests/test_wheel_contents.py
+tests/test_stable_collection.py`;
 supply exact fd89e1c source via `SUPRA_REFERENCE_CORE`. Candidate selectors are
 `tests/hypergan_profile tests/test_wheel_contents.py`. The packaging suite receives
 both exact wheel paths as `SUPRA_STABLE_WHEEL` and `SUPRA_CANDIDATE_WHEEL`.
