@@ -1,0 +1,9 @@
+{
+  "lr": 0.036,
+  "d_lr_mult": 0.5,
+  "steps": 128,
+  "batch": 4,
+  "rank": 16,
+  "base_precision": "float32",
+  "response_scale": 0.32837046474230014
+}
