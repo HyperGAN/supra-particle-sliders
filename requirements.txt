@@ -1,13 +1,4 @@
-# Tested package versions. Install a CUDA-enabled PyTorch build separately.
-torch>=2.6
-particlegan==0.9.1
-particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@cdfb80a76b882b4b73861b12f555263bd64ffeb7#subdirectory=packages/particle-sliders-core
-transformers==5.15.0
-diffusers>=0.36
-huggingface-hub>=1.0
-safetensors>=0.5
-PyYAML>=6
-Pillow>=13.0.0
-numpy>=1.26
-sentencepiece>=0.2
-pytest>=8
+# Current packaged lifecycle cohort; run from this repository root.
+# Historical trainer dependencies remain in requirements-legacy.txt.
+# Its checkpoint/source lock is historical; never retarget old artifacts.
+.[test]

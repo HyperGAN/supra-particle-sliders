@@ -1,0 +1,14 @@
+{
+  "backend": "supra",
+  "cohort": "supra-pg094-new-native-cohort",
+  "options": {
+    "native_config": {"REPLACE": "parsed configs/supra/prompts-final-boss.yaml"},
+    "cache": "/staged/teacher-cache.pt",
+    "cache_sha256": "REPLACE_WITH_ACTUAL_SHA256",
+    "contexts": "/staged/contexts.safetensors",
+    "contexts_sha256": "REPLACE_WITH_ACTUAL_SHA256",
+    "frozen_base_sha256": "REPLACE_WITH_ACTUAL_SHA256",
+    "device": "cuda:0", "rank": 16, "steps": 28800, "batch": 4,
+    "seed": 7, "critic_width": 32, "base_precision": "float32", "ema_decay": 0.999
+  }
+}

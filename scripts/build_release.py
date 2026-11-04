@@ -184,7 +184,7 @@ Install a CUDA-enabled PyTorch build, then:
 ```bash
 git clone {GITHUB}.git
 cd supra-particle-sliders
-pip install -r requirements.txt
+pip install -r requirements-legacy.txt
 hf download {REPO} distilled/final-boss-converged-rank8.safetensors --local-dir adapters
 python scripts/infer_supra.py --allow-hub \\
   --adapter adapters/distilled/final-boss-converged-rank8.safetensors \\
@@ -257,7 +257,7 @@ No base weights are redistributed.
 [Release checksums]({RAW}release-manifest.json) ·
 [Source provenance]({RAW}source-provenance.json)
 '''
-    (ROOT/"README.md").write_text(body)
+    (ROOT/"README.md").write_text("[Current and historical installation cohorts](INSTALL-COHORTS.md).\n\n"+body)
     frontmatter = "---\nlicense: apache-2.0\nlanguage:\n- en\nbase_model: SupraLabs/Supra2-IMG\npipeline_tag: text-to-image\ntags:\n- lora\n- concept-slider\n- supra\n- distillation\n- text-to-image\n---\n\n"
     (out/"README.md").write_text(frontmatter+body)
     shutil.copy2(ROOT/"LICENSE", out/"LICENSE")

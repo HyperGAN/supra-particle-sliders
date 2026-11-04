@@ -6,3 +6,5 @@ artifacts/
 *.log
 .cache/
 worktrees/
+build/
+*.egg-info/

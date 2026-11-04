@@ -5,17 +5,46 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import sys
 
 from particle_sliders.lifecycle import native_cleanup
 
-from .shared import file_sha, shared_root, source_cohort
+from .shared import file_sha, source_cohort
+from .shared import verify_imported_sources
 
-LOCK = Path(__file__).with_name("core081-receipt.json")
+LOCK = Path(__file__).with_name("core012-ddb4142-receipt.json")
+
+
+def read_context_receipt(contexts):
+    try:
+        receipt = json.loads(Path(contexts).with_suffix(".json").read_text())
+    except (OSError, ValueError) as error:
+        raise ValueError("Readable JSON frozen context receipt required") from error
+    if not isinstance(receipt, dict):
+        raise ValueError("Frozen context receipt must be a JSON object")
+    return receipt
 
 
 def verify_sources():
-    with source_cohort(LOCK):
-        shared_root()
+    """Admit the exact current installed core and official ParticleGAN release."""
+    from importlib.metadata import version
+    receipt = verify_imported_sources(LOCK)
+    if (receipt.get("schema") != "supra-recursive-core-closure-v1"
+            or receipt.get("source_commit") != "ddb41423bcefc1fe76cd94d0f9b367353b3ea137"
+            or receipt.get("namespaces") != ["concept_slider_core", "particle_sliders"]):
+        raise ValueError("Current core closure identity contradicts the source receipt")
+    import particle_sliders
+    base = Path(particle_sliders.__file__).resolve().parent.parent
+    actual = {str(path.relative_to(base)): file_sha(path)
+              for namespace in receipt["namespaces"] for path in (base / namespace).rglob("*")
+              if path.is_file() and "__pycache__" not in path.parts and path.suffix not in (".pyc", ".pyo")}
+    if actual != receipt["source_sha256"]:
+        raise RuntimeError("Imported shared recursive source/data closure differs from receipt")
+    for package, field in (("particle-sliders-core", "version"), ("particlegan", "pg_version")):
+        if version(package) != receipt[field]:
+            raise ValueError("Installed " + package + " version contradicts the source receipt")
+    from particle_sliders.pg09 import _released_sources
+    _released_sources()
 
 
 def model_identity(runtime):
@@ -62,19 +91,37 @@ def snapshot_native(runtime):
     multipliers = [(module, module.multiplier) for module in runtime.loras]
 
     def restore():
+        primary = sys.exception()
+        errors = []
+
+        def attempt(operation):
+            try:
+                operation()
+            except BaseException as error:
+                errors.append(error)
+
         for cleanup in reversed(cleanups):
-            cleanup()
-        runtime.cache, runtime.cfg_adapter_branch = cache, branch
+            attempt(cleanup)
+        attempt(lambda: setattr(runtime, "cache", cache))
+        attempt(lambda: setattr(runtime, "cfg_adapter_branch", branch))
         if had_encode:
-            runtime.encode = encode
+            attempt(lambda: setattr(runtime, "encode", encode))
         else:
-            vars(runtime).pop("encode", None)
+            attempt(lambda: vars(runtime).pop("encode", None))
         if tokens is not None:
-            tokens.clear()
-            tokens.update(token_values)
-            runtime.token_counts = tokens
+            attempt(tokens.clear)
+            attempt(lambda: tokens.update(token_values))
+            attempt(lambda: setattr(runtime, "token_counts", tokens))
         for module, multiplier in multipliers:
-            module.multiplier = multiplier
+            attempt(lambda module=module, multiplier=multiplier: setattr(module, "multiplier", multiplier))
+        if errors:
+            if primary is not None:
+                for error in errors:
+                    primary.add_note("Supra native cleanup failed: " + str(error))
+            else:
+                for error in errors[1:]:
+                    errors[0].add_note("Additional Supra cleanup failure: " + str(error))
+                raise errors[0]
     return restore
 
 

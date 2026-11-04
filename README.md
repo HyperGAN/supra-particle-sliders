@@ -1,12 +1,53 @@
+# Supra particle sliders — current ParticleGAN 0.9.4 integration
+
+The canonical package is now **0.3.0**, using `particle-sliders-core==0.12.0`
+from exact source `ddb41423bcefc1fe76cd94d0f9b367353b3ea137` and official
+**ParticleGAN 0.9.4**. Python 3.11 or newer is required. New training uses the
+installed `supra` image backend through the shared isolated dispatcher:
+
+```bash
+python -m pip install -r requirements.txt
+particle-slider train --profile supra --config /absolute/path/session.json --check --no-reporting
+particle-slider train --profile supra --config /absolute/path/session.json --out runs/new-cohort --no-reporting
+# Equivalent product entry:
+python -m supra.train --config /absolute/path/session.json --out runs/new-cohort --no-reporting
+```
+
+See [current installation, assets and checkpoint contract](docs/pg094.md).
+The canonical generator remains an ordinary LoRA **adapter GAN**, `particles=None`;
+no particle bank or locally copied GAN formula is introduced. The optional
+[HNDL preview](profiles/hndl/README.md) has a separate 0.4.0.dev1 source cohort.
+
+The current change updates software integration. Published FinalBoss MSE weights,
+recipes, base model revisions and historical source locks are unchanged; those
+weights have not been retrained. Historical GAN training packets require their
+exact original source environment and are not relabeled as PG0.9.4. Native
+pretrained CUDA/cache/decoding/quality qualification remains pending.
+
+The material below records prior source cohorts and the published FinalBoss
+release; current installation/training instructions are above.
+
+---
+
+[Current and historical installation cohorts](INSTALL-COHORTS.md).
+
 # Supra sliders: shared ParticleGAN 0.9 training
 
-New training uses [`scripts/train_pg09.py`](scripts/train_pg09.py), which executes
+The packaged lifecycle installs with `python -m pip install -r requirements.txt`
+and uses core 0.8.1 at `32f6830f6402e85aa77b6631db64fcbbb2131f6b`, with
+ParticleGAN 0.9.1. It registers the `supra` training and native inference backends
+for the installed shared lifecycle. See [installation cohorts](INSTALL-COHORTS.md)
+for native dependencies, historical entrypoints and the upgrade boundary.
+
+## Historical CDF training entrypoints
+
+The source CLI [`scripts/train_pg09.py`](scripts/train_pg09.py) executes
 the external shared `particle_sliders.pg09.ConditionalPG09` game and shared native
 Supra response adapter. Follow [the PG0.9 integration instructions](docs/pg09.md)
 for the exact source pin, asset checks, full checkpoint resume and CPU evidence.
 No new GPU run or model release is qualified by this integration.
 
-The shared dependency now pins producer-final frozen core `cdfb80a7`. Its
+That historical installer pins producer-final frozen core `cdfb80a7`. Its
 installed wheel passes 21 native consumer cases plus 4 explicit test-only Adam
 clock probes. Final acceptance and Ada review remain pending; prior source
 cohorts and receipts are preserved without checkpoint retargeting.
@@ -14,8 +55,8 @@ cohorts and receipts are preserved without checkpoint retargeting.
 The original MSE trainer and continuation script require `--allow-legacy-mse`
 for archival reproduction. Existing released adapters retain their original
 both-branch CFG behavior; new PG exports use conditional-only adaptation.
-All executable architecture/LoRA imports now require the reviewed external
-`PARTICLE_SLIDERS_ROOT`; vendored source is not executed.
+Historical architecture/LoRA imports resolve the reviewed external package or
+an explicit `PARTICLE_SLIDERS_ROOT`; vendored source is not executed.
 
 ## Historical MSE release: 1,600 training steps in 134.4 seconds
 
@@ -79,7 +120,7 @@ Install a CUDA-enabled PyTorch build, then:
 ```bash
 git clone https://github.com/HyperGAN/supra-particle-sliders.git
 cd supra-particle-sliders
-pip install -r requirements.txt
+pip install -r requirements-legacy.txt
 hf download ntc-ai/supra-particle-sliders distilled/final-boss-converged-rank8.safetensors --local-dir adapters
 python scripts/infer_supra.py --allow-hub \
   --adapter adapters/distilled/final-boss-converged-rank8.safetensors \
@@ -170,7 +211,7 @@ checks** at exact head `73537b7`, with CUDA uninitialized. Pretrained/GPU,
 fresh-process inference and full CLI/legacy qualification remain pending.
 The earlier 0.7 draft and the
 [initial closure assessment](docs/core081-adoption-assessment.md) remain in history.
-This is a new source cohort; existing `requirements.txt`, CDF source locks and
+This is a new source cohort; existing `requirements-legacy.txt`, CDF source locks and
 historical checkpoint loaders retain their original roles. Their prior test
 receipts do not qualify this draft.
 

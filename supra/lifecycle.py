@@ -1,4 +1,4 @@
-"""Thin Supra factory for clean core 0.8.1; unexecuted source proposal."""
+"""Canonical Supra adapter factory for core 0.12.0 / official PG 0.9.4."""
 import inspect
 import json
 import math
@@ -14,7 +14,7 @@ CAPABILITIES = Capabilities(
     generator_arm="adapter_gan", render=True,
     strength_min=None, strength_max=None, reference_images=False,
     base_precisions=("float32",), render_outputs=("pil",),
-    qualification="Unexecuted 0.8.1 source proposal; installed CPU conformance and native GPU parity pending",
+    qualification="Current PG0.9.4 CPU software cohort; pretrained/native CUDA qualification pending",
     operations=("train", "resume", "evaluate", "export", "response", "render"),
 )
 
@@ -28,7 +28,7 @@ def _assets(options):
     bridge.validate_live_supra_context_preparation(config,
         dict(model_revision=MODEL_REV, text_revision=T5_REV))
     contexts = bridge.load_supra_contexts(options["contexts"], options["contexts_sha256"], config)
-    receipt = json.loads(Path(options["contexts"]).with_suffix(".json").read_text())
+    receipt = native_io.read_context_receipt(options["contexts"])
     if (receipt.get("config_sha256") != bridge.canonical_digest(config)
             or receipt.get("runtime_identity") != dict(model_revision=MODEL_REV, text_revision=T5_REV)
             or receipt.get("unique_contexts") != 19 or receipt.get("max_encode_calls") != 19
@@ -74,7 +74,7 @@ def validate(options):
     from .runtime import MODEL_REV, T5_REV
     cache.validate_live_supra_context_preparation(options["native_config"],
         dict(model_revision=MODEL_REV, text_revision=T5_REV))
-    receipt = json.loads(Path(options["contexts"]).with_suffix(".json").read_text())
+    receipt = native_io.read_context_receipt(options["contexts"])
     if (receipt.get("sha256") != options["contexts_sha256"]
             or file_sha(options["contexts"]) != options["contexts_sha256"]
             or file_sha(options["cache"]) != options["cache_sha256"]):

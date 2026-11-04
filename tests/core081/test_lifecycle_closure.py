@@ -24,7 +24,7 @@ def configured(assets, monkeypatch):
         contexts=str(contexts), contexts_sha256=file_sha(contexts),
         frozen_base_sha256=native_io.frozen_digest(runtime), device="cpu", rank=2,
         steps=4, batch=4, seed=7, critic_width=8, ema_decay=.9)
-    return runtime, SessionConfig("supra", "synthetic-clean081-test-cohort", **options)
+    return runtime, SessionConfig("supra", "synthetic-supra-pg094-ddb4142-test-cohort", **options)
 
 
 def test_exact_split_resume_with_metrics_ema_rng_and_coverage(configured):
@@ -50,6 +50,31 @@ def test_native_identity_digest_keeps_the_legacy_product_convention(configured):
     from supra.pg09 import frozen_digest
     runtime, _ = configured
     assert native_io.frozen_digest(runtime) == frozen_digest(runtime)
+
+
+def test_native_adapter_ownership_and_zero_strength_survive_real_update(configured):
+    runtime, config = configured
+    with lifecycle.BACKEND.open(config, runtime=runtime) as session:
+        game = session.game
+        native = [parameter for parameter in runtime.model.parameters() if parameter.requires_grad]
+        generator = [parameter for group in game.opt_g.param_groups for parameter in group["params"]]
+        critic = [parameter for group in game.opt_d.param_groups for parameter in group["params"]]
+        assert len(generator) == len({id(parameter) for parameter in generator})
+        assert {id(parameter) for parameter in generator} == {id(parameter) for parameter in native}
+        assert not {id(parameter) for parameter in generator} & {id(parameter) for parameter in critic}
+        frozen = native_io.frozen_digest(runtime)
+        before = [parameter.detach().clone() for parameter in native]
+        row = game.rows[0].row
+        backend = game.backend
+        with torch.no_grad():
+            off = backend._response(row, scale=0.)
+        session.step()
+        assert any(not torch.equal(old, parameter) for old, parameter in zip(before, native))
+        assert native_io.frozen_digest(runtime) == frozen
+        assert all(parameter.grad is None for parameter in runtime.model.parameters()
+                   if not parameter.requires_grad)
+        with torch.no_grad():
+            assert torch.equal(backend._response(row, scale=0.), off)
 
 
 def test_corrupt_restore_and_native_admission_reject_without_update(configured):

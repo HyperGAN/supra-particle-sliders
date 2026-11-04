@@ -3,6 +3,9 @@ from copy import deepcopy
 import json
 
 import pytest
+from importlib.metadata import version
+if version("particlegan") != "0.9.1":
+    pytest.skip("historical PG0.9.1 source/checkpoint cohort; use its exact original checkout", allow_module_level=True)
 import torch
 
 from supra.pg09 import frozen_digest, load_checkpoint, save_checkpoint

@@ -19,11 +19,12 @@ VAE_REV = "31f26fdeee1355a5c34592e401dd41e45d25a493"
 TARGETS = ("ctx_proj", "cross_attn.q", "cross_attn.kv", "cross_attn.proj",
            "self_attn.qkv", "self_attn.proj")
 def model_source():
-    return shared_root() / "supra_model.py"
+    return Path(__file__).with_name("native_model.py")
 
 
 def model_module():
-    return shared_module("particle_sliders.supra_model")
+    from . import native_model
+    return native_model
 
 
 def adapter_state(model):
@@ -48,8 +49,8 @@ class SupraRuntime:
     MODEL_REV, T5_REV = MODEL_REV, T5_REV
 
     def __init__(self, device="cuda:0", rank=16, allow_hub=False, *, native_model=None):
-        # New cohorts inject the unchanged product-owned definition. Historical
-        # callers keep the original pinned shared-module resolution.
+        # Canonical loading uses the unchanged relocated product-owned native
+        # definition. Historical checkpoints retain their original checkout.
         mod = native_model if native_model is not None else model_module()
         from diffusers import AutoencoderKL
         from huggingface_hub import hf_hub_download
@@ -131,7 +132,11 @@ class SupraRuntime:
         if len(prompts) != z.shape[0]:
             raise ValueError("One prompt per latent required")
         if self.cfg_adapter_branch == "conditional_only":
-            mod = shared_module("particle_sliders.pg09_backends")
+            from . import native_io
+            from .shared import source_cohort
+            native_io.verify_sources()
+            with source_cohort(native_io.LOCK):
+                mod = shared_module("particle_sliders.pg09_backends")
             backend = mod.SupraRuntimeResponseAdapter(self,
                 model_identity=dict(model_revision=MODEL_REV))
             times = torch.as_tensor(t, device=z.device).float().reshape(-1)
@@ -178,8 +183,13 @@ class SupraRuntime:
     @torch.no_grad()
     def render(self, prompt, seed, scale=0.0, steps=50, cfg=3.0):
         if self.cfg_adapter_branch == "conditional_only":
-            from supra.pg09 import render
-            return render(self, prompt, seed, scale, steps, cfg)
+            if not math.isfinite(cfg) or cfg < 0 or not math.isfinite(scale):
+                raise ValueError("Finite scale and nonnegative guidance required")
+            from . import native_io
+            from particle_sliders.pg09_backends import SupraRuntimeResponseAdapter
+            native_io.verify_sources()
+            backend = SupraRuntimeResponseAdapter(self, model_identity=dict(model_revision=MODEL_REV))
+            return native_io.render(backend, self, prompt=prompt, seed=seed, strength=scale, steps=steps, cfg=cfg)
         z = self.trajectory(prompt, seed, steps, cfg, scale)
         with torch.autocast("cuda", dtype=torch.bfloat16):
             x = self.vae.decode(z / 0.18215).sample
@@ -212,7 +222,8 @@ class SupraRuntime:
         if branch not in ("both", "conditional_only"):
             raise ValueError("Unknown adapter CFG branch policy")
         if branch == "conditional_only":
-            from supra.shared import LOCK, file_sha
+            from supra.native_io import LOCK
+            from supra.shared import file_sha
             if (meta.get("training_objective") != "pg09_gan_only"
                     or meta.get("shared_lock_sha256") != file_sha(LOCK)):
                 raise ValueError("PG adapter objective/shared source binding differs")
