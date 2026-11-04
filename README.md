@@ -250,3 +250,5 @@ Narrow installed CPU conformance passed; native/GPU qualification remains
 pending. No native model load or training is implied by this example.
 
 Learning-rate controls and preserved defaults: [LEARNING-RATES.md](LEARNING-RATES.md).
+
+Fresh current-source teacher cache calibration: [FRESH-CACHE.md](FRESH-CACHE.md).

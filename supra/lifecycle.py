@@ -1,6 +1,5 @@
 """Canonical Supra adapter factory for core 0.12.0 / official PG 0.9.4."""
 import inspect
-import json
 import math
 from pathlib import Path
 
@@ -39,7 +38,10 @@ def _assets(options):
     if ({r["row"] for r in rows.records} != {r["name"] for r in config["rows"]}
             or {r["prompt"] for r in rows.holds} != set(config["preservation"])):
         raise ValueError("Cache must cover every training subject and preservation prompt")
-    if not math.isclose(rows.response_scale(), bridge.SUPRA_SCALE, rel_tol=0, abs_tol=1e-12):
+    from . import fresh_cache
+    if fresh_cache.selected(options):
+        fresh_cache.admit(options, rows)
+    elif not math.isclose(rows.response_scale(), bridge.SUPRA_SCALE, rel_tol=0, abs_tol=1e-12):
         raise ValueError("Reviewed native cache response scale differs")
     return bridge, contexts, receipt, rows
 
@@ -47,9 +49,12 @@ def _assets(options):
 def validate(options):
     allowed = {"native_config", "cache", "cache_sha256", "contexts", "contexts_sha256",
                "frozen_base_sha256", "device", "rank", "steps", "batch", "seed", "ema_decay",
-               "critic_width", "base_precision", "lr", "d_lr_mult"}
+               "critic_width", "base_precision", "lr", "d_lr_mult",
+               "response_scale", "cache_receipt", "cache_receipt_sha256"}
     if set(options) - allowed:
         raise ValueError("Unknown Supra session option; legacy/hub loading is unsupported")
+    from . import fresh_cache
+    fresh_cache.validate_options(options)
     from .learning_rates import recipe_overrides
     recipe_overrides(lr=options.get("lr"), d_lr_mult=options.get("d_lr_mult"))
     if not isinstance(options.get("native_config"), dict):
@@ -104,6 +109,7 @@ def prepare(options, *, runtime=None):
 
     from .learning_rates import recipe_overrides
     rates = recipe_overrides(lr=options.get("lr"), d_lr_mult=options.get("d_lr_mult"))
+    from . import fresh_cache
     bridge, contexts, receipt, rows = _assets(options)
     if runtime is None:
         if options["device"] == "cpu":
@@ -148,15 +154,20 @@ def prepare(options, *, runtime=None):
             context_receipt_sha256=file_sha(Path(options["contexts"]).with_suffix(".json")),
             training_sources={name: file_sha(Path(__file__).with_name(name))
                               for name in ("cache.py", "campaign.py", "lifecycle.py")})
+        if fresh_cache.selected(options):
+            identity['fresh_cache_receipt_sha256'] = file_sha(options['cache_receipt'])
+        scale = options['response_scale'] if fresh_cache.selected(options) else bridge.SUPRA_SCALE
         run = campaign.build_supra_campaign(runtime, rows, model_identity=identity,
             total_steps=options.get("steps", 4), batch_size=4, seed=options.get("seed", 7),
-            critic_width=options.get("critic_width", 32), response_scale=bridge.SUPRA_SCALE, recipe_overrides=rates)
+            critic_width=options.get("critic_width", 32), response_scale=scale, recipe_overrides=rates)
         runtime.cfg_adapter_branch = "conditional_only"
         selected = {}
         for index in range(len(rows)):
             hold, source = rows._source(index)
             selected.setdefault((hold, source["prompt"], source.get("context")), index)
-        campaign.teacher_parity(run, tuple(selected.values()))
+        indices = (fresh_cache.parity_indices(rows) if fresh_cache.selected(options)
+                   else tuple(selected.values()))
+        campaign.teacher_parity(run, indices)
 
         from .native_inference import BACKEND as INFERENCE_BACKEND, PROTOCOL
         specification = INFERENCE_BACKEND.specification(run.backend,
