@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+"""Forward this product to the common, separately installed training frontend."""
+import os
+from pathlib import Path
+import sys
+
+arguments = sys.argv[1:]
+operation = 'plan' if '--plan' in arguments else 'train'
+arguments = [value for value in arguments if value != '--plan']
+command = os.environ.get('PARTICLE_SLIDER_COMMAND', 'particle-slider')
+os.execvp(command, [command, operation, '--profile', str(Path(__file__).resolve().with_name('training_profile.json')), *arguments])

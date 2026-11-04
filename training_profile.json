@@ -1,0 +1,21 @@
+{
+  "schema": "particle-slider-profile-v1",
+  "name": "supra-source",
+  "product": "supra-particle-sliders",
+  "config_kind": "session",
+  "backend": "supra",
+  "interface": "image",
+  "status": "source_only",
+  "runtime": {
+    "python": "python3"
+  },
+  "capabilities": {
+    "resume": true,
+    "periodic_checkpoint": true,
+    "check": true
+  },
+  "default_checkpoint_every": 32,
+  "evidence": "supra/lifecycle.py",
+  "status_reason": "PG 0.9.1 adapter-only GAN (particles=None); published Final Boss weights used MSE. Native execution requires reviewed local campaign config and matching frozen context/cache hashes.",
+  "source_revision": "4f8641998d96d7d1294c524349a757b5a0866d69"
+}
