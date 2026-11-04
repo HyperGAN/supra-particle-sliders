@@ -23,6 +23,7 @@ def restore_pre_lr_runtime(root, destination):
             raise ValueError('archived HNDL runtime checksum differs: ' + relative)
         (destination / relative).write_bytes(data)
     (destination / 'supra/learning_rates.py').unlink(missing_ok=True)
+    (destination / 'supra/fresh_cache.py').unlink(missing_ok=True)
     # Archive ships in the sdist so its profile builder remains reproducible.
     target = destination / 'cohorts/pre-lr-hndl'
     if not target.exists():
