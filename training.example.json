@@ -1,14 +1,21 @@
 {
-  "backend": "supra",
-  "cohort": "supra-new-owned-run",
-  "options": {
-    "steps": 128,
-    "device": "cuda:0",
-    "native_config": {},
-    "cache": "/path/to/local/cache.pt",
-    "contexts": "/path/to/local/contexts.pt",
-    "cache_sha256": "REPLACE_WITH_CACHE_SHA256",
-    "contexts_sha256": "REPLACE_WITH_CONTEXT_SHA256",
-    "frozen_base_sha256": "REPLACE_WITH_BASE_SHA256"
+  "schema": "particle-slider-train-v1",
+  "profile": "training_profile.json",
+  "training": {
+    "backend": "supra",
+    "cohort": "supra-new-owned-run",
+    "options": {
+      "steps": 128,
+      "device": "cuda:0",
+      "native_config": {},
+      "cache": "/path/to/local/cache.pt",
+      "contexts": "/path/to/local/contexts.pt",
+      "cache_sha256": "REPLACE_WITH_CACHE_SHA256",
+      "contexts_sha256": "REPLACE_WITH_CONTEXT_SHA256",
+      "frozen_base_sha256": "REPLACE_WITH_BASE_SHA256"
+    }
+  },
+  "execution": {
+    "runner": "local"
   }
 }

@@ -1,8 +1,10 @@
 # One training command
 
 ```sh
-./train --config training.example.json
+particle-slider train --config training.example.json
 ```
+
+The project wrapper remains available: `./train --config training.example.json`.
 
 `./train` calls the common `particle-slider train` dispatcher with this project's
 `training_profile.json`. Install the shared frontend separately, then select this
@@ -10,7 +12,7 @@ product's existing pinned environment with `--runtime-python /path/to/product-ve
 Keep the product's dependency and source locks; the frontend does not repin them.
 `PARTICLE_SLIDER_COMMAND` can name the installed frontend executable.
 
-The example is a **template**, not a ready model download: replace the local
+The versioned example envelope selects this project automatically. Its training section is a **template**, not a ready model download: replace the local
 model/cache paths, hashes and native options with an owned, verified run's inputs.
 Do not enable dummy mode as a substitute for native training. `supra/lifecycle.py` owns
 its exact input schema and gates. Use `--plan` for allocation-free request inspection
