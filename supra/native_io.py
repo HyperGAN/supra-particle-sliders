@@ -12,7 +12,7 @@ from particle_sliders.lifecycle import native_cleanup
 from .shared import file_sha, source_cohort
 from .shared import verify_imported_sources
 
-LOCK = Path(__file__).with_name("core081-receipt.json")
+LOCK = Path(__file__).with_name("core012-ddb4142-receipt.json")
 
 
 def read_context_receipt(contexts):
@@ -26,10 +26,25 @@ def read_context_receipt(contexts):
 
 
 def verify_sources():
+    """Admit the exact current installed core and official ParticleGAN release."""
     from importlib.metadata import version
     receipt = verify_imported_sources(LOCK)
-    if version("particle-sliders-core") != receipt["version"]:
-        raise ValueError("Installed core version contradicts the source receipt")
+    if (receipt.get("schema") != "supra-recursive-core-closure-v1"
+            or receipt.get("source_commit") != "ddb41423bcefc1fe76cd94d0f9b367353b3ea137"
+            or receipt.get("namespaces") != ["concept_slider_core", "particle_sliders"]):
+        raise ValueError("Current core closure identity contradicts the source receipt")
+    import particle_sliders
+    base = Path(particle_sliders.__file__).resolve().parent.parent
+    actual = {str(path.relative_to(base)): file_sha(path)
+              for namespace in receipt["namespaces"] for path in (base / namespace).rglob("*")
+              if path.is_file() and "__pycache__" not in path.parts and path.suffix not in (".pyc", ".pyo")}
+    if actual != receipt["source_sha256"]:
+        raise RuntimeError("Imported shared recursive source/data closure differs from receipt")
+    for package, field in (("particle-sliders-core", "version"), ("particlegan", "pg_version")):
+        if version(package) != receipt[field]:
+            raise ValueError("Installed " + package + " version contradicts the source receipt")
+    from particle_sliders.pg09 import _released_sources
+    _released_sources()
 
 
 def model_identity(runtime):

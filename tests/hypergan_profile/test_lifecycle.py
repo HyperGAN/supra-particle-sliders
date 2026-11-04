@@ -5,6 +5,10 @@ from importlib.metadata import version
 from pathlib import Path
 
 import pytest
+import importlib.util
+if (importlib.util.find_spec("supra.hndl") is None
+        or version("supra-particle-sliders") == "0.3.0"):
+    pytest.skip("separate HyperGAN/HNDL wheel required", allow_module_level=True)
 
 if version("particle-sliders-core") != "0.12.0":
     pytest.skip("requires the distinct core0.12 HyperGAN/HNDL environment", allow_module_level=True)

@@ -16,12 +16,12 @@ def requirements(name):
 def test_default_installer_uses_the_packaged_lifecycle_receipt():
     assert requirements("requirements.txt") == [".[test]"]
     metadata = tomllib.loads((ROOT / "pyproject.toml").read_text())
-    receipt = json.loads((ROOT / "supra/core081-receipt.json").read_text())
+    receipt = json.loads((ROOT / "supra/core012-ddb4142-receipt.json").read_text())
     core = next(Requirement(value) for value in metadata["project"]["dependencies"]
                 if Requirement(value).name == "particle-sliders-core")
     assert core.url == (
         "git+https://github.com/HyperGAN/particle-sliders.git@"
-        + receipt["clean_head"] + "#subdirectory=packages/particle-sliders-core")
+        + receipt["source_commit"] + "#subdirectory=packages/particle-sliders-core")
     assert metadata["project"]["entry-points"]["particle_sliders.image_backends"] == {
         "supra": "supra.lifecycle:BACKEND"}
     assert metadata["project"]["entry-points"]["particle_sliders.inference_backends"] == {
@@ -37,5 +37,5 @@ def test_historical_installer_keeps_the_cdf_lock_and_exact_pg():
         "git+" + lock["repository"] + ".git@" + lock["commit"]
         + "#subdirectory=packages/particle-sliders-core")
     assert str(legacy["particlegan"].specifier) == "==" + lock["pg_version"]
-    current = json.loads((ROOT / "supra/core081-receipt.json").read_text())
-    assert lock["commit"] != current["clean_head"]
+    current = json.loads((ROOT / "supra/core012-ddb4142-receipt.json").read_text())
+    assert lock["commit"] != current["source_commit"]

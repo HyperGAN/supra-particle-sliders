@@ -9,7 +9,7 @@ import sys
 import pytest
 
 
-@pytest.mark.skipif(version("particle-sliders-core") != "0.8.1", reason="stable collection qualification")
+@pytest.mark.skipif(version("supra-particle-sliders") != "0.3.0", reason="stable collection qualification")
 def test_stable_collection_does_not_import_candidate_or_hndl(tmp_path):
     tests = Path(__file__).resolve().parent
     program = '''import json,sys,pytest

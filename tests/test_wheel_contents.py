@@ -11,11 +11,11 @@ import zipfile
 from packaging.version import Version
 import pytest
 
-STABLE = set("""__init__.py cache.py campaign.py card.py convergence.py core081-receipt.json
+STABLE = set("""__init__.py cache.py campaign.py card.py convergence.py core081-receipt.json core012-ddb4142-receipt.json
 distillation.py lifecycle.lock.json lifecycle.py native_inference.py native_io.py
 native_model.py pg09.py runtime.py shared.lock.json shared.py thin-product-provenance.json
-train.py licenses/LICENSE licenses/LICENSE-Supra2-IMG licenses/NOTICE""".split())
-CANDIDATE = {"hndl.py", "hndl_lifecycle.py", "hndl_inference.py", "supra_lora.hndl", "core012-receipt.json", "core012-a794e3-receipt.json"}
+train.py training_profile.py licenses/LICENSE licenses/LICENSE-Supra2-IMG licenses/NOTICE""".split())
+CANDIDATE = {"hndl.py", "hndl_lifecycle.py", "hndl_inference.py", "supra_lora.hndl", "core012-receipt.json", "core012-a794e3-receipt.json", "core012-ddb4142-hndl-receipt.json"}
 
 
 @pytest.fixture
@@ -42,14 +42,14 @@ def test_exact_wheel_contents_and_metadata(profile, built_wheels):
         assert version.is_prerelease == (profile == "CANDIDATE")
         entries = wheel.read(next(name for name in names if name.endswith(".dist-info/entry_points.txt"))).decode()
         if profile == "STABLE":
-            assert str(version) == "0.2.0" and "supra_hndl" not in entries
+            assert str(version) == "0.3.0" and "supra_hndl" not in entries
         else:
-            assert str(version) == "0.3.0.dev2" and "supra_hndl" in entries
-            assert any("a794e3b4a8813b012f2c4faa3da82b78d4a90214" in requirement
+            assert str(version) == "0.4.0.dev1" and "supra_hndl" in entries
+            assert any("ddb41423bcefc1fe76cd94d0f9b367353b3ea137" in requirement
                        for requirement in metadata.get_all("Requires-Dist"))
 
 
-@pytest.mark.parametrize("available,expected", [("both", "0.2.0"), ("candidate_only", "0.3.0.dev2")])
+@pytest.mark.parametrize("available,expected", [("both", "0.3.0"), ("candidate_only", "0.4.0.dev1")])
 def test_pip_selection_with_both_and_candidate_only_availability(tmp_path, built_wheels, available, expected):
     wheelhouse = tmp_path / "wheelhouse"
     wheelhouse.mkdir()

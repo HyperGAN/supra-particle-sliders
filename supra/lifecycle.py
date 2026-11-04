@@ -1,4 +1,4 @@
-"""Thin Supra factory for clean core 0.8.1; unexecuted source proposal."""
+"""Canonical Supra adapter factory for core 0.12.0 / official PG 0.9.4."""
 import inspect
 import json
 import math
@@ -14,7 +14,7 @@ CAPABILITIES = Capabilities(
     generator_arm="adapter_gan", render=True,
     strength_min=None, strength_max=None, reference_images=False,
     base_precisions=("float32",), render_outputs=("pil",),
-    qualification="Unexecuted 0.8.1 source proposal; installed CPU conformance and native GPU parity pending",
+    qualification="Current PG0.9.4 CPU software cohort; pretrained/native CUDA qualification pending",
     operations=("train", "resume", "evaluate", "export", "response", "render"),
 )
 

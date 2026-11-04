@@ -1,3 +1,34 @@
+# Supra particle sliders — current ParticleGAN 0.9.4 integration
+
+The canonical package is now **0.3.0**, using `particle-sliders-core==0.12.0`
+from exact source `ddb41423bcefc1fe76cd94d0f9b367353b3ea137` and official
+**ParticleGAN 0.9.4**. Python 3.11 or newer is required. New training uses the
+installed `supra` image backend through the shared isolated dispatcher:
+
+```bash
+python -m pip install -r requirements.txt
+particle-slider train --profile supra --config /absolute/path/session.json --check --no-reporting
+particle-slider train --profile supra --config /absolute/path/session.json --out runs/new-cohort --no-reporting
+# Equivalent product entry:
+python -m supra.train --config /absolute/path/session.json --out runs/new-cohort --no-reporting
+```
+
+See [current installation, assets and checkpoint contract](docs/pg094.md).
+The canonical generator remains an ordinary LoRA **adapter GAN**, `particles=None`;
+no particle bank or locally copied GAN formula is introduced. The optional
+[HNDL preview](profiles/hndl/README.md) has a separate 0.4.0.dev1 source cohort.
+
+The current change updates software integration. Published FinalBoss MSE weights,
+recipes, base model revisions and historical source locks are unchanged; those
+weights have not been retrained. Historical GAN training packets require their
+exact original source environment and are not relabeled as PG0.9.4. Native
+pretrained CUDA/cache/decoding/quality qualification remains pending.
+
+The material below records prior source cohorts and the published FinalBoss
+release; current installation/training instructions are above.
+
+---
+
 [Current and historical installation cohorts](INSTALL-COHORTS.md).
 
 # Supra sliders: shared ParticleGAN 0.9 training

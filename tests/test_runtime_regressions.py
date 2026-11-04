@@ -10,7 +10,13 @@ from supra.runtime import (
     MODEL_ID, MODEL_REV, T5_REV, TARGETS, VAE_REV, SupraRuntime,
     adapter_state, load_adapter_state, model_module,
 )
-from supra.shared import LOCK, file_sha, shared_module
+from supra.native_io import LOCK
+from supra.shared import file_sha
+from particle_sliders import pg09_backends
+
+def shared_module(name):
+    assert name == "particle_sliders.pg09_backends"
+    return pg09_backends
 
 
 @pytest.fixture(autouse=True)
@@ -177,7 +183,13 @@ def test_native_trajectory_and_shared_schedule_use_positive_euler_flow_time(runt
 
 
 def test_pg_rank_capture_keeps_adapter_registration_and_runs_without_gradients(runtime):
-    from scripts.distill_final_boss import capture
+    import importlib.util
+    from pathlib import Path
+    source = Path(__file__).resolve().parents[1] / "scripts/distill_final_boss.py"
+    spec = importlib.util.spec_from_file_location("supra_distill_regression_worker", source)
+    worker = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(worker)
+    capture = worker.capture
     runtime.cfg_adapter_branch = "conditional_only"
     covariance, counts, modules = capture(runtime, ["neutral"], (42,))
     assert set(covariance) == {"projection"} and counts["projection"] > 0

@@ -18,8 +18,8 @@ def main():
     args = parser.parse_args()
     if args.shared_root:
         os.environ["PARTICLE_SLIDERS_ROOT"] = str(args.shared_root.resolve())
-    from supra.shared import shared_module
-    bridge = shared_module("particle_sliders.pg09_remaining_campaigns")
+    from supra import cache as bridge, native_io
+    native_io.verify_sources()
     from supra.runtime import SupraRuntime, MODEL_REV, T5_REV
     import yaml
     config = yaml.safe_load(args.config.read_text())
@@ -27,7 +27,7 @@ def main():
     bridge.validate_live_supra_context_preparation(config, identity)
     if args.out.exists() or args.out.with_suffix(".json").exists():
         raise FileExistsError(args.out)
-    runtime = SupraRuntime(args.device, rank=16, allow_hub=False)
+    runtime = native_io.load_native(dict(device=args.device, rank=16))
     if not runtime.stored_unconditional:
         raise ValueError("Reviewed native stored unconditional context required")
     bridge.export_live_supra_contexts(runtime, config, args.out, runtime_identity=identity)

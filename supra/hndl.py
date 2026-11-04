@@ -16,9 +16,9 @@ from . import native_model
 from .shared import file_sha, verify_imported_sources
 
 GRAPH = Path(__file__).with_name("supra_lora.hndl")
-CORE_COMMIT = "a794e3b4a8813b012f2c4faa3da82b78d4a90214"
-PROFILE = "supra-hypergan-hndl-a794e3-v1"
-LOCK = Path(__file__).with_name("core012-a794e3-receipt.json")
+CORE_COMMIT = "ddb41423bcefc1fe76cd94d0f9b367353b3ea137"
+PROFILE = "supra-hypergan-hndl-ddb4142-v1"
+LOCK = Path(__file__).with_name("core012-ddb4142-hndl-receipt.json")
 
 
 def verify_sources():

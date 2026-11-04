@@ -10,6 +10,10 @@ import sys
 from types import SimpleNamespace
 
 import pytest
+import importlib.util
+if (importlib.util.find_spec("supra.hndl") is None
+        or version("supra-particle-sliders") == "0.3.0"):
+    pytest.skip("separate HyperGAN/HNDL wheel required", allow_module_level=True)
 
 if version("particle-sliders-core") != "0.12.0":
     pytest.skip("requires the distinct core0.12 HyperGAN/HNDL environment", allow_module_level=True)
@@ -132,7 +136,7 @@ def test_good_checkout_override_cannot_hide_tampered_imported_core(tmp_path):
                     ignore=shutil.ignore_patterns("__pycache__"))
     path = tmp_path / "particle_sliders/pg09.py"
     path.write_text(path.read_text() + "\n# deliberate source tamper fixture\n")
-    program = "import sys; sys.path.insert(0, sys.argv[1]); from supra import hndl; hndl.verify_sources()"
+    program = 'import sys\nfor name in tuple(sys.modules):\n    if name == "particle_sliders" or name.startswith("particle_sliders.") or name == "concept_slider_core":\n        del sys.modules[name]\nsys.path.insert(0, sys.argv[1])\nfrom supra import hndl; hndl.verify_sources()'
     result = subprocess.run([sys.executable, "-I", "-c", program, str(tmp_path)],
         env=dict(os.environ, PARTICLE_SLIDERS_ROOT=str(root), CUDA_VISIBLE_DEVICES=""),
         capture_output=True, text=True, timeout=60)

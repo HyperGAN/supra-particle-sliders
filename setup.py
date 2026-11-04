@@ -9,7 +9,8 @@ class StableBuildPy(build_py):
         super().run()
         # A previous build may have left candidate files in build/lib.
         for name in ("hndl.py", "hndl_lifecycle.py", "hndl_inference.py",
-                     "supra_lora.hndl", "core012-receipt.json"):
+                     "supra_lora.hndl", "core012-receipt.json", "core012-a794e3-receipt.json",
+                     "core012-ddb4142-hndl-receipt.json"):
             (Path(self.build_lib) / "supra" / name).unlink(missing_ok=True)
 
     def find_package_modules(self, package, package_dir):

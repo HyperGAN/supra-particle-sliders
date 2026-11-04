@@ -1,14 +1,17 @@
+Current upgrade: [PG0.9.4 canonical instructions](../../docs/pg094.md). The separate
+HNDL candidate is 0.4.0.dev1; original dev1/dev2 previews remain historical.
+
 # Supra HyperGAN/HNDL prerelease candidate
 
-This separately built `0.3.0.dev2` prerelease registers `supra_hndl`, using the
+This separately built `0.4.0.dev1` prerelease registers `supra_hndl`, using the
 real shared ParticleGAN game, HyperGAN develop builder, HNDL LoRA branches and
 shared HNDL spatial critic. The native DiT, CFG, sampler and ordinary linear
 LoRA law are preserved. These branches are not routed particles.
 
 ## Installation and isolation
 
-The supported root wheel remains `supra-particle-sliders==0.2.0`, with the exact
-core 0.8.1 dependency. Its wheel excludes candidate modules and data.
+The supported root wheel remains `supra-particle-sliders==0.3.0`, with the exact
+current core 0.12.0 / ParticleGAN 0.9.4 dependency. Its wheel excludes candidate modules and data.
 The candidate retains the product distribution and `supra` namespace so its
 native model source identity stays explicit. Its development version prevents
 normal pip resolution from selecting it over the stable release; installing
@@ -30,7 +33,7 @@ python -m pip install build==1.6.1 setuptools==84.2.1
 python scripts/build_hndl_profile.py --out artifacts/hndl --sdist
 python -m venv .venv-supra-hndl
 # Install the appropriate CPU or CUDA PyTorch build in this new environment.
-.venv-supra-hndl/bin/python -m pip install --index-url https://pypi.org/simple artifacts/hndl/supra_particle_sliders-0.3.0.dev2-py3-none-any.whl
+.venv-supra-hndl/bin/python -m pip install --index-url https://pypi.org/simple artifacts/hndl/supra_particle_sliders-0.4.0.dev1-py3-none-any.whl
 ```
 
 This command uses PyPI for declared dependencies. `--find-links` only adds wheel
@@ -39,14 +42,14 @@ recipe. A fully offline installation needs every dependency as a verified local
 artifact, including the Git requirements; `--no-index` alone does not disable
 Git network access.
 
-The exact core commit `a794e3b4a8813b012f2c4faa3da82b78d4a90214` is publicly
+The exact core commit `ddb41423bcefc1fe76cd94d0f9b367353b3ea137` is publicly
 reachable on the approved immutable source ref. The candidate metadata pins
 that Git commit with its `hypergan-hndl` extra, which pins HyperGAN develop
-`5f368a3770cf5bdae0448995c9f76e29af8049f7` and HNDL 0.10.0. Clean CPU installation
-from these exact public sources is tested; there is no remaining source
-publication blocker. This does not claim a core 0.12 PyPI release.
+`5f368a3770cf5bdae0448995c9f76e29af8049f7` and HNDL 0.10.0. Normal dependency installation from these exact public sources is tested
+in a separate system-site environment; the canonical wheel also has a clean
+CPU installation. There is no remaining source publication blocker. This does not claim a core 0.12 PyPI release.
 
-`supra/core012-a794e3-receipt.json` validates the 51 recursive source/data files
+`supra/core012-ddb4142-hndl-receipt.json` validates the 574 recursive source/data files
 at the resolved imported core paths, independently of `PARTICLE_SLIDERS_ROOT`. Core, PG and HNDL
 versions and HyperGAN build provenance are enforced. No wheel hash is treated
 as a runtime identity: independently built wheels can have different archive
@@ -79,12 +82,12 @@ relaxed and no new GAN loss is introduced.
 
 ## Coordinated final core pin
 
-The active development release is now `0.3.0.dev2`, bound to core commit
-`a794e3b4a8813b012f2c4faa3da82b78d4a90214` and network/source profile
-`supra-hypergan-hndl-a794e3-v1`. The prior `0.3.0.dev1` preview and its
-`core012-receipt.json` remain historical cohorts. Its training and raw/EMA
-packets are refused by the new source identity; no conversion or relabeling is
-provided. The stable dependency and its checkpoint environment are unchanged.
+The active development release is now `0.4.0.dev1`, bound to core commit
+`ddb41423bcefc1fe76cd94d0f9b367353b3ea137` and network/source profile
+`supra-hypergan-hndl-ddb4142-v1`. The prior `0.3.0.dev1` preview and its
+`core012-receipt.json` remain historical cohorts. The current source identity requires a fresh cohort; no conversion or
+relabeling is provided. Genuine archived preview packets were unavailable for
+this upgrade's refusal test. The canonical and HNDL factories both use the current core but retain distinct source identities. Historical 0.2.0 and preview environments remain separate.
 
 The new closure is generated from every tracked file under the exact core
 commit's package namespaces, including nested data and LICENSE. Validation
@@ -92,10 +95,11 @@ checks both the expected bytes and the complete non-cache file set at the
 resolved imported package paths. This remains a source-file check, not an
 attestation of previously executed bytecode or a race-free runtime guarantee.
 
-Wheel and sdist installations are separately tested in fresh CPU environments
-with the product checkout temporarily absent. See the
-[final migration receipt](../../docs/hndl-a794-migration.md) for exact tests,
-artifact identity, provenance and remaining native qualification limits.
+For the prior dev2, wheel and sdist installations were separately tested in
+fresh CPU environments with the product checkout temporarily absent. See the
+[historical dev2 migration receipt](../../docs/hndl-a794-migration.md) for prior tests,
+artifact identity and provenance. Current upgrade validation is in
+[the PG0.9.4 receipt](../../docs/pg094-validation.md); native qualification limits remain.
 
 The coordinated core owner reported a bounded synthetic CUDA software fixture.
 That does not qualify Supra model loading, native cache/width behavior, image

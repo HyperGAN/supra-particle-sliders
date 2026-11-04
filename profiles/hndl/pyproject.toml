@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "supra-particle-sliders"
-version = "0.3.0.dev2"
+version = "0.4.0.dev1"
 description = "Supra native HyperGAN/HNDL shared lifecycle candidate"
 readme = "README.md"
 requires-python = ">=3.11,<3.15"
 license = {file = "LICENSE"}
 dependencies = [
-  "particle-sliders-core[hypergan-hndl] @ git+https://github.com/HyperGAN/particle-sliders.git@a794e3b4a8813b012f2c4faa3da82b78d4a90214#subdirectory=packages/particle-sliders-core",
+  "particle-sliders-core[hypergan-hndl] @ git+https://github.com/HyperGAN/particle-sliders.git@ddb41423bcefc1fe76cd94d0f9b367353b3ea137#subdirectory=packages/particle-sliders-core",
   "safetensors>=0.5",
   "Pillow>=13.0.0",
   "numpy>=1.26",
@@ -26,9 +26,12 @@ supra_hndl = "supra.hndl_lifecycle:BACKEND"
 [project.entry-points."particle_sliders.inference_backends"]
 supra_hndl = "supra.hndl_inference:BACKEND"
 
+[project.entry-points."particle_sliders.training_profiles"]
+supra_hndl = "supra.training_profile:hndl_profile"
+
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["supra*"]
 
 [tool.setuptools.package-data]
-supra = ["lifecycle.lock.json", "shared.lock.json", "core081-receipt.json", "core012-receipt.json", "core012-a794e3-receipt.json", "thin-product-provenance.json", "*.hndl", "licenses/*"]
+supra = ["lifecycle.lock.json", "shared.lock.json", "core081-receipt.json", "core012-ddb4142-receipt.json", "core012-ddb4142-hndl-receipt.json", "core012-receipt.json", "core012-a794e3-receipt.json", "thin-product-provenance.json", "*.hndl", "licenses/*"]

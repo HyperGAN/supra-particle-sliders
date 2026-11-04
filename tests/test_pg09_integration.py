@@ -7,6 +7,9 @@ from pathlib import Path
 import sys
 
 import pytest
+from importlib.metadata import version
+if version("particlegan") != "0.9.1":
+    pytest.skip("historical PG0.9.1 source/checkpoint cohort; use its exact original checkout", allow_module_level=True)
 import torch
 import yaml
 
