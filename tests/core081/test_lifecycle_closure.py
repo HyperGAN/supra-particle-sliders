@@ -184,3 +184,24 @@ def test_native_only_export_load_without_training_files_or_constructors(configur
         assert not hasattr(inference, "game")
         with pytest.raises(UnsupportedOperation):
             inference.step()
+
+
+def test_current_learning_rates_reach_optimizers_and_resume(configured):
+    runtime, original = configured
+    config = SessionConfig('supra', 'supra-lr-controls-v1',
+                           **{**original.options, 'lr': 2e-5, 'd_lr_mult': 3})
+    with lifecycle.BACKEND.open(config, runtime=runtime) as first:
+        assert first.game.prior is None
+        assert first.game.recipe.lr == 2e-5
+        assert first.game.recipe.d_lr_mult == 3
+        assert all(rate == pytest.approx(6e-5) for rate in first.game.base_lrs[1])
+        first.step()
+        packet = first.checkpoint()
+        expected = first.step()
+    with lifecycle.BACKEND.open(config, runtime=TinyRuntime(config.options['native_config'])) as second:
+        second.restore(packet)
+        assert second.step() == expected
+    with pytest.raises(ValueError):
+        lifecycle.BACKEND.open(SessionConfig('supra', 'supra-lr-controls-v1',
+                                                     **{**config.options, 'prior_lr_mult': 2}),
+                               runtime=TinyRuntime(config.options['native_config']))

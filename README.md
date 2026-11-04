@@ -248,3 +248,5 @@ extend the training contexts. The proposed v2 loader constructs only native
 base/adapter/T5/VAE objects, without a training cache, critic, game or optimizer.
 Narrow installed CPU conformance passed; native/GPU qualification remains
 pending. No native model load or training is implied by this example.
+
+Learning-rate controls and preserved defaults: [LEARNING-RATES.md](LEARNING-RATES.md).
