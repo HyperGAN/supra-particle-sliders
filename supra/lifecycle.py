@@ -47,9 +47,11 @@ def _assets(options):
 def validate(options):
     allowed = {"native_config", "cache", "cache_sha256", "contexts", "contexts_sha256",
                "frozen_base_sha256", "device", "rank", "steps", "batch", "seed", "ema_decay",
-               "critic_width", "base_precision"}
+               "critic_width", "base_precision", "lr", "d_lr_mult"}
     if set(options) - allowed:
         raise ValueError("Unknown Supra session option; legacy/hub loading is unsupported")
+    from .learning_rates import recipe_overrides
+    recipe_overrides(lr=options.get("lr"), d_lr_mult=options.get("d_lr_mult"))
     if not isinstance(options.get("native_config"), dict):
         raise ValueError("native_config must contain the exact reviewed local campaign configuration")
     for key in ("cache", "contexts"):
@@ -100,6 +102,8 @@ def prepare(options, *, runtime=None):
     from .native_io import frozen_digest
     from . import campaign
 
+    from .learning_rates import recipe_overrides
+    rates = recipe_overrides(lr=options.get("lr"), d_lr_mult=options.get("d_lr_mult"))
     bridge, contexts, receipt, rows = _assets(options)
     if runtime is None:
         if options["device"] == "cpu":
@@ -146,7 +150,7 @@ def prepare(options, *, runtime=None):
                               for name in ("cache.py", "campaign.py", "lifecycle.py")})
         run = campaign.build_supra_campaign(runtime, rows, model_identity=identity,
             total_steps=options.get("steps", 4), batch_size=4, seed=options.get("seed", 7),
-            critic_width=options.get("critic_width", 32), response_scale=bridge.SUPRA_SCALE)
+            critic_width=options.get("critic_width", 32), response_scale=bridge.SUPRA_SCALE, recipe_overrides=rates)
         runtime.cfg_adapter_branch = "conditional_only"
         selected = {}
         for index in range(len(rows)):
