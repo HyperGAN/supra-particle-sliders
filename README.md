@@ -232,6 +232,9 @@ receipts do not qualify this draft.
 After separately reviewed installation in a native Supra environment, supply
 already admitted local config/context/cache assets and their exact digests:
 
+New training uses `ema_decay=None`; evaluate and export the actual RAW network.
+Do not enable EMA or compare an averaged network with RAW for this recipe.
+
 ```python
 from particle_sliders.lifecycle import SessionConfig, open_session
 from particle_sliders.inference import open_inference
@@ -241,12 +244,12 @@ config = SessionConfig("supra", "new-supra-image-v1-cohort",
     native_config=native_config, cache=cache_path, cache_sha256=cache_sha256,
     contexts=contexts_path, contexts_sha256=contexts_sha256,
     frozen_base_sha256=frozen_base_sha256, device="cuda:0", rank=16,
-    steps=28800, batch=4, seed=7, ema_decay=.99)
+    steps=28800, batch=4, seed=7, ema_decay=None)
 # These native calls require separate GPU admission; none ran in this draft.
 with open_session(config) as session:
     session.train(stop_after=80, on_step=hypergan_observer)
     session.checkpoint("new-run/training.pt")
-    session.export_inference("new-run/adapter.pt", selection="ema")
+    session.export_inference("new-run/adapter.pt", selection="raw")
 with open_inference("new-run/adapter.pt", options=dict(device="cuda:0",
         frozen_base_sha256=frozen_base_sha256)) as session:
     image = session.render(prompt="a red cup", strength=.5, seed=42, steps=50, cfg=3.)
