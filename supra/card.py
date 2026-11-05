@@ -24,7 +24,7 @@ CFG = 3.0
 EULER_SCHEDULE = "t=i/K, z<-z+(1/K)*v"
 
 # The dependency identity follows the single reviewed package lock.
-CORE_COMMIT = json.loads(Path(__file__).with_name("core012-ddb4142-receipt.json").read_text())["source_commit"]
+CORE_COMMIT = json.loads(Path(__file__).with_name("core013-pg095-receipt.json").read_text())["source_commit"]
 CORE_REQUIREMENT = (
     "particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@"
     f"{CORE_COMMIT}#subdirectory=packages/particle-sliders-core"

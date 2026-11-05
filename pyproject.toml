@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "supra-particle-sliders"
-version = "0.3.0"
+version = "0.3.1"
 description = "Supra native image adapter GAN lifecycle"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {file = "LICENSE"}
 dependencies = [
-  "particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@ddb41423bcefc1fe76cd94d0f9b367353b3ea137#subdirectory=packages/particle-sliders-core",
+  "particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@3dd672a7f9b8c169daef90fd63e4bb42b9ddc423#subdirectory=packages/particle-sliders-core",
   "safetensors>=0.5",
   "Pillow>=13.0.0",
   "numpy>=1.26",
@@ -34,7 +34,7 @@ where = ["."]
 include = ["supra*"]
 
 [tool.setuptools.package-data]
-supra = ["lifecycle.lock.json", "shared.lock.json", "core081-receipt.json", "core012-ddb4142-receipt.json", "thin-product-provenance.json", "licenses/*"]
+supra = ["lifecycle.lock.json", "shared.lock.json", "core081-receipt.json", "core012-ddb4142-receipt.json", "core013-pg095-receipt.json", "thin-product-provenance.json", "licenses/*"]
 
 [tool.setuptools.exclude-package-data]
 supra = ["core012-receipt.json", "*.hndl"]

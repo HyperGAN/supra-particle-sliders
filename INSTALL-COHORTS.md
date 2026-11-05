@@ -1,3 +1,5 @@
+**Current source: core 0.13.0 / ParticleGAN 0.9.5.** See [PG095 installation and cohort contract](docs/pg095.md). Earlier version descriptions below are retained historical context, not the current installer.
+
 # Installation cohorts
 
 The current packaged lifecycle uses `particle-sliders-core` 0.8.1 at

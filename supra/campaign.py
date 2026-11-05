@@ -57,7 +57,7 @@ class SupraCampaignRun:
 def build_supra_campaign(runtime, rows, *, model_identity, total_steps=28800, batch_size=4,
                          seed=7, critic_width=32, response_scale=None, recipe_overrides=None):
     """Bind already-admitted native runtime; no model loads or implicit text encode."""
-    from particle_sliders.pg09 import ConditionalPG09
+    from particle_sliders.pg095 import ConditionalPG095 as ConditionalPG09
     if rows.split != 'train':
         raise ValueError('training requires train split; validation is evaluation-only')
     if total_steps < 1 or total_steps > 28800 or batch_size != 4:

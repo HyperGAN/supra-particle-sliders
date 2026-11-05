@@ -24,7 +24,7 @@ def configured(assets, monkeypatch):
         contexts=str(contexts), contexts_sha256=file_sha(contexts),
         frozen_base_sha256=native_io.frozen_digest(runtime), device="cpu", rank=2,
         steps=4, batch=4, seed=7, critic_width=8, ema_decay=.9)
-    return runtime, SessionConfig("supra", "synthetic-supra-pg094-ddb4142-test-cohort", **options)
+    return runtime, SessionConfig("supra", "synthetic-supra-pg095-3dd672a-test-cohort", **options)
 
 
 def test_exact_split_resume_with_metrics_ema_rng_and_coverage(configured):

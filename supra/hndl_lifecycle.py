@@ -1,4 +1,4 @@
-"""Distinct Supra core0.12/HyperGAN develop/HNDL lifecycle candidate.
+"""Distinct Supra core0.13/PG0.9.5/HyperGAN develop/HNDL lifecycle candidate.
 
 The product validates its native assets and owns orchestration. All network
 execution, GAN updates, optimizers, penalties and checkpoint validation stay in
@@ -79,7 +79,7 @@ def preflight(options, request, staged):
 
 def prepare(options, *, runtime=None):
     from particle_sliders.fibo_hndl import HNDLFieldCritic
-    from particle_sliders.pg09 import ConditionalPG09
+    from particle_sliders.pg095 import ConditionalPG095 as ConditionalPG09
     from particle_sliders.pg09_backends import SupraRuntimeResponseAdapter
 
     hndl.verify_sources()

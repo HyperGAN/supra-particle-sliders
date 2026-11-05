@@ -12,7 +12,7 @@ from particle_sliders.lifecycle import native_cleanup
 from .shared import file_sha, source_cohort
 from .shared import verify_imported_sources
 
-LOCK = Path(__file__).with_name("core012-ddb4142-receipt.json")
+LOCK = Path(__file__).with_name("core013-pg095-receipt.json")
 
 
 def read_context_receipt(contexts):
@@ -27,13 +27,25 @@ def read_context_receipt(contexts):
 
 def verify_sources():
     """Admit the exact current installed core and official ParticleGAN release."""
-    from importlib.metadata import version
+    from importlib.metadata import distribution, version
     receipt = verify_imported_sources(LOCK)
     if (receipt.get("schema") != "supra-recursive-core-closure-v1"
-            or receipt.get("source_commit") != "ddb41423bcefc1fe76cd94d0f9b367353b3ea137"
+            or receipt.get("source_commit") != "3dd672a7f9b8c169daef90fd63e4bb42b9ddc423"
             or receipt.get("namespaces") != ["concept_slider_core", "particle_sliders"]):
         raise ValueError("Current core closure identity contradicts the source receipt")
+    dependency = distribution('particle-sliders-core')
+    origin = json.loads(dependency.read_text('direct_url.json') or '{}')
+    if (origin.get('url') != 'https://github.com/HyperGAN/particle-sliders.git'
+            or origin.get('vcs_info', {}).get('commit_id') != receipt['source_commit']
+            or origin.get('subdirectory') != 'packages/particle-sliders-core'):
+        raise ValueError('Supra requires the exact PG095 shared-core Git origin')
+    from particle_sliders.pg095 import PG_VERSION, PG_SOURCE_PROFILE, PG_SOURCE_COMMIT, PG_WHEEL_SHA256
+    if ((PG_VERSION, PG_SOURCE_PROFILE) != ('0.9.5', 'release-0.9.5')
+            or (receipt.get('pg_source_commit'), receipt.get('pg_wheel_sha256')) != (PG_SOURCE_COMMIT, PG_WHEEL_SHA256)):
+        raise ValueError('Supra requires the new official PG095 source profile')
     import particle_sliders
+    if Path(particle_sliders.__file__).resolve() != Path(dependency.locate_file('particle_sliders/__init__.py')).resolve():
+        raise ValueError('Supra shared-core source differs from distribution ownership')
     base = Path(particle_sliders.__file__).resolve().parent.parent
     actual = {str(path.relative_to(base)): file_sha(path)
               for namespace in receipt["namespaces"] for path in (base / namespace).rglob("*")

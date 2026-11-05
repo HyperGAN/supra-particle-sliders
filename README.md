@@ -1,8 +1,10 @@
-# Supra particle sliders — current ParticleGAN 0.9.4 integration
+**Current source: core 0.13.0 / ParticleGAN 0.9.5.** See [PG095 installation and cohort contract](docs/pg095.md). Earlier version descriptions below are retained historical context, not the current installer.
 
-The canonical package is now **0.3.0**, using `particle-sliders-core==0.12.0`
-from exact source `ddb41423bcefc1fe76cd94d0f9b367353b3ea137` and official
-**ParticleGAN 0.9.4**. Python 3.11 or newer is required. New training uses the
+# Supra particle sliders — current ParticleGAN 0.9.5 integration
+
+The canonical package is now **0.3.1**, using `particle-sliders-core==0.13.0`
+from exact source `3dd672a7f9b8c169daef90fd63e4bb42b9ddc423` and official
+**ParticleGAN 0.9.5**. Python 3.11 or newer is required. New training uses the
 installed `supra` image backend through the shared isolated dispatcher:
 
 ```bash
@@ -13,8 +15,8 @@ particle-slider train --profile supra --config /absolute/path/session.json --out
 python -m supra.train --config /absolute/path/session.json --out runs/new-cohort --no-reporting
 ```
 
-See [current installation, assets and checkpoint contract](docs/pg094.md).
-For the tested Final boss FP32 128-update recipe, the measured recommendation is
+See [current installation and checkpoint contract](docs/pg095.md).
+For the **historical PG0.9.4** Final boss FP32 128-update recipe, the measured recommendation is
 G `0.036`, D `0.018` (`lr=0.036`, `d_lr_mult=0.5`), with no particle bank.
 See [learning-rate evidence and reusable options](docs/learning-rates.md) for
 the exact scope and held-out confirmation score `0.782762` (OFF `1.0`).

@@ -1,0 +1,13 @@
+{
+  "schema": "particle-sliders-pg095-product-migration-v1",
+  "core_commit": "3dd672a7f9b8c169daef90fd63e4bb42b9ddc423",
+  "core_version": "0.13.0",
+  "particlegan_version": "0.9.5",
+  "pg_source_profile": "release-0.9.5",
+  "pg_source_commit": "1b8355b184b21bb7d81104ee590813c262f6df0a",
+  "new_training_cohort_required": true,
+  "old_checkpoints_require_original_environment": true,
+  "old_lr_calibration_not_requalified": true,
+  "rates_numerics_geometry_unchanged": true,
+  "native_gpu_run_performed": false
+}
