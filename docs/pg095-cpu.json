@@ -1,0 +1,38 @@
+{
+  "schema": "pg095-product-cpu-migration-checks-v1",
+  "core_commit": "3dd672a7f9b8c169daef90fd63e4bb42b9ddc423",
+  "core_version": "0.13.0",
+  "pg_version": "0.9.5",
+  "pg_profile": "release-0.9.5",
+  "environment": "isolated per-product owned core and PG installs; read-only Torch dependency spine",
+  "torch": "2.9.1+cu128",
+  "diffusers": "0.36.0",
+  "transformers": "4.57.1",
+  "CUDA_VISIBLE_DEVICES": "",
+  "native_models_loaded": false,
+  "native_GPU_or_LR_calibration_claimed": false,
+  "tests": {
+    "supra": {
+      "tests": 73,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 7,
+      "seconds": 14.762,
+      "log_sha256": "f92713c37a9a3caeced56ce73ca77876022898ec3337091d84545fa820f52bca"
+    },
+    "supra-hndl": {
+      "tests": 68,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 3,
+      "seconds": 38.302,
+      "log_sha256": "1f1066d795e567bead9438699ffc4f1b5b9f2ce91b0101af1c209b3e05609fe2"
+    }
+  },
+  "pip_check": "No broken requirements found",
+  "historical_artifacts_preserved": true,
+  "additional_packaging_checks": {
+    "passed": 4,
+    "scope": "stable/HNDL wheel membership, metadata and pip selection"
+  }
+}

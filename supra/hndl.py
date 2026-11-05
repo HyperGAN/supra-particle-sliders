@@ -16,13 +16,15 @@ from . import native_model
 from .shared import file_sha, verify_imported_sources
 
 GRAPH = Path(__file__).with_name("supra_lora.hndl")
-CORE_COMMIT = "ddb41423bcefc1fe76cd94d0f9b367353b3ea137"
-PROFILE = "supra-hypergan-hndl-ddb4142-v1"
-LOCK = Path(__file__).with_name("core012-ddb4142-hndl-receipt.json")
+CORE_COMMIT = "3dd672a7f9b8c169daef90fd63e4bb42b9ddc423"
+PROFILE = "supra-hypergan-hndl-pg095-v2"
+LOCK = Path(__file__).with_name("core013-pg095-hndl-receipt.json")
 
 
 def verify_sources():
     """Hash the actually imported core; source-root overrides are irrelevant."""
+    from .native_io import verify_sources as verify_current_core
+    verify_current_core()
     receipt = verify_imported_sources(LOCK)
     if (receipt.get("schema") != "supra-hndl-recursive-core-closure-v2"
             or receipt.get("source_commit") != CORE_COMMIT

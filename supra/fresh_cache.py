@@ -10,7 +10,7 @@ from pathlib import Path
 
 from .shared import file_sha
 
-SCHEMA = 'supra-native-pg094-cache-v1'
+SCHEMA = 'supra-native-pg095-cache-v1'
 _KEYS = {'response_scale', 'cache_receipt', 'cache_receipt_sha256'}
 
 

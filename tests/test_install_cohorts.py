@@ -16,7 +16,7 @@ def requirements(name):
 def test_default_installer_uses_the_packaged_lifecycle_receipt():
     assert requirements("requirements.txt") == [".[test]"]
     metadata = tomllib.loads((ROOT / "pyproject.toml").read_text())
-    receipt = json.loads((ROOT / "supra/core012-ddb4142-receipt.json").read_text())
+    receipt = json.loads((ROOT / "supra/core013-pg095-receipt.json").read_text())
     core = next(Requirement(value) for value in metadata["project"]["dependencies"]
                 if Requirement(value).name == "particle-sliders-core")
     assert core.url == (
@@ -37,5 +37,18 @@ def test_historical_installer_keeps_the_cdf_lock_and_exact_pg():
         "git+" + lock["repository"] + ".git@" + lock["commit"]
         + "#subdirectory=packages/particle-sliders-core")
     assert str(legacy["particlegan"].specifier) == "==" + lock["pg_version"]
-    current = json.loads((ROOT / "supra/core012-ddb4142-receipt.json").read_text())
+    current = json.loads((ROOT / "supra/core013-pg095-receipt.json").read_text())
     assert lock["commit"] != current["source_commit"]
+
+
+def test_current_installed_pg095_guard_and_old_profile_refusal():
+    from importlib.metadata import version
+    import pytest
+    from supra.native_io import verify_sources
+    from particle_sliders.pg095 import ConditionalPG095, PG_VERSION, PG_SOURCE_PROFILE
+    from particle_sliders.pg094 import ConditionalPG094
+    verify_sources()
+    assert version('particle-sliders-core') == '0.13.0'
+    assert (PG_VERSION, PG_SOURCE_PROFILE) == ('0.9.5', 'release-0.9.5')
+    with pytest.raises(RuntimeError, match='pinned|0.9.4|rebind'):
+        ConditionalPG094(None, None, None)

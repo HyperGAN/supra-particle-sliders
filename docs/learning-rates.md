@@ -1,3 +1,5 @@
+**Source scope:** the measured recommendation and options below belong to the historical PG0.9.4 cohort. They are not a PG0.9.5 calibration; [new-source adoption](pg095.md) requires fresh runs.
+
 # Measured Supra learning rates
 
 For the tested Final boss FP32 128-update recipe, use generator rate `0.036`
