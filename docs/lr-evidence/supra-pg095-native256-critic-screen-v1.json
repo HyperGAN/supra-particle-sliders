@@ -1,0 +1,398 @@
+{
+  "schema": "particle-slider-measured-lr-recommendation-v3",
+  "repository": "HyperGAN/supra-particle-sliders",
+  "status": "best_tested_development_selected_and_heldout_measured",
+  "configuration_overrides": {
+    "lr": 0.024,
+    "d_lr_mult": 0.7499999999999999,
+    "ema_decay": null
+  },
+  "actual_optimizer_rates": {
+    "generator": [
+      0.024
+    ],
+    "critic": [
+      0.018,
+      0.018,
+      0.018,
+      0.018
+    ],
+    "particle_bank": null
+  },
+  "scope": {
+    "concept": "Final boss",
+    "native_response_shape": [
+      1,
+      4,
+      32,
+      32
+    ],
+    "native_image_pixels": [
+      256,
+      256
+    ],
+    "base_precision": "float32",
+    "completed_updates": 128,
+    "schedule_horizon": 128,
+    "batch": 4,
+    "rank": 16,
+    "response_scale": 0.32837046474230014,
+    "adapter_branch": "conditional_only",
+    "particle_bank": false,
+    "backend": "supra095-native256-raw-response-research-v1",
+    "protocol": "supra095-native256-conditional-cfg-raw-response-research-v1",
+    "qualification": "Bounded sequential G screen at fixedD then critic screen at fixedG.024, native256FP32/h128 research profile. Current critic study retained the true original128 producer without prefix replay. No global/joint optimum claim.",
+    "new_confirmation_trajectory_steps": 4,
+    "new_confirmation_positions": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "new_confirmation_subjects": 3,
+    "new_confirmation_seeds": [
+      11939,
+      21883
+    ]
+  },
+  "source": {
+    "product_commit": "e0d48143f1af9236a2f5d6e085d787588043599b",
+    "core_commit": "3dd672a7f9b8c169daef90fd63e4bb42b9ddc423",
+    "particlegan_release": "0.9.5",
+    "particlegan_source_profile": "release-0.9.5",
+    "particlegan_source_commit": "1b8355b184b21bb7d81104ee590813c262f6df0a",
+    "official_wheel_sha256": "c1c0de7a635ac1b1634ba158eed050b6f6aed993e01f9b463435430c77d846ae",
+    "frozen_base_sha256": "78ff6c20e47899d12e69d7f865aa2222d6445947e23c8001cc83b4e5ef17c2a4",
+    "numerical_versions": {
+      "torch": "2.13.0+cu126",
+      "diffusers": "0.40.0.dev0",
+      "transformers": "5.15.0",
+      "numpy": "2.5.2",
+      "safetensors": "0.8.0",
+      "tokenizers": "0.22.2",
+      "huggingface-hub": "1.27.0",
+      "particlegan": "0.9.5",
+      "particle-sliders-core": "0.13.0",
+      "supra-particle-sliders": "0.3.1"
+    },
+    "numerical_profile": {
+      "torch": "2.13.0+cu126",
+      "CUDA": "12.6",
+      "deterministic": true,
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": true,
+      "TF32": false,
+      "cudnn_TF32": true,
+      "FP32_matmul_precision": "highest",
+      "flash_SDP": true,
+      "memory_efficient_SDP": true,
+      "math_SDP": true,
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "NVIDIA_TF32_OVERRIDE": null,
+      "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+    },
+    "CPU_reduction_threads": 2
+  },
+  "metric": {
+    "name": "RAW teacher/student equal-example pooled relative SSE",
+    "aggregation": "cast student/teacher/neutral to FP64 before subtraction; pool squared error and teacher-edit energy over four positions/allcoordinates within each example; divide perexample; arithmetic mean over equalexamples",
+    "direction": "minimize",
+    "zero_energy": "teacher-only fixed exclusion, undefined relative score, noepsilon; every student including excluded examples must befinite",
+    "development": 0.4766090536445644,
+    "development_examples": 2,
+    "heldout_confirmation": 0.5730644137290212,
+    "confirmation_examples": 6,
+    "confirmation_fields": 24,
+    "excluded_confirmation_examples": 0,
+    "OFF": 1.0,
+    "prior_generator_screen_heldout": 0.5118560854877398,
+    "prior_and_current_final_directly_comparable": false
+  },
+  "selection": {
+    "common_horizon": 128,
+    "original_generator_screen": {
+      "common_horizon": 128,
+      "screen32": [
+        {
+          "cell": 2,
+          "G": 0.036,
+          "RAW": 0.4996069120597182
+        },
+        {
+          "cell": 1,
+          "G": 0.024,
+          "RAW": 0.5267898271233262
+        },
+        {
+          "cell": 0,
+          "G": 0.012,
+          "RAW": 0.6602348990234086
+        },
+        {
+          "cell": 3,
+          "G": 0.072,
+          "RAW": 0.7335815485814126
+        }
+      ],
+      "matched64": [
+        {
+          "cell": 1,
+          "G": 0.024,
+          "RAW": 0.40612875052157144
+        },
+        {
+          "cell": 2,
+          "G": 0.036,
+          "RAW": 0.4206344450578483
+        }
+      ],
+      "selected_G": 0.024,
+      "selection_basis": "matched64 primary, then exact64\u2192128 and independentsealedconfirmation; allfinite declaredbudgets finish",
+      "critic_rate": "heldfixedexact .018",
+      "bank_rate": null
+    },
+    "critic_screen32": [
+      {
+        "cell": 3,
+        "actual_producer_cell": 3,
+        "actual_source_plan_sha256": "56fbb3b045c61517e71e63d7fd648b54bc171ba94825da6b0079c499bb251223",
+        "G": 0.024,
+        "D": 0.054,
+        "primary": 0.4520688916433381,
+        "completed_steps": 32
+      },
+      {
+        "cell": 2,
+        "actual_producer_cell": 1,
+        "actual_source_plan_sha256": "5ca4a2ea84479db9c8528a9beb1a43e8f99e256ef9252dbd25052d51b6c11fa2",
+        "G": 0.024,
+        "D": 0.018,
+        "primary": 0.5267898271233262,
+        "completed_steps": 32
+      },
+      {
+        "cell": 1,
+        "actual_producer_cell": 1,
+        "actual_source_plan_sha256": "56fbb3b045c61517e71e63d7fd648b54bc171ba94825da6b0079c499bb251223",
+        "G": 0.024,
+        "D": 0.006,
+        "primary": 0.6952588251088505,
+        "completed_steps": 32
+      },
+      {
+        "cell": 0,
+        "actual_producer_cell": 0,
+        "actual_source_plan_sha256": "56fbb3b045c61517e71e63d7fd648b54bc171ba94825da6b0079c499bb251223",
+        "G": 0.024,
+        "D": 0.002,
+        "primary": 1.1456837587274709,
+        "completed_steps": 32
+      }
+    ],
+    "critic_matched64": [
+      {
+        "cell": 2,
+        "actual_producer_cell": 1,
+        "actual_source_plan_sha256": "5ca4a2ea84479db9c8528a9beb1a43e8f99e256ef9252dbd25052d51b6c11fa2",
+        "G": 0.024,
+        "D": 0.018,
+        "primary": 0.40612875052157144,
+        "completed_steps": 64
+      },
+      {
+        "cell": 3,
+        "actual_producer_cell": 3,
+        "actual_source_plan_sha256": "56fbb3b045c61517e71e63d7fd648b54bc171ba94825da6b0079c499bb251223",
+        "G": 0.024,
+        "D": 0.054,
+        "primary": 0.47413260807143265,
+        "completed_steps": 64
+      }
+    ],
+    "critic_all_available128": [
+      {
+        "cell": 2,
+        "actual_producer_cell": 1,
+        "actual_source_plan_sha256": "5ca4a2ea84479db9c8528a9beb1a43e8f99e256ef9252dbd25052d51b6c11fa2",
+        "G": 0.024,
+        "D": 0.018,
+        "primary": 0.4766090536445644,
+        "completed_steps": 128
+      }
+    ],
+    "selected_G": 0.024,
+    "selected_D": 0.018,
+    "selected_bank": null,
+    "selection_basis": "Four matched32 at fixedG; advance top2 and retain genuine baseline64; compare union64; retain genuine baseline128 when it remainswinner. Freeze development128 before NEW final; no confirmation-driven retuning.",
+    "retained_baseline": {
+      "logical_critic_cell": 2,
+      "actual_original_producer_cell": 1,
+      "actual_original_plan_sha256": "5ca4a2ea84479db9c8528a9beb1a43e8f99e256ef9252dbd25052d51b6c11fa2",
+      "prefix_replayed": false
+    },
+    "declared_critic_grid": [
+      0.002,
+      0.006,
+      0.018,
+      0.054
+    ],
+    "declared_conditional_single_extension_bounds": [
+      0.0006,
+      0.162
+    ],
+    "boundary_extension_required": false,
+    "new_critic_physical_updates": 128,
+    "new_critic_logical_updates": 128,
+    "new_critic_proof_duplicates": 0,
+    "combined_generator_and_critic_physical_updates": 386,
+    "combined_generator_and_critic_logical_updates": 384,
+    "combined_mechanical_duplicates": 2
+  },
+  "evidence": {
+    "original_generator_canonical": {
+      "logical_name": "original_generator_canonical:supra-pg095-native256-fp32-128.json",
+      "sha256": "317f62b00be00ac05b1430ba39e26a4eca93d53469a2170be255b2e72e6585a4"
+    },
+    "original_native_proof": {
+      "logical_name": "original_native_proof:proof-qualification.json",
+      "sha256": "2d30e6a9b560c7ece9b4a2b5ee8e2ffa1186f245347cbdae16aefd53f87284e6"
+    },
+    "actual_retained128": {
+      "logical_name": "actual_retained128:supervisor-result.json",
+      "sha256": "557bc84f7a21be9002e9fc6765703a7d7b3873159f633010d9505d770d18c84f"
+    },
+    "actual_retained_checkpoint": {
+      "logical_name": "actual_retained_checkpoint:checkpoint-128.pt",
+      "sha256": "28eb4054eda6b213befb4fcca68a97853435fc27f98fb2c1274c9912e10e851c"
+    },
+    "actual_retained_RAW": {
+      "logical_name": "actual_retained_RAW:supra095-native256-research-raw-v2.pt",
+      "sha256": "3ce17ecfea0c163eb49591a0c6085cac3b13073739f6fc18a7018b339f637bae"
+    },
+    "critic_hypothesis": {
+      "logical_name": "critic_hypothesis:hypothesis-v1.json",
+      "sha256": "77f3f58c48105315ad17d291ba217caa44003ac8208d27e2c1cb4c401f7065b3"
+    },
+    "critic_NOEMA_source": {
+      "logical_name": "critic_NOEMA_source:plan-v2.json",
+      "sha256": "56fbb3b045c61517e71e63d7fd648b54bc171ba94825da6b0079c499bb251223"
+    },
+    "critic_source_peer": {
+      "logical_name": "critic_source_peer:independent-noema-source-adoption-v2.json",
+      "sha256": "fee1d28dad08eeaa9c40c88658db2816543d8416f465eac0e425baf2a21c760d"
+    },
+    "critic32": {
+      "logical_name": "critic32:selection32-v2.json",
+      "sha256": "be8d67dfe9a37ea0aaaa8c14991207c1ead05eff91e08c494e895c808af0b3c3"
+    },
+    "critic64": {
+      "logical_name": "critic64:selection64-v2.json",
+      "sha256": "30bc13341630519dfb0db7fcb052d1a5ea2336ce1541d36431e397dc83ccf028"
+    },
+    "critic128": {
+      "logical_name": "critic128:selection128-v2.json",
+      "sha256": "5f57b8ba8eb5776620cbbb1570dcd2b3e1a73d1daa86bb41be791860ae3394c4"
+    },
+    "selected128_freeze": {
+      "logical_name": "selected128_freeze:critic-selected128-freeze-v1.json",
+      "sha256": "cfffae50941a2f158d6e48010034395448e93981b2cb27488ad2a4645ebb66a3"
+    },
+    "new_final_seal": {
+      "logical_name": "new_final_seal:new-final-seal-v1.json",
+      "sha256": "b02c5e3dceffe8e0e40068c142129c8d955d7da273c6c39a72c4d60392575420"
+    },
+    "new_final_source": {
+      "logical_name": "new_final_source:plan-v1.json",
+      "sha256": "75488213a1f2a6a30b52eb8f139fb5e87039564c6c7d525822efdbebeeff26b6"
+    },
+    "new_final_source_peer": {
+      "logical_name": "new_final_source_peer:independent-critic-final-source-review-v1.json",
+      "sha256": "6a434b506f30fa86c91f3f9bbc0fe1a15d8da2fe8700df6d0f76e59846f856b5"
+    },
+    "new_final_capture": {
+      "logical_name": "new_final_capture:phase-v1.json",
+      "sha256": "d8bbbefdb6ad89ea7cb8adbcd2a21386b554c4fd7bfef32bbfc301535e82e6b0"
+    },
+    "new_final_completion": {
+      "logical_name": "new_final_completion:native-newfinal-completion-v1.json",
+      "sha256": "458bd2acbc30b552c7bd30dac0786be4ceae45a8f0d3ab178c82d0827ab4db54"
+    },
+    "new_final_supervisor": {
+      "logical_name": "new_final_supervisor:supervisor-result.json",
+      "sha256": "bc91029bca975c2cda23e226e1de8ef0b6e06c245a201a937b91ece3a2169995"
+    },
+    "new_final_worker": {
+      "logical_name": "new_final_worker:worker-result.json",
+      "sha256": "e091e95167e04f5115d033f49ae74351b2f120feb0a1f924eab6de3c290b54c3"
+    },
+    "new_saved_fields": {
+      "logical_name": "new_saved_fields:final-RAW-fields.pt",
+      "sha256": "dec96b19669c5a49faee1a440f2fd1e17ed793dbfbe7ebb6397c546bb459c704"
+    },
+    "new_teacher_membership": {
+      "logical_name": "new_teacher_membership:teacher-only-membership.json",
+      "sha256": "b81278e848f8f88a6f763d65d7ffaacdb83c1be9e2cc88fe74271d46c84ef81b"
+    },
+    "new_independent_saved_field_audit": {
+      "logical_name": "new_independent_saved_field_audit:independent-final-saved-fields-audit-v1.json",
+      "sha256": "d98c607e729d58ab07cc975af2bff4a2eb3eba71a5dcd64a48995c8924c3c09f"
+    },
+    "new_CPU_audit_exit0": {
+      "logical_name": "new_CPU_audit_exit0:independent-audit-execution-v1.json",
+      "sha256": "cfe7703235a3e8421071d88adb47221e1f4df7ce561c695fab026739a40c4b9b"
+    }
+  },
+  "confirmation_per_example": [
+    {
+      "scene": "astral_warden",
+      "seed": 11939,
+      "squared_error": 1054.366231882162,
+      "teacher_edit_energy": 1693.624109636682,
+      "relative": 0.6225503202764076
+    },
+    {
+      "scene": "astral_warden",
+      "seed": 21883,
+      "squared_error": 1098.3744142625865,
+      "teacher_edit_energy": 1928.6379746950306,
+      "relative": 0.5695078229683147
+    },
+    {
+      "scene": "glacier_monarch",
+      "seed": 11939,
+      "squared_error": 3500.291858434406,
+      "teacher_edit_energy": 5870.8874686682075,
+      "relative": 0.596211710259273
+    },
+    {
+      "scene": "glacier_monarch",
+      "seed": 21883,
+      "squared_error": 3386.5276310113495,
+      "teacher_edit_energy": 5783.9147221035255,
+      "relative": 0.5855078772288189
+    },
+    {
+      "scene": "marsh_sorceress",
+      "seed": 11939,
+      "squared_error": 2422.862159770219,
+      "teacher_edit_energy": 4508.074230761538,
+      "relative": 0.5374494819178989
+    },
+    {
+      "scene": "marsh_sorceress",
+      "seed": 21883,
+      "squared_error": 2508.7230821214653,
+      "teacher_edit_energy": 4758.9471080300345,
+      "relative": 0.5271592697234139
+    }
+  ],
+  "selection_rule": "Only held-outRAW relativeSSE ranks/confirms. Preservation/lateweak/media are diagnostic, no veto.",
+  "limits": "Best tested bounded sequential G and D combination for this source/model/data/numerical/native256 research128-update recipe; no particle bank or global/joint optimum claim. The new critic-final6-example4step cohort is separate from the earlier generator-final6-example50step cohort; their scores are not direct comparisons. No final-driven retune. New fresh options state ema_decay=None/exportRAW; exact old checkpoints retain their original serialized configuration/source. Runtime and model geometry unchanged.",
+  "export_selection": "raw",
+  "EMA": {
+    "decay": null,
+    "values": null,
+    "selection": "raw"
+  },
+  "heldout_improved_relative_to_OFF": true
+}
