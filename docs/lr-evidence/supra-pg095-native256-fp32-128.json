@@ -1,0 +1,228 @@
+{
+  "schema": "particle-slider-measured-lr-recommendation-v2",
+  "repository": "HyperGAN/supra-particle-sliders",
+  "status": "best_tested_heldout_confirmed",
+  "recorded_at": "2026-11-05T11:27:46.750400+00:00",
+  "configuration_overrides": {
+    "lr": 0.024,
+    "d_lr_mult": 0.7499999999999999
+  },
+  "actual_optimizer_rates": {
+    "generator": [
+      0.024
+    ],
+    "critic": [
+      0.018,
+      0.018,
+      0.018,
+      0.018
+    ],
+    "particle_bank": null
+  },
+  "scope": {
+    "concept": "Final boss",
+    "native_response_shape": [
+      1,
+      4,
+      32,
+      32
+    ],
+    "native_image_pixels": [
+      256,
+      256
+    ],
+    "base_precision": "float32",
+    "completed_updates": 128,
+    "schedule_horizon": 128,
+    "batch": 4,
+    "rank": 16,
+    "response_scale": 0.32837046474230014,
+    "adapter_branch": "conditional_only",
+    "particle_bank": false,
+    "backend": "supra095-native256-raw-response-research-v1",
+    "protocol": "supra095-native256-conditional-cfg-raw-response-research-v1",
+    "qualification": "Source-bound native256 research profile exercised through public open_inference with explicit backend. This measurement does not promote a new product API geometry."
+  },
+  "source": {
+    "product_commit": "e0d48143f1af9236a2f5d6e085d787588043599b",
+    "core_commit": "3dd672a7f9b8c169daef90fd63e4bb42b9ddc423",
+    "particlegan_release": "0.9.5",
+    "particlegan_source_profile": "release-0.9.5",
+    "particlegan_source_commit": "1b8355b184b21bb7d81104ee590813c262f6df0a",
+    "official_wheel_sha256": "c1c0de7a635ac1b1634ba158eed050b6f6aed993e01f9b463435430c77d846ae",
+    "frozen_base_sha256": "78ff6c20e47899d12e69d7f865aa2222d6445947e23c8001cc83b4e5ef17c2a4",
+    "numerical_versions": {
+      "torch": "2.13.0+cu126",
+      "diffusers": "0.40.0.dev0",
+      "transformers": "5.15.0",
+      "numpy": "2.5.2",
+      "safetensors": "0.8.0",
+      "tokenizers": "0.22.2",
+      "huggingface-hub": "1.27.0",
+      "particlegan": "0.9.5",
+      "particle-sliders-core": "0.13.0",
+      "supra-particle-sliders": "0.3.1"
+    },
+    "numerical_profile": {
+      "torch": "2.13.0+cu126",
+      "CUDA": "12.6",
+      "deterministic": true,
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": true,
+      "TF32": false,
+      "cudnn_TF32": true,
+      "FP32_matmul_precision": "highest",
+      "flash_SDP": true,
+      "memory_efficient_SDP": true,
+      "math_SDP": true,
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "NVIDIA_TF32_OVERRIDE": null,
+      "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+    },
+    "CPU_reduction_threads": 2
+  },
+  "metric": {
+    "name": "RAW teacher/student equal-example pooled relative SSE",
+    "aggregation": "cast student/teacher/neutral to FP64 before subtraction; pool squared error and teacher-edit energy over four positions/allcoordinates within each example; divide perexample; arithmetic mean over equalexamples",
+    "direction": "minimize",
+    "zero_energy": "teacher-only fixed exclusion, undefined relative score, noepsilon; every student including excluded examples must befinite",
+    "development": 0.4766090536445644,
+    "development_examples": 2,
+    "heldout_confirmation": 0.5118560854877398,
+    "confirmation_examples": 6,
+    "confirmation_fields": 24,
+    "excluded_confirmation_examples": 0,
+    "OFF": 1.0
+  },
+  "selection": {
+    "common_horizon": 128,
+    "screen32": [
+      {
+        "cell": 2,
+        "G": 0.036,
+        "RAW": 0.4996069120597182
+      },
+      {
+        "cell": 1,
+        "G": 0.024,
+        "RAW": 0.5267898271233262
+      },
+      {
+        "cell": 0,
+        "G": 0.012,
+        "RAW": 0.6602348990234086
+      },
+      {
+        "cell": 3,
+        "G": 0.072,
+        "RAW": 0.7335815485814126
+      }
+    ],
+    "matched64": [
+      {
+        "cell": 1,
+        "G": 0.024,
+        "RAW": 0.40612875052157144
+      },
+      {
+        "cell": 2,
+        "G": 0.036,
+        "RAW": 0.4206344450578483
+      }
+    ],
+    "selected_G": 0.024,
+    "selection_basis": "matched64 primary, then exact64\u2192128 and independentsealedconfirmation; allfinite declaredbudgets finish",
+    "critic_rate": "heldfixedexact .018",
+    "bank_rate": null
+  },
+  "evidence": {
+    "native_proof": {
+      "path": "/mnt/nvme/sliders/experiments/lr-standardization-20261104/supra/pg095-opportunistic-execution-v3/proof-qualification.json",
+      "sha256": "2d30e6a9b560c7ece9b4a2b5ee8e2ffa1186f245347cbdae16aefd53f87284e6"
+    },
+    "selection32": {
+      "path": "/mnt/nvme/sliders/experiments/lr-standardization-20261104/supra/pg095-opportunistic-execution-v3/selection32.json",
+      "sha256": "d5614054fe107be488b230ef00c067c9ac4f95f409ee181b9082e0634f7ee71a"
+    },
+    "selection64": {
+      "path": "/mnt/nvme/sliders/experiments/lr-standardization-20261104/supra/pg095-opportunistic-execution-v3/selection64.json",
+      "sha256": "a0bdfe138175207a3beb15781d5179946577fd647e58f8e4687e119be76f73e0"
+    },
+    "selected128_freeze": {
+      "path": "/mnt/nvme/sliders/experiments/lr-standardization-20261104/supra/pg095-opportunistic-execution-v3/selected128-freeze-v1.json",
+      "sha256": "679958bae341d6e25f80a579ac79ba7032202ed9014822e29c0c97e3e2c86413"
+    },
+    "training_completion": {
+      "path": "/mnt/nvme/sliders/experiments/lr-standardization-20261104/supra/pg095-opportunistic-execution-v3/outputs/cell1-128/supervisor-result.json",
+      "sha256": "557bc84f7a21be9002e9fc6765703a7d7b3873159f633010d9505d770d18c84f"
+    },
+    "checkpoint": {
+      "path": "/mnt/nvme/sliders/experiments/lr-standardization-20261104/supra/pg095-opportunistic-execution-v3/outputs/cell1-128/worker/checkpoint-128.pt",
+      "sha256": "28eb4054eda6b213befb4fcca68a97853435fc27f98fb2c1274c9912e10e851c"
+    },
+    "raw_inference": {
+      "path": "/mnt/nvme/sliders/experiments/lr-standardization-20261104/supra/pg095-opportunistic-execution-v3/outputs/cell1-128/worker/supra095-native256-research-raw-v2.pt",
+      "sha256": "3ce17ecfea0c163eb49591a0c6085cac3b13073739f6fc18a7018b339f637bae"
+    },
+    "heldout_confirmation": {
+      "path": "/mnt/nvme/sliders/experiments/lr-standardization-20261104/supra/pg095-opportunistic-confirmation-v2/outputs/confirmation-first/supervisor-result.json",
+      "sha256": "ff351c97ba6314a00d0045c0e78bd10a817fba1906b1895a5779d714b89e9abd"
+    },
+    "saved_fields": {
+      "path": "/mnt/nvme/sliders/experiments/lr-standardization-20261104/supra/pg095-opportunistic-confirmation-v2/outputs/confirmation-first/worker/final-RAW-fields.pt",
+      "sha256": "62cad3ddd899a1351a9761494d882c16e0606179c6acaaff7ead2c0bb4460026"
+    },
+    "independent_saved_tensor_audit": {
+      "path": "/mnt/nvme/sliders/experiments/lr-standardization-20261104/supra/pg095-opportunistic-confirmation-v2/independent-final-saved-fields-audit-v1.json",
+      "sha256": "c9177f136d6238a20e2a4187018a7d82e812ac8d8297b3cf541b3b8231c6f033"
+    },
+    "fresh_cache_sha256": "83e8a44700fc1d1c6b4a51e795318746d4c289786572e2a7667e9c317054a88c",
+    "contexts_sha256": "de73df48081b3dca59663e630d197b3d4eb21865da4681e30b8c1cdfaed4fee3"
+  },
+  "confirmation_per_example": [
+    {
+      "scene": "desert_sentinel",
+      "seed": 307,
+      "squared_error": 1933.5024953709258,
+      "teacher_edit_energy": 3476.14799905071,
+      "relative": 0.5562198433147667
+    },
+    {
+      "scene": "desert_sentinel",
+      "seed": 809,
+      "squared_error": 2248.034790002711,
+      "teacher_edit_energy": 3537.1069890796352,
+      "relative": 0.6355574759098976
+    },
+    {
+      "scene": "forest_druid",
+      "seed": 307,
+      "squared_error": 859.3012673395817,
+      "teacher_edit_energy": 1695.368309105703,
+      "relative": 0.5068522649175023
+    },
+    {
+      "scene": "forest_druid",
+      "seed": 809,
+      "squared_error": 931.9791825270577,
+      "teacher_edit_energy": 1745.6873794896655,
+      "relative": 0.533875190642389
+    },
+    {
+      "scene": "harbor_captain",
+      "seed": 307,
+      "squared_error": 937.6051268135611,
+      "teacher_edit_energy": 2198.2902391454777,
+      "relative": 0.42651562114838315
+    },
+    {
+      "scene": "harbor_captain",
+      "seed": 809,
+      "squared_error": 879.4482366161811,
+      "teacher_edit_energy": 2133.9816628187145,
+      "relative": 0.41211611699350004
+    }
+  ],
+  "selection_rule": "Only held-outRAW relativeSSE ranks/confirms. Preservation/lateweak/media are diagnostic, no veto.",
+  "limits": "Measured G recommendation at fixedcritic.018 for this source/model/data/numerical/native256 research128-update recipe. Other concepts, geometry or longer budgets require new evidence. Product defaults are unchanged."
+}

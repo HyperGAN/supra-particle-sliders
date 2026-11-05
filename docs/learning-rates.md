@@ -1,3 +1,5 @@
+For the current PG0.9.5 source-bound native256 research measurement, see [the PG0.9.5 rates and evidence](learning-rates-pg095.md).
+
 **Source scope:** the measured recommendation and options below belong to the historical PG0.9.4 cohort. They are not a PG0.9.5 calibration; [new-source adoption](pg095.md) requires fresh runs.
 
 # Measured Supra learning rates
