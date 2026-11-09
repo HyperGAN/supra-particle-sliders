@@ -1,0 +1,95 @@
+{
+  "schema": "particle-slider-scoped-finished-output-rate-guidance-v1",
+  "as_of": "2026-11-09",
+  "product_id": "supra-particle-sliders",
+  "concept": "Final Boss",
+  "selection_metric": "Equal-case arithmetic mean of intended-effect intensity ON minus exact matched OFF in finished images; higher wins.",
+  "comparison_policy": "Retain negative gains, native zeros and exact ties. Technical failures are missing evidence, not zero. No teacher-SSE, preservation, beauty, confidence or completion selector/tiebreak. Reuse completed searches, checkpoints, proofs, outputs and first scores; no additional fresh confirmation or worse-arm completion.",
+  "common_rate_overrides": {
+    "lr": 0.036,
+    "d_lr_mult": 0.5,
+    "ema_decay": null
+  },
+  "product_option_fragment": {
+    "lr": 0.036,
+    "d_lr_mult": 0.5,
+    "ema_decay": null
+  },
+  "actual_rates": {
+    "G": 0.036,
+    "D": 0.018,
+    "bank": null
+  },
+  "profile": {
+    "concept": "Final Boss",
+    "training_updates": 128,
+    "horizon": 128,
+    "training_resolution": 256,
+    "render_resolution": 256,
+    "base_precision": "float32",
+    "rank": 16,
+    "batch": 4,
+    "particle_bank": false
+  },
+  "primary": {
+    "training_updates": 64,
+    "cases": 4,
+    "mean_gain": 0.01690487563610077,
+    "candidate_means": [
+      {
+        "G": 0.036,
+        "mean_gain": 0.01690487563610077
+      },
+      {
+        "G": 0.072,
+        "mean_gain": 0.014670006930828094
+      }
+    ],
+    "per_case_gains": {
+      "case0-knight": 0.024076645572980244,
+      "case1-robot": 0.0315010075767835,
+      "case2-sorceress": 0.0066622719168663025,
+      "case3-wolf": 0.0053795774777730294
+    }
+  },
+  "separate_fresh_result": {
+    "training_updates": 128,
+    "cases": 4,
+    "mean_gain": 0.00974137553324302,
+    "per_case_gains": {
+      "fresh0-armor": -0.004139254490534466,
+      "fresh1-automaton": 0.028357493380705513,
+      "fresh2-traveler": 0.015438643594582878,
+      "fresh3-bear": -0.0006913803517818451
+    },
+    "scope": "Separately frozen fresh cases; not pooled with the primary comparison."
+  },
+  "weight_EMA": null,
+  "measurement_kind": "Frozen model instrument (SigLIP2), not human or statistical validation.",
+  "scope": "Conditional best tested G in the recorded concept/native profile/budget at fixed D and bank where present; not a global or joint optimum. Package defaults are unchanged.",
+  "additional_fresh_confirmation_required": false,
+  "selected_checkpoint_availability": "Private retained RAW checkpoint, not included in this repository or newly released by this documentation.",
+  "source_records": [
+    {
+      "role": "primary_result",
+      "name": "result.json",
+      "bytes": 27720,
+      "sha256": "b60ee9f2c5985295213e097cad6d37a0df6cc2a6a26aab814abaa5ffced18e74",
+      "availability": "Retained campaign evidence; not bundled as a public artifact download."
+    },
+    {
+      "role": "primary_decision",
+      "name": "root-matched64-continuation-selection-v1.json",
+      "bytes": 2645,
+      "sha256": "b71456dc0a4bd60994b2a4798125bc150a5bd4288d46e2c54d514ea74bd8df5d",
+      "availability": "Retained campaign evidence; not bundled as a public artifact download."
+    },
+    {
+      "role": "fresh_result",
+      "name": "result.json",
+      "bytes": 16728,
+      "sha256": "d6c04f303929366bf1ac01f8559ff33417646b7fc7cabeda33ce7b7e63c56ee6",
+      "availability": "Retained campaign evidence; not bundled as a public artifact download."
+    }
+  ]
+}

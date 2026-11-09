@@ -1,9 +1,11 @@
 # Measured PG0.9.5 learning rates
 
-The Final boss native256 research recipe selected generator rate **`0.024`**
-and critic rate **`0.018`** in bounded sequential screens, with no particle bank. Use
-`lr=0.024` and **`d_lr_mult=0.7499999999999999`**; that multiplier preserves the
-exact tested binary floating-point critic value.
+**Historical response-error diagnostic.** Current finished-output guidance is [G0.036 with its retained effect evidence](finished-output-learning-rates.md); use that saved result without another search or confirmation. All numerical SSE tables, checkpoints and original source identities below remain unchanged.
+
+The historical Final boss native256 response-error study selected generator rate **`0.024`**
+and critic rate **`0.018`** in bounded sequential screens, with no particle bank. Its
+original options were `lr=0.024` and **`d_lr_mult=0.7499999999999999`**; that multiplier
+preserves the exact tested binary floating-point critic value. This is not the current effect selector.
 
 The [options overlay](../configs/supra/final-boss-pg095-native256-research-fp32-128.options.json)
 selects 128 updates, batch4, rank16 and FP32 base precision. Apply it to verified
@@ -33,7 +35,7 @@ examples, pooling four native response positions within each example (24fields).
 All six teacher examples had positive edit energy. An independent saved-tensor
 audit reproduced the score exactly. OFF scores1.0.
 
-The sole metric casts student, teacher and neutral tensors to FP64 before
+That historical response-error metric casts student, teacher and neutral tensors to FP64 before
 subtraction, pools squared error and teacher-edit energy within each example,
 divides per example, then averages examples equally. Teacher-only zero-energy
 examples are undefined and excluded without an epsilon; every student response
