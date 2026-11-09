@@ -16,11 +16,18 @@ python -m supra.train --config /absolute/path/session.json --out runs/new-cohort
 ```
 
 See [current installation and checkpoint contract](docs/pg095.md).
-For the **PG0.9.5 native256 research** Final boss FP32 128-update recipe, the
-held-out-confirmed recommendation is G `0.024`, D `0.018`, no bank
-(`lr=0.024`, `d_lr_mult=0.7499999999999999`). Held-out RAW relative SSE is
-**`0.5118560854877398`** across six examples (OFF `1.0`). See the
-[exact research scope, measured evidence and options](docs/learning-rates-pg095.md).
+**Current finished-image guidance:** use the existing Final Boss G **`0.036`**
+RAW128 at fixed D `0.018`, no bank (`lr=0.036`, `d_lr_mult=0.5`,
+`ema_decay=null`). It won the matched RAW64 comparison at equal-case intended-effect
+ON−OFF mean `0.01690487563610077`; the separate completed RAW128 fresh-case mean
+is `0.00974137553324302`, retaining both negative cases. Reuse this saved result;
+no new search or confirmation is required. [Exact scope and how-to](docs/finished-output-learning-rates.md)
+· [portable rate/score record](docs/finished-output-rate.json).
+
+The earlier PG0.9.5 native256 **response-SSE diagnostic** selected G `0.024`,
+D `0.018`, no bank; its held-out relative SSE `0.5118560854877398` remains
+unchanged in [the historical research evidence](docs/learning-rates-pg095.md).
+SSE does not select or break ties for current finished-output guidance.
 
 For the **historical PG0.9.4** Final boss FP32 128-update recipe, the measured recommendation is
 G `0.036`, D `0.018` (`lr=0.036`, `d_lr_mult=0.5`), with no particle bank.

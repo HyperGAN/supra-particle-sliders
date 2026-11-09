@@ -1,6 +1,6 @@
-For the current PG0.9.5 source-bound native256 research measurement, see [the PG0.9.5 rates and evidence](learning-rates-pg095.md).
+Current guidance uses [finished-output intended-effect scores](finished-output-learning-rates.md). The PG0.9.4 result below and [PG0.9.5 response-error study](learning-rates-pg095.md) remain historical diagnostics.
 
-**Source scope:** the measured recommendation and options below belong to the historical PG0.9.4 cohort. They are not a PG0.9.5 calibration; [new-source adoption](pg095.md) requires fresh runs.
+**Source scope:** the measured recommendation and options below belong to the historical PG0.9.4 cohort. They are not a PG0.9.5 calibration or a current finished-output selector. Preserve matching source identities and reuse existing completed evidence; no repeated search or extra confirmation is implied.
 
 # Measured Supra learning rates
 
@@ -42,7 +42,7 @@ than an optimum established at every training budget or concept.
 
 ## Selection and confirmation
 
-The sole selection metric is raw teacher/student relative squared error. For
+That historical study selected by raw teacher/student relative squared error. For
 each example, subtract tensors in FP64, pool squared errors and teacher-edit
 energy across its positions and coordinates, divide within the example, then
 average examples equally. Lower is better. OFF, teacher and reversed-edit
@@ -61,7 +61,7 @@ verified.
 
 Preservation drift, late/weak-field scores and media quality are optional
 diagnostics. They do not select or reject a rate for this optimization task.
-Earlier rejection on those grounds is superseded by this one-metric rule.
+This describes the historical diagnostic study; the current sole selector is intended-effect gain in finished outputs.
 
 ## Measured scope and evidence
 
