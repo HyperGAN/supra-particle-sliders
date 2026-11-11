@@ -276,3 +276,8 @@ pending. No native model load or training is implied by this example.
 Learning-rate controls and preserved defaults: [LEARNING-RATES.md](LEARNING-RATES.md).
 
 Fresh current-source teacher cache calibration: [FRESH-CACHE.md](FRESH-CACHE.md).
+
+
+## Explicit cached HNDL initialization
+
+See [FRESH95.md](FRESH95.md) for the additional `supra_fresh95` fresh/FULL/RAW Python API, its completed-cache and exact original HNDL-context prerequisites, and the limited synthetic software evidence. Existing registered defaults and measured LR cohorts remain unchanged.

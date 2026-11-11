@@ -34,7 +34,7 @@ where = ["."]
 include = ["supra*"]
 
 [tool.setuptools.package-data]
-supra = ["lifecycle.lock.json", "shared.lock.json", "core081-receipt.json", "core012-ddb4142-receipt.json", "core013-pg095-receipt.json", "thin-product-provenance.json", "licenses/*"]
+supra = ["lifecycle.lock.json", "shared.lock.json", "core081-receipt.json", "core012-ddb4142-receipt.json", "core013-pg095-receipt.json", "core013-pg095-hndl-receipt.json", "supra_lora.hndl", "thin-product-provenance.json", "licenses/*"]
 
 [tool.setuptools.exclude-package-data]
-supra = ["core012-receipt.json", "*.hndl"]
+supra = ["core012-receipt.json"]
