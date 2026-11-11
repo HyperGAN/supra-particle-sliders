@@ -4,3 +4,8 @@ include scripts/build_hndl_profile.py
 recursive-include profiles *.toml *.md
 
 include FRESH-CACHE.md
+
+# Explicit cached fresh95 documentation and original HNDL assets.
+include FRESH95.md
+include supra/supra_lora.hndl
+include supra/core013-pg095-hndl-receipt.json
