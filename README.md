@@ -1,3 +1,5 @@
+> **Calculated memory planning:** training **8 GiB VRAM / 8 GiB host RAM** (256×256, B=4, FP32 storage; BF16 CUDA autocast); sampling **8 GiB VRAM / 8 GiB host RAM** (256×256). See [MEMORY.md](MEMORY.md) for checkpointed/phase variants, attention fallback and exact limits. These are conservative calculated budgets, not measured peaks.
+
 **Current source: core 0.13.0 / ParticleGAN 0.9.5.** See [PG095 installation and cohort contract](docs/pg095.md). Earlier version descriptions below are retained historical context, not the current installer.
 
 # Supra particle sliders — current ParticleGAN 0.9.5 integration

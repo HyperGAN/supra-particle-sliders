@@ -1,0 +1,302 @@
+{
+  "schema": "slider-memory-source-facts-v1",
+  "date": "2026-11-14",
+  "calculation_only": true,
+  "models_constructed": 0,
+  "framework_imports": 0,
+  "GPU_operations": 0,
+  "model": "SupraLabs/Supra2-IMG",
+  "revision": "10dec6e4b4b5d1c44fd1d7d3fe5e50137333da5b",
+  "frozen_weights": [
+    {
+      "component": "DiT",
+      "parameters": 104094736,
+      "bytes": 416378944
+    },
+    {
+      "component": "Flan-T5 encoder",
+      "parameters": 109628544,
+      "bytes": 438514176
+    },
+    {
+      "component": "VAE serialized FP32 upper bound",
+      "bytes": 334643276
+    }
+  ],
+  "parameter_derivation": "DiT constructor declares 104,094,736 parameters. Flan encoder only: V×d +12×(4d²+3d×d_ff+2d)+d+32×heads = 109,628,544; the full T5 decoder file is a loading allowance, not extra GPU decoder residency.",
+  "trainable": {
+    "parameters": 1758913,
+    "FP32_weights_bytes": 7035652,
+    "gradient_bytes": 7035652,
+    "persistent_momentum_or_Adam_tensor_bytes": 0,
+    "optimizer_transient_allowance_bytes": 117982256,
+    "optimizer_transient_formula": "48*A + 32MiB; FP32 protected normals/directions, FP64 promoted normals/displacements and small-matrix SVD/Gram workspace; conservative simultaneous allowance"
+  },
+  "trainable_derivation": "16×(768+576)+14×16×(13×576)+60,097 critic = 1,758,913; no particle bank",
+  "metadata": [
+    {
+      "repository": "google/flan-t5-base",
+      "requested_revision": "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2",
+      "resolved_revision": "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2",
+      "repository_metadata_sha256": "1e21c1faaaf742e57a6c4a06572abc3493c9e23a87e6b37d7a9ba81cdd9775d4",
+      "weight_files": [
+        {
+          "path": "model.safetensors",
+          "size": 990345061,
+          "lfs_sha256": "1dfb70afdcedceb9f9fae2f9b68e004ad934361fb35b9b2bd50b45ea90790fc8"
+        },
+        {
+          "path": "pytorch_model.bin",
+          "size": 990402637,
+          "lfs_sha256": "521ad557548700c7f342a804b51c7c17440c33662c387883c0a39ebbdec17a28"
+        }
+      ],
+      "configs": {
+        "config.json": {
+          "URL": "https://huggingface.co/google/flan-t5-base/resolve/7bcac572ce56db69c1ea7c8af255c5d7c9672fc2/config.json",
+          "bytes": 1404,
+          "sha256": "7c1853dbfa0e4aac093eb109a358b6ab25fe86b7c15185a91322f0ed26f0f940",
+          "value": {
+            "architectures": [
+              "T5ForConditionalGeneration"
+            ],
+            "d_ff": 2048,
+            "d_kv": 64,
+            "d_model": 768,
+            "decoder_start_token_id": 0,
+            "dropout_rate": 0.1,
+            "eos_token_id": 1,
+            "feed_forward_proj": "gated-gelu",
+            "initializer_factor": 1.0,
+            "is_encoder_decoder": true,
+            "layer_norm_epsilon": 1e-06,
+            "model_type": "t5",
+            "n_positions": 512,
+            "num_decoder_layers": 12,
+            "num_heads": 12,
+            "num_layers": 12,
+            "output_past": true,
+            "pad_token_id": 0,
+            "relative_attention_max_distance": 128,
+            "relative_attention_num_buckets": 32,
+            "task_specific_params": {
+              "summarization": {
+                "early_stopping": true,
+                "length_penalty": 2.0,
+                "max_length": 200,
+                "min_length": 30,
+                "no_repeat_ngram_size": 3,
+                "num_beams": 4,
+                "prefix": "summarize: "
+              },
+              "translation_en_to_de": {
+                "early_stopping": true,
+                "max_length": 300,
+                "num_beams": 4,
+                "prefix": "translate English to German: "
+              },
+              "translation_en_to_fr": {
+                "early_stopping": true,
+                "max_length": 300,
+                "num_beams": 4,
+                "prefix": "translate English to French: "
+              },
+              "translation_en_to_ro": {
+                "early_stopping": true,
+                "max_length": 300,
+                "num_beams": 4,
+                "prefix": "translate English to Romanian: "
+              }
+            },
+            "tie_word_embeddings": false,
+            "transformers_version": "4.23.1",
+            "use_cache": true,
+            "vocab_size": 32128
+          }
+        }
+      },
+      "indexes": {}
+    },
+    {
+      "repository": "stabilityai/sd-vae-ft-mse",
+      "requested_revision": "31f26fdeee1355a5c34592e401dd41e45d25a493",
+      "resolved_revision": "31f26fdeee1355a5c34592e401dd41e45d25a493",
+      "repository_metadata_sha256": "2ef3eecce3d7489d09db3811acfdcbc837d9e6e9f7c7cc889c63a6a4210deba9",
+      "weight_files": [
+        {
+          "path": "diffusion_pytorch_model.bin",
+          "size": 334707217,
+          "lfs_sha256": "1b4889b6b1d4ce7ae320a02dedaeff1780ad77d415ea0d744b476155c6377ddc"
+        },
+        {
+          "path": "diffusion_pytorch_model.safetensors",
+          "size": 334643276,
+          "lfs_sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815"
+        }
+      ],
+      "configs": {
+        "config.json": {
+          "URL": "https://huggingface.co/stabilityai/sd-vae-ft-mse/resolve/31f26fdeee1355a5c34592e401dd41e45d25a493/config.json",
+          "bytes": 547,
+          "sha256": "92d3dfb746fca211a2c9e019e285f8597412211728dce3c5bcf4eda0f2d62e7e",
+          "value": {
+            "_class_name": "AutoencoderKL",
+            "_diffusers_version": "0.4.2",
+            "act_fn": "silu",
+            "block_out_channels": [
+              128,
+              256,
+              512,
+              512
+            ],
+            "down_block_types": [
+              "DownEncoderBlock2D",
+              "DownEncoderBlock2D",
+              "DownEncoderBlock2D",
+              "DownEncoderBlock2D"
+            ],
+            "in_channels": 3,
+            "latent_channels": 4,
+            "layers_per_block": 2,
+            "norm_num_groups": 32,
+            "out_channels": 3,
+            "sample_size": 256,
+            "up_block_types": [
+              "UpDecoderBlock2D",
+              "UpDecoderBlock2D",
+              "UpDecoderBlock2D",
+              "UpDecoderBlock2D"
+            ]
+          }
+        }
+      },
+      "indexes": {}
+    }
+  ],
+  "source_citations": [
+    "supra/native_model.py",
+    "supra/runtime.py",
+    "supra/card.py",
+    "supra/lifecycle.py",
+    "supra/cache.py"
+  ],
+  "profiles": [
+    {
+      "operation": "Train native default256px",
+      "gpu_count": 1,
+      "calculated_VRAM_per_GPU_GiB": 8,
+      "calculated_host_RAM_GiB": 8,
+      "geometry": "256×256",
+      "batch_graphs": 4,
+      "text_token_bound": 128,
+      "checkpointing": false,
+      "attention": "dense math fallback",
+      "resident_frozen_bytes": 1189536396,
+      "activation_allowance_bytes": 3170893824,
+      "trainable_and_optimizer_peak_bytes": 132053560,
+      "other_GPU_allowance_bytes": 0,
+      "GPU_subtotal_bytes": 4492483780,
+      "host_loading_and_cache_subtotal_bytes": 3029317989,
+      "runtime_headroom": "GPU: 25% subtotal +2GiB; host:25% subtotal +4GiB; final ceil4GiB",
+      "notes": "Actual canonical PG batch4, rank16,19 frozen contexts; conservative dense self/cross attention fallback.",
+      "activation_envelope_inputs": {
+        "D": 576,
+        "I": 2304,
+        "H": 9,
+        "L": 14,
+        "N": 384,
+        "B": 4,
+        "scalar_bytes": 4,
+        "checkpointed": false,
+        "dense_fallback": true
+      },
+      "precision": "FP32 storage; BF16 CUDA autocast",
+      "quantization_metadata_bytes": 0,
+      "activation_allowance_model": "Conservative planning envelope; linear transformer terms plus explicit dense fallback, text/KV or decode/pixel allowance as recorded in profile notes. Not measured or a formal peak guarantee."
+    },
+    {
+      "operation": "Sample native256px",
+      "gpu_count": 1,
+      "calculated_VRAM_per_GPU_GiB": 8,
+      "calculated_host_RAM_GiB": 8,
+      "geometry": "256×256",
+      "batch_graphs": 1,
+      "text_token_bound": 128,
+      "checkpointing": false,
+      "attention": "dense math fallback",
+      "resident_frozen_bytes": 1189536396,
+      "activation_allowance_bytes": 1073741824,
+      "trainable_and_optimizer_peak_bytes": 7035652,
+      "other_GPU_allowance_bytes": 0,
+      "GPU_subtotal_bytes": 2270313872,
+      "host_loading_and_cache_subtotal_bytes": 3029317989,
+      "runtime_headroom": "GPU: 25% subtotal +2GiB; host:25% subtotal +4GiB; final ceil4GiB",
+      "notes": "50 Euler steps, CFG3; CFG doubles native batch during sampling, covered by the decode-dominated allowance.",
+      "activation_envelope_inputs": {
+        "D": 576,
+        "I": 2304,
+        "H": 9,
+        "L": 14,
+        "N": 384,
+        "B": 1,
+        "scalar_bytes": 4,
+        "checkpointed": false,
+        "dense_fallback": true
+      },
+      "precision": "FP32 storage; BF16 CUDA autocast",
+      "quantization_metadata_bytes": 0,
+      "activation_allowance_model": "Conservative planning envelope; linear transformer terms plus explicit dense fallback, text/KV or decode/pixel allowance as recorded in profile notes. Not measured or a formal peak guarantee."
+    }
+  ],
+  "repository": "supra-particle-sliders",
+  "optimizer_source_facts": [
+    {
+      "version": "0.9.5",
+      "source_file": "recipes.py",
+      "bytes": 104250,
+      "sha256": "4f86c1a5c029916e73c834ebea4aae3bd5502dde8f10628e5a99a23f7e60242c"
+    },
+    {
+      "version": "0.9.5",
+      "source_file": "optim/dualnorm.py",
+      "bytes": 56768,
+      "sha256": "8e57be915dc8be44aaff2ac2f7ad39fbb2a7c610d77340e9f13e895974bf173c"
+    },
+    {
+      "version": "0.9.5",
+      "source_file": "optim/direction_blend.py",
+      "bytes": 4011,
+      "sha256": "84982277f0559e68aceea6d1c5ee60129c1e1972bebf61ca47dfa38b8611a1fb"
+    },
+    {
+      "version": "0.9.5",
+      "source_file": "optim/constraint_geometry.py",
+      "bytes": 9142,
+      "sha256": "e51a90df05857bd986ff097a6d266bd22cefa93a0d545a6fb25d58b42775ce4c"
+    }
+  ],
+  "KV_or_recurrent_state": {
+    "type": "bidirectional T5 encoder; no autoregressive KV",
+    "bytes": 0
+  },
+  "cache_limits": {
+    "max_rows": 128,
+    "max_cached_prompts": 19,
+    "field_shape": [
+      1,
+      4,
+      32,
+      32
+    ],
+    "FP32_fields_per_row": 3,
+    "prompt_hidden": [
+      1,
+      128,
+      768
+    ],
+    "prompt_bytes_per_element": 4,
+    "FP32_row_tensor_bytes": 6291456,
+    "prompt_embedding_bytes": 7471104,
+    "host_cache_formula": "max_rows*3*product(field_shape)*4 +max_cached_prompts*product(prompt_hidden)*prompt_bytes_per_element; native masks/indices included in loader/cache reserve"
+  }
+}
