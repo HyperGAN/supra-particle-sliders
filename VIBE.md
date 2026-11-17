@@ -24,22 +24,28 @@ and the verified HyperGAN builder. Installing the public product with its defaul
 core0.13 dependency does not enable that environment. The existing public
 fresh95 factory and historical data checks are unchanged.
 
-The November17 run completed32 of a declared128 updates using eight newly
-qualified contexts and800 completed native paired fields. FULL states include
-the original initializer receipt, optimizer histories and RNG/counters. It uses
-raw current weights, `ema_decay=None`, no particle bank and no CPU model math.
-G0.036/D0.018 are a provisional reuse of the historical scoped recommendation;
-this experiment does not establish a new EMPF optimum. The first process stopped
-at the live host-memory floor after FULL32/RAW32 and three completed ON latents.
-Output-only recovery reused those three and completed the remaining five without
-training updates. Finished-image checks now pass: equal-case intended-effect gain **0.2254166667**
-over eight matched training cases, and a separate catastrophic-only pass on all16
-images. The strict public loader also reproduced case0’s50-step native latent
-exactly on an independent fresh CUDA backbone, with zero updates or official
-initializer calls. These are scoped development measurements, not an unseen
-confirmation or released trained weights. [Validation record](docs/vibe-native32-verification.json).
-The first32→64 attempt then stopped during loading at the host-memory floor,
-with zero new updates; its complete saved32 state remains.
+The November17 run completed its declared128 updates using eight qualified
+matched cases and800 completed native paired fields. FULL states preserve the
+original initializer receipt, optimizer histories and RNG/counters. It uses raw
+current weights, `ema_decay=None`, no particle bank and no CPU model forward or
+backward. G0.036/D0.018 provisionally reuse the historical scoped reference; no
+new EMPF/vibe optimum is claimed.
+
+Equal-case intended-effect gains at32/64/96/128 are0.2254167,0.28,0.2733333 and
+0.2670833. RAW64 is selected by that sole metric. All16 native OFF/ON images pass
+the separate catastrophic-only check at every quarter. The strict public reader
+reproduced the selected checkpoint's case0 native50-step latent exactly on a
+fresh CUDA backbone, with zero official initializer calls or training updates.
+All142 RAW tensor payloads match FULL64. A saved-state audit verifies every one
+of128 FULL hashes and embedded steps, the original initializer receipt in each,
+71 zero-UP payloads in FULL0, and128 actual regularizer calls (`lazy_k=1`).
+These are eight training cases, not an unseen confirmation or released weights.
+[Completed validation](docs/vibe-native128-verification.json) ·
+[Earlier RAW32 validation](docs/vibe-native32-verification.json).
+
+Actual host-floor failures and partial output work remain retained. Recovery
+strictly loaded saved FULL states, reused completed conditioning/fields/outputs,
+and never repeated a completed update prefix. The historical cohort is intact.
 
 The RAW format is `Supra-native256-vibe-FP32-HNDL-v1`, with original named adapter
 tensors and bound model/revision metadata. `supra_pg0100_vibe.inference.load_raw`

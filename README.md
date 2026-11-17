@@ -19,11 +19,11 @@ python -m supra.train --config /absolute/path/session.json --out runs/new-cohort
 
 See [current installation and checkpoint contract](docs/pg095.md).
 
-Optional adaptive `supra-vibe --vibe '…'` collection and the separate experimental
-native EMPF/HNDL training binding are described in [VIBE.md](VIBE.md). The new
-32-update development checkpoint passes its scoped native output/reload checks;
-its128-update run is unfinished. It is not a released replacement for the saved
-recommendation below.
+Optional adaptive `supra-vibe --vibe '…'` collection and the separate native
+EMPF/HNDL experiment are described in [VIBE.md](VIBE.md). The new final-boss
+cohort completed128 updates and selected RAW64 with mean training-case effect
+gain0.28; its strict native replay is exact. This development result is not a
+released replacement for the historical recommendation below.
 
 **Current finished-image guidance:** use the existing Final Boss G **`0.036`**
 RAW128 at fixed D `0.018`, no bank (`lr=0.036`, `d_lr_mult=0.5`,
