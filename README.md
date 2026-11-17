@@ -18,6 +18,12 @@ python -m supra.train --config /absolute/path/session.json --out runs/new-cohort
 ```
 
 See [current installation and checkpoint contract](docs/pg095.md).
+
+Optional adaptive `supra-vibe --vibe '…'` collection and the separate experimental
+native EMPF/HNDL training binding are described in [VIBE.md](VIBE.md). The new
+32-update development checkpoint is awaiting finished-image checks; it is not a
+released replacement for the saved recommendation below.
+
 **Current finished-image guidance:** use the existing Final Boss G **`0.036`**
 RAW128 at fixed D `0.018`, no bank (`lr=0.036`, `d_lr_mult=0.5`,
 `ema_decay=null`). It won the matched RAW64 comparison at equal-case intended-effect
