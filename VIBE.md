@@ -32,8 +32,14 @@ G0.036/D0.018 are a provisional reuse of the historical scoped recommendation;
 this experiment does not establish a new EMPF optimum. The first process stopped
 at the live host-memory floor after FULL32/RAW32 and three completed ON latents.
 Output-only recovery reused those three and completed the remaining five without
-training updates. Finished-image effect/failure gates remain pending. These are
-development measurements, not released trained weights.
+training updates. Finished-image checks now pass: equal-case intended-effect gain **0.2254166667**
+over eight matched training cases, and a separate catastrophic-only pass on all16
+images. The strict public loader also reproduced case0’s50-step native latent
+exactly on an independent fresh CUDA backbone, with zero updates or official
+initializer calls. These are scoped development measurements, not an unseen
+confirmation or released trained weights. [Validation record](docs/vibe-native32-verification.json).
+The first32→64 attempt then stopped during loading at the host-memory floor,
+with zero new updates; its complete saved32 state remains.
 
 The RAW format is `Supra-native256-vibe-FP32-HNDL-v1`, with original named adapter
 tensors and bound model/revision metadata. `supra_pg0100_vibe.inference.load_raw`
