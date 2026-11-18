@@ -72,3 +72,23 @@ every remote file hash plus downloads all four weights for readback. Existing
 remote content is preserved; an update requires `--expected-parent` matching
 the inspected Hub commit. The source archive includes the pinned backend and
 its notices but no base weights, caches, optimizer state or local environment.
+
+## Publish a reviewed bundle to GitHub
+
+Run the bundle validation above and stage the approved files at a public
+revision of `ntc-ai/supra-particle-sliders`. The workflow reads the Hub without
+credentials. Use a source commit already in the history of `main`, then open
+a PR adding or updating the root `release.json` with these fields:
+
+- `tag` is the new GitHub release version, in `vMAJOR.MINOR.PATCH` format.
+- `source_commit` is the full Git commit the bundle was built from.
+- `hub_revision` is the full Hub commit containing the staged bundle.
+- `manifest_sha256` is the SHA-256 of `release-manifest.json` at that revision.
+
+Run `python scripts/github_release.py prepare --directory /tmp/supra-release-assets`
+to check the same inputs locally. The PR check compares the source provenance
+and adapter catalog with the reviewed manifest and verifies the SHA-256 of
+each of the seven GitHub attachments. Merging the PR to `main` publishes those
+verified files from a draft and tags the bundle's source commit. A rerun keeps
+an exact existing release and fails if its tag or assets differ. A checkout
+without `release.json` runs the workflow tests without requesting publication.
