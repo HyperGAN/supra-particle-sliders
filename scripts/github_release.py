@@ -200,11 +200,13 @@ def publish(request, directory):
     if draft["draft"]:
         command(
             "gh", "api", "--method", "PATCH", f"repos/{REPOSITORY}/releases/{draft['id']}",
+            "-f", f"tag_name={tag}", "-f", f"target_commitish={request['source_commit']}",
             "-F", "draft=false", "-f", "make_latest=legacy",
         )
     checked_tag(request, required=True)
     release = get_release(tag)
-    if release["id"] != draft["id"] or release["draft"] or missing_assets(release, records):
+    if (not release or release["id"] != draft["id"] or release["draft"]
+            or release["prerelease"] or missing_assets(release, records)):
         raise ValueError("Public release readback does not match the verified draft")
     print(f"Published {release['html_url']}")
 
