@@ -117,6 +117,8 @@ class GitHubReleaseTest(unittest.TestCase):
         self.assertEqual(upload[:4], ("gh", "release", "upload", self.request["tag"]))
         self.assertEqual(Path(upload[4]).name, assets[-1]["name"])
         self.assertEqual(publish[:4], ("gh", "api", "--method", "PATCH"))
+        self.assertIn(f"tag_name={self.request['tag']}", publish)
+        self.assertIn(f"target_commitish={self.request['source_commit']}", publish)
 
     def test_unverified_draft_can_never_go_public(self):
         draft = {"assets": self.uploaded_assets()}
