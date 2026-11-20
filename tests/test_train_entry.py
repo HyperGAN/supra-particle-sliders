@@ -34,7 +34,7 @@ def test_product_uses_the_installed_dispatcher_instead_of_historical_campaign():
     assert "scripts.train_pg09" not in source
 
 
-@pytest.mark.parametrize("script", ["infer_supra.py", "distill_final_boss.py", "train_pg09.py",
+@pytest.mark.parametrize("script", ["infer_supra.py", "distill_final_boss.py", "train_engine.py",
     "prepare_pg09_contexts.py", "train_lora_supra.py", "train_final_boss.py", "converge_final_boss.py"])
 def test_entrypoint_help_works_before_package_resolution(script):
     environment = dict(os.environ)
@@ -55,7 +55,7 @@ def test_archival_mse_entry_rejects_before_source_or_output(script, tmp_path):
     assert not destination.exists()
 
 
-@pytest.mark.parametrize("script", ["train_pg09.py", "train_lora_supra.py"])
+@pytest.mark.parametrize("script", ["train_engine.py", "train_lora_supra.py"])
 def test_canonical_alias_propagates_dispatcher_failure(script, tmp_path):
     result = subprocess.run([sys.executable, str(ROOT / "scripts" / script),
         "--config", str(tmp_path / "missing.json"), "--check", "--no-reporting"],

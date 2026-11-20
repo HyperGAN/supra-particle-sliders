@@ -9,7 +9,8 @@ import json
 import math
 
 import torch
-from particle_sliders.pg09_backends import FlowSchedule, ResponseRow, SupraRuntimeResponseAdapter
+from particle_sliders.backends import FlowSchedule, ResponseRow
+from supra.response_binding import SupraRuntimeResponseAdapter
 from particle_sliders.field_critic import FieldCritic as CampaignFieldCritic
 from particle_sliders.field_critic import seed_initialization_rng as _seed_initialization_rng
 from .cache import SupraCampaignRows, tensor_identity
@@ -47,7 +48,7 @@ class SupraCampaignRun:
         from PIL import Image
         noise = self.runtime.noise(case['seed'])
         row = ResponseRow(case['prompt'], case['prompt'], '', noise,
-                          schedule=FlowSchedule.supra(case['steps']), guidance=case['cfg'])
+                          schedule=FlowSchedule.increasing_linear(case['steps']), guidance=case['cfg'])
         image = self.backend.render(row, scale=case['scale'])
         if not torch.isfinite(image).all():
             raise FloatingPointError('nonfinite Supra VAE float output before image conversion')
@@ -57,7 +58,7 @@ class SupraCampaignRun:
 def build_supra_campaign(runtime, rows, *, model_identity, total_steps=28800, batch_size=4,
                          seed=7, critic_width=32, response_scale=None, recipe_overrides=None):
     """Bind already-admitted native runtime; no model loads or implicit text encode."""
-    from particle_sliders.pg095 import ConditionalPG095 as ConditionalPG09
+    from particle_sliders.engine import ConditionalParticleGAN
     if rows.split != 'train':
         raise ValueError('training requires train split; validation is evaluation-only')
     if total_steps < 1 or total_steps > 28800 or batch_size != 4:
@@ -92,7 +93,7 @@ def build_supra_campaign(runtime, rows, *, model_identity, total_steps=28800, ba
     with torch.random.fork_rng(devices=devices):
         _seed_initialization_rng(seed, devices)
         critic = CampaignFieldCritic(4, rows.condition_width, critic_width).to(device)
-    game = ConditionalPG09(backend, rows, critic, conditions=None, particles=None,
+    game = ConditionalParticleGAN(backend, rows, critic, conditions=None, particles=None,
                           response_domain='continuous_field', response_scale=calibrated_scale,
                           preset='bispf_optimized', batch_size=batch_size, seed=seed,
                           total_steps=total_steps, sampling='balanced', recipe_overrides=recipe_overrides)

@@ -8,7 +8,7 @@ if version("particlegan") != "0.9.1":
     pytest.skip("historical PG0.9.1 source/checkpoint cohort; use its exact original checkout", allow_module_level=True)
 import torch
 
-from supra.pg09 import frozen_digest, load_checkpoint, save_checkpoint
+from supra.engine_io import frozen_digest, load_checkpoint, save_checkpoint
 from supra.runtime import adapter_state
 from supra.shared import file_sha, shared_module
 from test_pg09_integration import FixtureRuntime, admitted, equal, run_for
@@ -175,13 +175,13 @@ def test_product_io_original_adam_guard_probe_rejects_invalid_clock_atomically(
     # through real product packet/checksum IO; it does not qualify a native
     # production optimizer change or migrate an existing checkpoint.
     core = shared_module("particle_sliders.pg09")
-    native_constructor = core.ConditionalPG09
+    native_constructor = core.ConditionalParticleGAN
 
     def original_adam_probe(*args, **kwargs):
         assert kwargs.pop("preset") == "bispf_optimized"
         return native_constructor(*args, preset="bispf", **kwargs)
 
-    monkeypatch.setattr(core, "ConditionalPG09", original_adam_probe)
+    monkeypatch.setattr(core, "ConditionalParticleGAN", original_adam_probe)
     bridge = shared_module("particle_sliders.pg09_remaining_campaigns")
     monkeypatch.setattr(bridge, "CampaignFieldCritic", CriticWithUnusedParameter)
     source, receiver, directory = _started_checkpoint(admitted, tmp_path)

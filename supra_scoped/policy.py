@@ -1,4 +1,4 @@
-"""Official PG095 on SAME owned HNDL Parameters; no global host declarations."""
+"""Official ParticleGAN on SAME owned HNDL Parameters; no global host declarations."""
 from dataclasses import dataclass
 from importlib import metadata
 import hashlib, math
@@ -10,7 +10,7 @@ from .util import canonical, source_record
 
 INIT_SHA = '3534ff23efa413cdf8b4125b91e0d30671d873b3e2958547d4e744b750454b9b'
 SCHEMA = 'Supra-explicit-downQR-sqrt5-otherKEEP-initialization-v1'
-MARKER = '_supra_explicit_fresh95_receipt'
+MARKER = '_supra_explicit_scoped_receipt'
 
 @dataclass(frozen=True)
 class Construction:
@@ -78,8 +78,8 @@ def initialize(runtime, critic, construction, options, sources):
     if (not isinstance(construction, Construction) or construction.mode != 'fresh'
             or construction.options_sha256 != hashlib.sha256(canonical(options).encode()).hexdigest()):
         raise ValueError('explicit fresh intent before optimizers required')
-    if metadata.version('particlegan') != '0.9.5' or source_record(pg_init.__file__)['sha256'] != INIT_SHA:
-        raise ValueError('exact public PG095 initializer Source required')
+    if metadata.version('particlegan') != '0.11.0' or source_record(pg_init.__file__)['sha256'] != INIT_SHA:
+        raise ValueError('exact public ParticleGAN initializer Source required')
     rows = declarations(runtime, critic)
     holder = DeclaredOwned(rows)
     before = [tensor_sha(row['parameter']) for row in rows]

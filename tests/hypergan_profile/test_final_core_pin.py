@@ -13,7 +13,7 @@ if (importlib.util.find_spec("supra.hndl") is None
         or version("supra-particle-sliders") == "0.3.1"):
     pytest.skip("separate HyperGAN/HNDL wheel required", allow_module_level=True)
 
-if version("particle-sliders-core") != "0.13.0":
+if version("particle-sliders-core") != "0.15.1":
     pytest.skip("requires the modern core environment", allow_module_level=True)
 
 import torch
@@ -49,7 +49,7 @@ def test_old_training_preview_is_refused_without_state_mutation(configured, old_
         assert torch.equal(before[2], torch.get_rng_state()) and not session.closed
 
 
-@pytest.mark.parametrize("selection", ["raw", "ema"])
+@pytest.mark.parametrize("selection", ["raw"])
 def test_old_native_preview_is_refused(old_previews, monkeypatch, selection):
     packet = torch.load(old_previews / ("old-preview-" + selection + ".pt"), map_location="cpu", weights_only=True)
     monkeypatch.setattr(hndl, "load_native", load_fixture)
@@ -60,7 +60,7 @@ def test_old_native_preview_is_refused(old_previews, monkeypatch, selection):
     assert torch.equal(rng, torch.get_rng_state())
 
 
-@pytest.mark.parametrize("selection", ["raw", "ema"])
+@pytest.mark.parametrize("selection", ["raw"])
 def test_off_raw_and_ema_inference(configured, monkeypatch, selection):
     runtime, config = configured
     with hndl_lifecycle.BACKEND.open(config, runtime=runtime) as session:

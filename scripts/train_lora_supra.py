@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compatibility alias of train_pg09.py; executes the same native GAN worker."""
+"""Compatibility alias of train_engine.py; executes the same native GAN worker."""
 import sys
 from pathlib import Path
 

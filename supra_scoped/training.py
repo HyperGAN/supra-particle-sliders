@@ -5,9 +5,9 @@ import hashlib, inspect, math
 from pathlib import Path
 import torch
 from particle_sliders.field_critic import seed_initialization_rng
-from particle_sliders.fibo_hndl import HNDLFieldCritic
-from particle_sliders.pg095 import ConditionalPG095
-from particle_sliders.pg09_backends import SupraRuntimeResponseAdapter
+from supra.fibo_hndl import HNDLFieldCritic
+from particle_sliders.engine import ConditionalParticleGAN
+from supra.response_binding import SupraRuntimeResponseAdapter
 from supra import cache, hndl, hndl_lifecycle, native_io
 from supra.runtime import MODEL_REV, T5_REV
 from supra.shared import file_sha, source_cohort
@@ -15,8 +15,8 @@ from . import PROFILE
 from . import policy, ownership
 from .util import canonical, source_record, Checkpoint, file_pin, read_packet, save_packet, write_json, new_directory, equal
 
-FULL_SCHEMA = 'Supra-explicit-cached-fresh95-v1-FULL'
-RAW_SCHEMA = 'Supra-explicit-cached-fresh95-v1-RAW'
+FULL_SCHEMA = 'Supra-explicit-cached-scoped-v1-FULL'
+RAW_SCHEMA = 'Supra-explicit-cached-scoped-v1-RAW'
 
 def guard():
     """No source-root/version shortcut; execute the unchanged imported guard."""
@@ -29,16 +29,17 @@ def guard():
     hndl.verify_sources()
     from importlib import metadata
     from particlegan import init as pg_init
-    if metadata.version('particlegan') != '0.9.5' or source_record(pg_init.__file__)['sha256'] != policy.INIT_SHA:
+    if metadata.version('particlegan') != '0.11.0' or source_record(pg_init.__file__)['sha256'] != policy.INIT_SHA:
         raise RuntimeError('exact original public initializer required')
 
 def sources():
-    from particle_sliders import pg09, pg09_backends, lifecycle
+    from particle_sliders import engine, backends, lifecycle
+    from supra import response_binding
     return dict(profile=PROFILE,
         own={p.name: source_record(p) for p in sorted(Path(__file__).absolute().parent.glob('*.py'))},
         original={name: source_record(module.__file__) for name, module in
             (('hndl',hndl),('factory',hndl_lifecycle),('native_io',native_io),('cache',cache),
-             ('pg09',pg09),('pg09_backends',pg09_backends),('lifecycle',lifecycle))})
+             ('engine',engine),('backends',backends),('lifecycle',lifecycle),('response_binding',response_binding))})
 
 def read_assets(options):
     """Original asset predicates, with no teacher, encoder, model or game call."""
@@ -137,7 +138,7 @@ class Training(ownership.Owner):
                     if mode=='fresh' else deepcopy(packet['initialization']))
                 self.backend=ReceiptBackend(native,self.initialization,self.sources)
                 # Receipt already exists in actual backend metadata/signature.
-                self.game=ConditionalPG095(self.backend,rows,critic,conditions=None,particles=None,
+                self.game=ConditionalParticleGAN(self.backend,rows,critic,conditions=None,particles=None,
                     response_domain='continuous_field',response_scale=rows.response_scale(),preset='bispf_optimized',
                     batch_size=4,seed=options.get('seed',7),total_steps=options.get('steps',4),sampling='balanced')
                 if self.game.prior is not None:raise RuntimeError('adapter-only Supra must not acquire a prior/bank')

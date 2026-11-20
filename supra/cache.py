@@ -12,7 +12,7 @@ import math
 from pathlib import Path
 
 import torch
-from particle_sliders.pg09_backends import PreparedResponse, ResponseRow
+from particle_sliders.backends import PreparedResponse, ResponseRow
 from .shared import file_sha as file_digest
 
 

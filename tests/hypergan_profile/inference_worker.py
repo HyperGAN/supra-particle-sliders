@@ -35,14 +35,14 @@ def load_fixture(options):
 if __name__ == "__main__":
     import torch
     from particle_sliders.inference import open_inference
-    from particle_sliders.pg09 import ConditionalPG09
+    from particle_sliders.engine import ConditionalParticleGAN
     from supra import cache, campaign, hndl_lifecycle
 
     def forbidden(*args, **kwargs):
         raise AssertionError("native-only inference constructed training state or read training assets")
 
     packet = torch.load(sys.argv[1], map_location="cpu", weights_only=True)
-    ConditionalPG09.__init__ = forbidden
+    ConditionalParticleGAN.__init__ = forbidden
     torch.optim.Optimizer.__init__ = forbidden
     campaign.build_supra_campaign = cache.load_supra_contexts = hndl_lifecycle.prepare = forbidden
     hndl.load_native = load_fixture

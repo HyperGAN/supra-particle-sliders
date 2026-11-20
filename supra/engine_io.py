@@ -14,7 +14,7 @@ import torch
 
 from supra.shared import LOCK, file_sha, shared_module
 
-OBJECTIVE = "pg09_gan_only"
+OBJECTIVE = "engine_gan_only"
 
 
 def frozen_digest(runtime):
@@ -32,8 +32,8 @@ def frozen_digest(runtime):
 def binding(config, cache_path, contexts_path, frozen_sha256):
     return dict(objective=OBJECTIVE, shared_lock_sha256=file_sha(LOCK),
                 product_sources={p: file_sha(Path(__file__).parent / p)
-                                 for p in ("runtime.py", "shared.py", "pg09.py")},
-                trainer_sha256=file_sha(Path(__file__).resolve().parents[1] / "scripts/train_pg09.py"),
+                                 for p in ("runtime.py", "shared.py", "engine_io.py")},
+                trainer_sha256=file_sha(Path(__file__).resolve().parents[1] / "scripts/train_engine.py"),
                 config=deepcopy(config), cache_sha256=file_sha(cache_path),
                 contexts_sha256=file_sha(contexts_path),
                 context_receipt_sha256=file_sha(Path(contexts_path).with_suffix(".json")),
@@ -86,13 +86,13 @@ def save_checkpoint(run, directory):
     temporary = Path(tempfile.mkdtemp(prefix=".pending-", dir=directory.parent))
     try:
         state = run.game.state_dict()
-        torch.save(dict(schema="supra-shared-pg09-v1", binding=run.product_binding,
+        torch.save(dict(schema="supra-shared-engine-v1", binding=run.product_binding,
                         game=state), temporary / "checkpoint.pt")
         run.runtime.save(temporary / "adapter.safetensors", dict(
             training_objective=OBJECTIVE, cfg_adapter_branch="conditional_only",
             step=run.game.completed_steps, total_steps=run.game.recipe.total_steps,
             shared_lock_sha256=file_sha(LOCK)))
-        receipt = dict(schema="supra-shared-pg09-receipt-v1", binding=run.product_binding,
+        receipt = dict(schema="supra-shared-engine-receipt-v1", binding=run.product_binding,
                        step=run.game.completed_steps,
                        files={p.name: file_sha(p) for p in temporary.iterdir()})
         (temporary / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
@@ -108,7 +108,7 @@ def load_checkpoint(run, directory):
     if frozen_digest(run.runtime) != run.product_binding["frozen_parameter_sha256"]:
         raise ValueError("Frozen base changed before checkpoint reload")
     receipt = json.loads((directory / "receipt.json").read_text())
-    if receipt.get("schema") != "supra-shared-pg09-receipt-v1" or receipt.get("binding") != run.product_binding:
+    if receipt.get("schema") != "supra-shared-engine-receipt-v1" or receipt.get("binding") != run.product_binding:
         raise ValueError("Checkpoint product/config/cache/source binding differs")
     if set(receipt["files"]) != {"checkpoint.pt", "adapter.safetensors", "adapter.json"}:
         raise ValueError("Checkpoint files differ")
@@ -117,7 +117,7 @@ def load_checkpoint(run, directory):
             raise ValueError("Checkpoint checksum differs: " + name)
     # CPU-map all streams and CUDA RNG state before the shared transactional load.
     packet = torch.load(directory / "checkpoint.pt", map_location="cpu", weights_only=True)
-    if (packet.get("schema") != "supra-shared-pg09-v1" or packet.get("binding") != run.product_binding
+    if (packet.get("schema") != "supra-shared-engine-v1" or packet.get("binding") != run.product_binding
             or packet["game"]["completed_steps"] != receipt["step"]):
         raise ValueError("Checkpoint packet binding/step differs")
     run.game.load_state_dict(packet["game"])
@@ -139,11 +139,12 @@ def render(runtime, prompt, seed, scale, steps, cfg):
     """Shared response renderer with the product's native RNG and VAE."""
     if not math.isfinite(cfg) or cfg < 0 or not math.isfinite(scale):
         raise ValueError("Finite scale and nonnegative guidance required")
-    backend_module = shared_module("particle_sliders.pg09_backends")
-    backend = backend_module.SupraRuntimeResponseAdapter(runtime,
+    from particle_sliders import backends as backend_module
+    from .response_binding import SupraRuntimeResponseAdapter
+    backend = SupraRuntimeResponseAdapter(runtime,
         model_identity=dict(frozen_parameter_sha256=frozen_digest(runtime)))
     row = backend_module.ResponseRow(prompt, prompt, "", runtime.noise(seed),
-        schedule=backend_module.FlowSchedule.supra(steps), guidance=cfg)
+        schedule=backend_module.FlowSchedule.increasing_linear(steps), guidance=cfg)
     image = backend.render(row, scale=scale)
     if not torch.isfinite(image).all():
         raise FloatingPointError("Nonfinite native VAE output")

@@ -1,4 +1,7 @@
-**New opt-in source cohort: 0.4.0.dev2 / core0.13.0 / PG0.9.5.** The builder retains the archived pre-LR borrowed lifecycle bytes, but uses new distinct core receipts and HNDL profile identity. Old checkpoints require their original product/core versions. CPU contracts do not qualify native PG0.9.5 training.
+The optional Supra HNDL wheel uses core 0.15.1, ParticleGAN 0.11.0,
+HNDL 0.10.0 and the reviewed HyperGAN builder. Build it from this checkout
+with `scripts/build_hndl_profile.py`. Use the original checkout for archived
+checkpoints from earlier cohorts.
 
 Current upgrade: [PG0.9.4 canonical instructions](../../docs/pg094.md). The separate
 HNDL candidate is 0.4.0.dev1; original dev1/dev2 previews remain historical.
