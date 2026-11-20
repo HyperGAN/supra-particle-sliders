@@ -11,6 +11,25 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 
+def restore_pre_lr_runtime(root, destination):
+    """Keep the closed HNDL cohort's borrowed runtime bytes unchanged."""
+    import hashlib
+    import json
+    archive = root / 'cohorts/pre-lr-hndl'
+    manifest = json.loads((archive / 'manifest.json').read_text())
+    for relative, expected in manifest['files'].items():
+        data = (archive / relative).read_bytes()
+        if hashlib.sha256(data).hexdigest() != expected:
+            raise ValueError('archived HNDL runtime checksum differs: ' + relative)
+        (destination / relative).write_bytes(data)
+    (destination / 'supra/learning_rates.py').unlink(missing_ok=True)
+    (destination / 'supra/fresh_cache.py').unlink(missing_ok=True)
+    # Archive ships in the sdist so its profile builder remains reproducible.
+    target = destination / 'cohorts/pre-lr-hndl'
+    if not target.exists():
+        shutil.copytree(archive, target)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, default=ROOT / "artifacts/hndl-wheels")
