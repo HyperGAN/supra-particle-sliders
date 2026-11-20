@@ -10,13 +10,13 @@ if (importlib.util.find_spec("supra.hndl") is None
         or version("supra-particle-sliders") == "0.3.1"):
     pytest.skip("separate HyperGAN/HNDL wheel required", allow_module_level=True)
 
-if version("particle-sliders-core") != "0.13.0":
+if version("particle-sliders-core") != "0.15.1":
     pytest.skip("requires the distinct core0.13 HyperGAN/HNDL environment", allow_module_level=True)
 
 import torch
 
 from particle_sliders.lifecycle import CheckpointError, SessionConfig, UnsupportedOperation
-from particle_sliders.pg09 import _hash
+from particle_sliders.engine import _hash
 from supra import cache, hndl, hndl_lifecycle, native_io
 from supra.shared import file_sha
 
@@ -30,7 +30,7 @@ def configured(assets):
     options = dict(native_config=config, cache=str(path), cache_sha256=file_sha(path),
         contexts=str(contexts), contexts_sha256=file_sha(contexts),
         frozen_base_sha256=native_io.frozen_digest(runtime), device="cpu", rank=2,
-        steps=4, batch=4, seed=7, critic_width=8, ema_decay=.9)
+        steps=4, batch=4, seed=7, critic_width=8, ema_decay=None)
     with pytest.MonkeyPatch.context() as patch:
         patch.setattr(cache, "SUPRA_SCALE", rows.response_scale())
         yield runtime, SessionConfig("supra_hndl", "synthetic-supra-hndl-a794e3-v1", **options)
@@ -43,12 +43,12 @@ def fresh_runtime(config):
 
 
 def test_real_hndl_training_owns_native_leaves_and_resumes_exactly(configured):
-    from particle_sliders.fibo_hndl import HNDLFieldCritic
-    from particle_sliders.pg09 import ConditionalPG09
+    from supra.fibo_hndl import HNDLFieldCritic
+    from particle_sliders.engine import ConditionalParticleGAN
     runtime, config = configured
     with hndl_lifecycle.BACKEND.open(config, runtime=runtime) as first:
         game = first.game
-        assert type(game) is ConditionalPG09 and type(game.critic) is HNDLFieldCritic
+        assert type(game) is ConditionalParticleGAN and type(game.critic) is HNDLFieldCritic
         native = [parameter for parameter in runtime.model.parameters() if parameter.requires_grad]
         generator = [parameter for group in game.opt_g.param_groups for parameter in group["params"]]
         critic = [parameter for group in game.opt_d.param_groups for parameter in group["params"]]
@@ -140,7 +140,7 @@ def test_config_and_source_rejection_precede_native_allocation(configured, monke
         hndl_lifecycle.BACKEND.open(SessionConfig("supra_hndl", "invalid", **invalid))
     import json
     lock = json.loads(hndl.LOCK.read_text())
-    lock["source_sha256"]["particle_sliders/pg09.py"] = "0" * 64
+    lock["source_sha256"]["particle_sliders/engine.py"] = "0" * 64
     path = Path(config.options["cache"]).with_name("corrupt-core.lock.json")
     path.write_text(json.dumps(lock))
     monkeypatch.setattr(hndl, "LOCK", path)
@@ -170,7 +170,7 @@ def test_invalid_native_request_rejects_in_preflight(configured, native_request)
         backend.open(config, runtime=runtime, operation="render", native_request=native_request)
 
 
-@pytest.mark.parametrize("selection", ["raw", "ema"])
+@pytest.mark.parametrize("selection", ["raw"])
 def test_native_only_inference_in_fresh_process_without_training_assets(configured, tmp_path, selection):
     import json
     import os

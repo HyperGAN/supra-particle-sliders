@@ -57,7 +57,7 @@ def test_native_file_and_selected_definitions_are_unchanged(reference):
     for module in (cache, campaign):
         tree = ast.parse(Path(module.__file__).read_text())
         assert not any(isinstance(node, (ast.ClassDef, ast.FunctionDef)) and node.name in
-                       {"ConditionalPG09", "EMA", "SliderSession", "build_final_form_campaign"}
+                       {"ConditionalParticleGAN", "EMA", "SliderSession", "build_final_form_campaign"}
                        for node in ast.walk(tree))
 
 
@@ -98,7 +98,7 @@ def original_provider(root):
     nodes = selected((root / "pg09_remaining_campaigns.py").read_text(), names)
     module = types.ModuleType("supra_original_provider")
     module.__file__ = str(root / "pg09_remaining_campaigns.py")
-    from particle_sliders.pg09_backends import PreparedResponse, ResponseRow
+    from particle_sliders.backends import PreparedResponse, ResponseRow
     module.__dict__.update(deepcopy=deepcopy, hashlib=hashlib, json=json, math=__import__("math"),
         Path=Path, torch=torch, file_digest=file_sha, PreparedResponse=PreparedResponse, ResponseRow=ResponseRow)
     sys.modules[module.__name__] = module
@@ -150,7 +150,8 @@ def assets(tmp_path, monkeypatch):
     monkeypatch.setattr(torch, "autocast", lambda *args, **kwargs: nullcontext())
     config = yaml.safe_load((Path(__file__).resolve().parents[2] / "configs/supra/prompts-final-boss.yaml").read_text())
     runtime = TinyRuntime(config)
-    from particle_sliders.pg09_backends import SupraRuntimeResponseAdapter, ResponseRow
+    from particle_sliders.backends import ResponseRow
+    from supra.response_binding import SupraRuntimeResponseAdapter
     backend = SupraRuntimeResponseAdapter(runtime)
     records, holds = [], []
     with torch.no_grad():

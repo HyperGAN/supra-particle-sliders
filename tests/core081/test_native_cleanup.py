@@ -73,7 +73,7 @@ def test_checkout_override_cannot_mask_the_imported_core(tmp_path):
     shutil.copytree(root, tmp_path / "particle_sliders", ignore=shutil.ignore_patterns("__pycache__"))
     shutil.copytree(Path(concept_slider_core.__file__).parent, tmp_path / "concept_slider_core",
                     ignore=shutil.ignore_patterns("__pycache__"))
-    path = tmp_path / "particle_sliders/pg09.py"
+    path = tmp_path / "particle_sliders/engine.py"
     path.write_text(path.read_text() + "\n# deliberate imported source tamper\n")
     program = 'import sys\nfor name in tuple(sys.modules):\n    if name == "particle_sliders" or name.startswith("particle_sliders.") or name == "concept_slider_core":\n        del sys.modules[name]\nsys.path.insert(0, sys.argv[1])\nfrom supra import native_io; native_io.verify_sources()'
     result = subprocess.run([sys.executable, "-I", "-c", program, str(tmp_path)],

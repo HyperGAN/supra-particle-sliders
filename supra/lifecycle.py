@@ -1,4 +1,4 @@
-"""Canonical Supra adapter factory for core 0.13.0 / official PG 0.9.5."""
+"""Canonical Supra adapter factory for core 0.15.1 / official PG 0.11.0."""
 import inspect
 import math
 from pathlib import Path
@@ -13,7 +13,7 @@ CAPABILITIES = Capabilities(
     generator_arm="adapter_gan", render=True,
     strength_min=None, strength_max=None, reference_images=False,
     base_precisions=("float32",), render_outputs=("pil",),
-    qualification="Current PG0.9.5 CPU software cohort; pretrained/native CUDA qualification pending",
+    qualification="Current PG0.11.0 CPU software cohort; pretrained/native CUDA qualification pending",
     operations=("train", "resume", "evaluate", "export", "response", "render"),
 )
 
@@ -47,6 +47,8 @@ def _assets(options):
 
 
 def validate(options):
+    if options.get("ema_decay") is not None:
+        raise ValueError("Weight EMA is disabled; use ema_decay=None")
     allowed = {"native_config", "cache", "cache_sha256", "contexts", "contexts_sha256",
                "frozen_base_sha256", "device", "rank", "steps", "batch", "seed", "ema_decay",
                "critic_width", "base_precision", "lr", "d_lr_mult",

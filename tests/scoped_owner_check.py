@@ -15,9 +15,9 @@ from particle_sliders.lifecycle import SessionConfig
 from supra import cache, campaign, hndl, hndl_lifecycle, native_io, native_model
 from supra.runtime import MODEL_REV, T5_REV
 from supra.shared import file_sha
-from supra_fresh95 import open_training, open_inference, Checkpoint
-from supra_fresh95 import training, policy, ownership
-from supra_fresh95.util import equal, read_packet
+from supra_scoped import open_training, open_inference, Checkpoint
+from supra_scoped import training, policy, ownership
+from supra_scoped.util import equal, read_packet
 
 class TinyVAE(torch.nn.Module):
     def decode(self,latent):return SimpleNamespace(sample=latent[:,:3])
@@ -76,7 +76,7 @@ def staged(tmp_path,monkeypatch):
     monkeypatch.setattr(hndl,'load_native',forbidden)
     monkeypatch.setattr(hndl_lifecycle,'prepare',forbidden)
     monkeypatch.setattr(campaign,'teacher_parity',forbidden)
-    return SessionConfig('supra_hndl','NEW-synthetic-Supra-cached-fresh95-v1',**options),tmp_path
+    return SessionConfig('supra_hndl','NEW-synthetic-Supra-cached-scoped-v1',**options),tmp_path
 
 def factory(request):
     assert request['operation']in('fresh','resume','inference')and request['particle_bank']is None
@@ -87,7 +87,7 @@ def open_new(staged,name='fresh',**kwargs):
     return open_training(config,root/name,mode='fresh',runtime_factory=factory,owner_admission=lambda request:True,**kwargs)
 
 def test_new_fresh_policy_precedes_optimizers_and_preserves_HNDL_identities(staged,monkeypatch):
-    real=training.ConditionalPG095;seen=[];original=policy.initialize
+    real=training.ConditionalParticleGAN;seen=[];original=policy.initialize
     def initialize(runtime,critic,*args,**kwargs):
         before={id(p)for p in runtime.parameters()}|{id(p)for p in critic.parameters()}
         critic_before=deepcopy(critic.state_dict())
@@ -100,7 +100,7 @@ def test_new_fresh_policy_precedes_optimizers_and_preserves_HNDL_identities(stag
         assert seen and backend.metadata()['fresh_initialization']['receipt']==seen[-1]
         assert kwargs['particles']is None
         return real(backend,*args,**kwargs)
-    monkeypatch.setattr(policy,'initialize',initialize);monkeypatch.setattr(training,'ConditionalPG095',game)
+    monkeypatch.setattr(policy,'initialize',initialize);monkeypatch.setattr(training,'ConditionalParticleGAN',game)
     with open_new(staged)as owner:
         assert owner.game.prior is None and owner.game.completed_steps==0
         assert owner.game.state_dict()['config']['backend']['fresh_initialization']['receipt']==seen[0]
@@ -137,8 +137,8 @@ def test_new_strict_FULL_optimizer_RNG_resume_and_RAW_infer_skip_init(staged,mon
     monkeypatch.setattr(policy,'initialize',forbidden)
     with open_training(config,root/'resume',mode='resume',resume=full,runtime_factory=factory,owner_admission=lambda request:True)as resumed:
         assert resumed.inherited_steps==1 and equal(state,resumed.game.state_dict())
-    monkeypatch.setattr(training,'read_assets',forbidden);monkeypatch.setattr(training,'ConditionalPG095',forbidden)
-    from supra_fresh95 import inference
+    monkeypatch.setattr(training,'read_assets',forbidden);monkeypatch.setattr(training,'ConditionalParticleGAN',forbidden)
+    from supra_scoped import inference
     with open_inference(raw,runtime_factory=factory,owner_admission=lambda request:True)as loaded:
         assert not hasattr(loaded,'game')and equal(network,loaded.backend.network.state_dict())
         before=torch.get_rng_state().clone();response=loaded.response(row,strength=1.,seed=9)
@@ -152,7 +152,7 @@ def test_new_early_intent_legacy_EMA_refusal_and_pending_cleanup_retry(staged,mo
         with pytest.raises(ValueError):
             open_training(config,root/'invalid',mode=mode,resume=resume,ema_decay=ema,runtime_factory=forbidden,owner_admission=lambda request:True)
     legacy=root/'legacy.pt';torch.save(dict(schema='old-original-Supra-FULL'),legacy)
-    from supra_fresh95.util import file_pin
+    from supra_scoped.util import file_pin
     with pytest.raises(ValueError):
         open_training(config,root/'legacy',mode='resume',resume=file_pin(legacy),runtime_factory=forbidden,owner_admission=lambda request:True)
     assert not calls

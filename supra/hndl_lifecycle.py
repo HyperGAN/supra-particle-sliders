@@ -1,4 +1,4 @@
-"""Distinct Supra core0.13/PG0.9.5/HyperGAN develop/HNDL lifecycle candidate.
+"""Distinct Supra core0.13/PG0.11.0/HyperGAN develop/HNDL lifecycle candidate.
 
 The product validates its native assets and owns orchestration. All network
 execution, GAN updates, optimizers, penalties and checkpoint validation stay in
@@ -45,10 +45,8 @@ def validate(options):
         value = options.get(key, default)
         if type(value) is not int or not low <= value <= high:
             raise ValueError(key + " differs from the bounded Supra recipe")
-    decay = options.get("ema_decay")
-    if decay is not None and (isinstance(decay, bool) or not isinstance(decay, (int, float))
-                              or not math.isfinite(decay) or not 0 <= decay < 1):
-        raise ValueError("EMA decay must be a finite number in [0,1)")
+    if options.get("ema_decay") is not None:
+        raise ValueError("EMA decay must be None for RAW weights")
     if options.get("base_precision", "float32") != "float32":
         raise ValueError("Supra HNDL requires FP32 native storage")
     device = options.get("device")
@@ -78,9 +76,9 @@ def preflight(options, request, staged):
 
 
 def prepare(options, *, runtime=None):
-    from particle_sliders.fibo_hndl import HNDLFieldCritic
-    from particle_sliders.pg095 import ConditionalPG095 as ConditionalPG09
-    from particle_sliders.pg09_backends import SupraRuntimeResponseAdapter
+    from supra.fibo_hndl import HNDLFieldCritic
+    from particle_sliders.engine import ConditionalParticleGAN
+    from supra.response_binding import SupraRuntimeResponseAdapter
 
     hndl.verify_sources()
     config = options["native_config"]
@@ -133,7 +131,7 @@ def prepare(options, *, runtime=None):
         with torch.random.fork_rng(devices=devices):
             seed_initialization_rng(options.get("seed", 7), devices)
             critic = HNDLFieldCritic(4, rows.condition_width, (32, 32), options.get("critic_width", 32)).to(device)
-        game = ConditionalPG09(backend, rows, critic, conditions=None, particles=None,
+        game = ConditionalParticleGAN(backend, rows, critic, conditions=None, particles=None,
             response_domain="continuous_field", response_scale=rows.response_scale(),
             preset="bispf_optimized", batch_size=4, seed=options.get("seed", 7),
             total_steps=options.get("steps", 4), sampling="balanced")

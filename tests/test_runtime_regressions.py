@@ -12,11 +12,11 @@ from supra.runtime import (
 )
 from supra.native_io import LOCK
 from supra.shared import file_sha
-from particle_sliders import pg09_backends
+from particle_sliders import backends
 
 def shared_module(name):
-    assert name == "particle_sliders.pg09_backends"
-    return pg09_backends
+    assert name == "particle_sliders.backends"
+    return backends
 
 
 @pytest.fixture(autouse=True)
@@ -111,7 +111,7 @@ def test_old_adapter_without_branch_metadata_retains_legacy_both_policy(runtime,
 def test_pg_adapter_load_selects_shared_conditional_only_policy(runtime, tmp_path):
     path = tmp_path / "pg.safetensors"
     write_adapter(runtime, path, dict(cfg_adapter_branch="conditional_only",
-        training_objective="pg09_gan_only", shared_lock_sha256=file_sha(LOCK)))
+        training_objective="engine_gan_only", shared_lock_sha256=file_sha(LOCK)))
     expected = snapshot(runtime.model)
     with torch.no_grad():
         for parameter in runtime.parameters():
@@ -124,7 +124,7 @@ def test_pg_adapter_load_selects_shared_conditional_only_policy(runtime, tmp_pat
 @pytest.mark.parametrize("extra", [
     dict(cfg_adapter_branch="unknown"),
     dict(cfg_adapter_branch="conditional_only", training_objective="mse", shared_lock_sha256=file_sha(LOCK)),
-    dict(cfg_adapter_branch="conditional_only", training_objective="pg09_gan_only", shared_lock_sha256="invalid"),
+    dict(cfg_adapter_branch="conditional_only", training_objective="engine_gan_only", shared_lock_sha256="invalid"),
 ])
 def test_invalid_adapter_policy_is_rejected_before_weight_or_policy_mutation(runtime, tmp_path, extra):
     path = tmp_path / "invalid.safetensors"
@@ -177,7 +177,7 @@ def test_native_trajectory_and_shared_schedule_use_positive_euler_flow_time(runt
     assert calls == [(time, -0.5, 3) for time in (0.0, 0.25, 0.5, 0.75)]
     assert [float(state.flatten()[0]) for state in states] == [5.0, 5.75, 6.5, 7.25]
     assert torch.equal(end, torch.full_like(end, 8.0))
-    schedule = shared_module("particle_sliders.pg09_backends").FlowSchedule.supra(4)
+    schedule = shared_module("particle_sliders.backends").FlowSchedule.increasing_linear(4)
     assert schedule.timesteps == (0.0, 0.25, 0.5, 0.75)
     assert schedule.deltas == (0.25, 0.25, 0.25, 0.25)
 

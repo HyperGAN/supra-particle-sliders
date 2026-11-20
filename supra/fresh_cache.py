@@ -10,7 +10,7 @@ from pathlib import Path
 
 from .shared import file_sha
 
-SCHEMA = 'supra-native-pg095-cache-v1'
+SCHEMA = 'supra-native-engine-cache-v1'
 _KEYS = {'response_scale', 'cache_receipt', 'cache_receipt_sha256'}
 
 
@@ -40,13 +40,16 @@ def current_sources():
     """Exact executed product modules plus the separately verified core receipt."""
     from .native_io import LOCK
     names = ('runtime.py', 'native_model.py', 'native_io.py', 'cache.py', 'campaign.py',
-             'lifecycle.py', 'fresh_cache.py', 'learning_rates.py', 'shared.py')
+             'lifecycle.py', 'fresh_cache.py', 'learning_rates.py', 'shared.py', 'response_binding.py')
     from importlib.metadata import distribution
     import inspect
-    from particle_sliders.pg09_backends import SupraRuntimeResponseAdapter
+    from particle_sliders.backends import FrozenResponseAdapter
+    from supra.response_binding import SupraRuntimeResponseAdapter
     core = distribution('particle-sliders-core')
-    relative = 'particle_sliders/pg09_backends.py'
-    actual = Path(inspect.getfile(SupraRuntimeResponseAdapter)).resolve()
+    relative = 'particle_sliders/backends.py'
+    actual = Path(inspect.getfile(FrozenResponseAdapter)).resolve()
+    if Path(inspect.getfile(SupraRuntimeResponseAdapter)).resolve() != Path(__file__).with_name('response_binding.py').resolve():
+        raise RuntimeError('Supra response binding import is shadowed')
     if actual != Path(core.locate_file(relative)).resolve():
         raise RuntimeError('executed shared Supra response adapter differs from distribution ownership')
     core_receipt = json.loads(LOCK.read_text())

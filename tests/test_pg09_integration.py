@@ -13,7 +13,7 @@ if version("particlegan") != "0.9.1":
 import torch
 import yaml
 
-from supra.pg09 import build_run, frozen_digest, load_checkpoint, save_checkpoint, verify_teacher_cache
+from supra.engine_io import build_run, frozen_digest, load_checkpoint, save_checkpoint, verify_teacher_cache
 from supra.runtime import SupraRuntime, TARGETS, model_module
 from supra.shared import file_sha, shared_module, shared_root
 
@@ -91,10 +91,10 @@ def run_for(admitted, runtime=None):
 
 
 def test_product_executes_shared_gan_and_fresh_checkpoint_replay(admitted, tmp_path, monkeypatch):
-    from particle_sliders.pg09 import ConditionalPG09
+    from particle_sliders.engine import ConditionalParticleGAN
     runtime, config, _, _ = admitted
     run = run_for(admitted)
-    assert type(run.game) is ConditionalPG09
+    assert type(run.game) is ConditionalParticleGAN
     assert run.game.sampling == "balanced" and run.game.batch_size == 4
     assert runtime.cfg_adapter_branch == "conditional_only"
     assert len(verify_teacher_cache(run)) == 15  # Both paths for six subjects, plus three controls.

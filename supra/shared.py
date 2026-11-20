@@ -46,7 +46,7 @@ def shared_root(root=None):
         root = Path(value).resolve()
         candidates = (root / "packages/particle-sliders-core/src/particle_sliders",
                       root / "particle_sliders", root)
-        root = next((p for p in candidates if (p / "pg09.py").is_file()), root)
+        root = next((p for p in candidates if (p / "__init__.py").is_file()), root)
     else:
         spec = importlib.util.find_spec("particle_sliders")
         if spec is None or not spec.origin:

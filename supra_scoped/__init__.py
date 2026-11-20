@@ -1,5 +1,5 @@
 """Explicit opt-in HNDL Supra policy; no registration or old cohort migration."""
-PROFILE = 'supra-hndl-explicit-cached-fresh95-v1'
+PROFILE = 'supra-hndl-explicit-cached-scoped-v1'
 
 def open_training(*args, **kwargs):
     from .training import Training

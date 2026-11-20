@@ -12,7 +12,7 @@ from particle_sliders.lifecycle import native_cleanup
 from .shared import file_sha, source_cohort
 from .shared import verify_imported_sources
 
-LOCK = Path(__file__).with_name("core013-pg095-receipt.json")
+LOCK = Path(__file__).with_name("engine-receipt.json")
 
 
 def read_context_receipt(contexts):
@@ -30,7 +30,7 @@ def verify_sources():
     from importlib.metadata import distribution, version
     receipt = verify_imported_sources(LOCK)
     if (receipt.get("schema") != "supra-recursive-core-closure-v1"
-            or receipt.get("source_commit") != "3dd672a7f9b8c169daef90fd63e4bb42b9ddc423"
+            or receipt.get("source_commit") != "c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78"
             or receipt.get("namespaces") != ["concept_slider_core", "particle_sliders"]):
         raise ValueError("Current core closure identity contradicts the source receipt")
     dependency = distribution('particle-sliders-core')
@@ -38,11 +38,11 @@ def verify_sources():
     if (origin.get('url') != 'https://github.com/HyperGAN/particle-sliders.git'
             or origin.get('vcs_info', {}).get('commit_id') != receipt['source_commit']
             or origin.get('subdirectory') != 'packages/particle-sliders-core'):
-        raise ValueError('Supra requires the exact PG095 shared-core Git origin')
-    from particle_sliders.pg095 import PG_VERSION, PG_SOURCE_PROFILE, PG_SOURCE_COMMIT, PG_WHEEL_SHA256
-    if ((PG_VERSION, PG_SOURCE_PROFILE) != ('0.9.5', 'release-0.9.5')
+        raise ValueError('Supra requires the exact ParticleGAN shared-core Git origin')
+    from particle_sliders.engine import PG_VERSION, PG_SOURCE_PROFILE, PG_SOURCE_COMMIT, PG_WHEEL_SHA256
+    if ((PG_VERSION, PG_SOURCE_PROFILE) != ('0.11.0', 'release-0.11.0')
             or (receipt.get('pg_source_commit'), receipt.get('pg_wheel_sha256')) != (PG_SOURCE_COMMIT, PG_WHEEL_SHA256)):
-        raise ValueError('Supra requires the new official PG095 source profile')
+        raise ValueError('Supra requires the new official ParticleGAN source profile')
     import particle_sliders
     if Path(particle_sliders.__file__).resolve() != Path(dependency.locate_file('particle_sliders/__init__.py')).resolve():
         raise ValueError('Supra shared-core source differs from distribution ownership')
@@ -55,7 +55,7 @@ def verify_sources():
     for package, field in (("particle-sliders-core", "version"), ("particlegan", "pg_version")):
         if version(package) != receipt[field]:
             raise ValueError("Installed " + package + " version contradicts the source receipt")
-    from particle_sliders.pg09 import _released_sources
+    from particle_sliders.engine import _released_sources
     _released_sources()
 
 
@@ -167,12 +167,12 @@ def render(backend, runtime, *, prompt, strength, seed, images=None, steps=50, c
     """Keep native seed/noise, rising flow time, positive Euler and VAE decode."""
     import torch
     from PIL import Image
-    from particle_sliders.pg09_backends import FlowSchedule, ResponseRow
+    from particle_sliders.backends import FlowSchedule, ResponseRow
     validate_render(dict(prompt=prompt, images=images, steps=steps, cfg=cfg, output_type=output_type))
     if type(seed) is not int or not 0 <= seed < 2**63 - 100 or not math.isfinite(strength):
         raise ValueError("Finite strength and bounded integer seed required")
     row = ResponseRow(prompt, prompt, "", runtime.noise(seed),
-                      schedule=FlowSchedule.supra(steps), guidance=cfg)
+                      schedule=FlowSchedule.increasing_linear(steps), guidance=cfg)
     image = backend.render(row, scale=strength)
     if not torch.isfinite(image).all():
         raise FloatingPointError("Nonfinite native Supra VAE output")

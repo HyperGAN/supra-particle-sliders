@@ -3,7 +3,7 @@ from copy import deepcopy
 import hashlib
 import torch
 from supra import hndl, native_io
-from particle_sliders.pg09_backends import SupraRuntimeResponseAdapter
+from supra.response_binding import SupraRuntimeResponseAdapter
 from . import PROFILE
 from . import ownership, policy
 from .util import canonical, read_packet, equal

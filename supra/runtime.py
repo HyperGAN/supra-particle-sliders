@@ -133,11 +133,10 @@ class SupraRuntime:
             raise ValueError("One prompt per latent required")
         if self.cfg_adapter_branch == "conditional_only":
             from . import native_io
-            from .shared import source_cohort
+            from particle_sliders import backends as mod
+            from .response_binding import SupraRuntimeResponseAdapter
             native_io.verify_sources()
-            with source_cohort(native_io.LOCK):
-                mod = shared_module("particle_sliders.pg09_backends")
-            backend = mod.SupraRuntimeResponseAdapter(self,
+            backend = SupraRuntimeResponseAdapter(self,
                 model_identity=dict(model_revision=MODEL_REV))
             times = torch.as_tensor(t, device=z.device).float().reshape(-1)
             if times.numel() == 1:
@@ -186,7 +185,7 @@ class SupraRuntime:
             if not math.isfinite(cfg) or cfg < 0 or not math.isfinite(scale):
                 raise ValueError("Finite scale and nonnegative guidance required")
             from . import native_io
-            from particle_sliders.pg09_backends import SupraRuntimeResponseAdapter
+            from supra.response_binding import SupraRuntimeResponseAdapter
             native_io.verify_sources()
             backend = SupraRuntimeResponseAdapter(self, model_identity=dict(model_revision=MODEL_REV))
             return native_io.render(backend, self, prompt=prompt, seed=seed, strength=scale, steps=steps, cfg=cfg)
@@ -224,7 +223,7 @@ class SupraRuntime:
         if branch == "conditional_only":
             from supra.native_io import LOCK
             from supra.shared import file_sha
-            if (meta.get("training_objective") != "pg09_gan_only"
+            if (meta.get("training_objective") != "engine_gan_only"
                     or meta.get("shared_lock_sha256") != file_sha(LOCK)):
                 raise ValueError("PG adapter objective/shared source binding differs")
         load_adapter_state(self.model, load_file(str(path)))
