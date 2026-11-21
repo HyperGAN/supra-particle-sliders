@@ -1,12 +1,12 @@
 > **Calculated memory planning:** training **8 GiB VRAM / 8 GiB host RAM** (256×256, B=4, FP32 storage; BF16 CUDA autocast); sampling **8 GiB VRAM / 8 GiB host RAM** (256×256). See [MEMORY.md](MEMORY.md) for checkpointed/phase variants, attention fallback and exact limits. These are conservative calculated budgets, not measured peaks.
 
-**Current source: core 0.13.0 / ParticleGAN 0.9.5.** See [PG095 installation and cohort contract](docs/pg095.md). Earlier version descriptions below are retained historical context, not the current installer.
+**Current source: core 0.15.1 / ParticleGAN 0.11.0.** See [PG095 installation and cohort contract](docs/pg095.md). Earlier version descriptions below are retained historical context, not the current installer.
 
-# Supra particle sliders — current ParticleGAN 0.9.5 integration
+# Supra particle sliders — current ParticleGAN 0.11.0 integration
 
-The canonical package is now **0.3.1**, using `particle-sliders-core==0.13.0`
-from exact source `3dd672a7f9b8c169daef90fd63e4bb42b9ddc423` and official
-**ParticleGAN 0.9.5**. Python 3.11 or newer is required. New training uses the
+The canonical package is now **0.3.1**, using `particle-sliders-core==0.15.1`
+from exact source `c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78` and official
+**ParticleGAN 0.11.0**. Python 3.11 or newer is required. New training uses the
 installed `supra` image backend through the shared isolated dispatcher:
 
 ```bash
@@ -19,11 +19,9 @@ python -m supra.train --config /absolute/path/session.json --out runs/new-cohort
 
 See [current installation and checkpoint contract](docs/pg095.md).
 
-Optional adaptive `supra-vibe --vibe '…'` collection and the separate native
-EMPF/HNDL experiment are described in [VIBE.md](VIBE.md). The new final-boss
-cohort completed128 updates and selected RAW64 with mean training-case effect
-gain0.28; its strict native replay is exact. This development result is not a
-released replacement for the historical recommendation below.
+[Adaptive `supra-vibe` data collection](VIBE.md) records finished-image scores
+and exports a qualified manifest. The same guide links the archived EMPF/HNDL
+experiment and its exact RAW64 replay evidence.
 
 **Current finished-image guidance:** use the existing Final Boss G **`0.036`**
 RAW128 at fixed D `0.018`, no bank (`lr=0.036`, `d_lr_mult=0.5`,
@@ -71,7 +69,7 @@ for native dependencies, historical entrypoints and the upgrade boundary.
 
 ## Historical CDF training entrypoints
 
-The source CLI [`scripts/train_pg09.py`](scripts/train_pg09.py) executes
+The source CLI [`scripts/train_engine.py`](scripts/train_engine.py) executes
 the external shared `particle_sliders.pg09.ConditionalPG09` game and shared native
 Supra response adapter. Follow [the PG0.9 integration instructions](docs/pg09.md)
 for the exact source pin, asset checks, full checkpoint resume and CPU evidence.
@@ -289,4 +287,4 @@ Fresh current-source teacher cache calibration: [FRESH-CACHE.md](FRESH-CACHE.md)
 
 ## Explicit cached HNDL initialization
 
-See [FRESH95.md](FRESH95.md) for the additional `supra_fresh95` fresh/FULL/RAW Python API, its completed-cache and exact original HNDL-context prerequisites, and the limited synthetic software evidence. Existing registered defaults and measured LR cohorts remain unchanged.
+See [SCOPED.md](SCOPED.md) for the additional `supra_scoped` fresh/FULL/RAW Python API, its completed-cache and exact original HNDL-context prerequisites, and the limited synthetic software evidence. Existing registered defaults and measured LR cohorts remain unchanged.

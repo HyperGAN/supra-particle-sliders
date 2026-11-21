@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = {file = "LICENSE"}
 dependencies = [
-  "particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@3dd672a7f9b8c169daef90fd63e4bb42b9ddc423#subdirectory=packages/particle-sliders-core",
+  "particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78#subdirectory=packages/particle-sliders-core",
   "safetensors>=0.5",
   "Pillow>=13.0.0",
   "numpy>=1.26",
@@ -20,6 +20,7 @@ dependencies = [
 vibe = ["particle-sliders-vibe[nanoodle] @ git+https://github.com/HyperGAN/particle-sliders.git@4bae4e08db7c71772cbea14e1ae1d7f5135e8290#subdirectory=packages/particle-sliders-vibe"]
 native = ["transformers==5.15.0", "diffusers>=0.36", "huggingface-hub>=1.0", "sentencepiece>=0.2", "numpy>=1.26"]
 test = ["pytest>=8", "PyYAML>=6"]
+hndl = ["hndl==0.10.0", "hypergan @ git+https://github.com/HyperGAN/HyperGAN.git@5f368a3770cf5bdae0448995c9f76e29af8049f7"]
 
 [project.scripts]
 supra-vibe = "supra.vibe:main"
@@ -38,7 +39,7 @@ where = ["."]
 include = ["supra*"]
 
 [tool.setuptools.package-data]
-supra = ["lifecycle.lock.json", "shared.lock.json", "core081-receipt.json", "core012-ddb4142-receipt.json", "core013-pg095-receipt.json", "core013-pg095-hndl-receipt.json", "supra_lora.hndl", "thin-product-provenance.json", "licenses/*"]
+supra = ["lifecycle.lock.json", "shared.lock.json", "core081-receipt.json", "core012-ddb4142-receipt.json", "engine-receipt.json", "engine-hndl-receipt.json", "supra_lora.hndl", "fibo_*.hndl", "fibo_hndl_010_sources.json", "thin-product-provenance.json", "licenses/*"]
 
 [tool.setuptools.exclude-package-data]
 supra = ["core012-receipt.json"]

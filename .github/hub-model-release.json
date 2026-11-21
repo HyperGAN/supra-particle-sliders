@@ -1,0 +1,14 @@
+{
+  "base_revision": "dca42f84c37d74748b4f45f4d7e75ec2492541c5",
+  "changes": {
+    "README.md": {
+      "bytes": 8418,
+      "git_blob": "bdb748de6a30d973229bfdd75cdda766af329fc4"
+    },
+    "release-manifest.json": {
+      "bytes": 21610,
+      "git_blob": "17ce2d43585dbb6d6915bee618c8bf987cc3b254"
+    }
+  },
+  "staged_revision": "f4f47d83422f701b7fede509f592bb54671a8c68"
+}

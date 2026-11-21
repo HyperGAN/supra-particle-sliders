@@ -11,11 +11,12 @@ import zipfile
 from packaging.version import Version
 import pytest
 
-STABLE = set("""__init__.py cache.py campaign.py card.py convergence.py core081-receipt.json core012-ddb4142-receipt.json core013-pg095-receipt.json
+STABLE = set("""__init__.py cache.py campaign.py card.py convergence.py core081-receipt.json core012-ddb4142-receipt.json engine-receipt.json
 distillation.py fresh_cache.py learning_rates.py lifecycle.lock.json lifecycle.py native_inference.py native_io.py
-native_model.py pg09.py runtime.py shared.lock.json shared.py thin-product-provenance.json
+native_model.py engine_io.py runtime.py shared.lock.json shared.py thin-product-provenance.json
+response_binding.py fibo_hndl.py fibo_hndl_010_sources.json fibo_critic.hndl fibo_projection.hndl
 train.py training_profile.py licenses/LICENSE licenses/LICENSE-Supra2-IMG licenses/NOTICE""".split())
-CANDIDATE = {"hndl.py", "hndl_lifecycle.py", "hndl_inference.py", "supra_lora.hndl", "core012-receipt.json", "core012-a794e3-receipt.json", "core012-ddb4142-hndl-receipt.json", "core013-pg095-hndl-receipt.json"}
+CANDIDATE = {"hndl.py", "hndl_lifecycle.py", "hndl_inference.py", "supra_lora.hndl", "core012-receipt.json", "core012-a794e3-receipt.json", "core012-ddb4142-hndl-receipt.json", "engine-hndl-receipt.json"}
 
 
 @pytest.fixture
@@ -35,7 +36,9 @@ def test_exact_wheel_contents_and_metadata(profile, built_wheels):
     with zipfile.ZipFile(built_wheels[profile]) as wheel:
         names = wheel.namelist()
         contents = {name.removeprefix("supra/") for name in names if name.startswith("supra/") and not name.endswith("/")}
-        assert contents == ((STABLE - {"fresh_cache.py", "learning_rates.py"}) | CANDIDATE if profile == "CANDIDATE" else STABLE)
+        expected = STABLE | CANDIDATE if profile == "CANDIDATE" else STABLE | {"vibe.py"}
+        assert contents == expected
+        assert not any(name.startswith("supra_pg0100_vibe/") for name in names)
         metadata = BytesParser().parsebytes(wheel.read(next(name for name in names if name.endswith(".dist-info/METADATA"))))
         assert metadata["Name"] == "supra-particle-sliders"
         version = Version(metadata["Version"])
@@ -43,9 +46,10 @@ def test_exact_wheel_contents_and_metadata(profile, built_wheels):
         entries = wheel.read(next(name for name in names if name.endswith(".dist-info/entry_points.txt"))).decode()
         if profile == "STABLE":
             assert str(version) == "0.3.1" and "supra_hndl" not in entries
+            assert "supra-vibe = supra.vibe:main" in entries
         else:
             assert str(version) == "0.4.0.dev2" and "supra_hndl" in entries
-            assert any("3dd672a7f9b8c169daef90fd63e4bb42b9ddc423" in requirement
+            assert any("c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78" in requirement
                        for requirement in metadata.get_all("Requires-Dist"))
 
 

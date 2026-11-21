@@ -35,7 +35,7 @@ def preflight(options, request, spec):
 
 
 def prepare(options, spec):
-    from particle_sliders.pg09_backends import SupraRuntimeResponseAdapter
+    from supra.response_binding import SupraRuntimeResponseAdapter
     runtime = hndl.load_native(dict(options, rank=spec.configuration["rank"]))
     close = native_io.snapshot_native(runtime)
     try:

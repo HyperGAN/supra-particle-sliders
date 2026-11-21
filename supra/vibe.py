@@ -1,6 +1,7 @@
 """Opt-in adaptive native256 collection, separate from historical cache contracts."""
 import gc
 import hashlib
+from io import BytesIO
 from pathlib import Path
 
 
@@ -68,15 +69,23 @@ class SupraVibe:
     def score(self, vibe, output, *, request_id):
         from PIL import Image
         source = Path(output['path'])
-        source_sha = file_hash(source)
+        source_bytes = source.read_bytes()
+        source_sha = hashlib.sha256(source_bytes).hexdigest()
         directory = self.score_directory or source.parent / 'judge-presentations'
         directory.mkdir(parents=True, exist_ok=True)
         presented = directory / (source_sha + '.png')
-        if not presented.exists():
-            with Image.open(source) as image:
-                if image.size != (256,256):
-                    raise ValueError('expected native256 Supra output')
-                image.convert('RGB').resize((512,512), Image.Resampling.LANCZOS).save(presented)
+        with Image.open(BytesIO(source_bytes)) as image, BytesIO() as encoded:
+            if image.size != (256, 256):
+                raise ValueError('expected native256 Supra output')
+            image.convert('RGB').resize((512, 512), Image.Resampling.LANCZOS).save(encoded, format='PNG')
+            expected = encoded.getvalue()
+        if presented.exists():
+            if presented.read_bytes() != expected:
+                raise ValueError('saved Supra judge presentation differs from native output')
+        else:
+            temporary = presented.with_suffix('.tmp')
+            temporary.write_bytes(expected)
+            temporary.replace(presented)
         result = self.workflows.score(vibe, dict(path=str(presented)), request_id=request_id)
         result['presentation'] = dict(source=str(source), source_sha256=source_sha,
             presented=str(presented), presented_sha256=file_hash(presented),
@@ -109,9 +118,12 @@ class SupraVibe:
 
 def training_manifest(collection, *, min_score=.75):
     """Curate qualified matched cases; retain the complete collection separately."""
-    from particle_sliders_vibe import digest, file_digest
-    if collection['identity']['product'].get('product') != 'supra-particle-sliders':
+    from particle_sliders_vibe import SCHEMA, digest, file_digest
+    if (collection['identity']['schema'] != SCHEMA
+            or collection['identity']['product'].get('product') != 'supra-particle-sliders'):
         raise ValueError('Supra collection required')
+    if type(min_score) not in (int, float) or not 0 <= min_score <= 1:
+        raise ValueError('min_score must be in [0,1]')
     variation = 'vibe-' + digest(collection['identity'])[:16]
     rows = []
     for round_ in collection['rounds']:
@@ -121,7 +133,9 @@ def training_manifest(collection, *, min_score=.75):
                 continue
             case = max(cases, key=lambda c:c['gain'])
             for side in ('neutral','positive'):
-                assert file_digest(case[side]['output']['path']) == case[side]['output']['sha256']
+                output = case[side]['output']
+                if file_digest(output['path']) != output['sha256']:
+                    raise ValueError('curated Supra media changed')
             rows.append(dict(id=digest(dict(round=round_['index'],prompt=candidate['prompt'])),
                 neutral=candidate['prompt']['neutral'], positive=candidate['prompt']['positive'],
                 seed=case['seed'], fitness=candidate['fitness'], gain=case['gain'],
@@ -153,6 +167,8 @@ def main(argv=None):
     parser.add_argument('--min-score', type=float, default=.75)
     parser.add_argument('--retry-pending', action='store_true')
     args = parser.parse_args(argv)
+    if not 0 <= args.min_score <= 1:
+        parser.error('--min-score must be in [0,1]')
     from particle_sliders_vibe import collect, write_json
     from particle_sliders_vibe.nanoodle import NanoodleWorkflows
     workflows = NanoodleWorkflows(*workflow_graphs(args.prompt_model, args.judge_model),

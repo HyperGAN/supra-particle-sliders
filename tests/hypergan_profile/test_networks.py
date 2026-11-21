@@ -8,7 +8,7 @@ if (importlib.util.find_spec("supra.hndl") is None
         or version("supra-particle-sliders") == "0.3.1"):
     pytest.skip("separate HyperGAN/HNDL wheel required", allow_module_level=True)
 
-if version("particle-sliders-core") != "0.13.0":
+if version("particle-sliders-core") != "0.15.1":
     pytest.skip("requires the distinct core0.13 HyperGAN/HNDL environment", allow_module_level=True)
 
 import torch
@@ -42,7 +42,7 @@ def test_real_hndl_lora_matches_native_forward_gradients_and_state(strength):
 
 
 def test_hndl_spatial_critic_matches_native_values_and_response_gradients():
-    from particle_sliders.fibo_hndl import HNDLFieldCritic
+    from supra.fibo_hndl import HNDLFieldCritic
     from particle_sliders.field_critic import FieldCritic
     with torch.random.fork_rng(devices=[]):
         torch.manual_seed(2)
@@ -79,7 +79,7 @@ def test_tampered_hypergan_builder_is_rejected_before_native_attachment(tmp_path
     from pathlib import Path
     from types import SimpleNamespace
     from hypergan.hndl_networks import build_network
-    from particle_sliders import fibo_hndl
+    from supra import fibo_hndl
     source = Path(inspect.getsourcefile(build_network)).parent
     manifest = json.loads((fibo_hndl.ROOT / "fibo_hndl_010_sources.json").read_text())
     for name in (*manifest["hypergan"], "_build_provenance.json"):

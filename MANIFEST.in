@@ -5,7 +5,11 @@ recursive-include profiles *.toml *.md
 
 include FRESH-CACHE.md
 
-# Explicit cached fresh95 documentation and original HNDL assets.
-include FRESH95.md
+# Explicit cached scoped documentation and original HNDL assets.
+include SCOPED.md
 include supra/supra_lora.hndl
-include supra/core013-pg095-hndl-receipt.json
+include supra/engine-hndl-receipt.json
+
+include supra/fibo_*.hndl supra/fibo_hndl_010_sources.json
+
+include VIBE.md docs/vibe-native32-verification.json docs/vibe-native128-verification.json

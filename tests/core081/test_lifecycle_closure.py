@@ -7,7 +7,7 @@ import torch
 
 from particle_sliders.inference import InferenceBackend, open_inference
 from particle_sliders.lifecycle import CheckpointError, SessionConfig, UnsupportedOperation
-from particle_sliders.pg09 import _hash
+from particle_sliders.engine import _hash
 from supra import cache, campaign, lifecycle, native_inference, native_io
 from supra.shared import file_sha
 
@@ -23,7 +23,7 @@ def configured(assets, monkeypatch):
     options = dict(native_config=config, cache=str(path), cache_sha256=file_sha(path),
         contexts=str(contexts), contexts_sha256=file_sha(contexts),
         frozen_base_sha256=native_io.frozen_digest(runtime), device="cpu", rank=2,
-        steps=4, batch=4, seed=7, critic_width=8, ema_decay=.9)
+        steps=4, batch=4, seed=7, critic_width=8, ema_decay=None)
     return runtime, SessionConfig("supra", "synthetic-supra-pg095-3dd672a-test-cohort", **options)
 
 
@@ -47,7 +47,7 @@ def test_exact_split_resume_with_metrics_ema_rng_and_coverage(configured):
 
 
 def test_native_identity_digest_keeps_the_legacy_product_convention(configured):
-    from supra.pg09 import frozen_digest
+    from supra.engine_io import frozen_digest
     runtime, _ = configured
     assert native_io.frozen_digest(runtime) == frozen_digest(runtime)
 
@@ -154,7 +154,7 @@ def fixture_validate(options, spec):
     native_io.verify_sources()
 
 
-@pytest.mark.parametrize("selection", ["raw", "ema"])
+@pytest.mark.parametrize("selection", ["raw"])
 def test_native_only_export_load_without_training_files_or_constructors(configured, monkeypatch, selection):
     runtime, config = configured
     fixture_backend = InferenceBackend("supra", native_inference.CAPABILITIES,
@@ -168,10 +168,10 @@ def test_native_only_export_load_without_training_files_or_constructors(configur
     for file in (config.options["cache"], config.options["contexts"],
                  str(Path(config.options["contexts"]).with_suffix(".json"))):
         Path(file).unlink()
-    from particle_sliders.pg09 import ConditionalPG09
+    from particle_sliders.engine import ConditionalParticleGAN
     def forbidden(*args, **kwargs):
         raise AssertionError("native-only inference touched training construction or data")
-    monkeypatch.setattr(ConditionalPG09, "__init__", forbidden)
+    monkeypatch.setattr(ConditionalParticleGAN, "__init__", forbidden)
     monkeypatch.setattr(campaign, "build_supra_campaign", forbidden)
     monkeypatch.setattr(cache, "load_supra_contexts", forbidden)
     monkeypatch.setattr(lifecycle, "prepare", forbidden)

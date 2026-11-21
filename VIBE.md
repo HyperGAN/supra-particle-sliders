@@ -18,11 +18,11 @@ or preservation scores. The proposer uses short paired contexts within the
 native T5 limit. Completed calls and unknown pending calls retain the shared
 collector's immutable recovery semantics.
 
-`supra_pg0100_vibe` is a separate experimental native training binding. Its current
-EMPF environment uses the captured core0.15 development/PG0.10 sources, HNDL0.10
-and the verified HyperGAN builder. Installing the public product with its default
-core0.13 dependency does not enable that environment. The existing public
-fresh95 factory and historical data checks are unchanged.
+The current collector uses Supra's [core 0.15.1 and ParticleGAN 0.11.0 setup](README.md).
+The November 17 EMPF experiment used [a separate source checkout](https://github.com/HyperGAN/supra-particle-sliders/tree/c6881116c85407e80656ec7f173174d275b57143/supra_pg0100_vibe)
+with captured core 0.15 development and ParticleGAN 0.10 sources, HNDL 0.10,
+and the verified HyperGAN builder. Use that exact environment to replay the
+archived cohort. The current package ends at collection and manifest export.
 
 The November17 run completed its declared128 updates using eight qualified
 matched cases and800 completed native paired fields. FULL states preserve the
@@ -48,8 +48,8 @@ strictly loaded saved FULL states, reused completed conditioning/fields/outputs,
 and never repeated a completed update prefix. The historical cohort is intact.
 
 The RAW format is `Supra-native256-vibe-FP32-HNDL-v1`, with original named adapter
-tensors and bound model/revision metadata. `supra_pg0100_vibe.inference.load_raw`
-requires this native CUDA HNDL class, exact base identities, tensor schema and
+tensors and bound model/revision metadata. The archived `supra_pg0100_vibe.inference.load_raw`
+requires its native CUDA HNDL class, exact base identities, tensor schema and
 RAW/no-EMA metadata. Its FP32 delta is cast to the native base output dtype.
 Ordinary LoRA loading is not asserted to implement that arithmetic. Native
 inference uses `sample_native(Backend(runtime), prompt, seed, strength=1.)` and
@@ -57,8 +57,5 @@ the original CUDA VAE. Cached-context runtimes reject prompts outside their
 completed conditioning; `load_runtime` provides the original encoder/decoder
 for new prompts when the declared CUDA resource budget fits.
 
-All new work is separate from the historical PG0.9.5 cohort and completed LR
-searches. Collection source, source closures, teacher hashes, normalization,
-FULL/RAW states and actual resource failures are retained in the workspace
-experiment ledger. No completed update or accepted judgment is replayed for
-bookkeeping.
+The original source closures, teacher hashes, normalization, FULL/RAW states and
+resource receipts are retained in the experiment ledger.

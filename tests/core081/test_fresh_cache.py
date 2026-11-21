@@ -47,8 +47,8 @@ def test_fresh_receipt_binds_actual_scale_and_every_unique_row(configured, tmp_p
         assert session.game.response_scale == rows.response_scale()
         session.step()
         receipt = json.loads(open(config.options['cache_receipt']).read())
-        assert receipt['source_identity']['core_origin']['module'] == 'particle_sliders/pg09_backends.py'
-        assert receipt['source_identity']['core_origin']['commit'] == '3dd672a7f9b8c169daef90fd63e4bb42b9ddc423'
+        assert receipt['source_identity']['core_origin']['module'] == 'particle_sliders/backends.py'
+        assert receipt['source_identity']['core_origin']['commit'] == 'c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78'
 
 
 @pytest.mark.parametrize('key', ['response_scale', 'source_identity', 'cache_sha256',

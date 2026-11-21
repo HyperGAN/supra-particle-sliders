@@ -16,9 +16,9 @@ from . import native_model
 from .shared import file_sha, verify_imported_sources
 
 GRAPH = Path(__file__).with_name("supra_lora.hndl")
-CORE_COMMIT = "3dd672a7f9b8c169daef90fd63e4bb42b9ddc423"
-PROFILE = "supra-hypergan-hndl-pg095-v2"
-LOCK = Path(__file__).with_name("core013-pg095-hndl-receipt.json")
+CORE_COMMIT = "c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78"
+PROFILE = "supra-hypergan-hndl-engine-v2"
+LOCK = Path(__file__).with_name("engine-hndl-receipt.json")
 
 
 def verify_sources():
@@ -41,8 +41,8 @@ def verify_sources():
                            ("hndl", "hndl_version")):
         if version(package) != receipt[field]:
             raise ValueError("Installed " + package + " version contradicts the source receipt")
-    from particle_sliders.pg09 import _released_sources
-    from particle_sliders.fibo_hndl import verified_builder
+    from particle_sliders.engine import _released_sources
+    from supra.fibo_hndl import verified_builder
     _released_sources()
     _, identity = verified_builder()
     if identity["hypergan_commit"] != receipt["hypergan_commit"]:
@@ -67,7 +67,7 @@ class HNDLLoRALinear(nn.Module):
             raise TypeError("An admitted native Supra LoRALinear is required")
         if builder is None:
             verify_sources()
-            from particle_sliders.fibo_hndl import verified_builder
+            from supra.fibo_hndl import verified_builder
             builder, identity = verified_builder()
         source = GRAPH.read_text()
         # These temporary random initializers are replaced by the admitted
@@ -117,7 +117,7 @@ def bind_native_loras(runtime):
     Requires a fresh runtime owned by the new cohort, before optimizer creation.
     Existing runtime/checkpoint cohorts must use their original environments.
     """
-    from particle_sliders.fibo_hndl import verified_builder
+    from supra.fibo_hndl import verified_builder
     verify_sources()
     builder, identity = verified_builder()
     original_list = runtime.loras

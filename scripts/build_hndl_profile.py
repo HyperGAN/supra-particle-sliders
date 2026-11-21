@@ -40,11 +40,13 @@ def main(argv=None):
     with tempfile.TemporaryDirectory(prefix="supra-hndl-build-") as temporary:
         stage = Path(temporary)
         shutil.copytree(ROOT / "supra", stage / "supra",
-                        ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+                        ignore=shutil.ignore_patterns("__pycache__", "*.pyc", "vibe.py"))
         shutil.copy2(ROOT / "profiles/hndl/pyproject.toml", stage / "pyproject.toml")
         shutil.copy2(ROOT / "profiles/hndl/README.md", stage / "README.md")
         shutil.copy2(ROOT / "LICENSE", stage / "LICENSE")
-        restore_pre_lr_runtime(ROOT, stage)
+        shutil.copytree(ROOT / "supra_scoped", stage / "supra_scoped",
+                        ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+        shutil.copytree(ROOT / "cohorts/pre-lr-hndl", stage / "cohorts/pre-lr-hndl")
         (stage / 'MANIFEST.in').write_text('recursive-include cohorts/pre-lr-hndl *.py *.json\n')
         subprocess.run([sys.executable, "-m", "pip", "wheel", "--no-index", "--no-deps",
             "--no-build-isolation", "--wheel-dir", str(output), str(stage)], check=True)
