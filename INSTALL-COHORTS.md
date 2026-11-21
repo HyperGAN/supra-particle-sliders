@@ -1,7 +1,7 @@
 # Installation cohorts
 
 Install this checkout in a fresh Python 3.11 or later environment. It pins core
-0.15.2 at `ec1161f5d74481be3540cb0dfa63d0e8f8b54e90` and ParticleGAN 0.11.1.
+0.15.2 at `b1f780decc516808cfd3019d5e5b674457161f86` and ParticleGAN 0.11.1.
 
 ```sh
 python -m pip install '.[test]'

@@ -30,7 +30,7 @@ def verify_sources():
     from importlib.metadata import distribution, version
     receipt = verify_imported_sources(LOCK)
     if (receipt.get("schema") != "supra-recursive-core-closure-v1"
-            or receipt.get("source_commit") != "ec1161f5d74481be3540cb0dfa63d0e8f8b54e90"
+            or receipt.get("source_commit") != "b1f780decc516808cfd3019d5e5b674457161f86"
             or receipt.get("namespaces") != ["concept_slider_core", "particle_sliders"]):
         raise ValueError("Current core closure identity contradicts the source receipt")
     dependency = distribution('particle-sliders-core')

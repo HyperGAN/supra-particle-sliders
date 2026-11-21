@@ -16,7 +16,7 @@ from . import native_model
 from .shared import file_sha, verify_imported_sources
 
 GRAPH = Path(__file__).with_name("supra_lora.hndl")
-CORE_COMMIT = "ec1161f5d74481be3540cb0dfa63d0e8f8b54e90"
+CORE_COMMIT = "b1f780decc516808cfd3019d5e5b674457161f86"
 PROFILE = "supra-hypergan-hndl-engine-v2"
 LOCK = Path(__file__).with_name("engine-hndl-receipt.json")
 
