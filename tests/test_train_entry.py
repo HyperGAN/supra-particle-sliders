@@ -31,7 +31,7 @@ def test_public_help_has_isolated_session_and_full_resume_contract(capsys):
 def test_product_uses_the_installed_dispatcher_instead_of_historical_campaign():
     source = (ROOT / "supra/train.py").read_text()
     assert "particle_sliders.session_cli" in source
-    assert "scripts.train_pg09" not in source
+    assert "build_supra_campaign" not in source
 
 
 @pytest.mark.parametrize("script", ["infer_supra.py", "distill_final_boss.py", "train_engine.py",

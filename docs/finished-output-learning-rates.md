@@ -51,7 +51,7 @@ another backend is not reproduction of this effect result.
 Changing G while keeping its multiplier fixed also changes D. A G-only
 comparison fixes absolute D and checks actual optimizer groups. This finished
 G selection does not assert that D was jointly optimized. [Earlier
-response-SSE measurements](learning-rates-pg095.md) and [earlier FP32 measurements](learning-rates.md)
+response-SSE measurements](https://github.com/HyperGAN/supra-particle-sliders/blob/686d2e82ebc2f3fb9620a3a88d98c44149b7fc34/docs/learning-rates-pg095.md) and [their exact configuration](https://github.com/HyperGAN/supra-particle-sliders/blob/686d2e82ebc2f3fb9620a3a88d98c44149b7fc34/configs/supra/final-boss-pg095-native256-research-fp32-128.options.json) and [earlier FP32 measurements](learning-rates.md)
 keep every original value; they are diagnostic history, not the current selector.
 
 ## Availability and reproduction
