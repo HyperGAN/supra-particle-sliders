@@ -1,0 +1,56 @@
+{
+  "schema": "Supra-native-vibe-completed128-verification-v1",
+  "program_source_commit": "c6881116c85407e80656ec7f173174d275b57143",
+  "completed_updates": 128,
+  "selected_step": 64,
+  "weights": "raw",
+  "ema_decay": null,
+  "selected_RAW": {
+    "path": "/ml2/particlesliders-working/vibe-validation-20261117/supra-EMPF-v4/quarter-0064-from-resume32-to64-a2-commit/RAW000064.supra-hndl.safetensors",
+    "bytes": 6817040,
+    "sha256": "897f5b259ebaa0b7844d114459b92ea0737d3d429e44a4a075036bdfc670f4e1"
+  },
+  "maximum_mean_effect_gain": 0.28,
+  "quarter_effects": [
+    {
+      "step": 32,
+      "mean_gain": 0.22541666666666665
+    },
+    {
+      "step": 64,
+      "mean_gain": 0.28
+    },
+    {
+      "step": 96,
+      "mean_gain": 0.2733333333333334
+    },
+    {
+      "step": 128,
+      "mean_gain": 0.26708333333333334
+    }
+  ],
+  "cases": 8,
+  "cases_are_training_data": true,
+  "unseen_confirmation": false,
+  "catastrophic_checks": "All16matched native images pass at every quarter",
+  "RAW_FULL_tensor_payloads_exact": 142,
+  "fresh_native_replay": {
+    "case": 0,
+    "steps": 50,
+    "exact_latent": true,
+    "official_initializer_calls": 0,
+    "new_training_updates": 0
+  },
+  "audit": {
+    "every_update_committed_once": true,
+    "all_FULL_hashes_and_steps_verified": true,
+    "initialization_receipt_preserved_every_FULL": true,
+    "zero_UP_payloads_verified": 71,
+    "official_regularizer_calls": 128,
+    "lazy_k": 1,
+    "changed_owned_tensors": 142
+  },
+  "tie_policy": "Retain every equal maximum; no SSE/probability/beauty/index tiebreak or averaging",
+  "rate_scope": "Historical scoped reference reused provisionally, not a new EMPF/vibe optimum",
+  "released_weights": false
+}

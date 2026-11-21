@@ -17,9 +17,13 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+vibe = ["particle-sliders-vibe[nanoodle] @ git+https://github.com/HyperGAN/particle-sliders.git@4bae4e08db7c71772cbea14e1ae1d7f5135e8290#subdirectory=packages/particle-sliders-vibe"]
 native = ["transformers==5.15.0", "diffusers>=0.36", "huggingface-hub>=1.0", "sentencepiece>=0.2", "numpy>=1.26"]
 test = ["pytest>=8", "PyYAML>=6"]
 hndl = ["hndl==0.10.0", "hypergan @ git+https://github.com/HyperGAN/HyperGAN.git@5f368a3770cf5bdae0448995c9f76e29af8049f7"]
+
+[project.scripts]
+supra-vibe = "supra.vibe:main"
 
 [project.entry-points."particle_sliders.image_backends"]
 supra = "supra.lifecycle:BACKEND"

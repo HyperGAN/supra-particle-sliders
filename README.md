@@ -18,6 +18,11 @@ python -m supra.train --config /absolute/path/session.json --out runs/new-cohort
 ```
 
 See [current installation and checkpoint contract](docs/pg095.md).
+
+[Adaptive `supra-vibe` data collection](VIBE.md) records finished-image scores
+and exports a qualified manifest. The same guide links the archived EMPF/HNDL
+experiment and its exact RAW64 replay evidence.
+
 **Current finished-image guidance:** use the existing Final Boss G **`0.036`**
 RAW128 at fixed D `0.018`, no bank (`lr=0.036`, `d_lr_mult=0.5`,
 `ema_decay=null`). It won the matched RAW64 comparison at equal-case intended-effect

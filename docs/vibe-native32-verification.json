@@ -1,0 +1,45 @@
+{
+  "schema": "Supra-native-vibe-RAW32-validation-v1",
+  "source_commit": "c688111",
+  "completed_updates": 32,
+  "declared_budget": 128,
+  "ema_decay": null,
+  "weights": "raw",
+  "profile": "supra-native256-vibe-HNDL-EMPF-v1",
+  "rates": {
+    "generator": 0.036,
+    "critic": 0.018,
+    "particle_bank": null
+  },
+  "RAW_sha256": "5c76b255bad902b7cc59267e38b806ca78fd106e8ba3e998eb2a61521632930b",
+  "FULL_sha256": "8bb914a32b212ad662c1bf9d57ee7b1d437a2f24cfc057921e8fb9913cccd934",
+  "exact_RAW_FULL_tensor_payloads": 142,
+  "native_inference": {
+    "independent_fresh_backbone": true,
+    "loader": "supra_pg0100_vibe.inference.load_raw",
+    "same_training_case": 0,
+    "steps": 50,
+    "latent_max_abs": 0.0,
+    "new_training_updates": 0,
+    "new_official_initializer_calls": 0
+  },
+  "finished_outputs": {
+    "cases": 8,
+    "geometry": [
+      256,
+      256
+    ],
+    "effect_mean_gain": 0.22541666666666665,
+    "metric": "equal-case intended-effect ON1 minus matched OFF0",
+    "cases_are_training_data": true,
+    "unseen_confirmation": false,
+    "catastrophic_gate": "pass",
+    "catastrophic_images": 16
+  },
+  "instrument_scope": "Two independently fixture-qualified categorical image/text instruments; remote model aliases only, no universal/audio qualification",
+  "continuation": {
+    "target": 64,
+    "status": "first attempt floor-stopped during loading,0 new updates; saved32 preserved"
+  },
+  "released_weights": false
+}

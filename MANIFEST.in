@@ -11,3 +11,5 @@ include supra/supra_lora.hndl
 include supra/engine-hndl-receipt.json
 
 include supra/fibo_*.hndl supra/fibo_hndl_010_sources.json
+
+include VIBE.md docs/vibe-native32-verification.json docs/vibe-native128-verification.json

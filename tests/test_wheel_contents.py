@@ -36,7 +36,9 @@ def test_exact_wheel_contents_and_metadata(profile, built_wheels):
     with zipfile.ZipFile(built_wheels[profile]) as wheel:
         names = wheel.namelist()
         contents = {name.removeprefix("supra/") for name in names if name.startswith("supra/") and not name.endswith("/")}
-        assert contents == (STABLE | CANDIDATE if profile == "CANDIDATE" else STABLE)
+        expected = STABLE | CANDIDATE if profile == "CANDIDATE" else STABLE | {"vibe.py"}
+        assert contents == expected
+        assert not any(name.startswith("supra_pg0100_vibe/") for name in names)
         metadata = BytesParser().parsebytes(wheel.read(next(name for name in names if name.endswith(".dist-info/METADATA"))))
         assert metadata["Name"] == "supra-particle-sliders"
         version = Version(metadata["Version"])
@@ -44,6 +46,7 @@ def test_exact_wheel_contents_and_metadata(profile, built_wheels):
         entries = wheel.read(next(name for name in names if name.endswith(".dist-info/entry_points.txt"))).decode()
         if profile == "STABLE":
             assert str(version) == "0.3.1" and "supra_hndl" not in entries
+            assert "supra-vibe = supra.vibe:main" in entries
         else:
             assert str(version) == "0.4.0.dev2" and "supra_hndl" in entries
             assert any("c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78" in requirement

@@ -40,7 +40,7 @@ def main(argv=None):
     with tempfile.TemporaryDirectory(prefix="supra-hndl-build-") as temporary:
         stage = Path(temporary)
         shutil.copytree(ROOT / "supra", stage / "supra",
-                        ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+                        ignore=shutil.ignore_patterns("__pycache__", "*.pyc", "vibe.py"))
         shutil.copy2(ROOT / "profiles/hndl/pyproject.toml", stage / "pyproject.toml")
         shutil.copy2(ROOT / "profiles/hndl/README.md", stage / "README.md")
         shutil.copy2(ROOT / "LICENSE", stage / "LICENSE")
