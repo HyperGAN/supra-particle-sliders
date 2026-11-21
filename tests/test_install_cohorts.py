@@ -17,6 +17,12 @@ def test_default_installer_uses_the_packaged_lifecycle_receipt():
     assert requirements("requirements.txt") == [".[test]"]
     metadata = tomllib.loads((ROOT / "pyproject.toml").read_text())
     receipt = json.loads((ROOT / "supra/engine-receipt.json").read_text())
+    backend = json.loads((ROOT / "backend.lock.json").read_text())
+    assert backend["source_lock"] == "supra/engine-receipt.json"
+    assert backend["core_commit"] == receipt["source_commit"]
+    assert backend["core_version"] == receipt["version"]
+    assert backend["particlegan_version"] == receipt["pg_version"]
+    assert backend["entrypoint"] == "particle_sliders.engine.ConditionalParticleGAN"
     core = next(Requirement(value) for value in metadata["project"]["dependencies"]
                 if Requirement(value).name == "particle-sliders-core")
     assert core.url == (
