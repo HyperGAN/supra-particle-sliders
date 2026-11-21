@@ -11,9 +11,11 @@ from types import SimpleNamespace
 import hashlib, inspect, json, math
 import pytest
 import torch
+from particle_sliders.adaptive_steering import ActivationGate
 from particle_sliders.lifecycle import SessionConfig
 from supra import cache, campaign, hndl, hndl_lifecycle, native_io, native_model
 from supra.runtime import MODEL_REV, T5_REV
+from supra.scheduled_inference import render
 from supra.shared import file_sha
 from supra_scoped import open_training, open_inference, Checkpoint
 from supra_scoped import training, policy, ownership
@@ -41,6 +43,8 @@ class TinyRuntime:
     def encode(self,prompt):
         if prompt not in self.cache:raise AssertionError('software fixture must never encode new text')
         return self.cache[prompt]
+    def noise(self, seed):
+        return torch.randn(1, 4, 32, 32, generator=torch.Generator().manual_seed(seed))
     @contextmanager
     def scale(self,value):
         old=[layer.multiplier for layer in self.loras]
@@ -144,6 +148,23 @@ def test_new_strict_FULL_optimizer_RNG_resume_and_RAW_infer_skip_init(staged,mon
         before=torch.get_rng_state().clone();response=loaded.response(row,strength=1.,seed=9)
         assert response.shape==(1,4,32,32)and torch.isfinite(response).all()
         assert torch.equal(before,torch.get_rng_state())
+        calls = []
+
+        def alignment(latent, timestep):
+            score = float(timestep)
+            calls.append((latent.shape, score))
+            return score
+
+        request = dict(prompt='n', strength=1.0, seed=9, steps=2, cfg=3.0)
+        adaptive, receipt = render(loaded, **request, gate=ActivationGate('cfp', 0.0),
+                                   alignment=alignment)
+        fixed, _ = render(loaded, **request, step_gains=[1.0, 0.0])
+        assert adaptive.tobytes() == fixed.tobytes()
+        assert calls == [(torch.Size((1, 4, 32, 32)), 0.0), (torch.Size((1, 4, 32, 32)), 0.5)]
+        assert receipt['effective_strengths'] == [1.0, 0.0]
+        assert receipt['interval_weighted_dose'] == 0.5
+        assert equal(network, loaded.backend.network.state_dict())
+        assert torch.equal(before, torch.get_rng_state())
 
 def test_new_early_intent_legacy_EMA_refusal_and_pending_cleanup_retry(staged,monkeypatch):
     config,root=staged;calls=[]

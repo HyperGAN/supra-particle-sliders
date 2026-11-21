@@ -7,7 +7,7 @@
   "role": "Shared native-response GAN lifecycle and optimizer; the product owns its DiT and native LoRA",
   "historical_core_commit": "a119ca1ecd3d5d6c437065839d22739b04f2f4d8",
   "historical_dit_sha256": "640851f4570d0f9eacccac70022f06668ddf92dcf8629e978a76443db60acdc4",
-  "core_commit": "ec1161f5d74481be3540cb0dfa63d0e8f8b54e90",
+  "core_commit": "b1f780decc516808cfd3019d5e5b674457161f86",
   "core_version": "0.15.2",
   "particlegan_version": "0.11.1"
 }

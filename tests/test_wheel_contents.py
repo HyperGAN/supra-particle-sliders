@@ -13,7 +13,7 @@ import pytest
 
 STABLE = set("""__init__.py cache.py campaign.py card.py convergence.py engine-receipt.json
 distillation.py fresh_cache.py learning_rates.py lifecycle.py native_inference.py native_io.py
-native_model.py runtime.py shared.py thin-product-provenance.json
+native_model.py runtime.py scheduled_inference.py shared.py step_strength.py thin-product-provenance.json
 response_binding.py fibo_hndl.py fibo_hndl_010_sources.json fibo_critic.hndl fibo_projection.hndl
 train.py training_profile.py licenses/LICENSE licenses/LICENSE-Supra2-IMG licenses/NOTICE""".split())
 CANDIDATE = {"hndl.py", "hndl_lifecycle.py", "hndl_inference.py", "supra_lora.hndl", "engine-hndl-receipt.json"}
@@ -46,7 +46,7 @@ def test_exact_wheel_contents_and_metadata(profile, built_wheels):
             assert str(version) == "0.3.1" and "supra_hndl" not in entries
         else:
             assert str(version) == "0.4.0.dev2" and "supra_hndl" in entries
-            assert any("ec1161f5d74481be3540cb0dfa63d0e8f8b54e90" in requirement
+            assert any("b1f780decc516808cfd3019d5e5b674457161f86" in requirement
                        for requirement in metadata.get_all("Requires-Dist"))
 
 

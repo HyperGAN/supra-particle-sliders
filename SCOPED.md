@@ -4,7 +4,7 @@
 
 Use an already completed original Supra response cache, its whole-file checksum, and the original 19-context data plus matching JSON provenance sidecar. Keep the native configuration, model revisions, frozen-base identity, FP32 host and original field geometry. The API validates those original assets; it never collects teachers, encodes replacement contexts or runs teacher parity. An owner supplies the admitted HNDL runtime factory and remains responsible for staging, device ownership and final runtime unloading.
 
-The package includes the original `supra/supra_lora.hndl` and `supra/engine-hndl-receipt.json` in their original locations. The HNDL context must also provide the exact core0.15.2 Git source closure, official ParticleGAN0.11.1 initializer and original HNDL/HyperGAN dependencies accepted by the unchanged guards. Version strings alone are insufficient. The separate historical HNDL profile builder is unchanged; this addition does not claim that builder installs the sibling helper or that a public pretrained HNDL environment is qualified.
+The package includes the original `supra/supra_lora.hndl` and the reviewed `supra/engine-hndl-receipt.json`. The HNDL context requires the exact core 0.15.2 Git source closure from the [installation guide](INSTALL-COHORTS.md), official ParticleGAN 0.11.1 initializer and pinned HNDL/HyperGAN dependencies. Use the producing checkout and dependency pins for earlier source-bound packets.
 
 ```python
 from particle_sliders.lifecycle import SessionConfig

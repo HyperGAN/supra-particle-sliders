@@ -5,7 +5,7 @@
 # Supra particle sliders — current ParticleGAN 0.11.1 integration
 
 The canonical package is now **0.3.1**, using `particle-sliders-core==0.15.2`
-from exact source `ec1161f5d74481be3540cb0dfa63d0e8f8b54e90` and official
+from exact source `b1f780decc516808cfd3019d5e5b674457161f86` and official
 **ParticleGAN 0.11.1**. Python 3.11 or newer is required. New training uses the
 installed `supra` image backend through the shared isolated dispatcher:
 
@@ -18,7 +18,7 @@ python -m supra.train --config /absolute/path/session.json --out runs/new-cohort
 ```
 
 For native RAW inference, [scheduled strength](docs/scheduled-strength.md)
-applies one gain per step on the original conditional Euler path.
+accepts fixed gains or a calibrated activation gate on the conditional Euler path.
 
 **Current finished-image guidance:** use the existing Final Boss G **`0.036`**
 RAW128 at fixed D `0.018`, no bank (`lr=0.036`, `d_lr_mult=0.5`,
