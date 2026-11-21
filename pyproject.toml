@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = {file = "LICENSE"}
 dependencies = [
-  "particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78#subdirectory=packages/particle-sliders-core",
+  "particle-sliders-core @ git+https://github.com/HyperGAN/particle-sliders.git@ec1161f5d74481be3540cb0dfa63d0e8f8b54e90#subdirectory=packages/particle-sliders-core",
   "safetensors>=0.5",
   "Pillow>=13.0.0",
   "numpy>=1.26",

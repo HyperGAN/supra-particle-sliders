@@ -13,7 +13,7 @@ if (importlib.util.find_spec("supra.hndl") is None
         or version("supra-particle-sliders") == "0.3.1"):
     pytest.skip("separate HyperGAN/HNDL wheel required", allow_module_level=True)
 
-if version("particle-sliders-core") != "0.15.1":
+if version("particle-sliders-core") != "0.15.2":
     pytest.skip("requires the modern core environment", allow_module_level=True)
 
 import torch

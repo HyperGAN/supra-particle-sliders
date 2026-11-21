@@ -46,7 +46,7 @@ def test_exact_wheel_contents_and_metadata(profile, built_wheels):
             assert str(version) == "0.3.1" and "supra_hndl" not in entries
         else:
             assert str(version) == "0.4.0.dev2" and "supra_hndl" in entries
-            assert any("c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78" in requirement
+            assert any("ec1161f5d74481be3540cb0dfa63d0e8f8b54e90" in requirement
                        for requirement in metadata.get_all("Requires-Dist"))
 
 

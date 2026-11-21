@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Train the canonical PG0.11.0 Supra session through the shared dispatcher."""
+"""Train the canonical PG0.11.1 Supra session through the shared dispatcher."""
 from pathlib import Path
 import sys
 

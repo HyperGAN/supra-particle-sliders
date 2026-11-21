@@ -30,7 +30,7 @@ def verify_sources():
     from importlib.metadata import distribution, version
     receipt = verify_imported_sources(LOCK)
     if (receipt.get("schema") != "supra-recursive-core-closure-v1"
-            or receipt.get("source_commit") != "c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78"
+            or receipt.get("source_commit") != "ec1161f5d74481be3540cb0dfa63d0e8f8b54e90"
             or receipt.get("namespaces") != ["concept_slider_core", "particle_sliders"]):
         raise ValueError("Current core closure identity contradicts the source receipt")
     dependency = distribution('particle-sliders-core')
@@ -40,7 +40,7 @@ def verify_sources():
             or origin.get('subdirectory') != 'packages/particle-sliders-core'):
         raise ValueError('Supra requires the exact ParticleGAN shared-core Git origin')
     from particle_sliders.engine import PG_VERSION, PG_SOURCE_PROFILE, PG_SOURCE_COMMIT, PG_WHEEL_SHA256
-    if ((PG_VERSION, PG_SOURCE_PROFILE) != ('0.11.0', 'release-0.11.0')
+    if ((PG_VERSION, PG_SOURCE_PROFILE) != ('0.11.1', 'release-0.11.1')
             or (receipt.get('pg_source_commit'), receipt.get('pg_wheel_sha256')) != (PG_SOURCE_COMMIT, PG_WHEEL_SHA256)):
         raise ValueError('Supra requires the new official ParticleGAN source profile')
     import particle_sliders

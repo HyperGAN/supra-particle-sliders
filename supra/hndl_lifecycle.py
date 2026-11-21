@@ -1,4 +1,4 @@
-"""Distinct Supra core0.13/PG0.11.0/HyperGAN develop/HNDL lifecycle candidate.
+"""Distinct Supra core0.13/PG0.11.1/HyperGAN develop/HNDL lifecycle candidate.
 
 The product validates its native assets and owns orchestration. All network
 execution, GAN updates, optimizers, penalties and checkpoint validation stay in

@@ -48,7 +48,7 @@ def test_current_installed_pg095_guard_and_old_profile_refusal():
     from particle_sliders.engine import ConditionalParticleGAN, PG_VERSION, PG_SOURCE_PROFILE
     from particle_sliders.engine import validate_engine_domain
     verify_sources()
-    assert version('particle-sliders-core') == '0.15.1'
-    assert (PG_VERSION, PG_SOURCE_PROFILE) == ('0.11.0', 'release-0.11.0')
+    assert version('particle-sliders-core') == '0.15.2'
+    assert (PG_VERSION, PG_SOURCE_PROFILE) == ('0.11.1', 'release-0.11.1')
     with pytest.raises(ValueError, match='source profile'):
         validate_engine_domain((1, 4, 1, 2, 2), response_domain='continuous_field', pg_source_profile='release-0.9.4')

@@ -78,7 +78,7 @@ def initialize(runtime, critic, construction, options, sources):
     if (not isinstance(construction, Construction) or construction.mode != 'fresh'
             or construction.options_sha256 != hashlib.sha256(canonical(options).encode()).hexdigest()):
         raise ValueError('explicit fresh intent before optimizers required')
-    if metadata.version('particlegan') != '0.11.0' or source_record(pg_init.__file__)['sha256'] != INIT_SHA:
+    if metadata.version('particlegan') != '0.11.1' or source_record(pg_init.__file__)['sha256'] != INIT_SHA:
         raise ValueError('exact public ParticleGAN initializer Source required')
     rows = declarations(runtime, critic)
     holder = DeclaredOwned(rows)

@@ -29,7 +29,7 @@ def guard():
     hndl.verify_sources()
     from importlib import metadata
     from particlegan import init as pg_init
-    if metadata.version('particlegan') != '0.11.0' or source_record(pg_init.__file__)['sha256'] != policy.INIT_SHA:
+    if metadata.version('particlegan') != '0.11.1' or source_record(pg_init.__file__)['sha256'] != policy.INIT_SHA:
         raise RuntimeError('exact original public initializer required')
 
 def sources():
