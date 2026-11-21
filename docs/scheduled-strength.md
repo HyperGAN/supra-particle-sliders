@@ -70,8 +70,31 @@ with the same request. Compare held-out images against the matched OFF,
 matched-budget constant and random controls. Rank by mean per-case Final Boss
 effect ON minus OFF and apply the separate catastrophic-output check.
 
-The retained Final Boss RAW256 panel supplies fixed-schedule reference scores.
-Adaptive gains are unmeasured. The new path requires a fitted Supra readout
-and measured active-rollout calibration. Reopen source-bound RAW and FULL
-packets in their original environments. Earlier source cohorts retain their
-captured loaders and evidence.
+Reopen source-bound RAW and FULL packets in their original environments.
+
+### Final Boss RAW256 activation pilot
+
+The pilot uses the original 256×256 Supra2-IMG sampler with 50 rising Euler
+intervals, CFG 3 and the saved Final Boss RAW256 adapter at nominal strength 1.
+The readout averages each latent channel and within-patch position over Supra’s
+native 2×2 patch grid before the denoiser call. The signed top-ten probe was
+fitted on four archived positive/neutral trajectory pairs from two prompt
+families. CFP’s threshold and CLABS’s bias were calibrated on active rollouts of
+four separate H3 Final Boss prompts encoded by Supra’s native T5. Both gates
+fired on exactly 100 of 200 calibration intervals.
+
+Each of the four held-out cases compares a gate with constant strength at the
+gate’s own realized interval-weighted dose. Gains are the equal-case mean
+finished-image Final Boss score over the exact matched OFF image.
+
+| Method | Held-out firing | Gate gain | Dose-matched constant gain | Cases ahead |
+| --- | ---: | ---: | ---: | ---: |
+| CFP | 111/200 | +0.008638 | +0.005886 | 2/4 |
+| CLABS | 93/200 | +0.006925 | +0.004532 | 1/4 |
+| Random | 93/200 | +0.006500 | +0.005600 | 2/4 |
+
+All four OFF PNGs replayed byte for byte. Those four and all 20 distinct new
+images passed the independent categorical check. The bridge case stayed OFF
+under both learned gates. The measured fixed early profile above remains the
+documented choice for this configuration. The pilot’s fitted direction and
+calibration apply to this adapter and sampler. [Study and per-case evidence](final-boss-raw256-adaptive-evidence.json)
