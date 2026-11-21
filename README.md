@@ -184,21 +184,7 @@ No base weights are redistributed.
 [Catalog and sample metadata](https://huggingface.co/ntc-ai/supra-particle-sliders/resolve/main/catalog.json) ·
 [Release checksums](https://huggingface.co/ntc-ai/supra-particle-sliders/resolve/main/release-manifest.json) ·
 [Source provenance](https://huggingface.co/ntc-ai/supra-particle-sliders/resolve/main/source-provenance.json)
-# Image lifecycle integration draft
-
-The isolated source proposal registers `supra` against clean core 0.8.1 at
-`32f6830f6402e85aa77b6631db64fcbbb2131f6b`. See the
-[entrypoint audit and migration plan](docs/image-lifecycle-integration.md).
-The [thin product closure](docs/thin-product-core081.md) relocates unchanged
-Supra-only definitions and wires native-only inference plus common hooks.
-The [bounded CPU slot](docs/core081-cpu-validation.md) passed **18 installed-wheel
-checks** at exact head `73537b7`, with CUDA uninitialized. Pretrained/GPU,
-fresh-process inference and full CLI/legacy qualification remain pending.
-The earlier 0.7 draft and the
-[initial closure assessment](docs/core081-adoption-assessment.md) remain in history.
-This is a new source cohort; existing `requirements-legacy.txt`, CDF source locks and
-historical checkpoint loaders retain their original roles. Their prior test
-receipts do not qualify this draft.
+## Shared lifecycle example
 
 After separately reviewed installation in a native Supra environment, supply
 already admitted local config/context/cache assets and their exact digests:

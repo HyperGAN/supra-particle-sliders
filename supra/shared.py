@@ -11,20 +11,13 @@ import os
 from pathlib import Path
 import sys
 
-LOCK = Path(__file__).resolve().parents[1] / "shared.lock.json"
-if not LOCK.is_file():
-    LOCK = Path(__file__).with_name("shared.lock.json")
+LOCK = Path(__file__).with_name("engine-receipt.json")
 _SOURCE_LOCK = ContextVar("supra_source_lock", default=None)
 
 
 @contextmanager
 def source_cohort(lock):
-    """Scope a separately reviewed dependency cohort without retargeting CDF.
-
-    The new lifecycle factory selects its own packaged lock. Legacy entrypoints
-    retain LOCK and their existing checkpoint schemas. Context-local selection
-    avoids changing process environment or another session's source cohort.
-    """
+    """Scope the reviewed HNDL or native source receipt to one session."""
     token = _SOURCE_LOCK.set(Path(lock))
     try:
         yield
@@ -50,7 +43,7 @@ def shared_root(root=None):
     else:
         spec = importlib.util.find_spec("particle_sliders")
         if spec is None or not spec.origin:
-            raise RuntimeError("Install the pinned particle-sliders-core package; see docs/pg09.md")
+            raise RuntimeError("Install the pinned particle-sliders-core package; see INSTALL-COHORTS.md")
         root = Path(spec.origin).resolve().parent
     lock = json.loads((_SOURCE_LOCK.get() or LOCK).read_text())
     # Canonical 0.8.1 producer receipts use package-src-relative keys, including

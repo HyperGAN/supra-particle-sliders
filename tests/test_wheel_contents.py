@@ -11,12 +11,12 @@ import zipfile
 from packaging.version import Version
 import pytest
 
-STABLE = set("""__init__.py cache.py campaign.py card.py convergence.py core081-receipt.json core012-ddb4142-receipt.json engine-receipt.json
-distillation.py fresh_cache.py learning_rates.py lifecycle.lock.json lifecycle.py native_inference.py native_io.py
-native_model.py engine_io.py runtime.py shared.lock.json shared.py thin-product-provenance.json
+STABLE = set("""__init__.py cache.py campaign.py card.py convergence.py engine-receipt.json
+distillation.py fresh_cache.py learning_rates.py lifecycle.py native_inference.py native_io.py
+native_model.py runtime.py shared.py thin-product-provenance.json
 response_binding.py fibo_hndl.py fibo_hndl_010_sources.json fibo_critic.hndl fibo_projection.hndl
 train.py training_profile.py licenses/LICENSE licenses/LICENSE-Supra2-IMG licenses/NOTICE""".split())
-CANDIDATE = {"hndl.py", "hndl_lifecycle.py", "hndl_inference.py", "supra_lora.hndl", "core012-receipt.json", "core012-a794e3-receipt.json", "core012-ddb4142-hndl-receipt.json", "engine-hndl-receipt.json"}
+CANDIDATE = {"hndl.py", "hndl_lifecycle.py", "hndl_inference.py", "supra_lora.hndl", "engine-hndl-receipt.json"}
 
 
 @pytest.fixture

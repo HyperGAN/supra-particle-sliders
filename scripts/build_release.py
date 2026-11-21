@@ -184,6 +184,7 @@ Install a CUDA-enabled PyTorch build, then:
 ```bash
 git clone {GITHUB}.git
 cd supra-particle-sliders
+git checkout --detach b35e634f4611687c22b1254555c7c1eeec7692fe
 pip install -r requirements-legacy.txt
 hf download {REPO} distilled/final-boss-converged-rank8.safetensors --local-dir adapters
 python scripts/infer_supra.py --allow-hub \\
@@ -195,8 +196,8 @@ python scripts/infer_supra.py --allow-hub \\
 The first inference downloads pinned Supra2-IMG, Flan-T5 Base and VAE weights.
 The inference script reads adapter rank from metadata and checks model pins.
 Set `CUDA_VISIBLE_DEVICES` to select a GPU. See the
-[training recipe]({GITHUB}/blob/main/docs/final-boss.md) and
-[release reproduction]({GITHUB}/blob/main/docs/release.md).
+[training recipe]({GITHUB}/blob/b35e634f4611687c22b1254555c7c1eeec7692fe/docs/final-boss.md) and
+[release reproduction]({GITHUB}/blob/b35e634f4611687c22b1254555c7c1eeec7692fe/docs/release.md).
 
 ## How it learns
 

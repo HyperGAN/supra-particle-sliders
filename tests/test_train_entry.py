@@ -35,7 +35,7 @@ def test_product_uses_the_installed_dispatcher_instead_of_historical_campaign():
 
 
 @pytest.mark.parametrize("script", ["infer_supra.py", "distill_final_boss.py", "train_engine.py",
-    "prepare_pg09_contexts.py", "train_lora_supra.py", "train_final_boss.py", "converge_final_boss.py"])
+    "prepare_contexts.py", "train_lora_supra.py", "train_final_boss.py", "converge_final_boss.py"])
 def test_entrypoint_help_works_before_package_resolution(script):
     environment = dict(os.environ)
     environment.pop("PARTICLE_SLIDERS_ROOT", None)

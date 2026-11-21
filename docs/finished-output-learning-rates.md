@@ -50,8 +50,8 @@ another backend is not reproduction of this effect result.
 
 Changing G while keeping its multiplier fixed also changes D. A G-only
 comparison fixes absolute D and checks actual optimizer groups. This finished
-G selection does not assert that D was jointly optimized. [Historical PG0.9.5
-response-SSE measurements](learning-rates-pg095.md) and [PG0.9.4 measurements](learning-rates.md)
+G selection does not assert that D was jointly optimized. [Earlier
+response-SSE measurements](learning-rates-pg095.md) and [earlier FP32 measurements](learning-rates.md)
 keep every original value; they are diagnostic history, not the current selector.
 
 ## Availability and reproduction

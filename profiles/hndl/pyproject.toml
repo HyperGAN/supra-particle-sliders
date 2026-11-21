@@ -36,4 +36,4 @@ where = ["."]
 include = ["supra*"]
 
 [tool.setuptools.package-data]
-supra = ["lifecycle.lock.json", "shared.lock.json", "core081-receipt.json", "core012-ddb4142-receipt.json", "engine-receipt.json", "core012-ddb4142-hndl-receipt.json", "engine-hndl-receipt.json", "core012-receipt.json", "core012-a794e3-receipt.json", "thin-product-provenance.json", "*.hndl", "fibo_hndl_010_sources.json", "licenses/*"]
+supra = ["engine-receipt.json", "engine-hndl-receipt.json", "thin-product-provenance.json", "*.hndl", "fibo_hndl_010_sources.json", "licenses/*"]

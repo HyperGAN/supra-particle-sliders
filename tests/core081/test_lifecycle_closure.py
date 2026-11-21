@@ -46,12 +46,6 @@ def test_exact_split_resume_with_metrics_ema_rng_and_coverage(configured):
         assert native_io.frozen_digest(fresh) == frozen
 
 
-def test_native_identity_digest_keeps_the_legacy_product_convention(configured):
-    from supra.engine_io import frozen_digest
-    runtime, _ = configured
-    assert native_io.frozen_digest(runtime) == frozen_digest(runtime)
-
-
 def test_native_adapter_ownership_and_zero_strength_survive_real_update(configured):
     runtime, config = configured
     with lifecycle.BACKEND.open(config, runtime=runtime) as session:

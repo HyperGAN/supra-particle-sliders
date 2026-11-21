@@ -156,7 +156,7 @@ def main():
     parser.add_argument("--resume", type=Path)
     args = parser.parse_args()
     if not args.allow_legacy_mse:
-        parser.error("Historical MSE trainer requires --allow-legacy-mse; use scripts/train_engine.py for shared PG0.9 GAN-only training")
+        parser.error("Historical MSE trainer requires --allow-legacy-mse; use scripts/train_engine.py for current shared GAN training")
     MODEL_SOURCE = model_source()
     if min(args.steps, args.batch_size, args.cache_seeds, args.sample_steps, args.save_every, args.rank) < 1:
         parser.error("steps, batch, cache seeds, sampling, save interval and rank must be positive")
