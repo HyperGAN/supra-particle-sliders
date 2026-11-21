@@ -48,7 +48,7 @@ def test_fresh_receipt_binds_actual_scale_and_every_unique_row(configured, tmp_p
         session.step()
         receipt = json.loads(open(config.options['cache_receipt']).read())
         assert receipt['source_identity']['core_origin']['module'] == 'particle_sliders/backends.py'
-        assert receipt['source_identity']['core_origin']['commit'] == 'c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78'
+        assert receipt['source_identity']['core_origin']['commit'] == 'ec1161f5d74481be3540cb0dfa63d0e8f8b54e90'
 
 
 @pytest.mark.parametrize('key', ['response_scale', 'source_identity', 'cache_sha256',

@@ -1,12 +1,12 @@
 > **Calculated memory planning:** training **8 GiB VRAM / 8 GiB host RAM** (256×256, B=4, FP32 storage; BF16 CUDA autocast); sampling **8 GiB VRAM / 8 GiB host RAM** (256×256). See [MEMORY.md](MEMORY.md) for checkpointed/phase variants, attention fallback and exact limits. These are conservative calculated budgets, not measured peaks.
 
-**Current source: core 0.15.1 / ParticleGAN 0.11.0.** See [PG095 installation and cohort contract](docs/pg095.md). Earlier version descriptions below are retained historical context, not the current installer.
+**Current source: core 0.15.2 / ParticleGAN 0.11.1.** See the [installation and cohort guide](INSTALL-COHORTS.md).
 
-# Supra particle sliders — current ParticleGAN 0.11.0 integration
+# Supra particle sliders — current ParticleGAN 0.11.1 integration
 
-The canonical package is now **0.3.1**, using `particle-sliders-core==0.15.1`
-from exact source `c13890f8e2a1ecf1dc8eb9f2a37f9187cb9fea78` and official
-**ParticleGAN 0.11.0**. Python 3.11 or newer is required. New training uses the
+The canonical package is now **0.3.1**, using `particle-sliders-core==0.15.2`
+from exact source `ec1161f5d74481be3540cb0dfa63d0e8f8b54e90` and official
+**ParticleGAN 0.11.1**. Python 3.11 or newer is required. New training uses the
 installed `supra` image backend through the shared isolated dispatcher:
 
 ```bash
@@ -17,7 +17,6 @@ particle-slider train --profile supra --config /absolute/path/session.json --out
 python -m supra.train --config /absolute/path/session.json --out runs/new-cohort --no-reporting
 ```
 
-See [current installation and checkpoint contract](docs/pg095.md).
 **Current finished-image guidance:** use the existing Final Boss G **`0.036`**
 RAW128 at fixed D `0.018`, no bank (`lr=0.036`, `d_lr_mult=0.5`,
 `ema_decay=null`). It won the matched RAW64 comparison at equal-case intended-effect
@@ -26,14 +25,14 @@ is `0.00974137553324302`, retaining both negative cases. Reuse this saved result
 no new search or confirmation is required. [Exact scope and how-to](docs/finished-output-learning-rates.md)
 · [portable rate/score record](docs/finished-output-rate.json).
 
-The earlier PG0.9.5 native256 **response-SSE diagnostic** selected G `0.024`,
+The earlier native256 **response-SSE diagnostic** selected G `0.024`,
 D `0.018`, no bank; its held-out relative SSE `0.5118560854877398` remains
-unchanged in [the historical research evidence](docs/learning-rates-pg095.md).
+unchanged in [the historical research evidence](https://github.com/HyperGAN/supra-particle-sliders/blob/b35e634f4611687c22b1254555c7c1eeec7692fe/docs/learning-rates-pg095.md).
 SSE does not select or break ties for current finished-output guidance.
 
-For the **historical PG0.9.4** Final boss FP32 128-update recipe, the measured recommendation is
+For the earlier Final Boss FP32 128-update recipe, the measured recommendation is
 G `0.036`, D `0.018` (`lr=0.036`, `d_lr_mult=0.5`), with no particle bank.
-See [learning-rate evidence and reusable options](docs/learning-rates.md) for
+See [learning-rate evidence and reusable options](https://github.com/HyperGAN/supra-particle-sliders/blob/b35e634f4611687c22b1254555c7c1eeec7692fe/docs/learning-rates.md) for
 the exact scope and held-out confirmation score `0.782762` (OFF `1.0`).
 The canonical generator remains an ordinary LoRA **adapter GAN**, `particles=None`;
 no particle bank or locally copied GAN formula is introduced. The optional
@@ -42,44 +41,12 @@ no particle bank or locally copied GAN formula is introduced. The optional
 The current change updates software integration. Published FinalBoss MSE weights,
 recipes, base model revisions and historical source locks are unchanged; those
 weights have not been retrained. Historical GAN training packets require their
-exact original source environment and are not relabeled as PG0.9.4. Native
+exact original source environment. Native
 pretrained response/cache/continuation evidence for the measured recipe is
 recorded in the learning-rate document; separate media diagnostics do not gate
 its rate recommendation.
 
-The material below records prior source cohorts and the published FinalBoss
-release; current installation/training instructions are above.
-
----
-
-[Current and historical installation cohorts](INSTALL-COHORTS.md).
-
-# Supra sliders: shared ParticleGAN 0.9 training
-
-The packaged lifecycle installs with `python -m pip install -r requirements.txt`
-and uses core 0.8.1 at `32f6830f6402e85aa77b6631db64fcbbb2131f6b`, with
-ParticleGAN 0.9.1. It registers the `supra` training and native inference backends
-for the installed shared lifecycle. See [installation cohorts](INSTALL-COHORTS.md)
-for native dependencies, historical entrypoints and the upgrade boundary.
-
-## Historical CDF training entrypoints
-
-The source CLI [`scripts/train_engine.py`](scripts/train_engine.py) executes
-the external shared `particle_sliders.pg09.ConditionalPG09` game and shared native
-Supra response adapter. Follow [the PG0.9 integration instructions](docs/pg09.md)
-for the exact source pin, asset checks, full checkpoint resume and CPU evidence.
-No new GPU run or model release is qualified by this integration.
-
-That historical installer pins producer-final frozen core `cdfb80a7`. Its
-installed wheel passes 21 native consumer cases plus 4 explicit test-only Adam
-clock probes. Final acceptance and Ada review remain pending; prior source
-cohorts and receipts are preserved without checkpoint retargeting.
-
-The original MSE trainer and continuation script require `--allow-legacy-mse`
-for archival reproduction. Existing released adapters retain their original
-both-branch CFG behavior; new PG exports use conditional-only adaptation.
-Historical architecture/LoRA imports resolve the reviewed external package or
-an explicit `PARTICLE_SLIDERS_ROOT`; vendored source is not executed.
+[Earlier training and checkpoint contract](https://github.com/HyperGAN/supra-particle-sliders/blob/b35e634f4611687c22b1254555c7c1eeec7692fe/README.md#historical-cdf-training-entrypoints).
 
 ## Historical MSE release: 1,600 training steps in 134.4 seconds
 
@@ -143,6 +110,7 @@ Install a CUDA-enabled PyTorch build, then:
 ```bash
 git clone https://github.com/HyperGAN/supra-particle-sliders.git
 cd supra-particle-sliders
+git checkout --detach b35e634f4611687c22b1254555c7c1eeec7692fe
 pip install -r requirements-legacy.txt
 hf download ntc-ai/supra-particle-sliders distilled/final-boss-converged-rank8.safetensors --local-dir adapters
 python scripts/infer_supra.py --allow-hub \
@@ -154,14 +122,8 @@ python scripts/infer_supra.py --allow-hub \
 The first inference downloads pinned Supra2-IMG, Flan-T5 Base and VAE weights.
 The inference script reads adapter rank from metadata and checks model pins.
 Set `CUDA_VISIBLE_DEVICES` to select a GPU. See the
-[training recipe](https://github.com/HyperGAN/supra-particle-sliders/blob/main/docs/final-boss.md) and
-[release reproduction](https://github.com/HyperGAN/supra-particle-sliders/blob/main/docs/release.md).
-
-## Shared core
-
-`scripts/train_lora_supra.py` and `python -m supra.train` are aliases of the
-same native shared PG0.9 worker. The previous pooled-feature smoke was not a
-native adapter trainer and is removed. See [the integration contract](docs/pg09.md).
+[training recipe](https://github.com/HyperGAN/supra-particle-sliders/blob/b35e634f4611687c22b1254555c7c1eeec7692fe/docs/final-boss.md) and
+[release reproduction](https://github.com/HyperGAN/supra-particle-sliders/blob/b35e634f4611687c22b1254555c7c1eeec7692fe/docs/release.md).
 
 ## How it learns
 

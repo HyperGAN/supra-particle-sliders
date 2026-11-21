@@ -1,4 +1,4 @@
-The optional Supra HNDL wheel uses core 0.15.1, ParticleGAN 0.11.0,
+The optional Supra HNDL wheel uses core 0.15.2, ParticleGAN 0.11.1,
 HNDL 0.10.0 and the reviewed HyperGAN builder. Build it from this checkout
 with `scripts/build_hndl_profile.py`. Use the original checkout for archived
 checkpoints from earlier cohorts.

@@ -1,4 +1,4 @@
-"""Canonical Supra adapter factory for core 0.15.1 / official PG 0.11.0."""
+"""Canonical Supra adapter factory for core 0.15.2 / official PG 0.11.1."""
 import inspect
 import math
 from pathlib import Path
@@ -13,7 +13,7 @@ CAPABILITIES = Capabilities(
     generator_arm="adapter_gan", render=True,
     strength_min=None, strength_max=None, reference_images=False,
     base_precisions=("float32",), render_outputs=("pil",),
-    qualification="Current PG0.11.0 CPU software cohort; pretrained/native CUDA qualification pending",
+    qualification="Current PG0.11.1 CPU software cohort; pretrained/native CUDA qualification pending",
     operations=("train", "resume", "evaluate", "export", "response", "render"),
 )
 

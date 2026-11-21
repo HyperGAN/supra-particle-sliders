@@ -1,4 +1,2 @@
-# Current packaged lifecycle cohort; run from this repository root.
-# Historical trainer dependencies remain in requirements-legacy.txt.
-# Its checkpoint/source lock is historical; never retarget old artifacts.
+# Installs the current lifecycle and exact shared core from pyproject.toml.
 .[test]

@@ -1,7 +1,7 @@
 """Fibo network bindings; all custom network operations are native HNDL graphs.
 
 The frozen pretrained model and native sampler stay with the Fibo backend.
-Vendored from HyperGAN/particle-sliders c13890f8 under its MIT license.
+Vendored from HyperGAN/particle-sliders ec1161f5 under its MIT license.
 This module contains no GAN objective, regularizer, optimizer or update loop.
 """
 from copy import deepcopy
@@ -38,7 +38,7 @@ def verified_builder():
     if (expected['schema'], expected['profile'], expected['hndl_version'],
             expected['hypergan_commit'], expected['particlegan_version']) != (
             'particle-sliders-hypergan-hndl-profile-v2', PROFILE, '0.10.0',
-            '5f368a3770cf5bdae0448995c9f76e29af8049f7', '0.11.0'):
+            '5f368a3770cf5bdae0448995c9f76e29af8049f7', '0.11.1'):
         raise ValueError('Fibo HNDL profile manifest contradicts the binding')
     hndl_root = Path(hndl.__file__).parent
     actual = {str(p.relative_to(hndl_root)): _sha(p) for p in hndl_root.rglob('*.py')}
