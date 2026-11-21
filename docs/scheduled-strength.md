@@ -98,3 +98,45 @@ images passed the independent categorical check. The bridge case stayed OFF
 under both learned gates. The measured fixed early profile above remains the
 documented choice for this configuration. The pilot’s fitted direction and
 calibration apply to this adapter and sampler. [Study and per-case evidence](final-boss-raw256-adaptive-evidence.json)
+
+### Reconstruct the measured Final Boss CFP setting
+
+The measured RAW256 uses its archived training owner's packet format. Use
+that runtime and its original conditioning for this study. The newer
+`supra_scoped` owner requires its own RAW packet schema.
+
+Read the calibrated strength and probe from the study. `raw_path` is the
+checkpoint used by the archived owner. Pass the resulting `gate` and
+`alignment` to the adaptive render with the study's Euler steps and CFG.
+
+```python
+from hashlib import file_digest
+import json
+from pathlib import Path
+
+import torch
+from particle_sliders.adaptive_steering import ActivationGate, activation_projection
+
+study = json.loads(Path("docs/final-boss-raw256-adaptive-evidence.json").read_bytes())
+profile = study["profile"]
+with Path(raw_path).open("rb") as checkpoint:
+    if file_digest(checkpoint, "sha256").hexdigest() != profile["RAW256_sha256"]:
+        raise ValueError("Use the measured Final Boss RAW256 checkpoint")
+
+selected_strength = profile["nominal_strength"]
+direction = torch.tensor(study["probe"]["direction"], dtype=torch.float32)
+patch = study["probe"]["native_patch"]
+
+def alignment(latent, timestep):
+    batch, channels, height, width = latent.shape
+    if batch != 1 or height % patch or width % patch:
+        raise ValueError("Expected the study's single-image native patch geometry")
+    by_phase = latent.reshape(batch, channels, height // patch, patch, width // patch, patch)
+    pooled = by_phase.mean(dim=(0, 2, 4), dtype=torch.float32).reshape(-1)
+    return activation_projection(pooled, direction, strength=selected_strength)
+
+gate = ActivationGate("cfp", study["calibration"]["parameters"]["cfp"]["parameter"])
+```
+
+Use a fresh gate for each request. The render receipt records the decision
+and strength at every native Euler interval.
