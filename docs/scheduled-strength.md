@@ -9,13 +9,19 @@ decoded image and its resolved strengths and time coordinates.
 ```python
 from supra.scheduled_inference import render
 
-# owner is the open Supra scoped RAW inference owner.
+# The open owner supplies the native model, conditioning, and saved RAW.
 image, receipt = render(owner, prompt=prompt, seed=7, strength=1.0,
-                        steps=4, step_gains=[1.5, 1.5, 0.5, 0.5])
+                        steps=50, cfg=3.0, step_gains=[1.5] * 25 + [0.5] * 25)
 ```
 
 The default native trajectory uses equal Euler intervals from noise to data.
-Compare gains of 1 throughout with the early profile shown above and its
-reverse. The adapter remains at zero on unconditional guidance forwards.
-Select a native profile using matched finished-image effect and the separate
-catastrophic-output check. [Shared qualification guide](https://github.com/HyperGAN/particle-sliders/blob/main/docs/strength-schedules.md)
+The adapter remains at zero on unconditional guidance forwards.
+
+On the saved Final Boss RAW256 adapter, the example schedule increased the
+four-case mean Final Boss effect to **+0.02318**, compared with **+0.01870** at
+constant strength and **+0.01229** for the reverse schedule. All eight new
+256×256 renders passed the separate catastrophic-output check. The comparison
+used the same frozen native checkpoint, cached conditioning, seed per case,
+50 Euler intervals and CFG 3 for all arms. Early was stronger than constant
+in three of four cases. It is the measured choice for this configuration.
+[Shared qualification guide](https://github.com/HyperGAN/particle-sliders/blob/main/docs/strength-schedules.md)
