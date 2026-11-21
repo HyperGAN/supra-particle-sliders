@@ -17,6 +17,9 @@ particle-slider train --profile supra --config /absolute/path/session.json --out
 python -m supra.train --config /absolute/path/session.json --out runs/new-cohort --no-reporting
 ```
 
+For native RAW inference, [scheduled strength](docs/scheduled-strength.md)
+applies one gain per step on the original conditional Euler path.
+
 **Current finished-image guidance:** use the existing Final Boss G **`0.036`**
 RAW128 at fixed D `0.018`, no bank (`lr=0.036`, `d_lr_mult=0.5`,
 `ema_decay=null`). It won the matched RAW64 comparison at equal-case intended-effect
