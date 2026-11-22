@@ -140,3 +140,33 @@ gate = ActivationGate("cfp", study["calibration"]["parameters"]["cfp"]["paramete
 
 Use a fresh gate for each request. The render receipt records the decision
 and strength at every native Euler interval.
+
+### Reconstruct the measured Final Boss CLABS setting
+
+This replay uses the same archived RAW256 owner, projection, and native
+sampler as the CFP recipe. CLABS averaged +0.002392 over its dose-matched
+constant across the four held-out cases and led on one case. The calibrated
+bias fired on 100 of 200 intervals on the separate calibration panel.
+
+For an archived case, set `case_id` to its study identifier and use its
+original cached conditioning and image seed. The original study also used
+that case's seed to initialize an independent CLABS gate for each request.
+Keep the `study`, `alignment` and `selected_strength` from the CFP recipe.
+
+```python
+from particle_sliders.adaptive_steering import ActivationGate, CLABSParameters
+
+case, = (row for row in study["comparisons"]["clabs"]["cases"] if row["case"] == case_id)
+image_seed = case["seed"]
+calibration = study["calibration"]
+gate = ActivationGate(
+    "clabs", calibration["parameters"]["clabs"]["parameter"], seed=image_seed,
+    clabs=CLABSParameters(**calibration["measured_normalization"]),
+)
+```
+
+Use the gate and projection with that case's frozen request. Verify the
+receipt's `effective_strengths` and `interval_weighted_dose` against
+`resolved_gains` and `interval_weighted_dose` in the case record. The
+case's `matched_constant_strength` gives the fixed control for that same
+seed and conditioning.
