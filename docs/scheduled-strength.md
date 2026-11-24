@@ -83,11 +83,11 @@ families. CFP’s threshold and CLABS’s bias were calibrated on active rollout
 four separate H3 Final Boss prompts encoded by Supra’s native T5. Both gates
 fired on exactly 100 of 200 calibration intervals.
 
-Each of the four held-out cases compares a gate with constant strength at the
-gate’s own realized interval-weighted dose. Gains are the equal-case mean
-finished-image Final Boss score over the exact matched OFF image.
+Each of the four held-out cases compares a gate with a constant calculated
+from that gate’s realized interval-weighted dose. Gains are the equal-case
+mean finished-image Final Boss score over the exact matched OFF image.
 
-| Method | Held-out firing | Gate gain | Dose-matched constant gain | Cases ahead |
+| Method | Held-out firing | Gate gain | Archived constant gain | Cases ahead |
 | --- | ---: | ---: | ---: | ---: |
 | CFP | 111/200 | +0.008638 | +0.005886 | 2/4 |
 | CLABS | 93/200 | +0.006925 | +0.004532 | 1/4 |
@@ -98,6 +98,13 @@ images passed the independent categorical check. The bridge case stayed OFF
 under both learned gates. The measured fixed early profile above remains the
 documented choice for this configuration. The pilot’s fitted direction and
 calibration apply to this adapter and sampler. [Study and per-case evidence](final-boss-raw256-adaptive-evidence.json)
+
+All eight archived CFP and CLABS controls used the nearest representable
+FP32 scalar. The two zero-firing bridge controls matched exactly, and the
+largest absolute difference in the integrated scalar was 2.86 × 10⁻⁸ on
+the uniform Euler grid. This calculation uses the scalar at the CUDA
+multiply before the BF16 residual product and addition round. The table
+reports scores for the original rendered controls. [Pinned CUDA scalar kernel](https://github.com/pytorch/pytorch/blob/cf30153c4c131c8164ee7798e5022d810682e2cb/aten/src/ATen/native/cuda/BinaryMulKernel.cu#L33-L42).
 
 ### Reconstruct the measured Final Boss CFP setting
 
